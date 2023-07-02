@@ -1,0 +1,4 @@
+@mixin container-padding($property) {
+    padding-left: $property;
+    padding-right: $property;
+}

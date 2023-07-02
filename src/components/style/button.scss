@@ -1,0 +1,14 @@
+.btn {
+    background-color: $primary-color;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .5rem;
+    transition-duration: 300ms;
+    border: none;
+
+    &:hover {
+        background-color: $primary-color-hover;
+    }
+}

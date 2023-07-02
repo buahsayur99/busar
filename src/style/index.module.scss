@@ -1,0 +1,26 @@
+// reset
+@import "reset";
+
+// Variables & Functions
+@import "variables";
+
+// Extends
+@import "extends";
+
+// Responsive
+@import "_breakpoints";
+
+// Components
+@import "../components/style/button.scss";
+
+// Features / Navbar
+@import "../features/navbar/style/navbar";
+@import "../features/navbar/style/searchCatatan";
+
+.container {
+    @include container-padding(1rem);
+
+    @include md {
+        @include container-padding(2rem);
+    }
+}

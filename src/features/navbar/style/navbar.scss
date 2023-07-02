@@ -1,0 +1,99 @@
+// NavigationBar
+.nav {
+    height: 5rem;
+    box-sizing: border-box;
+
+    .parent-search-mobile {
+        display: inline;
+        align-self: center;
+        position: absolute;
+        right: 0;
+        z-index: 20;
+        transition-duration: 300ms;
+        overflow: hidden;
+
+        @include md {
+            display: none;
+        }
+    }
+
+    .search-active {
+        width: 100%;
+    }
+
+    .search-notActive {
+        width: 0%;
+    }
+
+    .judul-nav {
+        width: 7rem;
+        font-size: $font-size-xl;
+        display: none;
+
+        @include breakpoint(360px) {
+            display: inline;
+        }
+
+        @include sm {
+            width: 10rem;
+        }
+    }
+
+    .btn-menu-utama-nav {
+        background-color: transparent;
+        color: black;
+        font-size: 1.5rem;
+        padding: 0.5rem;
+        display: flex;
+        border: none;
+        transition-duration: 300ms;
+        border-radius: 100%;
+
+        &:hover {
+            background-color: $gray-color;
+            color: black;
+        }
+    }
+
+    .parent-search {
+        position: relative;
+        width: 3rem;
+
+        .btn-search-on-off {
+            background-color: transparent;
+            border: none;
+            color: black;
+            transition-duration: 300ms;
+            position: absolute;
+            right: 0;
+            top: 15%;
+            z-index: 10;
+            display: flex;
+            padding: .7rem;
+            margin: .2rem .3rem 0 .3rem;
+            border-radius: 100%;
+
+            &:hover {
+                background-color: $gray-color-hover;
+            }
+
+            // Responsive
+            @include md {
+                display: none;
+            }
+        }
+
+        .search-catatan {
+            width: 0%;
+            transition-duration: 300ms;
+            overflow: hidden;
+
+            // Responsive
+            @include md {
+                width: 100%;
+            }
+        }
+    }
+}
+
+// NavigationBar End
