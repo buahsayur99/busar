@@ -7,15 +7,24 @@ import { BsSearch } from "react-icons/bs";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { activeSearch } from "../../app/actions/searchCatatanSlice";
 import { Buttons } from "../../components/Buttons";
+import { useScrollNavbar } from "../../hook/useScrollNavbar";
 
 const NavigationBar = () => {
     const { activeInputSearch } = useAppSelector(state => state.activeButton);
+    const { scrolled } = useScrollNavbar()
 
     const dispatch = useAppDispatch()
 
+    console.log(scrolled);
+
     return (
         <>
-            <Navbar bg="Light" className={`${styles.container} ${styles.nav} shadow-sm`}>
+            <Navbar
+                className={`
+                    ${!scrolled ? "" : styles["nav-fixed"]} 
+                    ${styles.container} ${styles.nav} shadow-sm`
+                }
+            >
                 <Stack className="flex-row position-relative me-3 me-md-5" >
                     {/* Search Catatan dimensi Tablet and Mobile */}
                     <Stack

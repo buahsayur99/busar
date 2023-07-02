@@ -5,7 +5,9 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <div style={{ height: "100rem" }}>
+        <Navbar />
+      </div>
     </>
   );
 }
