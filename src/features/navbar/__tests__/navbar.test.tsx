@@ -15,7 +15,5 @@ describe("NavigationBar", () => {
             name: "Keep Aduh"
         });
         expect(elementHeading).toBeInTheDocument();
-
-
     })
 })
