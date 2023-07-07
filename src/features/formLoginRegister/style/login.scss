@@ -1,0 +1,47 @@
+.parent-login {
+    background: $primary-color-black;
+    padding: 0rem 1.5rem;
+    width: 25rem;
+
+    .parent-btn-forget-password {
+        margin: 1rem 0;
+        display: grid;
+        justify-items: end;
+
+        .btn-forget-password {
+            border: none;
+            background-color: transparent;
+            color: white;
+            transition-duration: 300ms;
+
+            &:hover {
+                color: $primary-color;
+            }
+
+            &:focus {
+                outline-color: $primary-color-bright;
+            }
+        }
+    }
+
+    .btn-login-form {
+        background-color: $primary-color-dark;
+        color: white;
+        border: none;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        padding: 1.1rem 0;
+        transition: all;
+        transition-duration: 300ms;
+        margin-bottom: 1.5rem;
+
+        &:hover {
+            background-color: $primary-color;
+            color: $primary-color-black;
+        }
+
+        &:focus {
+            outline-color: $primary-color-bright;
+        }
+    }
+}

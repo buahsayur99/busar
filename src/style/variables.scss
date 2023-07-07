@@ -3,11 +3,19 @@ $hue: 152;
 // Primary
 $primary-color: hsl($hue, 100%, 50%);
 $primary-color-bright: hsl($hue, 100%, 80%);
-$primary-color-dark: hsl($hue, 100%, 30%);
 $primary-color-hover: hsl($hue, 100%, 30%);
+$primary-color-dark: hsl($hue, 100%, 30%);
+$primary-color-dark-hover: hsl($hue, 100%, 20%);
+$primary-color-black: hsl($hue, 50%, 10%);
+$primary-color-black65: hsl($hue, 0%, 0%, 65%);
+$primary-color-white: hsl($hue, 100%, 100%);
 // Gray
-$gray-color: hsl($hue, 0%, 92%);
+$gray-color: hsl($hue, 100%, 92%);
 $gray-color-hover: hsl($hue, 0%, 85%);
+// Warning Color
+$primary-danger: red;
+$primary-warning: orange;
+$primary-safety: rgb(0, 255, 0);
 
 // Font Size
 $font-size-xs: 0.75rem;
@@ -19,3 +27,6 @@ $font-size-xl: 1.25rem;
 // Padding
 $distance-search-lg: 2rem;
 $distance-search-md: 1rem;
+
+// Z-index
+$z-index-xl: 10000;

@@ -3,7 +3,7 @@ import searchCatatanSlice from './actions/searchCatatanSlice';
 
 export const store = configureStore({
   reducer: {
-    activeButton: searchCatatanSlice
+    searchCatatanSlice: searchCatatanSlice
   },
 });
 

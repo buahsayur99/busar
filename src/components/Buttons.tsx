@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 import styles from "../style/index.module.scss";
 
 type ButtonProps = {
@@ -11,12 +10,12 @@ type ButtonProps = {
 export const Buttons = ({ children, styleScss, stylesBtn }: ButtonProps) => {
   return (
     <>
-      <Button
+      <button
         className={`${styles[`${styleScss}`]}`}
         style={stylesBtn}
       >
         {children}
-      </Button>
+      </button>
     </>
   )
 }

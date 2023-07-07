@@ -11,11 +11,15 @@
 @import "_breakpoints";
 
 // Components
-@import "../components/style/button.scss";
+@import "../components/style/button";
+@import "../components/style/inputsForm";
 
-// Features / Navbar
+// Features /Navbar
 @import "../features/navbar/style/navbar";
 @import "../features/navbar/style/searchCatatan";
+// Features /FormLoginRegister
+@import "../features/formLoginRegister/style/formLoginRegister";
+@import "../features/formLoginRegister/style/login";
 
 .container {
     @include container-padding(1rem);

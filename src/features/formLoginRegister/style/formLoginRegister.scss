@@ -1,0 +1,10 @@
+.bg-black {
+    background-color: $primary-color-black65;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: $z-index-xl;
+    width: 100%;
+    height: 100%;
+}

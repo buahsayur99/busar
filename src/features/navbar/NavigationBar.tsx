@@ -9,13 +9,11 @@ import { activeSearch } from "../../app/actions/searchCatatanSlice";
 import { Buttons } from "../../components/Buttons";
 import { useScrollNavbar } from "../../hook/useScrollNavbar";
 
-const NavigationBar = () => {
-    const { activeInputSearch } = useAppSelector(state => state.activeButton);
+export const NavigationBar = () => {
+    const { activeInputSearch } = useAppSelector(state => state.searchCatatanSlice);
     const { scrolled } = useScrollNavbar()
 
     const dispatch = useAppDispatch()
-
-    console.log(scrolled);
 
     return (
         <>
@@ -75,5 +73,3 @@ const NavigationBar = () => {
         </>
     )
 }
-
-export default NavigationBar
