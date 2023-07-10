@@ -1,6 +1,6 @@
-import { FaUserAlt, PiLockKeyFill } from "../utils/icons";
+import { FaUserAlt, PiLockKeyFill, PiLockKeyOpenFill } from "../utils/icons";
 import styles from "../style/index.module.scss";
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 type IconsProps = string | Element | undefined
 
@@ -14,23 +14,36 @@ type InputFormProps = {
 };
 
 const Icons = ({ iconType }: { iconType: IconsProps }) => {
+    if (iconType === "PiLockKeyOpenFill") return <PiLockKeyOpenFill />
     if (iconType === "FaUserAlt") return <FaUserAlt />
     if (iconType === "PiLockKeyFill") return <PiLockKeyFill />
     return null
 }
 
 export const InputsForm = ({ typeInput, changeInput, valueInput, iconType, styleIcon, valuePlaceholder }: InputFormProps) => {
-    const [valueInputs, setValueInputs] = useState(false);
+    const [passwordVisible, setPasswordVisible] = useState(false);
     const inputRef = useRef<HTMLInputElement | null>(null);
 
+    // click parentInput focus input
     const handleDivClick = () => {
         inputRef.current?.focus();
     };
 
-    useEffect(() => {
-        if (valueInput.length !== 0) return setValueInputs(true);
-        return setValueInputs(false)
-    }, [valueInput.length])
+    const updatePassVisible = () => {
+        setPasswordVisible((state) => !state);
+
+        const inputElement = inputRef.current;
+        // if InputElement exists
+        if (inputElement) {
+            // variable holds input data length 
+            const inputLength = inputElement.value.length;
+            // Focus input on the last value
+            setTimeout(() => {
+                inputElement.selectionStart = inputLength;
+                inputElement.focus();
+            }, 0);
+        }
+    }
 
     return (
         <>
@@ -41,28 +54,46 @@ export const InputsForm = ({ typeInput, changeInput, valueInput, iconType, style
             >
                 {/* Input */}
                 <input
-                    type={typeInput}
+                    type={!passwordVisible ? typeInput : "text"}
                     onChange={(input) => changeInput(input.target.value)}
                     value={valueInput}
-                    className={`${!valueInputs ? styles["input-form"] : styles["input-form-active"]}`}
+                    className={`${valueInput.length === 0 ? styles["input-form"] : styles["input-form-active"]}`}
                     ref={inputRef}
                 />
 
                 {/* Text Placeholder */}
                 <p
                     // If the value input not is empty run the classname text-placeholder-active
-                    className={`${!valueInputs ? styles["text-placeholder"] : styles["text-placeholder-active"]}`}
+                    className={`${valueInput.length === 0 ? styles["text-placeholder"] : styles["text-placeholder-active"]}`}
                 >
                     {valuePlaceholder}
                 </p>
 
-                {/* Icon Input */}
-                <div
-                    className={`${!valueInputs ? styles["parent-icon"] : styles["parent-icon-active"]}`}
-                    style={styleIcon}
-                >
-                    <Icons iconType={iconType} />
-                </div>
+                {iconType === "PiLockKeyFill"
+                    ? (
+                        <div
+                            className={`${valueInput.length === 0 ? styles["parent-icon"] : styles["parent-icon-active"]}`}
+                            style={styleIcon}
+                            onClick={() => updatePassVisible()}
+                        >
+                            <Icons
+                                // if passwordVisible true send "PiLockKeyOpenFill"
+                                iconType={!passwordVisible ? iconType : "PiLockKeyOpenFill"}
+                            />
+                        </div>
+                    )
+                    : (
+                        <div
+                            className={`${valueInput.length === 0 ? styles["parent-icon"] : styles["parent-icon-active"]}`}
+                            style={styleIcon}
+                        >
+                            <Icons
+                                // if passwordVisible true send "PiLockKeyOpenFill"
+                                iconType={iconType}
+                            />
+                        </div>
+                    )
+                }
             </div>
         </>
     )

@@ -4,7 +4,7 @@ import styles from "../style/index.module.scss";
 type ButtonProps = {
   children: React.ReactNode
   styleScss: string
-  stylesBtn: React.CSSProperties
+  stylesBtn?: React.CSSProperties
 }
 
 export const Buttons = ({ children, styleScss, stylesBtn }: ButtonProps) => {

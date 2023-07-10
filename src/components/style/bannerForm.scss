@@ -1,0 +1,44 @@
+.parent_banner-form {
+    padding: 0 1rem 0 1rem;
+
+    .judul {
+        font-size: 4.5rem;
+        font-style: normal;
+        font-weight: normal;
+        text-transform: capitalize;
+        color: $primary-color-bright;
+
+        span {
+            color: $primary-color-dark;
+            font-weight: bold;
+        }
+    }
+
+    .text {
+        color: $primary-color-black;
+        margin-top: 3rem;
+        color: black;
+        font-size: $font-size-lg;
+        text-align: justify;
+    }
+
+    .parent_btn-regis {
+        display: flex;
+        justify-content: center;
+        margin-top: 3rem;
+
+        .btn_regis {
+            background-color: $primary-color;
+            padding: 1.1rem 3rem;
+            transition-duration: 300ms;
+            font-size: $font-size-xl;
+            color: white;
+            text-transform: capitalize;
+
+            &:hover {
+                background-color: $primary-color-hover;
+            }
+        }
+    }
+
+}

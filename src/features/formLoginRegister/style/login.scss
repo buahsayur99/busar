@@ -1,7 +1,18 @@
+.judul-login {
+    color: white;
+    font-size: $font-size-2xl;
+    text-align: center;
+}
+
 .parent-login {
-    background: $primary-color-black;
+    background: transparent;
     padding: 0rem 1.5rem;
-    width: 25rem;
+
+    .parent-input-login {
+        display: grid;
+        gap: 2rem;
+        margin-top: 3rem;
+    }
 
     .parent-btn-forget-password {
         margin: 1rem 0;
