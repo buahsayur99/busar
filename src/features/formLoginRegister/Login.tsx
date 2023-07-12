@@ -2,9 +2,12 @@ import styles from "../../style/index.module.scss";
 import { Buttons } from "../../components/Buttons";
 import { InputsForm } from "../../components/InputsForm";
 import { useState } from "react";
+import { useAppDispatch } from "../../app/hooks";
+import { activeFormTransition } from "../../app/actions/formLoginRegisterSlice";
 
 export const Login = () => {
-    const [input, setInput] = useState({ email: "", password: "" })
+    const [input, setInput] = useState({ email: "", password: "" });
+    const dispatch = useAppDispatch()
 
     const updateInput = (value: any) => {
         setInput(prev => {
@@ -53,10 +56,25 @@ export const Login = () => {
                         Forget Password?
                     </button>
                 </div>
-                {/* Button Submit */}
-                <Buttons styleScss="btn-login-form" stylesBtn={{ width: "100%" }}>
-                    Login
-                </Buttons>
+
+                <div className={styles["parent_btn"]}>
+                    {/* Button Submit */}
+                    <Buttons
+                        styleScss="btn-login-form"
+                        stylesBtn={{ width: "100%" }}
+                    >
+                        Login
+                    </Buttons>
+
+                    {/* Button Submit */}
+                    <Buttons
+                        onClicks={() => dispatch(activeFormTransition({ formLogin: false, bannerLogin: true, formRegister: true, bannerRegiter: false }))}
+                        styleScss="btn-login-form-register"
+                        stylesBtn={{ width: "100%" }}
+                    >
+                        create account
+                    </Buttons>
+                </div>
             </form>
         </div>
     )

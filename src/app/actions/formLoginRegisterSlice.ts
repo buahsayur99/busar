@@ -5,6 +5,7 @@ type activeTransitionFormProps = {
     bannerLogin: boolean;
     formRegister: boolean;
     bannerRegiter: boolean;
+    onOffForm: boolean;
 }
 
 type initialStateProps = {
@@ -12,7 +13,7 @@ type initialStateProps = {
 }
 
 const initialState: initialStateProps = {
-    activeTransitionForm: { formLogin: true, bannerLogin: false, formRegister: false, bannerRegiter: true }
+    activeTransitionForm: { formLogin: true, bannerLogin: false, formRegister: false, bannerRegiter: true, onOffForm: true }
 }
 
 export const formLoginRegiterSlice = createSlice({

@@ -12,6 +12,11 @@
             color: $primary-color-dark;
             font-weight: bold;
         }
+
+        // Responsive
+        @include breakpoint-max(625px) {
+            font-size: 400%;
+        }
     }
 
     .text {

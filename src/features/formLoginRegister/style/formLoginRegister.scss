@@ -1,3 +1,4 @@
+// Login
 .form-login_out-bottom {
     transform: translateY(0px);
     transition: all;
@@ -36,6 +37,7 @@
     transition-duration: 1s;
 }
 
+// Register
 .form-register-out-left {
     transform: translateX(0px);
     transition: all;
@@ -74,6 +76,88 @@
     transition-duration: 1s;
 }
 
+// ON OFF FORM
+// ------------------------------- ANIMASI IN FORM -------------------------------
+@-webkit-keyframes scale-in-center {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scale-in-center {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.scale-in-center_bg-black {
+    -webkit-animation: scale-in-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: scale-in-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+.scale-in-center_bg-white {
+    -webkit-animation: scale-in-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: scale-in-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation-delay: .6s;
+}
+
+// ------------------------------- ANIMASI OUT FORM -------------------------------
+@-webkit-keyframes scale-out-center {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes scale-out-center {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.scale-out-center_bg-black {
+    -webkit-animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation-delay: .6s;
+}
+
+.scale-out-center_bg-white {
+    -webkit-animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+// ------------------------------- FILE -------------------------------
 .bg-black {
     background-color: $primary-color-black65;
     position: fixed;
@@ -89,9 +173,23 @@
         width: 60rem;
         height: 35rem;
         border-radius: 2rem;
-        overflow: hidden;
         display: grid;
         grid-template-columns: 50% 50%;
+        position: relative;
+
+        // Responsive
+        @include breakpoint-max(550px) {
+            display: none;
+        }
+
+        .parent_form-invisible {
+            display: inline;
+
+            // Responsive
+            @include breakpoint-max(550px) {
+                display: none;
+            }
+        }
 
         .parent_banner-form {
             height: 100%;
@@ -101,18 +199,59 @@
             justify-content: center;
             position: absolute;
             left: 0;
+
+            // Responsive
+            @include breakpoint-max(550px) {
+                display: none;
+            }
+        }
+    }
+
+    .bg-green {
+        background-image: url(../../../assets/formLoginRegister/bgGreen.svg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .btn-close-form {
+        position: absolute;
+        z-index: $z-index-md;
+        background-color: transparent;
+        color: white;
+        font-size: 2rem;
+        right: -2.5rem;
+        top: -1rem;
+        transition-duration: 300ms;
+
+        &:hover {
+            color: $primary-color;
         }
 
-        .bg-green {
-            background-image: url(../../../assets/formLoginRegister/bgGreen.svg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
+        // Responsive
+        @include breakpoint-max(1025px) {
+            right: .3rem;
+            top: .5rem;
+            color: red;
+        }
+    }
+
+    .bg-white-mobile {
+        background-color: white;
+        width: 60rem;
+        height: 35rem;
+        border-radius: 2rem;
+        overflow: hidden;
+        display: none;
+
+        // Responsive
+        @include breakpoint-max(550px) {
+            display: inline;
         }
     }
 }

@@ -26,7 +26,10 @@ export const BannerForm = ({ children, judulText, spanText, onClick, stylesCss }
                 {/* Text Banner */}
                 <p className={`${styles["text"]}`}>{children}</p>
 
-                <div onClick={() => onClick()} className={`${styles["parent_btn-regis"]}`}>
+                <div
+                    onClick={onClick}
+                    className={`${styles["parent_btn-regis"]}`}
+                >
                     {/* Button */}
                     <Buttons styleScss={"btn_regis"}>
                         register

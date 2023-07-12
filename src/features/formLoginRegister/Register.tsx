@@ -2,9 +2,12 @@ import styles from "../../style/index.module.scss";
 import { InputsForm } from "../../components/InputsForm";
 import { useState } from "react";
 import { Buttons } from "../../components/Buttons";
+import { activeFormTransition } from "../../app/actions/formLoginRegisterSlice";
+import { useAppDispatch } from "../../app/hooks";
 
 export const Register = () => {
     const [input, setInput] = useState({ email: "", password: "", confirmasiPassword: "" });
+    const dispatch = useAppDispatch()
 
     // Function Update State Input
     const updateInput = (value: any) => {
@@ -55,10 +58,26 @@ export const Register = () => {
                             valuePlaceholder="input your confirmasi password"
                         />
                     </div>
-                    {/* Button submit */}
-                    <Buttons styleScss="btn-login-form" stylesBtn={{ width: "100%", marginTop: "3rem" }}>
-                        Register
-                    </Buttons>
+
+
+                    <div className={styles["parent_btn"]} style={{ marginTop: "2rem" }}>
+                        {/* Button Submit */}
+                        <Buttons
+                            styleScss="btn-login-form"
+                            stylesBtn={{ width: "100%" }}
+                        >
+                            submit
+                        </Buttons>
+
+                        {/* Button Submit */}
+                        <Buttons
+                            onClicks={() => dispatch(activeFormTransition({ formLogin: true, bannerLogin: false, formRegister: false, bannerRegiter: true }))}
+                            styleScss="btn-login-form-register"
+                            stylesBtn={{ width: "100%" }}
+                        >
+                            Login
+                        </Buttons>
+                    </div>
                 </form>
             </div>
         </>
