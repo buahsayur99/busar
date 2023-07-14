@@ -13,7 +13,7 @@ type InputFormProps = {
     iconType?: IconsProps;
 };
 
-const Icons = ({ iconType }: { iconType: IconsProps }) => {
+export const Icons = ({ iconType }: { iconType: IconsProps }) => {
     if (iconType === "PiLockKeyOpenFill") return <PiLockKeyOpenFill />
     if (iconType === "FaUserAlt") return <FaUserAlt />
     if (iconType === "PiLockKeyFill") return <PiLockKeyFill />
@@ -59,6 +59,7 @@ export const InputsForm = ({ typeInput, changeInput, valueInput, iconType, style
                     value={valueInput}
                     className={`${valueInput.length === 0 ? styles["input-form"] : styles["input-form-active"]}`}
                     ref={inputRef}
+                    role="inputElement"
                 />
 
                 {/* Text Placeholder */}
@@ -75,6 +76,7 @@ export const InputsForm = ({ typeInput, changeInput, valueInput, iconType, style
                             className={`${valueInput.length === 0 ? styles["parent-icon"] : styles["parent-icon-active"]}`}
                             style={styleIcon}
                             onClick={() => updatePassVisible()}
+                            role="inputElement"
                         >
                             <Icons
                                 // if passwordVisible true send "PiLockKeyOpenFill"
@@ -86,6 +88,7 @@ export const InputsForm = ({ typeInput, changeInput, valueInput, iconType, style
                         <div
                             className={`${valueInput.length === 0 ? styles["parent-icon"] : styles["parent-icon-active"]}`}
                             style={styleIcon}
+                            role="buttonIconElement"
                         >
                             <Icons
                                 // if passwordVisible true send "PiLockKeyOpenFill"
