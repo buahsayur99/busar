@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import searchCatatanSlice from './actions/searchCatatanSlice';
 import formLoginRegisterSlice from './actions/formLoginRegisterSlice';
+import apiUsersSlice from './actions/apiUsersSlice';
 
 export const store = configureStore({
   reducer: {
     searchCatatanSlice: searchCatatanSlice,
-    formLoginRegisterSlice: formLoginRegisterSlice
+    formLoginRegisterSlice: formLoginRegisterSlice,
+    apiUsers: apiUsersSlice
   },
 });
 

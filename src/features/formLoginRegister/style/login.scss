@@ -10,12 +10,12 @@
 
     .parent-input-login {
         display: grid;
-        gap: 2rem;
+        gap: 2.3rem;
         margin-top: 3rem;
     }
 
     .parent-btn-forget-password {
-        margin: 1rem 0;
+        margin: 1.3rem 0 1rem 0;
         display: grid;
         justify-items: end;
 
@@ -54,7 +54,7 @@
             padding: 1.1rem 0;
             transition: all;
             transition-duration: 300ms;
-            margin-bottom: 1.5rem;
+
 
             &:hover {
                 background-color: $primary-color;
@@ -75,7 +75,6 @@
             padding: 1.1rem 0;
             transition: all;
             transition-duration: 300ms;
-            margin-bottom: 1.5rem;
             display: none;
 
             &:hover {

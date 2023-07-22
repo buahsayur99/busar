@@ -19,11 +19,14 @@
         color: $primary-color;
         padding: 0 .5rem 0 .5rem;
         font-size: .7rem;
+    }
 
-        text-transform: capitalize;
-        position: absolute;
-        margin-left: 3rem;
-        transition-duration: 300ms;
+    .text-placeholder-danger {
+        margin-top: -3.3rem;
+        background-color: $primary-color-black;
+        color: $primary-danger;
+        padding: 0 .5rem 0 .5rem;
+        font-size: .7rem;
     }
 
     .parent-icon {
@@ -33,9 +36,11 @@
     }
 
     .parent-icon-active {
-        position: absolute;
         color: $primary-color;
-        margin-left: 1rem;
+    }
+
+    .parent-icon-danger {
+        color: $primary-danger;
     }
 
     .input-form {
@@ -62,6 +67,32 @@
         border-radius: .5rem;
         color: $primary-color;
         outline: none;
+    }
+
+    .input-form-danger {
+        position: relative;
+        padding: 1rem 1rem 1rem 3rem;
+        background-color: transparent;
+        border: 2px solid $primary-danger;
+        width: 100%;
+        border-radius: .5rem;
+        color: white;
+        outline: none;
+
+        &:focus {
+            border: 2px solid $primary-danger;
+            color: $primary-color;
+        }
+    }
+
+    .validasi-danger {
+        position: absolute;
+        left: 0;
+        bottom: -1rem;
+        color: $primary-danger;
+        padding-left: 1rem;
+        text-transform: capitalize;
+        font-size: $font-size-xs;
     }
 }
 

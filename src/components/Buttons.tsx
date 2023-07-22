@@ -12,6 +12,7 @@ export const Buttons = ({ children, styleScss, stylesBtn, onClicks }: ButtonProp
   return (
     <>
       <button
+        type="button"
         onClick={onClicks}
         className={`${styles[`${styleScss}`]}`}
         style={stylesBtn}

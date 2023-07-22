@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, getByTestId, render } from "@testing-library/react";
 import { InputsForm } from "../InputsForm";
 import { Provider } from "react-redux";
 import { store } from "../../app/store";
@@ -39,7 +39,7 @@ describe("Input Form", () => {
         const valuePlaceholder = "enter your name";
         const valueInput = "";
 
-        render(
+        const { getByTestId } = render(
             <Provider store={store}>
                 <InputsForm
                     typeInput={typeInput}
@@ -50,14 +50,14 @@ describe("Input Form", () => {
             </Provider>
         )
 
-        const inputElement = screen.getByRole("inputElement") as HTMLInputElement;
+        const inputElement = getByTestId("inputElement") as HTMLInputElement;
         expect(inputElement).toBeInTheDocument();
     });
 
     test("calls changeInput Function when input value changes", () => {
         const changeInputMock = jest.fn();
 
-        render(
+        const { getByTestId } = render(
             <Provider store={store}>
                 <InputsForm
                     typeInput="text"
@@ -68,7 +68,7 @@ describe("Input Form", () => {
             </Provider>
         )
 
-        const inputElement = screen.getByRole("inputElement") as HTMLInputElement;
+        const inputElement = getByTestId("inputElement") as HTMLInputElement;
         fireEvent.change(inputElement, { target: { value: "name" } });
 
         expect(changeInputMock).toHaveBeenCalledWith("name");
@@ -76,7 +76,7 @@ describe("Input Form", () => {
 
     test("should when valueInput.length === 0 className", async () => {
         const valueInput = ""
-        const { queryAllByRole } = render(
+        const { queryAllByTestId } = render(
             <Provider store={store}>
                 <InputsForm
                     typeInput="text"
@@ -88,15 +88,15 @@ describe("Input Form", () => {
             </Provider>
         );
 
-        const inputElement = queryAllByRole("inputElement")[0] as HTMLInputElement;
+        const inputElement = queryAllByTestId("inputElement")[0] as HTMLInputElement;
         expect(inputElement).toHaveClass("input-form"); // when valueInput.length !== 0
-        const buttonIconElement = queryAllByRole("inputElement")[1] as HTMLInputElement; // untuk button icon
+        const buttonIconElement = queryAllByTestId("inputElement")[1] as HTMLInputElement; // untuk button icon
         expect(buttonIconElement).toHaveClass("parent-icon"); // when valueInput.length !== 0
     });
 
-    test("should when valueInput.length !==0 change className", async () => {
+    test("should when valueInput.length !== 0 change className", async () => {
         const valueInput = "joko"
-        const { queryAllByRole } = render(
+        const { queryAllByTestId } = render(
             <Provider store={store}>
                 <InputsForm
                     typeInput="text"
@@ -108,16 +108,16 @@ describe("Input Form", () => {
             </Provider>
         );
 
-        const inputElement = queryAllByRole("inputElement")[0] as HTMLInputElement;
+        const inputElement = queryAllByTestId("inputElement")[0] as HTMLInputElement;
         expect(inputElement).toHaveClass("input-form-active"); // when valueInput.length !== 0
-        const buttonIconElement = queryAllByRole("inputElement")[1] as HTMLInputElement; // untuk button icon
+        const buttonIconElement = queryAllByTestId("inputElement")[1] as HTMLInputElement; // untuk button icon
         expect(buttonIconElement).toHaveClass("parent-icon-active"); // when valueInput.length !== 0
     });
 
     test('toggles password visibility and updates input type when PiLockKeyFill icon is clicked', () => {
         jest.useFakeTimers();
 
-        const { getByTestId, queryAllByRole } = render(
+        const { getByTestId, queryAllByTestId } = render(
             <InputsForm
                 typeInput="password"
                 iconType="PiLockKeyFill"
@@ -128,7 +128,7 @@ describe("Input Form", () => {
         );
 
         const iconElement = getByTestId('PiLockKeyFill');
-        const inputElements = queryAllByRole('inputElement') as HTMLInputElement[];
+        const inputElements = queryAllByTestId('inputElement') as HTMLInputElement[];
         const inputElement = inputElements[0];
 
         fireEvent.click(iconElement);
@@ -146,7 +146,7 @@ describe("Input Form", () => {
     });
 
     test("check className if iconType !== PiLockKeyFill and valueInput.length !== 0", () => {
-        const { getByRole } = render(
+        const { getByTestId } = render(
             <InputsForm
                 typeInput="password"
                 iconType="FaUserAlt"
@@ -156,7 +156,7 @@ describe("Input Form", () => {
             />
         );
 
-        const buttonIconElement = getByRole("buttonIconElement");
+        const buttonIconElement = getByTestId("buttonIconElement");
         expect(buttonIconElement).toHaveClass("parent-icon-active")
     })
 });

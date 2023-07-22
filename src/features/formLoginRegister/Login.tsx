@@ -1,30 +1,68 @@
 import styles from "../../style/index.module.scss";
 import { Buttons } from "../../components/Buttons";
 import { InputsForm } from "../../components/InputsForm";
-import { useState } from "react";
-import { useAppDispatch } from "../../app/hooks";
-import { activeFormTransition } from "../../app/actions/formLoginRegisterSlice";
+import { useEffect, useCallback } from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { activeFormTransition, updateValidasi, updateInputValue, resetValidasi } from "../../app/actions/formLoginRegisterSlice";
+import { postToApi, resetIsMessage } from "../../app/actions/apiUsersSlice";
+
+export type InputProps = {
+    email: string;
+    password: string;
+    confirmasiPassword?: string
+}
 
 export const Login = () => {
-    const [input, setInput] = useState({ email: "", password: "" });
+    const { isMessage } = useAppSelector(state => state.apiUsers);
+    const { validasiInput, inputValueForm } = useAppSelector(state => state.formLoginRegisterSlice);
     const dispatch = useAppDispatch()
 
-    const updateInput = (value: any) => {
-        setInput(prev => {
-            return { ...prev, ...value }
-        })
+    const handleInputChange = (eventInput: InputProps) => {
+        if (inputValueForm.email === "") {
+            dispatch(updateValidasi({ email: { status: true, text: "email tidak boleh kosong" } }))
+        } else {
+            dispatch(updateValidasi({ email: { status: false, text: "" } }))
+        }
+
+        if (inputValueForm.password === "") {
+            dispatch(updateValidasi({ password: { status: true, text: "password tidak boleh kosong" } }))
+        } else {
+            dispatch(updateValidasi({ password: { status: false, text: "" } }))
+        }
+
+        const data = eventInput
+        const link = "https://rich-tan-llama-wear.cyclic.app/login"
+        if (inputValueForm.email !== "" && inputValueForm.password !== "") return dispatch(postToApi({ data, link }));
     }
 
     // Function Submit
-    const onSubmit = (event: React.FocusEvent<HTMLFormElement>) => {
+    const onSubmit = (event: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
         event.preventDefault();
+        handleInputChange(inputValueForm)
     }
+
+    useEffect(() => {
+        if (isMessage === "email yang anda masukan tidak terdafatar") {
+            dispatch(updateValidasi({ email: { status: true, text: isMessage } }));
+            return;
+        }
+        if (isMessage === "password yang anda masukan salah") {
+            dispatch(updateValidasi({ password: { status: true, text: isMessage } }));
+            return;
+        }
+    }, [isMessage, dispatch]);
+
+    const btnRegister = useCallback(() => {
+        dispatch(activeFormTransition({ formLogin: false, bannerLogin: true, formRegister: true, bannerRegiter: false }));
+        dispatch(resetValidasi());
+        dispatch(resetIsMessage());
+    }, [dispatch])
 
     return (
         // Parent Login
         <div className={`${styles["parent-login"]}`}>
             {/* Form Register */}
-            <form onSubmit={onSubmit}>
+            <form data-testid="loginForm" onSubmit={onSubmit}>
                 {/* Judul Form */}
                 <h3 className={`${styles["judul-login"]}`}>Login</h3>
                 {/* Input Login */}
@@ -34,24 +72,30 @@ export const Login = () => {
                         valuePlaceholder={"input your email"}
                         styleIcon={{ fontSize: "1.3rem", cursor: "text" }}
                         typeInput={"text"}
-                        changeInput={(input) => updateInput({ email: input })}
-                        valueInput={input.email}
+                        changeInput={(input) => dispatch(updateInputValue({ email: input }))}
+                        valueInput={inputValueForm.email}
                         iconType={"FaUserAlt"}
+                        validasiInput={validasiInput.email}
                     />
                     {/* Input Password */}
                     <InputsForm
                         valuePlaceholder={"input your password"}
                         styleIcon={{ fontSize: "1.4rem" }}
                         typeInput={"password"}
-                        changeInput={(input) => updateInput({ password: input })}
-                        valueInput={input.password}
+                        changeInput={(input) => dispatch(updateInputValue({ password: input }))}
+                        valueInput={inputValueForm.password}
                         iconType={"PiLockKeyFill"}
+                        validasiInput={validasiInput.password}
                     />
                 </div>
                 {/* Button fotget to the password */}
                 <div className={`${styles["parent-btn-forget-password"]}`}>
                     <button
+                        type="button"
                         className={`${styles["btn-forget-password"]}`}
+                        onClick={() => {
+                            dispatch(resetValidasi())
+                        }}
                     >
                         Forget Password?
                     </button>
@@ -59,20 +103,21 @@ export const Login = () => {
 
                 <div className={styles["parent_btn"]}>
                     {/* Button Submit */}
-                    <Buttons
-                        styleScss="btn-login-form"
-                        stylesBtn={{ width: "100%" }}
+                    <button
+                        type="submit"
+                        className={`${styles["btn-login-form"]}`}
+                        style={{ width: "100%" }}
                     >
                         Login
-                    </Buttons>
+                    </button>
 
                     {/* Button Submit */}
                     <Buttons
-                        onClicks={() => dispatch(activeFormTransition({ formLogin: false, bannerLogin: true, formRegister: true, bannerRegiter: false }))}
+                        onClicks={() => btnRegister()}
                         styleScss="btn-login-form-register"
                         stylesBtn={{ width: "100%" }}
                     >
-                        create account
+                        register
                     </Buttons>
                 </div>
             </form>

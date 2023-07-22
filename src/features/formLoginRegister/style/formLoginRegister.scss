@@ -3,6 +3,7 @@
     transform: translateY(0px);
     transition: all;
     transition-duration: 1s;
+    transition-delay: .3s;
 }
 
 .form-login_out-bottom-active {
@@ -20,15 +21,14 @@
 .form-login-out-right-active {
     transform: translateX(600px);
     transition: all;
-    transition-duration: 1s;
-    transition-delay: .1s;
+    transition-duration: 1.5s;
 }
 
 .banner-login-out-top {
     transform: translateY(0px);
     transition: all;
     transition-duration: 1s;
-    transition-delay: .1s;
+    transition-delay: .3s;
 }
 
 .banner-login-out-top-active {
@@ -47,18 +47,18 @@
 .form-register-out-left-active {
     transform: translateX(-600px);
     transition: all;
-    transition-duration: 1s;
+    transition-duration: 1.5s;
 }
 
 .form-register_out-bottom {
     transform: translateY(0px);
     transition: all;
     transition-duration: 1s;
+    transition-delay: .3s;
 }
 
 .form-register_out-bottom-active {
     transform: translateY(1000px);
-    margin-left: 500px;
     transition: all;
     transition-duration: 1s;
 }
@@ -67,7 +67,7 @@
     transform: translateY(0px);
     transition: all;
     transition-duration: 1s;
-    transition-delay: .1s;
+    transition-delay: .3s;
 }
 
 .banner-register-out-top-active {
@@ -107,14 +107,16 @@
 }
 
 .scale-in-center_bg-black {
-    -webkit-animation: scale-in-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-    animation: scale-in-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    transform: scale(1);
+    opacity: 1;
+    transition: all;
+    transition-duration: 0.4s;
 }
 
 .scale-in-center_bg-white {
-    -webkit-animation: scale-in-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-    animation: scale-in-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-    animation-delay: .6s;
+    -webkit-animation: scale-in-center 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: scale-in-center 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation-delay: .2s;
 }
 
 // ------------------------------- ANIMASI OUT FORM -------------------------------
@@ -147,14 +149,16 @@
 }
 
 .scale-out-center_bg-black {
-    -webkit-animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-    animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-    animation-delay: .6s;
+    transition: all;
+    transition-duration: 0.4s;
+    transform: scale(0);
+    opacity: 0;
+    transition-delay: 0.3s;
 }
 
 .scale-out-center_bg-white {
-    -webkit-animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-    animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    -webkit-animation: scale-out-center 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: scale-out-center 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
 
 // ------------------------------- FILE -------------------------------
@@ -173,13 +177,32 @@
         width: 60rem;
         height: 35rem;
         border-radius: 2rem;
-        display: grid;
-        grid-template-columns: 50% 50%;
         position: relative;
 
         // Responsive
+        @include breakpoint-max(962px) {
+            width: 50rem;
+        }
+
+        @include breakpoint-max(811px) {
+            width: 40rem;
+        }
+
+        @include breakpoint-max(647px) {
+            width: 34rem;
+        }
+
         @include breakpoint-max(550px) {
             display: none;
+        }
+
+        .parent-form-login-register {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 2rem;
+            overflow: hidden;
         }
 
         .parent_form-invisible {
@@ -217,6 +240,11 @@
         justify-content: center;
         width: 100%;
         height: 100%;
+
+        @include breakpoint-max(550px) {
+            border-radius: 1rem;
+            padding: 1.5rem 0 1.5rem 0;
+        }
     }
 
     .btn-close-form {
