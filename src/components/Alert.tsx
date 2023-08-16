@@ -5,7 +5,7 @@ import styles from "../style/index.module.scss";
 type AlertProps = {
     children?: React.ReactNode;
     classCss: string;
-    onClicks: () => void
+    onClicks?: () => void
 }
 
 export const Alert = ({ children, classCss, onClicks }: AlertProps) => {

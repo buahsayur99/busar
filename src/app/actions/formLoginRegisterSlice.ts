@@ -6,18 +6,19 @@ type activeTransitionFormProps = {
     formRegister: boolean;
     bannerRegiter: boolean;
     onOffForm: boolean;
-
+    forgetPassword?: boolean
 }
 
 type initialStateProps = {
     activeTransitionForm: activeTransitionFormProps;
     validasiInput: Record<string, { status: boolean, text: string }>
     inputValueForm: { email: string, password: string, confirmasiPassword: string }
+    activeAlert: Record<string, { status: boolean, text: string | null, nameButton?: string }>
 }
 
 const initialState: initialStateProps = {
     activeTransitionForm: {
-        formLogin: true, bannerLogin: false, formRegister: false, bannerRegiter: true, onOffForm: false
+        formLogin: true, bannerLogin: false, formRegister: false, bannerRegiter: true, onOffForm: false, forgetPassword: false
     },
     validasiInput: {
         email: { status: false, text: "" },
@@ -26,6 +27,9 @@ const initialState: initialStateProps = {
     },
     inputValueForm: {
         email: "", password: "", confirmasiPassword: ""
+    },
+    activeAlert: {
+        alertText: { status: false, text: null }
     }
 }
 
@@ -48,9 +52,15 @@ export const formLoginRegiterSlice = createSlice({
         },
         resetTrasitionForm: (state) => {
             state.activeTransitionForm = { formLogin: true, bannerLogin: false, formRegister: false, bannerRegiter: true, onOffForm: false }
+        },
+        updateActiveAlert: (state, action) => {
+            state.activeAlert = { ...state.activeAlert, ...action.payload }
+        },
+        resetActiveAlert: (state) => {
+            state.activeAlert = { alertText: { status: false, text: null } }
         }
     }
 });
 
-export const { activeFormTransition, updateValidasi, updateInputValue, resetValidasi, resetTrasitionForm } = formLoginRegiterSlice.actions
+export const { activeFormTransition, updateValidasi, updateInputValue, resetValidasi, resetTrasitionForm, resetActiveAlert, updateActiveAlert } = formLoginRegiterSlice.actions
 export default formLoginRegiterSlice.reducer;

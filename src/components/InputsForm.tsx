@@ -5,6 +5,10 @@ import { useState, useRef } from "react";
 type IconsProps = string | Element | undefined
 
 type InputFormProps = {
+    cssInput?: string
+    cssPlaceholder?: string
+    cssIcon?: string
+    cssValidasi?: string
     styleIcon?: React.CSSProperties;
     typeInput: string;
     changeInput: (value: string) => void;
@@ -24,7 +28,11 @@ export const Icons = ({ iconType }: { iconType: IconsProps }) => {
     return null
 }
 
-export const InputsForm = ({ typeInput, changeInput, valueInput, iconType, styleIcon, valuePlaceholder, validasiInput }: InputFormProps) => {
+export const InputsForm = (
+    {
+        typeInput, changeInput, valueInput, iconType, styleIcon, valuePlaceholder, validasiInput, cssInput, cssPlaceholder, cssIcon, cssValidasi
+    }: InputFormProps
+) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -57,9 +65,9 @@ export const InputsForm = ({ typeInput, changeInput, valueInput, iconType, style
                     onChange={(input) => changeInput(input.target.value)}
                     value={valueInput}
                     className={
-                        `${styles["input-form"]}
-                        ${valueInput.length !== 0 && styles["input-form-active"]}
-                        ${validasiInput?.status && styles["input-form-danger"]}`
+                        `${styles[`${cssInput}`]}
+                        ${valueInput.length !== 0 && !validasiInput?.status && styles[`${cssInput}-active"`]}
+                        ${validasiInput?.status && styles[`${cssInput}-danger`]}`
                     }
                     // ref={inputRef}
                     data-testid="inputElement"
@@ -67,11 +75,10 @@ export const InputsForm = ({ typeInput, changeInput, valueInput, iconType, style
 
                 {/* Text Placeholder */}
                 <p
-                    // If the value input not is empty run the classname text-placeholder-active
                     className={
-                        `${styles["text-placeholder"]}
-                        ${valueInput.length !== 0 && !validasiInput?.status && styles["text-placeholder-active"]}
-                        ${validasiInput?.status && valueInput.length !== 0 && styles["text-placeholder-danger"]}`
+                        `${styles[`${cssPlaceholder}`]}
+                        ${valueInput.length !== 0 && !validasiInput?.status && styles[`${cssPlaceholder}-active`]}
+                        ${validasiInput?.status && valueInput.length !== 0 && styles[`${cssPlaceholder}-danger`]}`
                     }
                 >
                     {valuePlaceholder}
@@ -82,13 +89,13 @@ export const InputsForm = ({ typeInput, changeInput, valueInput, iconType, style
                     ? (
                         <div
                             className={`
-                                ${styles["parent-icon"]}
-                                ${valueInput.length !== 0 && styles["parent-icon-active"]}
-                                ${validasiInput?.status && styles["parent-icon-danger"]}
+                                ${styles[`${cssIcon}`]}
+                                ${valueInput.length !== 0 && styles[`${cssIcon}-active`]}
+                                ${validasiInput?.status && styles[`${cssIcon}-danger`]}
                             `}
                             style={styleIcon}
                             onClick={() => updatePassVisible()}
-                            data-testid="inputElement"
+                            data-testid="buttonIconElement"
                         >
                             <Icons
                                 // if passwordVisible true send "PiLockKeyOpenFill"
@@ -99,9 +106,9 @@ export const InputsForm = ({ typeInput, changeInput, valueInput, iconType, style
                     : (
                         <div
                             className={`
-                                ${styles["parent-icon"]}
-                                ${valueInput.length !== 0 && styles["parent-icon-active"]}
-                                ${validasiInput?.status && styles["parent-icon-danger"]}
+                                ${styles[`${cssIcon}`]}
+                                ${valueInput.length !== 0 && styles[`${cssIcon}-active`]}
+                                ${validasiInput?.status && styles[`${cssIcon}-danger`]}
                             `}
                             style={styleIcon}
                             data-testid="buttonIconElement"
@@ -117,12 +124,12 @@ export const InputsForm = ({ typeInput, changeInput, valueInput, iconType, style
                 {validasiInput?.status === true
                     ? (
                         // Validasi denger
-                        <span className={`${styles["validasi-danger"]}`}>{validasiInput.text}</span>
+                        <span className={`${styles[`${cssValidasi}`]}`}>{validasiInput.text}</span>
                     )
                     : (
                         ""
-                    )}
-
+                    )
+                }
             </label >
         </>
     )

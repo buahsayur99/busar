@@ -5,14 +5,19 @@ import { useEffect, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { activeFormTransition, updateValidasi, updateInputValue, resetValidasi } from "../../app/actions/formLoginRegisterSlice";
 import { postToApi, resetIsMessage } from "../../app/actions/apiUsersSlice";
+import { linkApiLocal } from "../../utils/linkApi";
 
 export type InputProps = {
     email: string;
     password: string;
-    confirmasiPassword?: string
+    confirmasiPassword?: string;
 }
 
-export const Login = () => {
+type LoginProps = {
+    toggleBackgroundWhite?: () => void
+}
+
+export const Login: React.FC<LoginProps> = ({ toggleBackgroundWhite }) => {
     const { isMessage } = useAppSelector(state => state.apiUsers);
     const { validasiInput, inputValueForm } = useAppSelector(state => state.formLoginRegisterSlice);
     const dispatch = useAppDispatch()
@@ -31,7 +36,9 @@ export const Login = () => {
         }
 
         const data = eventInput
-        const link = "https://rich-tan-llama-wear.cyclic.app/login"
+        // const link = "https://rich-tan-llama-wear.cyclic.app/login"
+        const link = `${process.env.REACT_APP_API_URL_LOCAL}/login`
+        console.log(link);
         if (inputValueForm.email !== "" && inputValueForm.password !== "") return dispatch(postToApi({ data, link }));
     }
 
@@ -58,6 +65,14 @@ export const Login = () => {
         dispatch(resetIsMessage());
     }, [dispatch])
 
+    const fcForgetPass = () => {
+        toggleBackgroundWhite?.();
+        dispatch(resetValidasi());
+        setTimeout(() => {
+            dispatch(dispatch(activeFormTransition({ forgetPassword: true })))
+        }, 600);
+    }
+
     return (
         // Parent Login
         <div className={`${styles["parent-login"]}`}>
@@ -69,6 +84,10 @@ export const Login = () => {
                 <div className={`${styles["parent-input-login"]}`}>
                     {/* Input Email */}
                     <InputsForm
+                        cssPlaceholder="text-placeholder"
+                        cssInput="input-form"
+                        cssIcon="parent-icon"
+                        cssValidasi="validasi-danger"
                         valuePlaceholder={"input your email"}
                         styleIcon={{ fontSize: "1.3rem", cursor: "text" }}
                         typeInput={"text"}
@@ -79,6 +98,10 @@ export const Login = () => {
                     />
                     {/* Input Password */}
                     <InputsForm
+                        cssPlaceholder="text-placeholder"
+                        cssInput="input-form"
+                        cssIcon="parent-icon"
+                        cssValidasi="validasi-danger"
                         valuePlaceholder={"input your password"}
                         styleIcon={{ fontSize: "1.4rem" }}
                         typeInput={"password"}
@@ -93,9 +116,7 @@ export const Login = () => {
                     <button
                         type="button"
                         className={`${styles["btn-forget-password"]}`}
-                        onClick={() => {
-                            dispatch(resetValidasi())
-                        }}
+                        onClick={() => fcForgetPass()}
                     >
                         Forget Password?
                     </button>

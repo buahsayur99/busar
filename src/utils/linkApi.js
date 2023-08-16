@@ -1,0 +1,1 @@
+export const linkApiLocal = "http://localhost:5000"

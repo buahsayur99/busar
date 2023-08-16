@@ -10,19 +10,26 @@
 // Responsive
 @import "_breakpoints";
 
+// Animasi
+@import "animasi.scss";
+
 // Components
 @import "../components/style/button";
 @import "../components/style/inputsForm";
 @import "../components/style/bannerForm";
 @import "../components/style/loading";
 @import "../components/style/alert";
+@import "../components/style/alertText";
+@import "../components/style/alertConfirmasi";
 
 // Features /Navbar
 @import "../features/navbar/style/navbar";
 @import "../features/navbar/style/searchCatatan";
+@import "../features/navbar/style/usersLogin";
 // Features /FormLoginRegister
 @import "../features/formLoginRegister/style/formLoginRegister";
 @import "../features/formLoginRegister/style/login";
+@import "../features/formLoginRegister/style/forgetPassword";
 
 .container {
     @include container-padding(1rem);

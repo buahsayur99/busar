@@ -7,12 +7,14 @@ describe("Use Body Scroll Lock", () => {
         const { result } = renderHook(() => useBodyScrollLock());
 
         act(() => {
-            result.current.toggle();
+            // Open form
+            result.current.toggle(true);
         });
         expect(document.body.style.overflowY).toBe("hidden");
 
         act(() => {
-            result.current.toggle();
+            // Close Form 
+            result.current.toggle(false);
         });
         expect(document.body.style.overflowY).toBe("auto");
     });
