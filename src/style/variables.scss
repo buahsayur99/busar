@@ -1,21 +1,43 @@
 // Color
+$color: #00ff88;
 $hue: 152;
 // Primary
 $primary-color: hsl($hue, 100%, 50%);
 $primary-color-bright: hsl($hue, 100%, 80%);
-$primary-color-dark: hsl($hue, 100%, 30%);
 $primary-color-hover: hsl($hue, 100%, 30%);
+$primary-color-dark: hsl($hue, 100%, 30%);
+$primary-color-dark-hover: hsl($hue, 100%, 20%);
+$primary-color-black: hsl($hue, 50%, 10%);
+$primary-color-black65: hsl($hue, 0%, 0%, 65%);
+$primary-color-white: hsl($hue, 100%, 100%);
 // Gray
-$gray-color: hsl($hue, 0%, 92%);
+$gray-color: #808080;
+$gray-light-color: #D3D3D3;
+$gray-dark-color: #A9A9A9;
+$gray-medium-color: #BEBEBE;
+$gray-silver-color: #C0C0C0;
+$gray-green-color: #5E716A;
 $gray-color-hover: hsl($hue, 0%, 85%);
+// Warning Color
+$primary-danger: red;
+$primary-warning: orange;
+$primary-safety: rgb(0, 255, 0);
 
 // Font Size
 $font-size-xs: 0.75rem;
 $font-size-sm: 0.875rem;
 $font-size-base: 1rem;
+$font-size-md: 1.05rem;
 $font-size-lg: 1.125rem;
 $font-size-xl: 1.25rem;
+$font-size-2xl: 2rem;
+$font-size-3xl: 3rem;
 
 // Padding
 $distance-search-lg: 2rem;
 $distance-search-md: 1rem;
+
+// Z-index
+$z-index-xl: 10000;
+$z-index-md: 1000;
+$z-index-alert: 10000000;

@@ -1,0 +1,95 @@
+.judul-login {
+    color: white;
+    font-size: $font-size-2xl;
+    text-align: center;
+}
+
+.parent-login {
+    background: transparent;
+    padding: 0rem 1.5rem;
+
+    .parent-input-login {
+        display: grid;
+        gap: 2.3rem;
+        margin-top: 3rem;
+    }
+
+    .parent-btn-forget-password {
+        margin: 1.3rem 0 1rem 0;
+        display: grid;
+        justify-items: end;
+
+        .btn-forget-password {
+            border: none;
+            background-color: transparent;
+            color: white;
+            transition-duration: 300ms;
+
+            &:hover {
+                color: $primary-color;
+            }
+
+            &:focus {
+                outline-color: $primary-color-bright;
+            }
+        }
+    }
+
+    .parent_btn {
+        display: flex;
+        gap: 1rem;
+
+        // Responsive
+        @include breakpoint-max(425px) {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .btn-login-form {
+            background-color: $primary-color-dark;
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            padding: 1.1rem 0;
+            transition: all;
+            transition-duration: 300ms;
+
+
+            &:hover {
+                background-color: $primary-color;
+                color: $primary-color-black;
+            }
+
+            &:focus {
+                outline-color: $primary-color-bright;
+            }
+        }
+
+        .btn-login-form-register {
+            background-color: transparent;
+            color: white;
+            border: solid 2px white;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            padding: 1.1rem 0;
+            transition: all;
+            transition-duration: 300ms;
+            display: none;
+
+            &:hover {
+                background-color: white;
+                color: $primary-color-black;
+            }
+
+            &:focus {
+                outline-color: $primary-color-bright;
+            }
+
+            // Responsive
+            @include breakpoint-max(550px) {
+                display: inline;
+            }
+        }
+    }
+}

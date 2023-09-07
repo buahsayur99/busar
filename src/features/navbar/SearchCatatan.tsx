@@ -11,7 +11,7 @@ type tipeInputSearch = {
 }
 
 const SearchCatatan = ({ tipe }: tipeInputSearch) => {
-    const { activeInputSearch } = useAppSelector(state => state.activeButton)
+    const { activeInputSearch } = useAppSelector(state => state.searchCatatanSlice)
     const dispatch = useAppDispatch()
 
     return (

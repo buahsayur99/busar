@@ -86,7 +86,7 @@
         font-size: $font-size-xl;
         display: none;
 
-        @include breakpoint(360px) {
+        @include breakpoint-min(360px) {
             display: inline;
         }
 

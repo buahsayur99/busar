@@ -1,0 +1,287 @@
+// Login
+.form-login_out-bottom {
+    transform: translateY(0px);
+    transition: all;
+    transition-duration: 1s;
+    transition-delay: .3s;
+}
+
+.form-login_out-bottom-active {
+    transform: translateY(1000px);
+    transition: all;
+    transition-duration: 1s;
+}
+
+.form-login-out-right {
+    transform: translateX(0px);
+    transition: all;
+    transition-duration: 1s;
+}
+
+.form-login-out-right-active {
+    transform: translateX(600px);
+    transition: all;
+    transition-duration: 1.5s;
+}
+
+.banner-login-out-top {
+    transform: translateY(0px);
+    transition: all;
+    transition-duration: 1s;
+    transition-delay: .3s;
+}
+
+.banner-login-out-top-active {
+    transform: translateY(-1000px);
+    transition: all;
+    transition-duration: 1s;
+}
+
+// Register
+.form-register-out-left {
+    transform: translateX(0px);
+    transition: all;
+    transition-duration: 1s;
+}
+
+.form-register-out-left-active {
+    transform: translateX(-600px);
+    transition: all;
+    transition-duration: 1.5s;
+}
+
+.form-register_out-bottom {
+    transform: translateY(0px);
+    transition: all;
+    transition-duration: 1s;
+    transition-delay: .3s;
+}
+
+.form-register_out-bottom-active {
+    transform: translateY(1000px);
+    transition: all;
+    transition-duration: 1s;
+}
+
+.banner-register-out-top {
+    transform: translateY(0px);
+    transition: all;
+    transition-duration: 1s;
+    transition-delay: .3s;
+}
+
+.banner-register-out-top-active {
+    transform: translateY(-1000px);
+    transition: all;
+    transition-duration: 1s;
+}
+
+// ON OFF FORM
+// ------------------------------- ANIMASI IN FORM -------------------------------
+@-webkit-keyframes scale-in-center {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scale-in-center {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.scale-in-center_bg-black {
+    transform: scale(1);
+    opacity: 1;
+    transition: all;
+    transition-duration: 0.4s;
+}
+
+.scale-in-center_bg-white {
+    -webkit-animation: scale-in-center 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: scale-in-center 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation-delay: .2s;
+}
+
+// ------------------------------- ANIMASI OUT FORM -------------------------------
+@-webkit-keyframes scale-out-center {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes scale-out-center {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.scale-out-center_bg-black {
+    transition: all;
+    transition-duration: 0.4s;
+    transform: scale(0);
+    opacity: 0;
+    transition-delay: 0.3s;
+}
+
+.scale-out-center_bg-white {
+    -webkit-animation: scale-out-center 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: scale-out-center 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+// ------------------------------- FILE -------------------------------
+.bg-black {
+    background-color: $primary-color-black65;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: $z-index-xl;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 2rem;
+
+    .bg-white {
+        background-color: white;
+        width: 60rem;
+        height: 35rem;
+        border-radius: 2rem;
+        position: relative;
+
+        // Responsive
+        @include breakpoint-max(962px) {
+            width: 50rem;
+        }
+
+        @include breakpoint-max(811px) {
+            width: 40rem;
+        }
+
+        @include breakpoint-max(647px) {
+            width: 34rem;
+        }
+
+        @include breakpoint-max(550px) {
+            display: none;
+        }
+
+        .parent-form-login-register {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 2rem;
+            overflow: hidden;
+        }
+
+        .parent_form-invisible {
+            display: inline;
+
+            // Responsive
+            @include breakpoint-max(550px) {
+                display: none;
+            }
+        }
+
+        .parent_banner-form {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: absolute;
+            left: 0;
+
+            // Responsive
+            @include breakpoint-max(550px) {
+                display: none;
+            }
+        }
+    }
+
+    .bg-green {
+        background-image: url(../../../assets/formLoginRegister/bgGreen.svg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+
+        @include breakpoint-max(550px) {
+            border-radius: 1rem;
+            padding: 1.5rem 0 1.5rem 0;
+        }
+    }
+
+    .btn-close-form {
+        position: absolute;
+        z-index: $z-index-md;
+        background-color: transparent;
+        color: white;
+        font-size: 2rem;
+        right: -2.5rem;
+        top: -1rem;
+        transition-duration: 300ms;
+
+        &:hover {
+            color: $primary-color;
+        }
+
+        // Responsive
+        @include breakpoint-max(1025px) {
+            right: .3rem;
+            top: .5rem;
+            color: red;
+        }
+    }
+
+    .bg-white-mobile {
+        background-color: white;
+        width: 60rem;
+        height: 35rem;
+        border-radius: 2rem;
+        overflow: hidden;
+        display: none;
+
+        // Responsive
+        @include breakpoint-max(550px) {
+            display: inline;
+        }
+    }
+}

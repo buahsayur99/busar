@@ -8,9 +8,14 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { activeSearch } from "../../app/actions/searchCatatanSlice";
 import { Buttons } from "../../components/Buttons";
 import { useScrollNavbar } from "../../hook/useScrollNavbar";
+import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
+import { UsersLogin } from "./UsersLogin";
+import { activeFormTransition } from "../../app/actions/formLoginRegisterSlice";
 
 export const NavigationBar = () => {
     const { activeInputSearch } = useAppSelector(state => state.searchCatatanSlice);
+    const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
+    const { toggle } = useBodyScrollLock()
     const { scrolled } = useScrollNavbar()
 
     const dispatch = useAppDispatch()
@@ -63,12 +68,23 @@ export const NavigationBar = () => {
                 </Stack>
 
                 {/* Button Login */}
-                <Buttons
-                    styleScss={"btn"}
-                    stylesBtn={{ width: "6rem", height: "2.5rem", fontSize: "1.2rem" }}
-                >
-                    Login
-                </Buttons>
+                {dataLoginUsers?.uuid === undefined
+                    ? (
+                        <Buttons
+                            styleScss={"btn"}
+                            stylesBtn={{ width: "6rem", height: "2.5rem", fontSize: "1.2rem" }}
+                            onClicks={() => {
+                                toggle(true)
+                                dispatch(activeFormTransition({ onOffForm: true }))
+                            }}
+                        >
+                            Login
+                        </Buttons>
+                    )
+                    : (
+                        <UsersLogin />
+                    )
+                }
             </Navbar >
         </>
     )

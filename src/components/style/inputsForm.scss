@@ -1,0 +1,108 @@
+.parent-input-form {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border: 0px solid rgb(255, 255, 255);
+
+    .text-placeholder {
+        color: white;
+        text-transform: capitalize;
+        position: absolute;
+        margin-left: 3rem;
+        transition-duration: 300ms;
+        cursor: text;
+    }
+
+    .text-placeholder-danger {
+        margin-top: -3.3rem;
+        background-color: $primary-color-black;
+        color: $primary-danger;
+        padding: 0 .5rem 0 .5rem;
+        font-size: .7rem;
+    }
+
+    .parent-icon {
+        position: absolute;
+        color: white;
+        margin-left: 1rem;
+    }
+
+    .parent-icon-active {
+        color: $primary-color;
+    }
+
+    .parent-icon-danger {
+        color: $primary-danger;
+    }
+
+    .input-form {
+        position: relative;
+        padding: 1rem 1rem 1rem 3rem;
+        background-color: transparent;
+        border: 2px solid white;
+        width: 100%;
+        border-radius: .5rem;
+        color: white;
+        outline: none;
+
+        &:focus {
+            border: 2px solid $primary-color;
+            color: $primary-color;
+        }
+    }
+
+    .input-form-active {
+        background-color: transparent;
+        border: 2px solid $primary-color;
+        width: 100%;
+        border-radius: .5rem;
+        color: $primary-color;
+        outline: none;
+    }
+
+    .input-form-danger {
+        position: relative;
+        background-color: transparent;
+        border: 2px solid $primary-danger;
+        width: 100%;
+        border-radius: .5rem;
+        color: white;
+        outline: none;
+
+        &:focus {
+            border: 2px solid $primary-danger;
+            color: $primary-color;
+        }
+    }
+
+    .validasi-danger {
+        position: absolute;
+        left: 0;
+        bottom: -1rem;
+        color: $primary-danger;
+        padding-left: 1rem;
+        text-transform: capitalize;
+        font-size: $font-size-xs;
+    }
+}
+
+.parent-input-form:focus-within>.parent-icon {
+    color: $primary-color;
+}
+
+.text-placeholder-active {
+    margin-top: -3.3rem;
+    background-color: $primary-color-black;
+    color: $primary-color;
+    padding: 0 .5rem 0 .5rem;
+    font-size: .7rem;
+    position: absolute;
+}
+
+.parent-input-form:focus-within>.text-placeholder {
+    margin-top: -3.3rem;
+    background-color: $primary-color-black;
+    color: $primary-color;
+    padding: 0 .5rem 0 .5rem;
+    font-size: .7rem;
+}

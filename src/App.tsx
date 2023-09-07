@@ -1,11 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "./features/navbar/Navbar";
+import { Home } from "./pages/Home";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <>
       <div style={{ height: "100rem" }}>
-        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
       </div>
     </>
   );

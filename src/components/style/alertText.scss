@@ -1,0 +1,128 @@
+// Animasi
+@-webkit-keyframes puff-in-center {
+    0% {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        -webkit-filter: blur(4px);
+        filter: blur(4px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes puff-in-center {
+    0% {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        -webkit-filter: blur(4px);
+        filter: blur(4px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes puff-out-center {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        -webkit-filter: blur(4px);
+        filter: blur(4px);
+        opacity: 0;
+    }
+}
+
+@keyframes puff-out-center {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        -webkit-filter: blur(4px);
+        filter: blur(4px);
+        opacity: 0;
+    }
+}
+
+// Class Animasi
+.puff-in-center {
+    -webkit-animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+    animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+.puff-out-center {
+    -webkit-animation: puff-out-center 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+    animation: puff-out-center 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+}
+
+.alert-reset-pass {
+    position: absolute;
+    top: 0;
+    background-color: hwb(0 0% 100% / 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: $z-index-alert;
+
+    .alert {
+        background-color: white;
+        margin: 0 1rem;
+        padding: 1rem 1rem;
+        border-radius: .5rem;
+        font-size: $font-size-xl;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        @include breakpoint-max(320px) {
+            margin: 0 .5rem;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        button {
+            padding: 1rem 1rem;
+            background-color: $gray-green-color;
+            color: white;
+            font-size: $font-size-xl;
+            transition-duration: 300ms;
+
+            &:hover {
+                color: white;
+                background-color: $primary-color;
+            }
+        }
+    }
+}
