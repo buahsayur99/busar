@@ -109,11 +109,12 @@ export const ForgetPassword = () => {
     };
 
     const closeAlert = () => {
+        dispatch(resetIsMessage());
+
         updateAlertText({
             success: { status: false, text: null },
             cansel: { status: false, text: null }
         });
-        dispatch(resetIsMessage());
     }
 
     return (
@@ -149,15 +150,20 @@ export const ForgetPassword = () => {
                 </AlertConfirmasi>
             )};
 
-            <div className={`
-                ${styles["parent-form-forget-pass"]}
-                ${active ? styles["scale-in-center"] : styles["scale-out-center"]}
-            `}
+            <div
+                className=
+                {`
+                    ${styles["parent-form-forget-pass"]}
+                    ${active ? styles["scale-in-center"] : styles["scale-out-center"]}
+                `}
+                data-testid="parentFormForgetPassword"
             >
                 <div className={styles["bg-green-forget-pass"]}>
+                    {/* Button Close Form Forget Password */}
                     <button
                         className={`${styles["icon-close"]}`}
                         onClick={() => setAlertActive(true)}
+                        data-testid="closeFormForgetPassword"
                     >
                         <IoIosCloseCircle />
                     </button>

@@ -47,7 +47,7 @@ export const formLoginRegiterSlice = createSlice({
             state.inputValueForm = { ...state.inputValueForm, ...action.payload }
         },
         resetValidasi: (state) => {
-            state.validasiInput = { email: { status: false, text: "" }, password: { status: false, text: "" } };
+            state.validasiInput = { email: { status: false, text: "" }, password: { status: false, text: "" }, confirmasiPassword: { status: false, text: "" } };
             state.inputValueForm = { email: "", password: "", confirmasiPassword: "" };
         },
         resetTrasitionForm: (state) => {

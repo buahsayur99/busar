@@ -133,7 +133,29 @@ describe("login", () => {
             const { activeTransitionForm, validasiInput, inputValueForm } = store.getState().formLoginRegisterSlice;
 
             // Open Form Register
-            expect(activeTransitionForm).toStrictEqual({ formLogin: false, bannerLogin: true, formRegister: true, bannerRegiter: false, onOffForm: false });
+            expect(activeTransitionForm).toStrictEqual({ formLogin: false, bannerLogin: true, formRegister: true, bannerRegiter: false, onOffForm: false, forgetPassword: false });
+            // Reset validasi
+            expect(validasiInput.email).toStrictEqual({ status: false, text: '' });
+            expect(validasiInput.password).toStrictEqual({ status: false, text: '' });
+            // Reset input value
+            expect(inputValueForm).toStrictEqual({ email: '', password: '', confirmasiPassword: '' });
+        });
+    });
+
+    test("should when Button Forget Password is clicked close formLogin and open Form ForgetPassword and reset all input value and validasi danger", async () => {
+        const buttonRegister = component.getByRole("button", {
+            name: "Forget Password?"
+        });
+
+        // Gunakan fireEvent.click() untuk mensimulasikan klik pada tombol "register"
+        fireEvent.click(buttonRegister);
+
+        await waitFor(() => {
+            // Ekstraksi state formLoginRegisterSlice
+            const { activeTransitionForm, validasiInput, inputValueForm } = store.getState().formLoginRegisterSlice;
+
+            // Open Form Forget Password === true
+            expect(activeTransitionForm).toStrictEqual({ formLogin: false, bannerLogin: true, formRegister: true, bannerRegiter: false, onOffForm: false, forgetPassword: true });
             // Reset validasi
             expect(validasiInput.email).toStrictEqual({ status: false, text: '' });
             expect(validasiInput.password).toStrictEqual({ status: false, text: '' });

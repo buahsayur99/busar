@@ -1,157 +1,260 @@
 import { FormLoginRegister } from "../FormLoginRegister";
-import { fireEvent, render } from "@testing-library/react";
+import { RenderResult, cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
-import configureStore from "redux-mock-store";
-import { activeFormTransition } from "../../../app/actions/formLoginRegisterSlice";
 import { store } from "../../../app/store";
+import { AnyAction, configureStore } from "@reduxjs/toolkit";
+
+function createActiveFormLoginStore(initialFormLogin: boolean) {
+    return configureStore({
+        reducer: {
+            formLoginRegisterSlice: (state = {
+                activeTransitionForm: {
+                    formLogin: initialFormLogin, bannerLogin: false, formRegister: false, bannerRegiter: true, onOffForm: false, forgetPassword: false
+                },
+                inputValueForm: {
+                    email: "", password: "", confirmasiPassword: ""
+                },
+                validasiInput: {
+                    email: { status: false, text: "" },
+                    password: { status: false, text: "" },
+                    confirmasiPassword: { status: false, text: "" }
+                },
+            }, action: AnyAction) => state,
+            apiUsers: (state = {
+                isLoading: false, isError: null, isMessage: "", dataLoginUsers: null
+            }, action: AnyAction) => state
+        }
+    })
+}
+function createIsMessageStore(initialIsMessage: string) {
+    return configureStore({
+        reducer: {
+            formLoginRegisterSlice: (state = {
+                activeTransitionForm: {
+                    formLogin: true, bannerLogin: false, formRegister: false, bannerRegiter: true, onOffForm: false, forgetPassword: false
+                },
+                inputValueForm: {
+                    email: "", password: "", confirmasiPassword: ""
+                },
+                validasiInput: {
+                    email: { status: false, text: "" },
+                    password: { status: false, text: "" },
+                    confirmasiPassword: { status: false, text: "" }
+                },
+            }, action: AnyAction) => state,
+            apiUsers: (state = {
+                isLoading: false, isError: null, isMessage: initialIsMessage, dataLoginUsers: null
+            }, action: AnyAction) => state
+        }
+    })
+}
+function createIsLoadingStore(initialIsLoading: boolean) {
+    return configureStore({
+        reducer: {
+            formLoginRegisterSlice: (state = {
+                activeTransitionForm: {
+                    formLogin: true, bannerLogin: false, formRegister: false, bannerRegiter: true, onOffForm: false, forgetPassword: false
+                },
+                inputValueForm: {
+                    email: "", password: "", confirmasiPassword: ""
+                },
+                validasiInput: {
+                    email: { status: false, text: "" },
+                    password: { status: false, text: "" },
+                    confirmasiPassword: { status: false, text: "" }
+                },
+            }, action: AnyAction) => state,
+            apiUsers: (state = {
+                isLoading: initialIsLoading, isError: null, isMessage: "", dataLoginUsers: null
+            }, action: AnyAction) => state
+        }
+    })
+}
+function createActiveFrogetPasswordStore(initialForgetPassword: boolean) {
+    return configureStore({
+        reducer: {
+            formLoginRegisterSlice: (state = {
+                activeTransitionForm: {
+                    formLogin: true, bannerLogin: false, formRegister: false, bannerRegiter: true, onOffForm: false, forgetPassword: initialForgetPassword
+                },
+                inputValueForm: {
+                    email: "", password: "", confirmasiPassword: ""
+                },
+                validasiInput: {
+                    email: { status: false, text: "" },
+                    password: { status: false, text: "" },
+                    confirmasiPassword: { status: false, text: "" }
+                },
+            }, action: AnyAction) => state,
+            apiUsers: (state = {
+                isLoading: false, isError: null, isMessage: "", dataLoginUsers: null
+            }, action: AnyAction) => state
+        }
+    })
+}
 
 describe("Form Login Register", () => {
-    // const mockStore = configureStore([]);
-    test("", () => {
+    let component: RenderResult;
 
+
+    beforeEach(() => {
+        component = render(
+            <Provider store={store}>
+                <FormLoginRegister />
+            </Provider>
+        )
+    });
+
+    afterEach(() => {
+        cleanup();
     })
 
-    // test("renders component by activeTransitionForm.formLogin === true", () => {
-    //     const stores = mockStore({
-    //         formLoginRegisterSlice: {
-    //             activeTransitionForm: {
-    //                 onOffForm: true,
-    //                 formLogin: true,
-    //                 bannerLogin: false,
-    //                 formRegister: false,
-    //                 bannerRegiter: true,
-    //             },
-    //         },
-    //     });
+    test("Render correctly", () => {
+        const btnClosePlus550 = component.getAllByTestId("close-button")[0];
+        const btnCloseMin550 = component.getAllByTestId("close-button")[1];
+        const bannerLogin = component.getByText("jika anda sudah mendaftar atau sudah memiliki akun, anda bisa langsung login");
+        const bannerRegister = component.getByText("Apakah anda masih belum memiliki akun? jika belum, anda bisa melakukan regiterasi, anda hanya perlu mengisi beberapa hall singkat saja.");
 
-    //     const { queryAllByRole, getAllByRole } = render(
-    //         <Provider store={stores}>
-    //             <FormLoginRegister />
-    //         </Provider>
-    //     );
+        // Make sure "btnClosePlus550" is in the DOM
+        expect(btnClosePlus550).toBeInTheDocument();
+        // Make sure "btnCloseLoginMin550" is in the DOM
+        expect(btnCloseMin550).toBeInTheDocument();
+        // Make sure "Banner Login" is in the DOM
+        expect(bannerLogin).toBeInTheDocument();
+        // Make sure "Banner Register" is in the DOM
+        expect(bannerRegister).toBeInTheDocument();
+    });
 
-    //     const loginComponents = queryAllByRole("login-component");
-    //     expect(loginComponents).toHaveLength(2); // there is 2 component login, for dimensi +550 and dimensi -550
+    test("should verify that the onClick function has been called after close button clicked", () => {
+        const btnClosePlus550 = component.getAllByTestId("close-button")[0];
 
-    //     const registerComponents = queryAllByRole("register-component");
-    //     expect(registerComponents).toHaveLength(1); // there is 1 component register. for dimensi +550
+        // Mock
+        const onClickMock = jest.fn();
+        btnClosePlus550.onclick = onClickMock;
+        // Simulasi event Click
+        fireEvent.click(btnClosePlus550);
+        // Verify that the onClick function has been called
+        expect(onClickMock).toHaveBeenCalledTimes(1);
+    });
 
-    //     const bannerFormComponents = getAllByRole("banner-form-component");
-    //     expect(bannerFormComponents).toHaveLength(2); // there is 2 component bannerForm. For banner Login dan banner register
+    test("it should be when the 'Login' button on the login banner is +550 in dimension, display the 'Form Login' and 'Banner Register', and close the 'Form Register' and  'Banner Login'", async () => {
+        // button banner login Dimensi +550
+        const btnBannerLogin = component.getAllByTestId("button-bannerForm")[0];
 
-    //     // Check if the button with the desired class exists
-    //     const buttons = getAllByRole("button");
-    //     const closeButton = buttons.find((button) =>
-    //         button.classList.contains("btn-close-form")
-    //     );
-    //     expect(closeButton).toBeInTheDocument();
-    // });
+        // Simulasi event Click
+        fireEvent.click(btnBannerLogin);
 
-    // test("clicking close button triggers form close action", () => {
-    //     const dispatchSpy = jest.spyOn(store, "dispatch");
+        await waitFor(() => {
+            const { activeTransitionForm } = store.getState().formLoginRegisterSlice;
 
-    //     const { queryAllByTestId, getByTestId } = render(
-    //         <Provider store={store}>
-    //             <FormLoginRegister />
-    //         </Provider>
-    //     );
+            // Make sure "banner register" is in the DOM
+            expect(activeTransitionForm.bannerRegiter).toBe(true);
+            // Make sure "form login" is in the DOM
+            expect(activeTransitionForm.formLogin).toBe(true);
 
-    //     const bgBlackElement = getByTestId("bg-black");
-    //     expect(bgBlackElement).toBeInTheDocument();
-    //     expect(bgBlackElement).toHaveClass("scale-in-center_bg-black");
+            // Make sure "banner login" is not in the DOM
+            expect(activeTransitionForm.bannerLogin).toBe(false);
+            // Make sure "form register" is not in the DOM
+            expect(activeTransitionForm.formRegister).toBe(false);
+        });
+    });
 
-    //     const closeButtons = queryAllByTestId('close-button');
-    //     expect(closeButtons).toHaveLength(2);
+    test("it should be when the 'Register' button on the register banner is +550 in dimension, display the 'Form Register' and 'Banner Login', and close the 'Form Login' and  'Banner Register'", async () => {
+        // button banner Register Dimensi +550
+        const btnBannerRegister = component.getAllByTestId("button-bannerForm")[1];
 
-    //     const closeButton = closeButtons[0];
-    //     fireEvent.click(closeButton);
+        // Simulasi event Click
+        fireEvent.click(btnBannerRegister);
 
-    //     expect(dispatchSpy).toHaveBeenCalledWith(activeFormTransition({ onOffForm: false }));
-    //     dispatchSpy.mockRestore();
-    //     expect(bgBlackElement).toHaveClass("scale-out-center_bg-black");
-    // });
+        await waitFor(() => {
+            const { activeTransitionForm } = store.getState().formLoginRegisterSlice;
 
-    // test("check classname dimensi +550 by activeTransitionForm", () => {
-    //     const stores = mockStore({
-    //         formLoginRegisterSlice: {
-    //             activeTransitionForm: {
-    //                 onOffForm: true,
-    //                 formLogin: true,
-    //                 bannerLogin: false,
-    //                 formRegister: false,
-    //                 bannerRegiter: true,
-    //             },
-    //         },
-    //     });
+            // Make sure "banner login" is in the DOM
+            expect(activeTransitionForm.bannerLogin).toBe(true);
+            // Make sure "form register" is in the DOM
+            expect(activeTransitionForm.formRegister).toBe(true);
 
-    //     const { getAllByRole } = render(
-    //         <Provider store={stores}>
-    //             <FormLoginRegister />
-    //         </Provider>
-    //     );
+            // Make sure "banner register" is not in the DOM
+            expect(activeTransitionForm.bannerRegiter).toBe(false);
+            // Make sure "form login" is not in the DOM
+            expect(activeTransitionForm.formLogin).toBe(false);
+        });
+    });
 
-    //     const bannerFormComponents = getAllByRole("banner-form-component");
-    //     expect(bannerFormComponents[0]).toHaveClass("banner-login-out-top-active"); // Banner login out
-    //     expect(bannerFormComponents[1]).toHaveClass("banner-register-out-top"); // Banner register show
+    test("should verify that the onClick function has been called after close button on 'Form Register Min 550' clicked", () => {
+        const btnCloseFormRegisMin550 = component.getAllByTestId("close-button")[1];
 
-    //     const loginComponents = getAllByRole("login-component");
-    //     expect(loginComponents[0]).toHaveClass("form-login_out-bottom"); // Form Login show
+        // Mock
+        const onClickMock = jest.fn();
+        btnCloseFormRegisMin550.onclick = onClickMock;
+        // Simulasi event Click
+        fireEvent.click(btnCloseFormRegisMin550);
+        // Verify that the onClick function has been called
+        expect(onClickMock).toHaveBeenCalledTimes(1);
+    });
 
-    //     const registerComponents = getAllByRole("register-component");
-    //     expect(registerComponents[0]).toHaveClass("form-register_out-bottom-active") // Form register out
-    // });
+    test("should verify that the onClick function has been called after close button on 'Form Register Min 550' clicked", () => {
+        component.rerender(
+            <Provider store={createActiveFormLoginStore(true)}>
+                <FormLoginRegister />
+            </Provider>
+        );
 
-    // test("check classname dimensi +550 by activeTransitionForm", () => {
-    //     const stores = mockStore({
-    //         formLoginRegisterSlice: {
-    //             activeTransitionForm: {
-    //                 onOffForm: true,
-    //                 formLogin: false,
-    //                 bannerLogin: true,
-    //                 formRegister: true,
-    //                 bannerRegiter: false,
-    //             },
-    //         },
-    //     });
+        const btnCloseFormRegisMin550 = component.getAllByTestId("close-button")[1];
 
-    //     const { getAllByRole } = render(
-    //         <Provider store={stores}>
-    //             <FormLoginRegister />
-    //         </Provider>
-    //     );
+        // Mock
+        const onClickMock = jest.fn();
+        btnCloseFormRegisMin550.onclick = onClickMock;
+        // Simulasi event Click
+        fireEvent.click(btnCloseFormRegisMin550);
+        // Verify that the onClick function has been called
+        expect(onClickMock).toHaveBeenCalledTimes(1);
+    });
 
-    //     const bannerFormComponents = getAllByRole("banner-form-component");
-    //     expect(bannerFormComponents[0]).toHaveClass("banner-login-out-top"); // Banner login show
-    //     expect(bannerFormComponents[1]).toHaveClass("banner-register-out-top-active"); // Banner register out
+    test("should when isMessage === 'register success' display alert and run event onClick and make sure the onClick function is executed", async () => {
+        component.rerender(
+            <Provider store={createIsMessageStore("register success")}>
+                <FormLoginRegister />
+            </Provider>
+        )
 
-    //     const loginComponents = getAllByRole("login-component");
-    //     expect(loginComponents[0]).toHaveClass("form-login_out-bottom-active"); // Form Login out
+        const button = component.getByRole("button", {
+            name: "login now"
+        });
+        const alert = component.getByText("login now");
+        // Make Sure Alert is in the DOM
+        expect(alert).toBeInTheDocument();
+        expect(button).toBeInTheDocument();
 
-    //     const registerComponents = getAllByRole("register-component");
-    //     expect(registerComponents[0]).toHaveClass("form-register_out-bottom") // Form register show
-    // });
+        const onClickMock = jest.fn();
+        button.onclick = onClickMock;
+        // Simulasi event click
+        fireEvent.click(button);
+        // Verify that the onClick function has been called
+        expect(onClickMock).toHaveBeenCalledTimes(1);
+    });
 
-    // test("check classname dimensi -550 by activeTransitionForm.formLogin: true", () => {
-    //     const stores = mockStore({
-    //         formLoginRegisterSlice: {
-    //             activeTransitionForm: {
-    //                 onOffForm: true,
-    //                 formLogin: true,
-    //                 bannerLogin: false,
-    //                 formRegister: false,
-    //                 bannerRegiter: true,
-    //             },
-    //         },
-    //     });
+    test("should when isLoading === true display 'Loading Component' ", () => {
+        expect(component.queryByText("Loading")).not.toBeInTheDocument();
 
-    //     const { getAllByRole } = render(
-    //         <Provider store={stores}>
-    //             <FormLoginRegister />
-    //         </Provider>
-    //     );
+        component.rerender(
+            <Provider store={createIsLoadingStore(true)}>
+                <FormLoginRegister />
+            </Provider>
+        );
 
-    //     const loginComponents = getAllByRole("login-component");
-    //     expect(loginComponents[1]).toHaveClass("form-login_out-bottom"); // Form Login show
-    // });
+        expect(component.getByText("Loading")).toBeInTheDocument();
+    })
 
+    test("should when 'Active Forget Password' === true display 'ForgetPassword Component'", () => {
+        expect(component.queryByTestId("parentFormForgetPassword")).not.toBeInTheDocument();
+
+        component.rerender(
+            <Provider store={createActiveFrogetPasswordStore(true)}>
+                <FormLoginRegister />
+            </Provider>
+        )
+
+        expect(component.queryByTestId("parentFormForgetPassword")).toBeInTheDocument();
+    });
 })

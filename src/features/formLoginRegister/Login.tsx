@@ -5,7 +5,6 @@ import { useEffect, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { activeFormTransition, updateValidasi, updateInputValue, resetValidasi } from "../../app/actions/formLoginRegisterSlice";
 import { postToApi, resetIsMessage } from "../../app/actions/apiUsersSlice";
-import { linkApiLocal } from "../../utils/linkApi";
 
 export type InputProps = {
     email: string;

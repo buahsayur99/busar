@@ -68,7 +68,6 @@ export const FormLoginRegister = () => {
                                     data-testid="close-button"
                                     className={`${styles["btn-close-form"]}`}
                                     onClick={() => {
-                                        console.log("button Close");
                                         toggle(false)
                                         dispatch(activeFormTransition({ onOffForm: false }))
                                         dispatch(resetValidasi())
@@ -83,10 +82,10 @@ export const FormLoginRegister = () => {
                                         {/* Banner Login */}
                                         <div
                                             data-testid="banner-form-component"
-                                            className={
-                                                `${styles["parent_banner-form"]}
-                                ${activeTransitionForm.bannerLogin ? styles["banner-login-out-top"] : styles["banner-login-out-top-active"]}`
-                                            }
+                                            className={`
+                                                ${styles["parent_banner-form"]}
+                                                ${activeTransitionForm.bannerLogin ? styles["banner-login-out-top"] : styles["banner-login-out-top-active"]}
+                                            `}
                                         >
                                             <BannerForm
                                                 judulText={"login"}
@@ -166,7 +165,7 @@ export const FormLoginRegister = () => {
                                         <div
                                             className={
                                                 `${styles["bg-green"]}
-                            ${activeTransitionForm.formLogin ? styles["form-login-out-right"] : styles["form-login-out-right-active"]}`
+                                                ${activeTransitionForm.formLogin ? styles["form-login-out-right"] : styles["form-login-out-right-active"]}`
                                             }
                                         >
                                             {/* Button Close */}
@@ -183,7 +182,7 @@ export const FormLoginRegister = () => {
                                             </button>
                                             {/* Login */}
                                             <div
-                                                data-testid="login-component"
+                                                data-testid="login-component-min-550"
                                                 className={
                                                     `${activeTransitionForm.formLogin ? styles["form-login_out-bottom"] : styles["form-login_out-bottom-active"]}`
                                                 }
@@ -198,7 +197,7 @@ export const FormLoginRegister = () => {
                                         <div
                                             className={
                                                 `${styles["bg-green"]}
-                                ${activeTransitionForm.formRegister ? styles["form-register-out-left"] : styles["form-register-out-left-active"]}`
+                                                ${activeTransitionForm.formRegister ? styles["form-register-out-left"] : styles["form-register-out-left-active"]}`
                                             }
                                         >
                                             {/* Button Close */}

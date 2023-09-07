@@ -34,22 +34,22 @@ export const InputsForm = (
     }: InputFormProps
 ) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const inputRef = useRef<HTMLInputElement | null>(null);
+    // const inputRef = useRef<HTMLInputElement | null>(null);
 
     const updatePassVisible = () => {
         setPasswordVisible((state) => !state);
 
-        const inputElement = inputRef.current;
-        // if InputElement exists
-        if (inputElement) {
-            // variable holds input data length 
-            const inputLength = inputElement.value.length;
-            // Focus input on the last value
-            setTimeout(() => {
-                inputElement.selectionStart = inputLength;
-                inputElement.focus();
-            }, 0);
-        }
+        // const inputElement = inputRef.current;
+        // // if InputElement exists
+        // if (inputElement) {
+        //     // variable holds input data length 
+        //     const inputLength = inputElement.value.length;
+        //     // Focus input on the last value
+        //     setTimeout(() => {
+        //         inputElement.selectionStart = inputLength;
+        //         inputElement.focus();
+        //     }, 0);
+        // }
     }
 
     return (

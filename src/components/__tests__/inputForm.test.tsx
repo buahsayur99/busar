@@ -1,9 +1,8 @@
-import { fireEvent, getByTestId, render } from "@testing-library/react";
+import { RenderResult, cleanup, fireEvent, getByTestId, render } from "@testing-library/react";
 import { InputsForm } from "../InputsForm";
 import { Provider } from "react-redux";
 import { store } from "../../app/store";
 import { Icons } from "../InputsForm";
-import { act } from "react-dom/test-utils";
 
 jest.mock('../../utils/icons', () => ({
     FaUserAlt: () => <div data-testid="FaUserAlt" />,
@@ -12,6 +11,75 @@ jest.mock('../../utils/icons', () => ({
 }));
 
 describe('Icons', () => {
+    let component: RenderResult;
+    const inputValue = "paatlupi@gmail.com";
+
+    beforeEach(() => {
+        component = render(
+            <Provider store={store}>
+                <InputsForm
+                    cssInput="inputCss"
+                    cssPlaceholder="inputEmail"
+                    cssIcon="inconCss"
+                    cssValidasi="validasiCss"
+                    typeInput="text"
+                    changeInput={() => { }}
+                    valueInput={inputValue}
+                    valuePlaceholder="input email"
+                    iconType="text"
+                />
+            </Provider>
+        )
+    });
+
+    afterEach(() => {
+        cleanup();
+    });
+
+    test("render correlty", () => {
+        const inputElement = component.getByTestId("inputElement");
+        const placeholderElement = component.queryByText("input email");
+
+        expect(inputElement).toBeInTheDocument();
+        expect(placeholderElement).toBeInTheDocument();
+    });
+
+    test("Should update input value when 'change inputElement' is triggered", () => {
+        const inputElement = component.getByTestId("inputElement");
+
+        // Event Change
+        fireEvent.change(inputElement, { target: { value: inputValue } });
+        // make sure value inputElement is paatlupi@gmail.com
+        expect(inputElement).toHaveValue(inputValue);
+    });
+
+    test("should when iconType === 'PiLockKeyFill'", () => {
+        component.rerender(
+            <Provider store={store}>
+                <InputsForm
+                    typeInput="text"
+                    changeInput={() => { }}
+                    valueInput={inputValue}
+                    valuePlaceholder="input email"
+                    iconType="PiLockKeyFill"
+                />
+            </Provider>
+        )
+
+        const buttonTypePass = component.getByTestId("buttonIconElement");
+
+        // make sure 'buttonTypePass' is in the DOM
+        expect(buttonTypePass).toBeInTheDocument();
+
+        const onClickMock = jest.fn();
+        buttonTypePass.onclick = onClickMock;
+        // Event onClick
+        fireEvent.click(buttonTypePass);
+
+        // make sure onClick function is executed
+        expect(onClickMock).toHaveBeenCalledTimes(1)
+    })
+
     test('renders PiLockKeyOpenFill icon when iconType is "PiLockKeyOpenFill"', () => {
         const { getByTestId } = render(<Icons iconType="PiLockKeyOpenFill" />);
         expect(getByTestId('PiLockKeyOpenFill')).toBeInTheDocument();

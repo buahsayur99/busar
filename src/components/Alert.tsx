@@ -25,10 +25,13 @@ export const Alert = ({ children, classCss, onClicks }: AlertProps) => {
         <>
             {active === true
                 && (
-                    <div className={`
-                        ${styles["bg-black_alert"]}
-                        ${isMessage === "register success" ? styles["slide-in-blurred-top"] : styles["slide-out-blurred-top"]}
-                    `}>
+                    <div
+                        data-testid="parent-alert"
+                        className={`
+                            ${styles["bg-black_alert"]}
+                            ${isMessage === "register success" ? styles["slide-in-blurred-top"] : styles["slide-out-blurred-top"]}
+                        `}
+                    >
                         <div className={`${styles[`${classCss}`]}`}>
                             <button
                                 type="button"

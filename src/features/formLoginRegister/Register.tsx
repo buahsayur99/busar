@@ -1,9 +1,9 @@
 import styles from "../../style/index.module.scss";
 import { InputsForm } from "../../components/InputsForm";
 import { Buttons } from "../../components/Buttons";
-import { activeFormTransition, updateInputValue, updateValidasi } from "../../app/actions/formLoginRegisterSlice";
+import { activeFormTransition, updateInputValue, updateValidasi, resetValidasi } from "../../app/actions/formLoginRegisterSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { postToApi } from "../../app/actions/apiUsersSlice";
+import { postToApi, resetIsMessage } from "../../app/actions/apiUsersSlice";
 import { InputProps } from "./Login";
 import { useEffect } from "react";
 
@@ -71,6 +71,11 @@ export const Register = () => {
                     <div className={`${styles["parent-input-login"]}`}>
                         {/* Input Email */}
                         <InputsForm
+                            cssPlaceholder="text-placeholder"
+                            cssInput="input-form"
+                            cssIcon="parent-icon"
+                            cssValidasi="validasi-danger"
+
                             typeInput="text"
                             changeInput={(input) => dispatch(updateInputValue({ email: input }))}
                             valueInput={inputValueForm.email}
@@ -81,6 +86,11 @@ export const Register = () => {
                         />
                         {/* Input Password */}
                         <InputsForm
+                            cssPlaceholder="text-placeholder"
+                            cssInput="input-form"
+                            cssIcon="parent-icon"
+                            cssValidasi="validasi-danger"
+
                             typeInput={"password"}
                             changeInput={(input) => dispatch(updateInputValue({ password: input }))}
                             valueInput={inputValueForm.password}
@@ -91,6 +101,11 @@ export const Register = () => {
                         />
                         {/* Input Confirmasi Password */}
                         <InputsForm
+                            cssPlaceholder="text-placeholder"
+                            cssInput="input-form"
+                            cssIcon="parent-icon"
+                            cssValidasi="validasi-danger"
+
                             typeInput={"password"}
                             changeInput={(input) => dispatch(updateInputValue({ confirmasiPassword: input }))}
                             valueInput={inputValueForm.confirmasiPassword}
@@ -112,9 +127,13 @@ export const Register = () => {
                             submit
                         </button>
 
-                        {/* Button Submit */}
+                        {/* Button Form Login to windows min-550px */}
                         <Buttons
-                            onClicks={() => dispatch(activeFormTransition({ formLogin: true, bannerLogin: false, formRegister: false, bannerRegiter: true }))}
+                            onClicks={() => {
+                                dispatch(activeFormTransition({ formLogin: true, bannerLogin: false, formRegister: false, bannerRegiter: true }))
+                                dispatch(resetIsMessage())
+                                dispatch(resetValidasi())
+                            }}
                             styleScss="btn-login-form-register"
                             stylesBtn={{ width: "100%" }}
                         >
