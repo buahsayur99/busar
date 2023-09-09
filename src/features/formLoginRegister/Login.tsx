@@ -5,6 +5,7 @@ import { useEffect, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { activeFormTransition, updateValidasi, updateInputValue, resetValidasi } from "../../app/actions/formLoginRegisterSlice";
 import { postToApi, resetIsMessage } from "../../app/actions/apiUsersSlice";
+import { AlertText } from "../../components/AlertText";
 
 export type InputProps = {
     email: string;
@@ -72,75 +73,78 @@ export const Login: React.FC<LoginProps> = ({ toggleBackgroundWhite }) => {
         }, 600);
     }
 
+    console.log(isMessage);
     return (
-        // Parent Login
-        <div className={`${styles["parent-login"]}`}>
-            {/* Form Register */}
-            <form data-testid="loginForm" onSubmit={onSubmit}>
-                {/* Judul Form */}
-                <h3 className={`${styles["judul-login"]}`}>Login</h3>
-                {/* Input Login */}
-                <div className={`${styles["parent-input-login"]}`}>
-                    {/* Input Email */}
-                    <InputsForm
-                        cssPlaceholder="text-placeholder"
-                        cssInput="input-form"
-                        cssIcon="parent-icon"
-                        cssValidasi="validasi-danger"
-                        valuePlaceholder={"input your email"}
-                        styleIcon={{ fontSize: "1.3rem", cursor: "text" }}
-                        typeInput={"text"}
-                        changeInput={(input) => dispatch(updateInputValue({ email: input }))}
-                        valueInput={inputValueForm.email}
-                        iconType={"FaUserAlt"}
-                        validasiInput={validasiInput.email}
-                    />
-                    {/* Input Password */}
-                    <InputsForm
-                        cssPlaceholder="text-placeholder"
-                        cssInput="input-form"
-                        cssIcon="parent-icon"
-                        cssValidasi="validasi-danger"
-                        valuePlaceholder={"input your password"}
-                        styleIcon={{ fontSize: "1.4rem" }}
-                        typeInput={"password"}
-                        changeInput={(input) => dispatch(updateInputValue({ password: input }))}
-                        valueInput={inputValueForm.password}
-                        iconType={"PiLockKeyFill"}
-                        validasiInput={validasiInput.password}
-                    />
-                </div>
-                {/* Button fotget to the password */}
-                <div className={`${styles["parent-btn-forget-password"]}`}>
-                    <button
-                        type="button"
-                        className={`${styles["btn-forget-password"]}`}
-                        onClick={() => fcForgetPass()}
-                    >
-                        Forget Password?
-                    </button>
-                </div>
+        <>
+            {/* Parent Login */}
+            <div className={`${styles["parent-login"]}`}>
+                {/* Form Register */}
+                <form data-testid="loginForm" onSubmit={onSubmit}>
+                    {/* Judul Form */}
+                    <h3 className={`${styles["judul-login"]}`}>Login</h3>
+                    {/* Input Login */}
+                    <div className={`${styles["parent-input-login"]}`}>
+                        {/* Input Email */}
+                        <InputsForm
+                            cssPlaceholder="text-placeholder"
+                            cssInput="input-form"
+                            cssIcon="parent-icon"
+                            cssValidasi="validasi-danger"
+                            valuePlaceholder={"input your email"}
+                            styleIcon={{ fontSize: "1.3rem", cursor: "text" }}
+                            typeInput={"text"}
+                            changeInput={(input) => dispatch(updateInputValue({ email: input }))}
+                            valueInput={inputValueForm.email}
+                            iconType={"FaUserAlt"}
+                            validasiInput={validasiInput.email}
+                        />
+                        {/* Input Password */}
+                        <InputsForm
+                            cssPlaceholder="text-placeholder"
+                            cssInput="input-form"
+                            cssIcon="parent-icon"
+                            cssValidasi="validasi-danger"
+                            valuePlaceholder={"input your password"}
+                            styleIcon={{ fontSize: "1.4rem" }}
+                            typeInput={"password"}
+                            changeInput={(input) => dispatch(updateInputValue({ password: input }))}
+                            valueInput={inputValueForm.password}
+                            iconType={"PiLockKeyFill"}
+                            validasiInput={validasiInput.password}
+                        />
+                    </div>
+                    {/* Button fotget to the password */}
+                    <div className={`${styles["parent-btn-forget-password"]}`}>
+                        <button
+                            type="button"
+                            className={`${styles["btn-forget-password"]}`}
+                            onClick={() => fcForgetPass()}
+                        >
+                            Forget Password?
+                        </button>
+                    </div>
 
-                <div className={styles["parent_btn"]}>
-                    {/* Button Submit */}
-                    <button
-                        type="submit"
-                        className={`${styles["btn-login-form"]}`}
-                        style={{ width: "100%" }}
-                    >
-                        Login
-                    </button>
+                    <div className={styles["parent_btn"]}>
+                        {/* Button Submit */}
+                        <button
+                            type="submit"
+                            className={`${styles["btn-login-form"]}`}
+                            style={{ width: "100%" }}
+                        >
+                            Login
+                        </button>
 
-                    {/* Button Submit */}
-                    <Buttons
-                        onClicks={() => btnRegister()}
-                        styleScss="btn-login-form-register"
-                        stylesBtn={{ width: "100%" }}
-                    >
-                        register
-                    </Buttons>
-                </div>
-            </form>
-        </div>
+                        {/* Button Submit */}
+                        <Buttons
+                            onClicks={() => btnRegister()}
+                            styleScss="btn-login-form-register"
+                            stylesBtn={{ width: "100%" }}
+                        >
+                            register
+                        </Buttons>
+                    </div>
+                </form>
+            </div>
+        </>
     )
 }

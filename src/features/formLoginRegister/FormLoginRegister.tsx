@@ -11,10 +11,11 @@ import { Loading } from "../../components/Loading";
 import { Alert } from "../../components/Alert";
 import { ForgetPassword } from "./ForgetPassword";
 import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
+import { AlertText } from "../../components/AlertText";
 
 export const FormLoginRegister = () => {
     const { activeTransitionForm } = useAppSelector(state => state.formLoginRegisterSlice);
-    const { isLoading, dataLoginUsers } = useAppSelector(state => state.apiUsers);
+    const { isLoading, dataLoginUsers, isMessage } = useAppSelector(state => state.apiUsers);
     const { toggle } = useBodyScrollLock();
     const [onOffBgWhite, setOnOffBgWhite] = useState(true);
     const dispatch = useAppDispatch();
@@ -48,6 +49,15 @@ export const FormLoginRegister = () => {
             >
                 login now
             </Alert>
+
+            {isMessage === "Terjadi kesalahan saat memproses permintaan." && (
+                <AlertText
+                    nameButton="Close"
+                    onClicks={() => dispatch(resetIsMessage())}
+                >
+                    Maaf ada kendala pada server.
+                </AlertText>
+            )}
 
             <div
                 data-testid="bg-black"

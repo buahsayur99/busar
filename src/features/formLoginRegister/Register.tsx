@@ -49,7 +49,8 @@ export const Register = () => {
         }
 
         const data = { ...eventInput, role: "user" }
-        const link = "https://rich-tan-llama-wear.cyclic.app/users"
+        // const link = "https://rich-tan-llama-wear.cyclic.app/users"
+        const link = `${process.env.REACT_APP_API_URL_LOCAL}/users`
         if (inputValueForm.email !== "" && inputValueForm.password !== "" && inputValueForm.confirmasiPassword !== "") return dispatch(postToApi({ data, link }));
     }
 
