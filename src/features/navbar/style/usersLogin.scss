@@ -1,8 +1,86 @@
-.parent-icon-users {
-    font-size: 1.5rem;
-    color: white;
-    background-color: $gray-color;
-    padding: .3rem .6rem .6rem .6rem;
-    border-radius: 100%;
-    cursor: pointer;
+.parent-users-login {
+    position: relative;
+
+    @include breakpoint-max(428px) {
+        display: none;
+    }
+
+    .parent-icon-users {
+        font-size: 1.5rem;
+        color: white;
+        background-color: $gray-color;
+        padding: .3rem .6rem .6rem .6rem;
+        border-radius: 100%;
+        cursor: pointer;
+    }
+
+    .parent-users-hover {
+        position: absolute;
+        top: 4.5rem;
+        right: 0;
+        background-color: white;
+        border: 1px solid $gray-medium-color;
+        padding: 1rem 1rem;
+        border-radius: .5rem;
+        z-index: -10000;
+        opacity: 0;
+        transition-duration: 300ms;
+
+        ::before {
+            content: "";
+            position: absolute;
+            top: -2.7rem;
+            right: 0;
+            background-color: transparent;
+            width: 100%;
+            height: 20%;
+            cursor: default;
+        }
+
+        .data-users {
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            gap: .5rem;
+            padding-top: .5rem;
+            margin-bottom: 2rem;
+
+            .users-profile {
+                background-color: $gray-medium-color;
+                color: white;
+                font-size: 4rem;
+                padding: 0 1.1rem;
+                padding-top: .3rem;
+                padding-bottom: 1rem;
+                border-radius: 100%;
+                cursor: pointer;
+            }
+
+            p {
+                font-size: $font-size-xl;
+                cursor: pointer;
+            }
+        }
+
+        .parent-users-menu {
+            li {
+                font-size: $font-size-md;
+
+                button {
+                    background-color: transparent;
+                }
+            }
+
+            hr {
+                margin: 10px 0;
+                border: none;
+                border-top: 1px solid black;
+            }
+        }
+    }
+}
+
+.parent-users-login:hover .parent-users-hover {
+    z-index: 0;
+    opacity: 100;
 }
