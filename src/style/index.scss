@@ -1,0 +1,8 @@
+.global-container {
+    width: 95%;
+    margin: 0 auto;
+
+    @include breakpoint-min(1441px) {
+        width: 88rem;
+    }
+}
