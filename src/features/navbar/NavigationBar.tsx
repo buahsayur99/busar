@@ -20,7 +20,6 @@ export const NavigationBar = () => {
 
     const dispatch = useAppDispatch()
 
-    console.log(dataLoginUsers);
     return (
         <>
             <Navbar
