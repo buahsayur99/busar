@@ -5,7 +5,6 @@ import { useEffect, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { activeFormTransition, updateValidasi, updateInputValue, resetValidasi } from "../../app/actions/formLoginRegisterSlice";
 import { postToApi, resetIsMessage } from "../../app/actions/apiUsersSlice";
-import { AlertText } from "../../components/AlertText";
 
 export type InputProps = {
     email: string;
@@ -73,7 +72,6 @@ export const Login: React.FC<LoginProps> = ({ toggleBackgroundWhite }) => {
         }, 600);
     }
 
-    console.log(isMessage);
     return (
         <>
             {/* Parent Login */}

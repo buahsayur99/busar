@@ -28,7 +28,7 @@ const initialState: InitialStateProps = {
     isLoading: false,
     isError: null,
     isMessage: "",
-    dataLoginUsers: null,
+    dataLoginUsers: { uuid: '758bd862-a7f7-4f4d-8798-9c4e146dacce', email: 'paatlupi@gmail.com', role: 'users' },
     isUuid: null
 }
 
@@ -106,8 +106,12 @@ export const authUuid = createAsyncThunk("api/authUuid", async ({ link }: ApiPar
             credentials: 'include', // Mengizinkan pengiriman cookies
         });
 
-        const data = await response.json()
-        console.log(data)
+        const responseData = await response.json()
+        if (responseData.ok) {
+            return responseData
+        } else {
+            return rejectWithValue(responseData);
+        }
     } catch (error) {
 
     }
@@ -125,7 +129,11 @@ const apiUsersSlice = createSlice({
         },
         resetUuid: (state) => {
             state.isUuid = null
+        },
+        resetDataLoginUsers: (state) => {
+            state.dataLoginUsers = null
         }
+
     },
     extraReducers: (builder) => {
         builder
@@ -200,5 +208,5 @@ const apiUsersSlice = createSlice({
     }
 });
 
-export const { resetIsMessage, resetUuid } = apiUsersSlice.actions;
+export const { resetIsMessage, resetUuid, resetDataLoginUsers } = apiUsersSlice.actions;
 export default apiUsersSlice.reducer;

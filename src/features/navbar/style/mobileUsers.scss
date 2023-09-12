@@ -1,0 +1,80 @@
+.parent-users-login-mobile {
+    position: relative;
+
+    @include breakpoint-min(429px) {
+        display: none;
+    }
+
+    .parent-icon-users {
+        font-size: 1.5rem;
+        color: white;
+        background-color: $gray-color;
+        padding: .3rem .6rem .6rem .6rem;
+        border-radius: 100%;
+        cursor: pointer;
+    }
+
+    .bg-black-mobile-users {
+        position: fixed;
+        top: 5rem;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.45);
+
+        .parent-users-hover {
+            background-color: white;
+            border: 1px solid $gray-medium-color;
+            padding: 1rem 1rem;
+
+            @include breakpoint-max(320px) {
+                height: 100%;
+            }
+
+            .data-users {
+                display: grid;
+                justify-items: center;
+                align-items: center;
+                gap: 1.5rem;
+                padding-top: 1.5rem;
+                margin-bottom: 3rem;
+                cursor: pointer;
+
+                .users-profile {
+                    background-color: $gray-medium-color;
+                    color: white;
+                    font-size: 4rem;
+                    padding: 0 1.1rem;
+                    padding-top: .3rem;
+                    padding-bottom: 1rem;
+                    border-radius: 100%;
+                }
+
+                p {
+                    font-size: 1.7rem;
+
+                    @include breakpoint-max(320px) {
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+
+            .parent-users-menu {
+                @include breakpoint-max(320px) {
+                    height: 32%;
+                    display: grid;
+                    align-items: center;
+                }
+
+                li {
+                    font-size: $font-size-xl;
+                    cursor: pointer;
+
+                    button {
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+}

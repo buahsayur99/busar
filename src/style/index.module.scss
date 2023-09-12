@@ -26,15 +26,11 @@
 @import "../features/navbar/style/navbar";
 @import "../features/navbar/style/searchCatatan";
 @import "../features/navbar/style/usersLogin";
+@import "../features/navbar/style/mobileUsers";
 // Features /FormLoginRegister
 @import "../features/formLoginRegister/style/formLoginRegister";
 @import "../features/formLoginRegister/style/login";
 @import "../features/formLoginRegister/style/forgetPassword";
 
-.container {
-    @include container-padding(1rem);
-
-    @include md {
-        @include container-padding(2rem);
-    }
-}
+// Global Css
+@import "index.scss";
