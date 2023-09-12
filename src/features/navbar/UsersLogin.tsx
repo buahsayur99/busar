@@ -1,8 +1,8 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import styles from "../../style/index.module.scss";
 import { FaUserAlt } from "../../utils/icons";
-import { MobileUsers } from "./MobileUsers";
 import { resetDataLoginUsers } from "../../app/actions/apiUsersSlice";
+import { MobileUsers } from "./MobileUsers";
 
 export const UsersLogin = () => {
     const dispatch = useAppDispatch()
