@@ -10,7 +10,7 @@ function App() {
       <div style={{ height: "100rem" }}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="account" element={<Account />}>
+          <Route path="account">
             <Route index element={<Profile />} />
           </Route>
         </Routes>
