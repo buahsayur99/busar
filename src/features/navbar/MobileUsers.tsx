@@ -4,6 +4,7 @@ import { FaUserAlt } from "../../utils/icons";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { resetDataLoginUsers } from "../../app/actions/apiUsersSlice";
 import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
+import { NavLink } from "react-router-dom";
 
 export const MobileUsers = () => {
     const dispatch = useAppDispatch();
@@ -12,18 +13,25 @@ export const MobileUsers = () => {
     const { toggle } = useBodyScrollLock();
 
     const updateActive = (prev: any) => {
-        setActive(state => ({ ...state, ...prev }))
-    }
+        setActive(state => ({ ...state, ...prev }));
+    };
+
+    const toggleUsersProfileMenu = () => {
+        updateActive({ usersMenu: !active.usersMenu });
+        toggle(!active.usersMenu);
+    };
+
+    const toggleLogoutUsers = () => {
+        toggleUsersProfileMenu();
+        dispatch(resetDataLoginUsers());
+    };
 
     return (
         <>
             <div className={`${styles["parent-users-login-mobile"]}`}>
                 <span
                     className={`${styles["parent-icon-users"]}`}
-                    onClick={() => {
-                        updateActive({ usersMenu: !active.usersMenu });
-                        toggle(!active.usersMenu)
-                    }}
+                    onClick={() => toggleUsersProfileMenu()}
                 >
                     <FaUserAlt />
                 </span>
@@ -32,20 +40,41 @@ export const MobileUsers = () => {
                     <div className={`${styles["bg-black-mobile-users"]}`}>
                         <div className={`${styles["parent-users-hover"]}`}>
                             <div className={`${styles["data-users"]}`}>
-                                <div className={`${styles["users-profile"]}`}>
+                                {/* Navlink Profile */}
+                                <NavLink
+                                    to="/account/profile"
+                                    className={`${styles["users-profile"]}`}
+                                    onClick={() => toggleUsersProfileMenu()}
+                                >
                                     <FaUserAlt />
-                                </div>
-                                <p>{dataLoginUsers?.email}</p>
+                                </NavLink>
+                                {/* Navlink Email */}
+                                <NavLink
+                                    to="/account"
+                                    className={`${styles["email-users"]}`}
+                                    onClick={() => toggleUsersProfileMenu()}
+                                >
+                                    {dataLoginUsers?.email}
+                                </NavLink>
                             </div>
 
                             <div className={`${styles["parent-users-menu"]}`}>
                                 <ul>
-                                    <li>Settings</li>
+                                    <li>
+                                        <NavLink
+                                            to="/account"
+                                            className={`${styles["btn-users"]}`}
+                                            onClick={() => toggleUsersProfileMenu()}
+                                        >
+                                            Settings
+                                        </NavLink>
+                                    </li>
                                     <hr />
                                     <li>
                                         <button
                                             type="button"
-                                            onClick={() => dispatch(resetDataLoginUsers())}
+                                            className={`${styles["btn-users"]}`}
+                                            onClick={() => toggleLogoutUsers()}
                                         >
                                             Sign out
                                         </button>
