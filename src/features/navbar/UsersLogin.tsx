@@ -3,6 +3,7 @@ import styles from "../../style/index.module.scss";
 import { FaUserAlt } from "../../utils/icons";
 import { resetDataLoginUsers } from "../../app/actions/apiUsersSlice";
 import { MobileUsers } from "./MobileUsers";
+import { NavLink } from "react-router-dom";
 
 export const UsersLogin = () => {
     const dispatch = useAppDispatch()
@@ -17,26 +18,36 @@ export const UsersLogin = () => {
 
                 <div className={`${styles["parent-users-hover"]}`}>
                     <div className={`${styles["data-users"]}`}>
-                        <div className={`${styles["users-profile"]}`}>
+                        <NavLink
+                            to="/account/profile"
+                            className={`${styles["users-profile"]}`}
+                        >
                             <FaUserAlt />
-                        </div>
-                        <p>{dataLoginUsers?.email}</p>
+                        </NavLink>
+                        <NavLink
+                            to="/account"
+                            className={`${styles["email-users"]}`}
+                        >
+                            {dataLoginUsers?.email}
+                        </NavLink>
                     </div>
 
                     <div className={`${styles["parent-users-menu"]}`}>
                         <ul>
                             <li>
-                                <button
-                                    type="button"
+                                <NavLink
+                                    to="/account"
+                                    className={`${styles["btn-users"]}`}
                                 >
                                     Settings
-                                </button>
+                                </NavLink>
                             </li>
                             <hr />
                             <li>
                                 <button
                                     type="button"
                                     onClick={() => dispatch(resetDataLoginUsers())}
+                                    className={`${styles["btn-users"]}`}
                                 >
                                     Sign out
                                 </button>
