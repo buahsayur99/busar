@@ -1,19 +1,29 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { InputProps } from "../../features/formLoginRegister/Login";
 
-type LoginUsers = {
+export type LoginUsers = {
     email: string;
     role: string;
     uuid: string;
 }
 
 type MessageProps = {
-    message: string
+    message: string;
 }
 
 type ApiParameterProps = {
     data?: InputProps;
-    link: string
+    link: string;
+}
+
+type settingProfileProps = {
+    uuid?: string;
+    email?: string;
+}
+
+type ApiSettingProfileProps = {
+    data?: settingProfileProps;
+    link: string;
 }
 
 type InitialStateProps = {
@@ -28,9 +38,50 @@ const initialState: InitialStateProps = {
     isLoading: false,
     isError: null,
     isMessage: "",
-    dataLoginUsers: { uuid: '758bd862-a7f7-4f4d-8798-9c4e146dacce', email: 'paatlupi@gmail.com', role: 'users' },
+    dataLoginUsers: null,
     isUuid: null
 }
+
+export const getUsers = createAsyncThunk("api/getUsers", async ({ link }: ApiSettingProfileProps, { rejectWithValue }) => {
+    try {
+        const response = await fetch(link, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+
+        const responseData = await response.json();
+        if (response.ok) {
+            return responseData
+        } else {
+            return rejectWithValue(responseData);
+        }
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
+});
+
+export const updateSettingProfile = createAsyncThunk("api/updateSettingProfile", async ({ data, link }: ApiSettingProfileProps, { rejectWithValue }) => {
+    try {
+        const response = await fetch(link, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ ...data })
+        });
+        const responseData = response.json();
+
+        if (response.ok) {
+            return responseData
+        } else {
+            return rejectWithValue(responseData);
+        }
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
+});
 
 export const postToApi = createAsyncThunk("api/postToApi", async ({ data, link }: ApiParameterProps, { rejectWithValue }) => {
     try {
@@ -94,7 +145,7 @@ export const updateUsersById = createAsyncThunk("api/updateUsersById", async ({ 
     } catch (error: any) {
         throw new Error('An error occurred while processing the request.');
     }
-})
+});
 
 export const authUuid = createAsyncThunk("api/authUuid", async ({ link }: ApiParameterProps, { rejectWithValue }) => {
     try {
@@ -195,6 +246,53 @@ const apiUsersSlice = createSlice({
                 state.isMessage = action.payload.message
             })
             .addCase(updateUsersById.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = action.error
+
+                const payload = action.payload as MessageProps;
+                if (payload?.message !== undefined) {
+                    state.isMessage = payload.message;
+                } else {
+                    state.isMessage = "Terjadi kesalahan saat memproses permintaan.";
+                }
+            })
+
+            // getUsers
+            .addCase(getUsers.pending, (state) => {
+                state.isLoading = true;
+                state.isError = null;
+                state.isMessage = null
+            })
+            .addCase(getUsers.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isError = false;
+                state.isMessage = null;
+                state.dataLoginUsers = action.payload
+            })
+            .addCase(getUsers.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+
+                // Periksa apakah action.payload ada dan mengandung properti message
+                const payload = action.payload as MessageProps;
+                if (payload?.message !== undefined) {
+                    state.isMessage = payload.message;
+                } else {
+                    state.isMessage = "Terjadi kesalahan saat memproses permintaan.";
+                }
+            })
+
+            // updateUsersByUuid
+            .addCase(updateSettingProfile.pending, (state) => {
+                state.isLoading = true;
+                state.isError = null;
+                state.isMessage = null
+            })
+            .addCase(updateSettingProfile.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isMessage = action.payload.message
+            })
+            .addCase(updateSettingProfile.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = action.error
 
