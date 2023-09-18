@@ -5,7 +5,7 @@
         display: none;
     }
 
-    &:hover .parent-users-hover {
+    &:hover>.parent-users-hover {
         z-index: 0;
         opacity: 100;
     }
@@ -30,8 +30,9 @@
         z-index: -10000;
         opacity: 0;
         transition-duration: 300ms;
+        cursor: default;
 
-        ::before {
+        ::after {
             content: "";
             position: absolute;
             top: -2.7rem;
@@ -39,7 +40,6 @@
             background-color: transparent;
             width: 100%;
             height: 20%;
-            cursor: default;
         }
 
         .data-users {
@@ -76,29 +76,32 @@
         }
 
         .parent-users-menu {
-            li {
-                font-size: $font-size-md;
+            ul {
+                li {
+                    font-size: $font-size-md;
 
-                .btn-users {
-                    background-color: transparent;
-                    margin: 0;
-                    padding: 0;
-                    text-decoration: none;
-                    color: black;
-                    transition: all;
-                    transition-duration: 300ms;
+                    .btn-users {
+                        background-color: transparent;
+                        margin: 0;
+                        padding: 0;
+                        text-decoration: none;
+                        color: black;
+                        transition: all;
+                        transition-duration: 300ms;
 
-                    &:hover {
-                        color: $primary-color;
+                        &:hover {
+                            color: $primary-color;
+                        }
                     }
+                }
+
+                hr {
+                    margin: 0px;
+                    border: none;
+                    border-top: 1px solid black;
                 }
             }
 
-            hr {
-                margin: 10px 0;
-                border: none;
-                border-top: 1px solid black;
-            }
         }
     }
 }

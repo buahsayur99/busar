@@ -31,7 +31,6 @@ export const UsersLogin = () => {
                             {dataLoginUsers?.email}
                         </NavLink>
                     </div>
-
                     <div className={`${styles["parent-users-menu"]}`}>
                         <ul>
                             <li>
@@ -45,9 +44,9 @@ export const UsersLogin = () => {
                             <hr />
                             <li>
                                 <button
+                                    className={`${styles["btn-users"]}`}
                                     type="button"
                                     onClick={() => dispatch(resetDataLoginUsers())}
-                                    className={`${styles["btn-users"]}`}
                                 >
                                     Sign out
                                 </button>
