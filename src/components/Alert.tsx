@@ -4,7 +4,7 @@ import styles from "../style/index.module.scss";
 
 type AlertProps = {
     children?: React.ReactNode;
-    classCss: string;
+    classCss?: string;
     onClicks?: () => void
 }
 
