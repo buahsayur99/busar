@@ -6,3 +6,23 @@
         width: 88rem;
     }
 }
+
+.global-parent-pengaturan-profile {
+    width: 60rem;
+    margin: 0 auto;
+    margin-top: 4rem;
+
+    @include breakpoint-max(428px) {
+        margin-top: 3rem;
+    }
+
+    @include breakpoint-max(1025px) {
+        width: 100%;
+    }
+
+    .global-flex {
+        display: flex;
+        gap: 7rem;
+        margin-top: 2.5rem;
+    }
+}
