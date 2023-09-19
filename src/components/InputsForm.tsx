@@ -1,6 +1,6 @@
 import { FaUserAlt, PiLockKeyFill, PiLockKeyOpenFill } from "../utils/icons";
 import styles from "../style/index.module.scss";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 type IconsProps = string | Element | undefined
 
