@@ -41,6 +41,25 @@ const initialState: InitialStateProps = {
     dataLoginUsers: null,
     isUuid: null
 }
+export const authLogin = createAsyncThunk("api/getMe", async ({ link }: ApiSettingProfileProps, { rejectWithValue }) => {
+    try {
+        const response = await fetch(link, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+
+        const responseData = await response.json();
+        if (response.ok) {
+            return responseData
+        } else {
+            return rejectWithValue(responseData);
+        }
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
+});
 
 export const getUsers = createAsyncThunk("api/getUsers", async ({ link }: ApiSettingProfileProps, { rejectWithValue }) => {
     try {
@@ -146,27 +165,6 @@ export const updateUsersById = createAsyncThunk("api/updateUsersById", async ({ 
         throw new Error('An error occurred while processing the request.');
     }
 });
-
-export const authUuid = createAsyncThunk("api/authUuid", async ({ link }: ApiParameterProps, { rejectWithValue }) => {
-    try {
-        const response = await fetch(link, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            credentials: 'include', // Mengizinkan pengiriman cookies
-        });
-
-        const responseData = await response.json()
-        if (responseData.ok) {
-            return responseData
-        } else {
-            return rejectWithValue(responseData);
-        }
-    } catch (error) {
-
-    }
-})
 
 const apiUsersSlice = createSlice({
     name: "Api's Users",
@@ -302,6 +300,11 @@ const apiUsersSlice = createSlice({
                 } else {
                     state.isMessage = "Terjadi kesalahan saat memproses permintaan.";
                 }
+            })
+
+            // getUsers
+            .addCase(authLogin.fulfilled, (state, action) => {
+                state.dataLoginUsers = action.payload
             })
     }
 });
