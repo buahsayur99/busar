@@ -67,10 +67,13 @@
             }
 
             .parent-users-menu {
+                padding-top: 2rem;
+
                 @include breakpoint-max(320px) {
                     height: 32%;
                     display: grid;
                     align-items: center;
+                    padding-top: 0;
                 }
 
                 li {
@@ -88,6 +91,10 @@
                             color: $primary-color;
                         }
                     }
+                }
+
+                hr {
+                    margin: 0;
                 }
             }
         }
