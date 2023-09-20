@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../../style/index.module.scss";
 import { FaUserAlt } from "../../utils/icons";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -24,6 +24,7 @@ export const MobileUsers = () => {
     const toggleLogoutUsers = () => {
         toggleUsersProfileMenu();
         dispatch(resetDataLoginUsers());
+        localStorage.removeItem("uuid");
     };
 
     return (
@@ -74,7 +75,7 @@ export const MobileUsers = () => {
                                         <button
                                             type="button"
                                             className={`${styles["btn-users"]}`}
-                                            onClick={() => toggleLogoutUsers()}
+                                            onClick={toggleLogoutUsers}
                                         >
                                             Sign out
                                         </button>

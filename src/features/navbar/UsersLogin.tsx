@@ -46,7 +46,10 @@ export const UsersLogin = () => {
                                 <button
                                     className={`${styles["btn-users"]}`}
                                     type="button"
-                                    onClick={() => dispatch(resetDataLoginUsers())}
+                                    onClick={() => {
+                                        dispatch(resetDataLoginUsers());
+                                        localStorage.removeItem("uuid");
+                                    }}
                                 >
                                     Sign out
                                 </button>
