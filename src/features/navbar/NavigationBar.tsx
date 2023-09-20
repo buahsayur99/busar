@@ -11,12 +11,15 @@ import { useScrollNavbar } from "../../hook/useScrollNavbar";
 import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
 import { UsersLogin } from "./UsersLogin";
 import { activeFormTransition } from "../../app/actions/formLoginRegisterSlice";
+import { useAuthUsers } from "../../hook/useAuthUsers";
 
 export const NavigationBar = () => {
     const { activeInputSearch } = useAppSelector(state => state.searchCatatanSlice);
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
-    const { toggle } = useBodyScrollLock()
-    const { scrolled } = useScrollNavbar()
+    const { toggle } = useBodyScrollLock();
+    const { scrolled } = useScrollNavbar();
+    // Auth Login Users
+    useAuthUsers();
 
     const dispatch = useAppDispatch()
 
