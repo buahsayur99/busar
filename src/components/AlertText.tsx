@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "../style/index.module.scss";
 import { useAppSelector } from "../app/hooks";
 import { useOutsideClick } from "../hook/useOutsideClick";
@@ -13,23 +13,29 @@ export const AlertText: React.FC<AlertTextProps> = ({ children, nameButton, onCl
     const [active, setActive] = useState(true);
     const parentAlertRef = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
-        if (activeAlert.alertText.status === true) return setActive(true)
-    }, [activeAlert.alertText.status]);
-
-    const closeAlert = () => {
+    const closeAlert = useCallback(() => {
         setActive(false)
 
         setTimeout(() => {
             onClicks()
         }, 1000)
-    }
+    }, [onClicks])
 
     // Custome Hook Close Alert
     useOutsideClick({
         ref: parentAlertRef,
         faClose: closeAlert
     });
+
+    useEffect(() => {
+        if (activeAlert.alertText.status === true) return setActive(true);
+        if (active === true) {
+            setTimeout(() => {
+                closeAlert();
+            }, 3500);
+        }
+    }, [activeAlert.alertText.status, active, closeAlert]);
+
 
     return (
         <>
