@@ -19,4 +19,3 @@ export const useAuthUsers = () => {
         if (uuid !== null) return requestUserApi();
     }, [uuid, dataLoginUsers?.uuid, requestUserApi])
 }
-
