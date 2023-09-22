@@ -16,6 +16,6 @@ export const useAuthUsers = () => {
         // if dataLoginUsers has uuid, enter uuid in localStorage
         if (dataLoginUsers?.uuid) return localStorage.setItem("uuid", dataLoginUsers?.uuid);
         // if uuid in localstorage exists, run requestUserApi function
-        if (uuid !== null) return requestUserApi();
+        requestUserApi();
     }, [uuid, dataLoginUsers?.uuid, requestUserApi])
 }
