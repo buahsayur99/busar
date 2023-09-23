@@ -28,6 +28,7 @@ type ApiSettingProfileProps = {
 
 type InitialStateProps = {
     isLoading: boolean;
+    isLoadingAuth: boolean | null;
     isError: any;
     isMessage: string | null;
     dataLoginUsers: LoginUsers | null;
@@ -36,6 +37,7 @@ type InitialStateProps = {
 
 const initialState: InitialStateProps = {
     isLoading: false,
+    isLoadingAuth: null,
     isError: null,
     isMessage: "",
     dataLoginUsers: null,
@@ -49,7 +51,6 @@ export const authLogin = createAsyncThunk("api/getMe", async ({ link }: ApiSetti
                 "Content-Type": "application/json",
             }
         });
-
         const responseData = await response.json();
         if (response.ok) {
             return responseData
@@ -303,8 +304,22 @@ const apiUsersSlice = createSlice({
             })
 
             // getUsers
+            .addCase(authLogin.pending, (state, action) => {
+                state.isLoadingAuth = true
+            })
             .addCase(authLogin.fulfilled, (state, action) => {
+                state.isLoadingAuth = false
                 state.dataLoginUsers = action.payload
+            })
+            .addCase(authLogin.rejected, (state, action) => {
+                state.isLoadingAuth = false
+
+                const payload = action.payload as MessageProps;
+                if (payload?.message !== undefined) {
+                    state.isMessage = payload.message;
+                } else {
+                    state.isMessage = "Terjadi kesalahan saat memproses permintaan.";
+                }
             })
     }
 });
