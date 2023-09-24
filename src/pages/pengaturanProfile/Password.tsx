@@ -6,7 +6,7 @@ import { ProfileEmailAndLink } from "../../features/pengaturanProfile/ProfileEma
 import { InputsForm } from "../../components/InputsForm";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { resetIsMessage, updateUsersById } from "../../app/actions/apiUsersSlice";
-import { matchPass, updateSuccess } from "../../utils/responseApi";
+import { matchPass, rejectedUpdatePassword, updateSuccess } from "../../utils/responseApi";
 import { AlertText } from "../../components/AlertText";
 
 type inputProps = {
@@ -38,7 +38,8 @@ export const Password = () => {
     };
 
     const resetAlertToDefault = () => {
-        setActive({ success: { status: false, text: "" } })
+        setActive({ success: { status: false, text: "" } });
+        dispatch(resetIsMessage());
     }
 
     const changeInputValue = (event: any) => {
@@ -72,12 +73,12 @@ export const Password = () => {
         // Check Input
         if (input.password === "") changeValidasiInput({ password: { status: true, text: "Input password tidak boleh kosong" } });
         if (input.confirmasiPassword === "") changeValidasiInput({ confirmasiPassword: { status: true, text: "Input confirmasi password tidak boleh kosong" } });
-        // if input password and confirmasi password is empty run submitPasswordToApi() funtion
         if (input.password !== "" && input.confirmasiPassword !== "") return submitPasswordToApi();
     }
 
     const updateValidasiByIsMessage = useCallback(() => {
         if (isMessage === matchPass.toLowerCase()) return setValidasiInput({ password: { status: true, text: matchPass }, confirmasiPassword: { status: true, text: matchPass } });
+        if (isMessage === rejectedUpdatePassword.toLowerCase()) return setValidasiInput({ password: { status: true, text: rejectedUpdatePassword }, confirmasiPassword: { status: true, text: rejectedUpdatePassword } });
         if (isMessage === updateSuccess.toLowerCase()) {
             resetInputToDefault();
             return changeActiveAlert({ success: { status: true, text: "Perubahan password berhasil" } })
