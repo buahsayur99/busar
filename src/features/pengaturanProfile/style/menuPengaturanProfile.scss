@@ -1,0 +1,26 @@
+ul {
+    display: grid;
+    gap: 1rem;
+
+    li {
+        .users-menu {
+            text-decoration: none;
+            color: $gray-medium-color;
+            font-size: $font-size-md;
+            text-transform: capitalize;
+            font-weight: lighter;
+
+            &:hover {
+                color: $gray-color;
+            }
+        }
+
+        .users-menu-active {
+            text-decoration: none;
+            color: $primary-color;
+            font-size: $font-size-md;
+            text-transform: capitalize;
+            font-weight: bold;
+        }
+    }
+}

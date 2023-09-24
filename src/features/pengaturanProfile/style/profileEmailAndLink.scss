@@ -1,0 +1,61 @@
+.container-profile-email {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    @include breakpoint-max(320px) {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .profile {
+        font-size: $font-size-3xl;
+        background-color: $gray-color;
+        color: white;
+        display: flex;
+        align-items: center;
+        padding: .7rem 1rem 1rem 1rem;
+        border-radius: 100%;
+
+        @include breakpoint-max(428px) {
+            font-size: $font-size-2xl;
+            padding: .4rem .7rem .7rem .7rem;
+        }
+    }
+
+    .parent-name-info {
+        display: grid;
+        gap: .8rem;
+
+        .name-profile-email {
+            display: flex;
+            gap: .5rem;
+            color: black;
+            font-weight: bold;
+            font-size: $font-size-xl;
+            overflow: hidden;
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-base;
+            }
+
+            @include breakpoint-max(375px) {
+                font-size: $font-size-lg;
+            }
+
+            span {
+                font-weight: lighter;
+                color: $gray-color;
+            }
+
+            .url-link {
+                text-transform: capitalize;
+            }
+        }
+
+        p {
+            color: $gray-color;
+            overflow: hidden;
+        }
+    }
+}
