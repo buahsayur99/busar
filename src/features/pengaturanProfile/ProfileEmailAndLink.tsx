@@ -4,9 +4,14 @@ import { useAppSelector } from "../../app/hooks";
 import styles from "../../style/index.module.scss";
 import { FaUserAlt } from "../../utils/icons";
 import { NavLink } from "react-router-dom";
+import { useSaveLastPage } from "../../hook/useSaveLastPage";
 
 export const ProfileEmailAndLink = () => {
+    // useAppSelector
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
+    // Custome Hook
+    useSaveLastPage();
+
     const convertLinkToName = () => {
         // Take website liks without domain
         let currentPageString = localStorage.getItem("informasi_halaman");
@@ -14,6 +19,7 @@ export const ProfileEmailAndLink = () => {
         if (currentPageString) page_path = JSON.parse(currentPageString);
 
         let currentPath = page_path.page_path;
+        console.log(currentPath, window.location.pathname);
         // Convert currentPath to string
         let hasil = currentPath.toString();
 
@@ -31,6 +37,7 @@ export const ProfileEmailAndLink = () => {
         if (link === "general") return "Update your email and manage your account";
         if (link === "edit profile") return "Add your profile image";
         if (link === "password") return "Manage your password";
+        if (link === "address") return "Manage your address";
     }
 
     return (
@@ -46,7 +53,8 @@ export const ProfileEmailAndLink = () => {
                     <div className={`${styles["name-profile-email"]}`}>
                         <h2>{dataLoginUsers?.email}</h2>
                         <span>/</span>
-                        <h3 className={`${styles["url-link"]}`}>{convertLinkToName()}</h3>
+                        <h3 className={`${styles["url-link"]}`}>{convertLinkToName()}
+                        </h3>
                     </div>
 
                     <p>{convertNameToInfo()}</p>
