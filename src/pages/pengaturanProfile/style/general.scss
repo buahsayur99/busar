@@ -1,0 +1,160 @@
+.parent-form-profile {
+    width: 100%;
+    position: relative;
+    margin-top: 1.2rem;
+    display: grid;
+    gap: 3rem;
+
+    .input-form {
+        background-color: transparent;
+        border: 2px solid $gray-color;
+        box-shadow: 0px 0px 0px 0px $gray-light-color;
+        color: $gray-color;
+
+        &:hover {
+            box-shadow: 0px 0px 10px 0px $gray-silver-color;
+        }
+
+        &:focus {
+            box-shadow: 0px 0px 10px 0px $primary-color-bright;
+        }
+    }
+
+    .input-form-active {
+        background-color: transparent;
+        border: 2px solid $gray-color;
+        box-shadow: 0px 0px 0px 0px $primary-color;
+        color: $primary-color;
+
+        &:hover {
+            box-shadow: 0px 0px 10px 0px $primary-color;
+        }
+
+        &:focus {
+            box-shadow: 0px 0px 10px 0px $primary-color;
+        }
+    }
+
+    .input-form-danger {
+        background-color: transparent;
+        border: 2px solid $primary-danger;
+        box-shadow: 0px 0px 0px 0px $primary-danger;
+        color: $primary-danger;
+
+        &:hover {
+            box-shadow: 0px 0px 5px 0px $primary-danger;
+        }
+
+        &:focus {
+            box-shadow: 0px 0px 5px 0px $primary-danger;
+        }
+    }
+
+    .input-placeholder {
+        position: absolute;
+        top: 35%;
+        margin-left: 3rem;
+        transition-duration: 300ms;
+        cursor: text;
+
+        &:before {
+            content: "";
+            position: absolute;
+            background-color: transparent;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .input-placeholder-active {
+        position: absolute;
+        top: -.65rem;
+        background-color: white;
+        font-size: $font-size-sm;
+        padding: .3rem .5rem;
+        margin-left: 3rem;
+        font-style: italic;
+        font-weight: bold;
+        color: $gray-color;
+    }
+
+    .input-placeholder-danger {
+        position: absolute;
+        top: -.65rem;
+        background-color: white;
+        font-size: $font-size-sm;
+        padding: .3rem .5rem;
+        margin-left: 3rem;
+        font-style: italic;
+        font-weight: bold;
+        color: $primary-danger;
+    }
+
+    .input-icon {
+        position: absolute;
+        margin-left: 1rem;
+        font-size: $font-size-xl;
+        color: $gray-color;
+    }
+
+    .input-icon-active {
+        position: absolute;
+        margin-left: 1rem;
+        font-size: $font-size-xl;
+        color: $gray-color;
+    }
+
+    .input-icon-danger {
+        position: absolute;
+        margin-left: 1rem;
+        font-size: $font-size-xl;
+        color: $primary-danger;
+    }
+
+    .validasi {
+        position: absolute;
+        left: 0;
+        bottom: -1.2rem;
+        margin-left: 1rem;
+        font-size: $font-size-sm;
+        color: $primary-danger;
+        font-weight: 900;
+    }
+}
+
+.parent-button {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    button {
+        background-color: black;
+        color: white;
+        font-size: $font-size-xl;
+        padding: 1rem 2rem;
+        border-radius: 2rem;
+        transition-duration: 300ms;
+        margin-top: 3rem;
+
+        &:hover {
+            background-color: $primary-color;
+            color: black;
+        }
+    }
+}
+
+.parent-input-form:focus-within .input-placeholder {
+    position: absolute;
+    top: -.65rem;
+    background-color: white;
+    font-size: $font-size-sm;
+    padding: .3rem .5rem;
+    margin-left: 3rem;
+    font-style: italic;
+    font-weight: bold;
+    color: $primary-color;
+}
+
+.parent-input-form:focus-within .input-icon {
+    color: $primary-color;
+}
