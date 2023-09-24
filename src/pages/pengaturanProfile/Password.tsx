@@ -63,7 +63,6 @@ export const Password = () => {
         const link = `${process.env.REACT_APP_API_URL_LOCAL}/users/${dataLoginUsers?.uuid}`;
         const data = input
 
-        console.log(link);
         dispatch(updateUsersById({ data, link }));
     }
 
@@ -94,8 +93,6 @@ export const Password = () => {
     useEffect(() => {
         updateValidasiByIsMessage()
     }, [updateValidasiByIsMessage])
-
-    console.log(isMessage);
 
     return (
         <>
@@ -159,6 +156,5 @@ export const Password = () => {
                 </div>
             </div>
         </>
-
     )
 }
