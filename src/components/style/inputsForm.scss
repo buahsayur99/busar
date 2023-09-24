@@ -84,6 +84,15 @@
         text-transform: capitalize;
         font-size: $font-size-xs;
     }
+
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
 }
 
 .parent-input-form:focus-within>.parent-icon {
