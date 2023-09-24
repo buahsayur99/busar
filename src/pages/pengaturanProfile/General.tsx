@@ -53,7 +53,12 @@ export const General = () => {
         onOffAlert();
         // If update success reset value input email
         if (isMessage === "update user success") return setInputEmail("");
-    }, [updateValidasiInputByIsMessage, onOffAlert, isMessage])
+    }, [updateValidasiInputByIsMessage, onOffAlert, isMessage]);
+
+    const closeAlert = () => {
+        setActiveAlert(false);
+        dispatch(resetIsMessage());
+    }
 
     return (
         <>
@@ -65,7 +70,7 @@ export const General = () => {
             {activeAlert && (
                 <AlertText
                     nameButton="Close"
-                    onClicks={() => setActiveAlert(false)}
+                    onClicks={() => closeAlert()}
                 >
                     Update email success
                 </AlertText>
