@@ -1,7 +1,6 @@
 import { FaUserAlt, PiLockKeyFill, PiLockKeyOpenFill } from "../utils/icons";
 import styles from "../style/index.module.scss";
-import { useEffect, useState } from "react";
-import { useInputFormAddress } from "../hook/useInputFormAddress";
+import { useState } from "react";
 
 type IconsProps = string | Element | undefined
 
@@ -20,7 +19,7 @@ type InputFormProps = {
     valuePlaceholder: string;
     iconType?: IconsProps;
     validasiInput?: {
-        status: boolean;
+        status: boolean | null;
         text: string;
     }
 };
@@ -38,7 +37,6 @@ export const InputsForm = (
     }: InputFormProps
 ) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const [inputLength, setInputLength] = useState(0);
 
     const updatePassVisible = () => {
         setPasswordVisible((state) => !state);
