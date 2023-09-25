@@ -198,6 +198,35 @@
                     font-size: $font-size-xs;
                 }
             }
+
+            .parent-button {
+                display: flex;
+                align-items: center;
+
+                .button-save {
+                    margin-top: 1rem;
+                    color: $gray-color;
+                    background-color: transparent;
+                    cursor: not-allowed;
+
+                    &:hover {
+                        color: $gray-color;
+                        background-color: transparent;
+                    }
+                }
+
+                .button-save-active {
+                    margin-top: 1rem;
+                    color: white;
+                    background-color: $primary-color;
+                    border-radius: .5rem;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $primary-color-hover;
+                    }
+                }
+            }
         }
 
         .max-input {
