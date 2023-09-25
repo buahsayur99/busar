@@ -5,7 +5,7 @@ import { IoIosCloseCircle } from "../../utils/icons";
 import { useInputFormAddress } from "../../hook/useInputFormAddress";
 
 export const FormAddress = () => {
-    const { input, validasiInput, changeInputValue, changeInputClicked } = useInputFormAddress();
+    const { input, validasiInput, activeSave, changeInputValue, changeInputClicked } = useInputFormAddress();
 
     return (
         <>
@@ -121,6 +121,15 @@ export const FormAddress = () => {
                             valueInput={input.courierNote}
                             valuePlaceholder={"Courier Note"}
                         />
+
+                        {/* Button */}
+                        <div className={`${styles["parent-button"]}`}>
+                            <button
+                                className={`${!activeSave ? styles["button-save"] : styles["button-save-active"]}`}
+                            >
+                                Save
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
