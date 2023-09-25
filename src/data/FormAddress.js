@@ -17,3 +17,13 @@ export const dataValidasiInputFormAddress = {
     completeAddress: { status: false, text: "" },
     courierNote: { status: false, text: "" }
 }
+
+export const datainputClicked = {
+    name: false,
+    numberPhone: false,
+    city: false,
+    subdistrict: false,
+    codePos: false,
+    completeAddress: false,
+    courierNote: false
+}
