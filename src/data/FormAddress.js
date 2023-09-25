@@ -9,13 +9,13 @@ export const dataInputFormAddress = {
 }
 
 export const dataValidasiInputFormAddress = {
-    name: { status: false, text: "" },
-    numberPhone: { status: false, text: "" },
-    city: { status: false, text: "" },
-    subdistrict: { status: false, text: "" },
-    codePos: { status: false, text: "" },
-    completeAddress: { status: false, text: "" },
-    courierNote: { status: false, text: "" }
+    name: { status: null, text: "" },
+    numberPhone: { status: null, text: "" },
+    city: { status: null, text: "" },
+    subdistrict: { status: null, text: "" },
+    codePos: { status: null, text: "" },
+    completeAddress: { status: null, text: "" },
+    courierNote: { status: null, text: "" }
 }
 
 export const datainputClicked = {
