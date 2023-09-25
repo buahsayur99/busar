@@ -6,4 +6,208 @@
     background-color: $primary-color-black65;
     width: 100%;
     height: 100%;
+    display: grid;
+    justify-content: center;
+    padding: 2rem 0;
+    overflow: auto;
+
+    @include breakpoint-max(850px) {
+        display: flex;
+    }
+
+    .bg-white {
+        background-color: white;
+        width: 50rem;
+        height: 33rem;
+        border-radius: 2rem;
+
+        @include breakpoint-max(850px) {
+            width: 100%;
+            margin: 0 1rem;
+        }
+
+        .judul-form {
+            position: relative;
+
+            h2 {
+                text-align: center;
+                font-size: $font-size-2xl;
+                text-transform: capitalize;
+                margin: 1rem 0;
+
+                @include breakpoint-max(500px) {
+                    font-size: 1.7rem;
+                }
+
+                @include breakpoint-max(360px) {
+                    font-size: $font-size-xl;
+                }
+            }
+
+            button {
+                position: absolute;
+                top: -.3rem;
+                right: 0;
+                margin-right: .5rem;
+                background-color: transparent;
+                font-size: $font-size-2xl;
+
+                @include breakpoint-max(500px) {
+                    font-size: 1.9rem;
+                }
+
+                @include breakpoint-max(360px) {
+                    top: -.6rem;
+                }
+
+                @include breakpoint-max(320px) {
+                    top: -.4rem;
+                    font-size: 1.7rem;
+                }
+            }
+
+            hr {
+                margin: 0;
+                border: solid 1px rgb(0, 0, 0);
+            }
+        }
+
+        .form-address {
+            padding: 1rem 1.5rem;
+            display: grid;
+            gap: 2rem;
+            overflow: auto;
+            height: 27rem;
+
+            .input-form {
+                background-color: #f1f0f0;
+                border: solid 2px $gray-light-color;
+                transition-duration: 300ms;
+                padding: 1.3rem 1rem .2rem 1rem;
+                font-size: $font-size-xl;
+                color: $gray-medium-color;
+                appearance: textfield;
+                -webkit-appearance: none;
+                -moz-appearance: textfield;
+
+                &:hover {
+                    box-shadow: 0px 0px 5px $gray-silver-color;
+                }
+
+                @include breakpoint-max(500px) {
+                    font-size: $font-size-md;
+                }
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-sm;
+                }
+            }
+
+            .input-form-danger {
+                background-color: #f1f0f0;
+                border: solid 2px $primary-danger;
+                transition-duration: 300ms;
+                padding: 1.3rem 1rem .2rem 1rem;
+                font-size: $font-size-xl;
+                color: $gray-medium-color;
+
+                @include breakpoint-max(500px) {
+                    font-size: $font-size-md;
+                }
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-sm;
+                }
+            }
+
+            .parent-input-form:focus-within .input-form {
+                background-color: #f1f0f0;
+                border: solid 2px $primary-color;
+                transition-duration: 300ms;
+                padding: 1.3rem 1rem .2rem 1rem;
+                font-size: $font-size-xl;
+                color: $gray-color;
+                box-shadow: 0px 0px 5px $primary-color-bright;
+
+                @include breakpoint-max(500px) {
+                    font-size: $font-size-md;
+                }
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-sm;
+                }
+            }
+
+            .input-placeholder {
+                position: absolute;
+                margin-left: 1rem;
+                top: 30%;
+                color: $gray-medium-color;
+                font-size: $font-size-xl;
+                transition-duration: 300ms;
+                font-weight: lighter;
+                font-style: italic;
+
+                @include breakpoint-max(500px) {
+                    top: 26%;
+                }
+
+                @include breakpoint-max(320px) {
+                    top: 30%;
+                    font-size: $font-size-lg;
+                }
+            }
+
+            .input-placeholder-active {
+                top: 10%;
+                padding: 0;
+                color: $gray-medium-color;
+                font-size: $font-size-sm;
+                transition-duration: 300ms;
+                background-color: transparent;
+            }
+
+            .input-placeholder-danger {
+                top: 10%;
+                padding: 0;
+                color: $primary-danger;
+                font-size: $font-size-sm;
+                transition-duration: 300ms;
+                background-color: transparent;
+            }
+
+            .parent-input-form:focus-within .input-placeholder {
+                top: 10%;
+                padding: 0;
+                color: $primary-color;
+                font-size: $font-size-sm;
+                transition-duration: 300ms;
+                background-color: transparent;
+            }
+
+            .validasi {
+                position: absolute;
+                left: 0;
+                bottom: -1.1rem;
+                margin-left: 1rem;
+                font-size: $font-size-base;
+                color: $primary-danger;
+
+                @include breakpoint-max(320px) {
+                    bottom: -.8rem;
+                    font-size: $font-size-xs;
+                }
+            }
+        }
+
+        .max-input {
+            position: absolute;
+            right: 0;
+            bottom: -1.1rem;
+            display: flex;
+            font-size: $font-size-sm;
+            gap: .1rem;
+            color: $gray-medium-color;
+        }
+    }
 }
