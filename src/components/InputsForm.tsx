@@ -1,17 +1,21 @@
 import { FaUserAlt, PiLockKeyFill, PiLockKeyOpenFill } from "../utils/icons";
 import styles from "../style/index.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useInputFormAddress } from "../hook/useInputFormAddress";
 
 type IconsProps = string | Element | undefined
 
 type InputFormProps = {
-    cssInput?: string
-    cssPlaceholder?: string
-    cssIcon?: string
-    cssValidasi?: string
+    cssInput?: string;
+    cssPlaceholder?: string;
+    cssIcon?: string;
+    cssValidasi?: string;
+    cssMaxInput?: string;
     styleIcon?: React.CSSProperties;
+    maxInput?: number;
     typeInput: string;
     changeInput: (value: string) => void;
+    onClicks?: () => void;
     valueInput: string;
     valuePlaceholder: string;
     iconType?: IconsProps;
@@ -30,26 +34,21 @@ export const Icons = ({ iconType }: { iconType: IconsProps }) => {
 
 export const InputsForm = (
     {
-        typeInput, changeInput, valueInput, iconType, styleIcon, valuePlaceholder, validasiInput, cssInput, cssPlaceholder, cssIcon, cssValidasi
+        typeInput, changeInput, onClicks, valueInput, iconType, styleIcon, valuePlaceholder, validasiInput, cssInput, cssPlaceholder, cssIcon, cssValidasi, maxInput, cssMaxInput
     }: InputFormProps
 ) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
-    // const inputRef = useRef<HTMLInputElement | null>(null);
+    const [inputLength, setInputLength] = useState(0);
 
     const updatePassVisible = () => {
         setPasswordVisible((state) => !state);
+    }
 
-        // const inputElement = inputRef.current;
-        // // if InputElement exists
-        // if (inputElement) {
-        //     // variable holds input data length 
-        //     const inputLength = inputElement.value.length;
-        //     // Focus input on the last value
-        //     setTimeout(() => {
-        //         inputElement.selectionStart = inputLength;
-        //         inputElement.focus();
-        //     }, 0);
-        // }
+    const onChange = (event: any) => {
+        if (maxInput) {
+            if (event.length <= maxInput) return changeInput(event);
+        }
+        if (!maxInput) return changeInput(event);
     }
 
     return (
@@ -57,19 +56,18 @@ export const InputsForm = (
             {/* Parent Form Input */}
             <label
                 className={`${styles["parent-input-form"]}`}
-            // onClick={handleDivClick}
             >
                 {/* Input */}
                 <input
                     type={!passwordVisible ? typeInput : "text"}
-                    onChange={(input) => changeInput(input.target.value)}
+                    onChange={(input) => onChange(input.target.value)}
+                    onClick={onClicks}
                     value={valueInput}
                     className={
                         `${styles[`${cssInput}`]}
                         ${valueInput.length !== 0 && !validasiInput?.status && styles[`${cssInput}-active"`]}
                         ${validasiInput?.status && styles[`${cssInput}-danger`]}`
                     }
-                    // ref={inputRef}
                     data-testid="inputElement"
                 />
 
@@ -130,6 +128,14 @@ export const InputsForm = (
                         ""
                     )
                 }
+
+                {maxInput && (
+                    <div className={styles[`${cssMaxInput}`]}>
+                        <p>{valueInput.length}</p>
+                        <span>/</span>
+                        <p>{maxInput}</p>
+                    </div>
+                )}
             </label >
         </>
     )
