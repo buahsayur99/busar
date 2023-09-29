@@ -19,7 +19,6 @@ export const ProfileEmailAndLink = () => {
         if (currentPageString) page_path = JSON.parse(currentPageString);
 
         let currentPath = page_path.page_path;
-        console.log(currentPath, window.location.pathname);
         // Convert currentPath to string
         let hasil = currentPath.toString();
 
