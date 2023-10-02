@@ -4,6 +4,7 @@ $hue: 152;
 // Primary
 $primary-color: hsl($hue, 100%, 50%);
 $primary-color-bright: hsl($hue, 100%, 80%);
+$primary-color-light: lighten($primary-color-bright, 10%);
 $primary-color-hover: hsl($hue, 100%, 30%);
 $primary-color-dark: hsl($hue, 100%, 30%);
 $primary-color-dark-hover: hsl($hue, 100%, 20%);
@@ -13,6 +14,7 @@ $primary-color-white: hsl($hue, 100%, 100%);
 // Gray
 $gray-color: #808080;
 $gray-light-color: #D3D3D3;
+$gray-lighter-color: lighten($gray-light-color, 10%);
 $gray-dark-color: #A9A9A9;
 $gray-medium-color: #BEBEBE;
 $gray-silver-color: #C0C0C0;
