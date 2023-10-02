@@ -7,7 +7,7 @@ export type LoginUsers = {
     uuid: string;
 }
 
-type MessageProps = {
+export type MessageProps = {
     message: string;
 }
 
@@ -70,7 +70,6 @@ export const getUsers = createAsyncThunk("api/getUsers", async ({ link }: ApiSet
                 "Content-Type": "application/json",
             }
         });
-
         const responseData = await response.json();
         if (response.ok) {
             return responseData
@@ -304,22 +303,15 @@ const apiUsersSlice = createSlice({
             })
 
             // getUsers
-            .addCase(authLogin.pending, (state, action) => {
+            .addCase(authLogin.pending, (state) => {
                 state.isLoadingAuth = true
             })
             .addCase(authLogin.fulfilled, (state, action) => {
                 state.isLoadingAuth = false
                 state.dataLoginUsers = action.payload
             })
-            .addCase(authLogin.rejected, (state, action) => {
+            .addCase(authLogin.rejected, (state) => {
                 state.isLoadingAuth = false
-
-                const payload = action.payload as MessageProps;
-                if (payload?.message !== undefined) {
-                    state.isMessage = payload.message;
-                } else {
-                    state.isMessage = "Terjadi kesalahan saat memproses permintaan.";
-                }
             })
     }
 });
