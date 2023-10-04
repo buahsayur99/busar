@@ -8,7 +8,7 @@ import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
 import { DisplayAddress } from "../../features/pengaturanProfile/DisplayAddress";
 import { ImCheckboxChecked, MdSelectAll, MdDeselect, IoIosCloseCircle, BsTrashFill } from "../../utils/icons";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { handleOnCheckboxAddress, removeAddress, resetCheckeds } from "../../app/actions/apiAddressSlice";
+import { addAddressUtama, handleOnCheckboxAddress, removeAddress, resetCheckeds } from "../../app/actions/apiAddressSlice";
 import { ButtonTooltip } from "../../components/ButtonTooltip";
 import { useGetApiAddress } from "../../hook/useGetApiAddress";
 import addressEmpty from "../../assets/address/addressEmpty.svg";
@@ -22,6 +22,7 @@ export const Address = () => {
     const { toggle } = useBodyScrollLock();
     const { callGetApiAddress } = useGetApiAddress();
     // useAppSelector
+    const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
     const { dataAddress, checkeds, isMessage } = useAppSelector(state => state.apiAddress);
     // useDispatch
     const dispatch = useAppDispatch();
@@ -65,6 +66,15 @@ export const Address = () => {
         }
     }, [dataAddress.length])
 
+    const handleAddressUtama = useCallback(() => {
+        if (dataAddress.length === 1 && dataLoginUsers?.idAddress === null) {
+            const link = `${process.env.REACT_APP_API_URL_LOCAL}/users/address/${dataLoginUsers?.uuid}`
+            const data = { idAddress: dataAddress[0].id }
+
+            dispatch(addAddressUtama({ data, link }))
+        }
+    }, [dataAddress, dataLoginUsers?.uuid, dispatch, dataLoginUsers?.idAddress])
+
     useEffect(() => {
         if (active.checkbox === false) {
             dispatch(resetCheckeds())
@@ -73,7 +83,10 @@ export const Address = () => {
         if (dataAddress.length === 0) changeActive({ checkbox: false });
         handleCallGetAddress();
         handleClassButtonIcon();
-    }, [active.checkbox, dispatch, dataAddress, handleCallGetAddress, handleClassButtonIcon])
+        handleAddressUtama();
+    }, [active.checkbox, dispatch, dataAddress, handleCallGetAddress, handleClassButtonIcon, handleAddressUtama])
+
+    console.log(dataLoginUsers);
 
     return (
         <>
@@ -193,6 +206,7 @@ export const Address = () => {
                                     <p>Address Empty</p>
                                 </div>
                             )}
+
                             <DisplayAddress activeCheckbox={active.checkbox} />
                         </div>
                     </div>
