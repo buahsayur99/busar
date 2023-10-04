@@ -12,13 +12,25 @@ import { Alert } from "../../components/Alert";
 import { ForgetPassword } from "./ForgetPassword";
 import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
 import { AlertText } from "../../components/AlertText";
+import { registerSuccess } from "../../utils/responseApi";
 
 export const FormLoginRegister = () => {
+    const [active, setActive] = useState(false);
+    // UseAppSelector
     const { activeTransitionForm } = useAppSelector(state => state.formLoginRegisterSlice);
     const { isLoading, dataLoginUsers, isMessage } = useAppSelector(state => state.apiUsers);
+    // Custome Hook
     const { toggle } = useBodyScrollLock();
     const [onOffBgWhite, setOnOffBgWhite] = useState(true);
+    // UseAppDispatch
     const dispatch = useAppDispatch();
+
+    const handleCloseAlertRegisterSuccess = () => {
+        dispatch(activeFormTransition({ formLogin: true, bannerLogin: false, formRegister: false, bannerRegiter: true }))
+        dispatch(resetIsMessage())
+        dispatch(resetValidasi())
+        setActive(false)
+    }
 
     useEffect(() => {
         if (dataLoginUsers?.uuid !== undefined) {
@@ -30,25 +42,23 @@ export const FormLoginRegister = () => {
     }, [dataLoginUsers?.uuid, dispatch])
 
     useEffect(() => {
+        if (isMessage === registerSuccess.toLowerCase()) setActive(true)
         // if form ferget password kebuka onOffBgWhite === true
         if (activeTransitionForm.forgetPassword === true) return setOnOffBgWhite(true)
-    }, [dispatch, activeTransitionForm.forgetPassword])
+    }, [dispatch, activeTransitionForm.forgetPassword, isMessage])
 
     return (
         <>
             {/* Loading */}
             {isLoading && <Loading />}
-
-            <Alert
-                classCss={"alert_register"}
-                onClicks={() => {
-                    dispatch(activeFormTransition({ formLogin: true, bannerLogin: false, formRegister: false, bannerRegiter: true }))
-                    dispatch(resetIsMessage())
-                    dispatch(resetValidasi())
-                }}
-            >
-                login now
-            </Alert>
+            {active && (
+                <Alert
+                    classCss={"alert_register"}
+                    onClicks={() => handleCloseAlertRegisterSuccess()}
+                >
+                    login now
+                </Alert>
+            )}
 
             {isMessage === "Terjadi kesalahan saat memproses permintaan." && (
                 <AlertText
