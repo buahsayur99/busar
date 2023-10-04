@@ -35,9 +35,12 @@
 @import "../features//pengaturanProfile/style/menuPengaturanProfile";
 @import "../features/pengaturanProfile/style/profileEmailAndLink";
 @import "../features/pengaturanProfile/style/formAddress";
+@import "../features/pengaturanProfile/style/displayAddress";
 
 // Pages /PengaturanProfile
 @import "../pages/pengaturanProfile/style/general";
+@import "../pages/pengaturanProfile/style/address";
+@import "../pages/style/notFound";
 
 // Global Css
 @import "index.scss";
