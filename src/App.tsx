@@ -5,6 +5,7 @@ import { PrivateRoutes } from "./routes/PrivateRoutes";
 import { General, Profile, Password, Address } from "./pages/pengaturanProfile/index";
 import { useSaveLastPage } from "./hook/useSaveLastPage";
 import { useAuthUsers } from "./hook/useAuthUsers";
+import { NotFound } from "./pages/NotFound";
 
 function App() {
   useAuthUsers();
@@ -14,7 +15,7 @@ function App() {
     <>
       {infoHalaman.is_authenticated && (
         <Router>
-          <div style={{ height: "100rem" }}>
+          <div>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route
@@ -23,9 +24,12 @@ function App() {
               >
                 <Route index element={<General />} />
                 <Route path="password" element={<Password />} />
-                <Route path=":section" element={<Profile />} />
+                <Route path="profile" element={<Profile />} />
                 <Route path="address" element={<Address />} />
               </Route>
+
+              {/* Not Found */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
         </Router>
