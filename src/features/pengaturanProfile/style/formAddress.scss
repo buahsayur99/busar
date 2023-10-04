@@ -2,12 +2,13 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: $z-index-2xl;
+    z-index: $z-index-form;
     background-color: $primary-color-black65;
     width: 100%;
     height: 100%;
     display: grid;
     justify-content: center;
+    align-items: center;
     padding: 2rem 0;
     overflow: auto;
 
@@ -94,6 +95,11 @@
                     box-shadow: 0px 0px 5px $gray-silver-color;
                 }
 
+                &:focus {
+                    box-shadow: 0px 0px 2px $primary-color;
+                    border: solid 2px $primary-color;
+                }
+
                 @include breakpoint-max(500px) {
                     font-size: $font-size-md;
                 }
@@ -104,12 +110,12 @@
             }
 
             .input-form-danger {
-                background-color: #f1f0f0;
                 border: solid 2px $primary-danger;
-                transition-duration: 300ms;
-                padding: 1.3rem 1rem .2rem 1rem;
-                font-size: $font-size-xl;
-                color: $gray-medium-color;
+
+                &:focus {
+                    box-shadow: 0px 0px 2px $primary-danger;
+                    border: solid 2px $primary-danger;
+                }
 
                 @include breakpoint-max(500px) {
                     font-size: $font-size-md;
@@ -120,22 +126,11 @@
                 }
             }
 
-            .parent-input-form:focus-within .input-form {
-                background-color: #f1f0f0;
-                border: solid 2px $primary-color;
-                transition-duration: 300ms;
-                padding: 1.3rem 1rem .2rem 1rem;
-                font-size: $font-size-xl;
-                color: $gray-color;
-                box-shadow: 0px 0px 5px $primary-color-bright;
-
-                @include breakpoint-max(500px) {
-                    font-size: $font-size-md;
-                }
-
-                @include breakpoint-max(320px) {
-                    font-size: $font-size-sm;
-                }
+            .parent-input-form:focus-within .input-placeholder {
+                top: 10%;
+                padding: 0;
+                color: $primary-color;
+                font-size: $font-size-sm;
             }
 
             .input-placeholder {
@@ -147,6 +142,7 @@
                 transition-duration: 300ms;
                 font-weight: lighter;
                 font-style: italic;
+                background-color: transparent;
 
                 @include breakpoint-max(500px) {
                     top: 26%;
@@ -167,6 +163,11 @@
                 background-color: transparent;
             }
 
+            .parent-input-form:focus-within .input-placeholder-danger {
+                color: $primary-danger;
+                font-size: $font-size-sm;
+            }
+
             .input-placeholder-danger {
                 top: 10%;
                 padding: 0;
@@ -176,13 +177,9 @@
                 background-color: transparent;
             }
 
-            .parent-input-form:focus-within .input-placeholder {
-                top: 10%;
-                padding: 0;
-                color: $primary-color;
+            .parent-input-form:focus-within .input-placeholder-danger-focus {
+                color: $primary-danger;
                 font-size: $font-size-sm;
-                transition-duration: 300ms;
-                background-color: transparent;
             }
 
             .validasi {
@@ -237,6 +234,108 @@
             font-size: $font-size-sm;
             gap: .1rem;
             color: $gray-medium-color;
+        }
+    }
+}
+
+.parent-input-form-textarea {
+    position: relative;
+
+    .input-form-textarea {
+        position: relative;
+        width: 100%;
+        background-color: #f1f0f0;
+        border: solid 2px $gray-light-color;
+        padding: 1.5rem 1rem .2rem 1rem;
+        transition-duration: 300ms;
+        font-size: $font-size-xl;
+        color: $gray-medium-color;
+        border-radius: .5rem;
+        resize: none;
+
+        &:hover {
+            box-shadow: 0px 0px 5px $gray-silver-color;
+        }
+
+        &:focus {
+            box-shadow: 0px 0px 2px $primary-color;
+            border: solid 2px $primary-color;
+            outline: none;
+            color: $gray-color;
+        }
+    }
+
+    .input-form-textarea-danger {
+        border: solid 2px $primary-danger;
+
+        &:focus {
+            box-shadow: 0px 0px 2px $primary-danger;
+            border: solid 2px $primary-danger;
+        }
+    }
+
+    .input-form-textarea::-webkit-scrollbar {
+        width: 0px;
+    }
+
+    .input-form-textarea-padding {
+        padding-top: 2rem;
+    }
+
+    .input-placeholder-textarea {
+        position: absolute;
+        top: 1.5rem;
+        left: 1rem;
+        color: $gray-medium-color;
+        font-size: $font-size-xl;
+        transition-duration: 300ms;
+        font-weight: lighter;
+        font-style: italic;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+        }
+    }
+
+    .input-placeholder-textarea-active {
+        top: .5rem;
+        left: 1rem;
+        font-size: $font-size-sm;
+        color: $primary-color;
+    }
+
+    &:focus-within>.input-placeholder-textarea {
+        top: .5rem;
+        left: 1rem;
+        font-size: $font-size-sm;
+        color: $primary-color;
+    }
+
+    .input-placeholder-textarea-danger {
+        color: $primary-danger;
+    }
+
+    &:focus-within .input-placeholder-textarea-danger-focus {
+        color: $primary-danger;
+    }
+
+    .validasi-textarea {
+        position: absolute;
+        left: 0;
+        bottom: -1rem;
+        margin-left: 1rem;
+        font-size: $font-size-base;
+        color: $primary-danger;
+
+        @include breakpoint-max(320px) {
+            bottom: -.8rem;
+            font-size: $font-size-xs;
         }
     }
 }
