@@ -5,5 +5,6 @@ export const covertInfoHalamanToNameButton = (pathPage) => {
         return data.toLink === pathPage
     })
 
+    if (filterDataMenuByPathPage.length === 0) return ""
     return filterDataMenuByPathPage[0].nameLink
 }
