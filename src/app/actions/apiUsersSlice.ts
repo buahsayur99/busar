@@ -5,6 +5,7 @@ export type LoginUsers = {
     email: string;
     role: string;
     uuid: string;
+    idAddress: number;
 }
 
 export type MessageProps = {
