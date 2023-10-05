@@ -167,6 +167,25 @@ export const updateUsersById = createAsyncThunk("api/updateUsersById", async ({ 
     }
 });
 
+export const addAddressUtama = createAsyncThunk("api/addAddressUtama", async ({ data, link }: { data: { idAddress: (number | undefined) }; link: string }, { rejectWithValue }) => {
+    try {
+        const response = await fetch(link, {
+            method: "PATCH",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...data })
+        });
+        const responseData = response.json();
+        if (response.ok) {
+            return responseData
+        } else {
+            return rejectWithValue(responseData);
+        }
+    } catch (error: any) {
+        throw new Error(error.message);
+
+    }
+})
+
 const apiUsersSlice = createSlice({
     name: "Api's Users",
     initialState,
@@ -313,6 +332,11 @@ const apiUsersSlice = createSlice({
             })
             .addCase(authLogin.rejected, (state) => {
                 state.isLoadingAuth = false
+            })
+
+            // Update Address Utama
+            .addCase(addAddressUtama.fulfilled, (state, action) => {
+                state.isMessage = action.payload.message
             })
     }
 });
