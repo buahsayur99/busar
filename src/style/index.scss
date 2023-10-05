@@ -22,7 +22,11 @@
 
     .global-flex {
         display: flex;
-        gap: 7rem;
+        gap: 3rem;
         margin-top: 2.5rem;
+
+        @include breakpoint-max(1025px) {
+            display: grid;
+        }
     }
 }
