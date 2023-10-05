@@ -27,4 +27,6 @@ export const useAuthUsers = () => {
         removeLocalStorage("uuid");
         // if (isMessage === rejectedAuthLogin.toLowerCase()) return removeLocalStorage("uuid");
     }, [uuid, dataLoginUsers?.uuid, requestUserApi, removeLocalStorage])
+
+    return { requestUserApi }
 }
