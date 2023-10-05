@@ -8,10 +8,12 @@ import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
 import { DisplayAddress } from "../../features/pengaturanProfile/DisplayAddress";
 import { ImCheckboxChecked, MdSelectAll, MdDeselect, IoIosCloseCircle, BsTrashFill } from "../../utils/icons";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { addAddressUtama, handleOnCheckboxAddress, removeAddress, resetCheckeds } from "../../app/actions/apiAddressSlice";
+import { handleOnCheckboxAddress, removeAddress, resetCheckeds } from "../../app/actions/apiAddressSlice";
 import { ButtonTooltip } from "../../components/ButtonTooltip";
 import { useGetApiAddress } from "../../hook/useGetApiAddress";
 import addressEmpty from "../../assets/address/addressEmpty.svg";
+import { addAddressUtama } from "../../app/actions/apiUsersSlice";
+import { useAuthUsers } from "../../hook/useAuthUsers";
 
 export const Address = () => {
     // State
@@ -21,9 +23,11 @@ export const Address = () => {
     // Custome Hook
     const { toggle } = useBodyScrollLock();
     const { callGetApiAddress } = useGetApiAddress();
+    const { requestUserApi } = useAuthUsers();
     // useAppSelector
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
-    const { dataAddress, checkeds, isMessage } = useAppSelector(state => state.apiAddress);
+    const { dataAddress, checkeds, isMessageAddress } = useAppSelector(state => state.apiAddress);
+    const { isMessage } = useAppSelector(state => state.apiUsers)
     // useDispatch
     const dispatch = useAppDispatch();
 
@@ -55,8 +59,8 @@ export const Address = () => {
     }
 
     const handleCallGetAddress = useCallback(() => {
-        if (isMessage === "delete address success") return callGetApiAddress()
-    }, [isMessage, callGetApiAddress])
+        if (isMessageAddress === "delete address success") return callGetApiAddress()
+    }, [isMessageAddress, callGetApiAddress])
 
     const handleClassButtonIcon = useCallback(() => {
         if (dataAddress.length === 0) {
@@ -70,23 +74,21 @@ export const Address = () => {
         if (dataAddress.length === 1 && dataLoginUsers?.idAddress === null) {
             const link = `${process.env.REACT_APP_API_URL_LOCAL}/users/address/${dataLoginUsers?.uuid}`
             const data = { idAddress: dataAddress[0].id }
-
             dispatch(addAddressUtama({ data, link }))
         }
     }, [dataAddress, dataLoginUsers?.uuid, dispatch, dataLoginUsers?.idAddress])
 
     useEffect(() => {
-        if (active.checkbox === false) {
-            dispatch(resetCheckeds())
-        }
+        if (active.checkbox === false) dispatch(resetCheckeds())
         if (dataAddress !== null) setAddressLength(dataAddress.length);
         if (dataAddress.length === 0) changeActive({ checkbox: false });
         handleCallGetAddress();
         handleClassButtonIcon();
+        // if the users enters an address for the first one, make this address the main address
         handleAddressUtama();
-    }, [active.checkbox, dispatch, dataAddress, handleCallGetAddress, handleClassButtonIcon, handleAddressUtama])
-
-    console.log(dataLoginUsers);
+        // if update main address success, call get users
+        if (isMessage === "update address user success") requestUserApi();
+    }, [active.checkbox, dispatch, dataAddress, handleCallGetAddress, handleClassButtonIcon, handleAddressUtama, isMessage, requestUserApi])
 
     return (
         <>
@@ -200,13 +202,14 @@ export const Address = () => {
                                 </div>
                             </div>
 
+                            {/* Img Address Empty */}
                             {addressLength === 0 && (
                                 <div className={styles["parent-address-empty"]}>
                                     <img src={addressEmpty} alt="Img Address Empty" />
                                     <p>Address Empty</p>
                                 </div>
                             )}
-
+                            {/* Show Address */}
                             <DisplayAddress activeCheckbox={active.checkbox} />
                         </div>
                     </div>
