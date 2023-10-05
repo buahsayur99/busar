@@ -1,26 +1,112 @@
-ul {
-    display: grid;
-    gap: 1rem;
+.container-menu-pengaturan-profile {
 
-    li {
-        .users-menu {
-            text-decoration: none;
-            color: $gray-medium-color;
-            font-size: $font-size-md;
+    ul {
+        display: grid;
+        gap: 1rem;
+        width: 7rem;
+
+        @include breakpoint-max(1025px) {
+            display: none;
+        }
+
+        li {
+            .users-menu {
+                text-decoration: none;
+                color: $gray-medium-color;
+                font-size: $font-size-md;
+                text-transform: capitalize;
+                font-weight: lighter;
+
+                &:hover {
+                    color: $gray-color;
+                }
+            }
+
+            .users-menu-active {
+                text-decoration: none;
+                color: $primary-color;
+                font-size: $font-size-md;
+                text-transform: capitalize;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .nav-account-mobile {
+        position: relative;
+        display: none;
+        gap: 0rem;
+        padding: 0;
+        width: 100%;
+
+        @include breakpoint-max(1025px) {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .border {
+            border-radius: .5rem;
+        }
+
+        .border-active {
+            border-radius: .5rem .5rem 0 0;
+        }
+
+        .parent-info-halaman {
+            position: relative;
+            border: 1px solid $gray-medium-color;
+            padding: .8rem 1rem;
             text-transform: capitalize;
-            font-weight: lighter;
+            display: flex;
+            justify-content: space-between;
+            background-color: white;
+            cursor: pointer;
 
-            &:hover {
-                color: $gray-color;
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: transparent;
+                width: 100%;
+                height: 100%;
+            }
+
+            h3 {
+                font-size: $font-size-lg;
+            }
+
+            .icon {
+                font-size: 1.2rem;
             }
         }
 
-        .users-menu-active {
-            text-decoration: none;
-            color: $primary-color;
-            font-size: $font-size-md;
-            text-transform: capitalize;
-            font-weight: bold;
+        .parent-users-menu {
+            width: 100%;
+            display: grid;
+            z-index: 1;
+            top: 3.2rem;
+
+            .border-navlink {
+                border-radius: 0 0 .5rem .5rem;
+            }
+
+            .users-menu {
+                text-decoration: none;
+                color: $gray-medium-color;
+                font-size: $font-size-lg;
+                text-transform: capitalize;
+                font-weight: lighter;
+                width: 100%;
+                background-color: white;
+                padding: .8rem 1rem;
+                border: 1px solid $gray-medium-color;
+                border-top: none;
+
+                &:hover {
+                    color: $gray-color;
+                }
+            }
         }
     }
 }
