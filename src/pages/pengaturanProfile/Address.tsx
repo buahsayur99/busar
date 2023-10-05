@@ -162,10 +162,10 @@ export const Address = () => {
                                         </div>
                                     ) : (
                                         <div className={styles["parent-btn-selectall-remove"]}>
-                                            {addressLength !== checkeds.length ? (
+                                            {addressLength - 1 !== checkeds.length ? (
                                                 <ButtonTooltip
                                                     styleButton="button-icon"
-                                                    onClicks={() => dispatch(handleOnCheckboxAddress({ selectAll: true }))}
+                                                    onClicks={() => dispatch(handleOnCheckboxAddress({ selectAll: true, idAddress: dataLoginUsers?.idAddress }))}
                                                     textTooltip="Select All Checkbox"
                                                     styleTooltip="tooltip"
                                                     positionX={50}
