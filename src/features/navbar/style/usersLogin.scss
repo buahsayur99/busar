@@ -6,8 +6,7 @@
     }
 
     &:hover>.parent-users-hover {
-        z-index: 0;
-        opacity: 100;
+        display: inline;
     }
 
     .parent-icon-users {
@@ -21,14 +20,14 @@
 
     .parent-users-hover {
         position: absolute;
+        display: none;
         top: 4.5rem;
         right: 0;
         background-color: white;
         border: 1px solid $gray-medium-color;
         padding: 1rem 1rem;
         border-radius: .5rem;
-        z-index: -10000;
-        opacity: 0;
+        z-index: 1;
         transition-duration: 300ms;
         cursor: default;
 
@@ -77,6 +76,9 @@
 
         .parent-users-menu {
             ul {
+                display: grid;
+                gap: .5rem;
+
                 li {
                     font-size: $font-size-md;
 
