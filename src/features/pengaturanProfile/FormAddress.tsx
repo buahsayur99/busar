@@ -4,7 +4,7 @@ import { InputsForm } from "../../components/InputsForm";
 import { IoIosCloseCircle } from "../../utils/icons";
 import { useInputFormAddress } from "../../hook/useInputFormAddress";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { createAddress, resetIsMessageAddress } from "../../app/actions/apiAddressSlice";
+import { createAddress, resetInputAddress, resetIsMessageAddress, updateAddress } from "../../app/actions/apiAddressSlice";
 import { InputTextArea } from "../../components/InputTextArea";
 import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
 import { AlertText } from "../../components/AlertText";
@@ -19,6 +19,7 @@ export const FormAddress = ({ onClicks }: FormAddressProps) => {
     const [active, setActive] = useState({ bgBlack: true, bgWhite: true, alertText: false });
     const [onOffBgWhite, setOnOffBgWhite] = useState(false);
     // Custome Hook
+    const { inputFormAddress } = useAppSelector(state => state.apiAddress);
     const { input, validasiInput, activeSave, changeInputValue } = useInputFormAddress();
     const { toggle } = useBodyScrollLock();
     // Dispatch
@@ -35,12 +36,20 @@ export const FormAddress = ({ onClicks }: FormAddressProps) => {
 
     const onFormSubmit = (event: React.FocusEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (activeSave) {
+        // for new address
+        if (activeSave && inputFormAddress.id === undefined) {
             const link = `${process.env.REACT_APP_API_URL_LOCAL}/address`;
             const uuidUser = { uuidUser: uuid }
             const data = { ...uuidUser, ...input }
 
             dispatch(createAddress({ data, link }))
+        }
+        // for change address
+        if (inputFormAddress.id) {
+            const link = `${process.env.REACT_APP_API_URL_LOCAL}/address`;
+            const data = { ...input }
+
+            dispatch(updateAddress({ data, link }))
         }
     }
 
@@ -49,8 +58,9 @@ export const FormAddress = ({ onClicks }: FormAddressProps) => {
 
         setTimeout(() => { changeActive({ bgBlack: false }) }, 800)
         setTimeout(() => {
-            onClicks()
+            onClicks();
             toggle(false);
+            dispatch(resetInputAddress());
         }, 1000);
     }
 
@@ -74,7 +84,7 @@ export const FormAddress = ({ onClicks }: FormAddressProps) => {
     useEffect(() => {
         handleOnOpenForm();
 
-        if (isMessageAddress === "add address success") return changeActive({ alertText: true })
+        if (isMessageAddress === "add address success" || isMessageAddress === "update address success") changeActive({ alertText: true });
     }, [handleOnOpenForm, isMessageAddress])
 
     return (
@@ -211,7 +221,7 @@ export const FormAddress = ({ onClicks }: FormAddressProps) => {
                             {/* Button */}
                             <div className={`${styles["parent-button"]}`}>
                                 <button
-                                    className={`${!activeSave ? styles["button-save"] : styles["button-save-active"]}`}
+                                    className={`${!activeSave && inputFormAddress.id === undefined ? styles["button-save"] : styles["button-save-active"]}`}
                                 >
                                     Save
                                 </button>
