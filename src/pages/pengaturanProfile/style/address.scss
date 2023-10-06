@@ -1,0 +1,190 @@
+.container-address {
+    width: 100%;
+    overflow: hidden;
+
+    .parent-judul-address {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0px 1px 0px 0px $gray-light-color;
+        padding-bottom: 1rem;
+
+        @include breakpoint-max(500px) {
+            padding-bottom: 0px;
+        }
+
+        .parent-select-header {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            height: 5rem;
+
+            @include breakpoint-max(390px) {
+                gap: .5rem;
+            }
+
+            .parent-btnclose-quantity {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: .1rem;
+
+                .quantity-checkbox {
+                    font-size: $font-size-2xl;
+
+                    @include breakpoint-max(500px) {
+                        font-size: 1.6rem;
+                    }
+
+                    @include breakpoint-max(390px) {
+                        font-size: 1.5rem;
+                    }
+                }
+
+            }
+
+            h2 {
+                font-size: $font-size-2xl;
+
+                @include breakpoint-max(500px) {
+                    font-size: 1.7rem;
+                }
+
+                @include breakpoint-max(390px) {
+                    font-size: 1.5rem;
+                }
+
+                @include breakpoint-max(360px) {
+                    display: none;
+                }
+            }
+        }
+
+        .container-button {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+
+            .parent-btn-checkbox-address {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                @include breakpoint-max(500px) {
+                    gap: .8rem;
+                }
+
+                @include breakpoint-max(390px) {
+                    gap: .6rem;
+                }
+            }
+
+            .parent-btn-selectall-remove {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                @include breakpoint-max(500px) {
+                    gap: .8rem;
+                }
+
+                @include breakpoint-max(390px) {
+                    gap: .4rem;
+                }
+            }
+        }
+
+        .button-icon {
+            font-size: $font-size-2xl;
+            background-color: transparent;
+
+            @include breakpoint-max(500px) {
+                font-size: 1.7rem;
+            }
+
+            @include breakpoint-max(390px) {
+                font-size: 1.5rem;
+            }
+        }
+
+        .button-icon-close {
+            font-size: $font-size-2xl;
+            background-color: transparent;
+
+            @include breakpoint-max(390px) {
+                font-size: 1.5rem;
+            }
+        }
+
+        .disabled-button-icon {
+            font-size: $font-size-2xl;
+            background-color: transparent;
+            color: $gray-light-color;
+            cursor: not-allowed;
+
+            @include breakpoint-max(500px) {
+                font-size: 1.7rem;
+            }
+        }
+
+        .tooltip {
+            position: absolute;
+            display: none;
+            background-color: rgba(48, 48, 48, 0.8);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            white-space: nowrap;
+
+
+        }
+
+        .button-icon:hover+.tooltip {
+            display: inline;
+
+            @include breakpoint-max(500px) {
+                display: none;
+            }
+        }
+
+        .button-icon-close:hover+.tooltip {
+            display: inline;
+
+            @include breakpoint-max(500px) {
+                display: none;
+            }
+        }
+    }
+
+    hr {
+        width: 2px;
+        height: 4rem;
+        /* Sesuaikan tinggi sesuai kebutuhan */
+        background-color: black;
+        display: inline-block;
+    }
+
+    .parent-address-empty {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 1rem;
+
+        img {
+            width: 25rem;
+
+            @include breakpoint-max(500px) {
+                width: 100%;
+            }
+        }
+
+        p {
+            font-size: $font-size-xl;
+            text-transform: capitalize;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+    }
+}
