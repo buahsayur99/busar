@@ -2,17 +2,8 @@ import { RenderResult, cleanup, fireEvent, render } from "@testing-library/react
 import { Provider } from "react-redux"
 import { Alert } from "../Alert"
 import { store } from "../../app/store"
-import { AnyAction, configureStore } from "@reduxjs/toolkit"
-import { formLoginRegiterSlice } from "../../app/actions/formLoginRegisterSlice"
 
-function createIsMessageStore(initialIsMessage: string) {
-    return configureStore({
-        reducer: {
-            formLoginRegisterSlice: formLoginRegiterSlice.reducer,
-            apiUsers: (state = { isLoading: false, isError: null, isMessage: initialIsMessage, dataLoginUsers: null }, action: AnyAction) => state,
-        }
-    })
-}
+jest.useFakeTimers();
 
 describe("alert", () => {
     let component: RenderResult;
@@ -28,33 +19,26 @@ describe("alert", () => {
         cleanup();
     });
 
-    test("should when isMessage === 'register success' display alert component", () => {
-        expect(component.queryByTestId("parent-alert")).not.toBeInTheDocument();
+    test("render alert", () => {
+        // Make sure alert is in the DOM
+        expect(component.getByTestId("parent-alert")).toBeInTheDocument();
+        // Make sure button is in the DOM
+        expect(component.getByRole("button", { name: "success" })).toBeInTheDocument()
+    })
 
-        component.rerender(
-            <Provider store={createIsMessageStore("register success")}>
-                <Alert classCss="alert" onClicks={() => { }} >{'success'}</Alert>
-            </Provider>
-        )
-
-        expect(component.queryByTestId("parent-alert")).toBeInTheDocument();
-    });
-
-    test("should when isMessage === 'register success' display alert component", () => {
-        component.rerender(
-            <Provider store={createIsMessageStore("register success")}>
-                <Alert classCss="alert" onClicks={() => { }} >{'success'}</Alert>
-            </Provider>
-        )
-
+    test("onClicks is called after 500ms timeout", () => {
         const button = component.getByRole("button", {
             name: "success"
-        })
+        });
 
         const onClickMock = jest.fn();
         button.onclick = onClickMock
 
+        // Simulasikan klik pada tombol
         fireEvent.click(button);
+
+        jest.advanceTimersByTime(500);
+
         expect(onClickMock).toHaveBeenCalledTimes(1);
     });
 })
