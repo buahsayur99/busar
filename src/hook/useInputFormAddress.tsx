@@ -1,20 +1,14 @@
-import { useCallback, useEffect, useState } from "react"
-import { dataInputFormAddress, dataValidasiInputFormAddress, datainputClicked } from "../data/FormAddress";
+import { useCallback, useEffect, useState } from "react";
+import { dataValidasiInputFormAddress, datainputClicked } from "../data/FormAddress";
+import { useAppSelector } from "../app/hooks";
 
 export const useInputFormAddress = () => {
+    const { inputFormAddress } = useAppSelector(state => state.apiAddress);
     // State
-    const [input, setInput] = useState(dataInputFormAddress);
+    const [input, setInput] = useState(inputFormAddress);
     const [validasiInput, setValidasiInput] = useState(dataValidasiInputFormAddress);
     const [inputClicked, setInputClicked] = useState(datainputClicked);
     const [activeSave, setActiveSave] = useState(false);
-
-    // function reset state
-    // const resetInput = () => {
-    //     setInput(dataInputFormAddress);
-    // }
-    // const resetValidasiInput = () => {
-    //     setValidasiInput(dataValidasiInputFormAddress);
-    // }
 
     const changeInputValue = (event: any) => {
         setInput(prev => {
