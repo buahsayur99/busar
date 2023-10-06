@@ -9,7 +9,6 @@ import { resetIsMessage, updateSettingProfile, } from "../../app/actions/apiUser
 import { useGetApiUsers } from "../../hook/useGetApiUsers";
 import { Loading } from "../../components/Loading";
 import { AlertText } from "../../components/AlertText";
-import { useSaveLastPage } from "../../hook/useSaveLastPage";
 
 export const General = () => {
     const [inputEmail, setInputEmail] = useState("");
@@ -18,8 +17,6 @@ export const General = () => {
     const { dataLoginUsers, isMessage, isLoading } = useAppSelector(state => state.apiUsers);
     // Custome Hook Get Api's Users
     useGetApiUsers({ isMessage, dataLoginUsers });
-    // Custome Hook last page
-    useSaveLastPage()
     const dispatch = useAppDispatch();
 
     const updateValidasiInputByIsMessage = useCallback(() => {
@@ -79,7 +76,9 @@ export const General = () => {
             <div className={`${styles["global-container"]}`}>
                 <div className={`${styles["global-parent-pengaturan-profile"]}`}>
                     <ProfileEmailAndLink />
-                    <div className={`${styles["global-flex"]}`}>
+                    <div
+                        className={`${styles["global-flex"]}`}
+                    >
                         {/* NavLink menu users profile */}
                         <MenuPengaturanProfile />
 

@@ -134,11 +134,21 @@
         padding: 1rem 2rem;
         border-radius: 2rem;
         transition-duration: 300ms;
-        margin-top: 3rem;
 
         &:hover {
             background-color: $primary-color;
             color: black;
+        }
+
+        @include breakpoint-max(500px) {
+            font-size: $font-size-lg;
+            padding: .9rem 1.7rem;
+        }
+
+        @include breakpoint-max(320px) {
+            padding: .8rem 1.4rem;
+            font-size: $font-size-md;
+            border-radius: 1.3rem;
         }
     }
 }
