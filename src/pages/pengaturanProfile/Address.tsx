@@ -59,21 +59,26 @@ export const Address = () => {
     }
 
     const handleCallGetAddress = useCallback(() => {
-        if (isMessageAddress === "delete address success") return callGetApiAddress()
+        if (isMessageAddress === "delete address success" || isMessageAddress === "update address success") return callGetApiAddress()
     }, [isMessageAddress, callGetApiAddress])
 
     const handleClassButtonIcon = useCallback(() => {
-        if (dataAddress.length === 0) {
+        if (dataAddress.length - 1 === 0) {
             changeButtonIcon({ selectAll: "disabled-button-icon" });
         } else {
             changeButtonIcon({ selectAll: "button-icon" });
         }
     }, [dataAddress.length])
 
-    const handleAddressUtama = useCallback(() => {
+    const handleAddressUtama = useCallback((address: any) => {
+        const link = `${process.env.REACT_APP_API_URL_LOCAL}/users/address/${dataLoginUsers?.uuid}`
+
         if (dataAddress.length === 1 && dataLoginUsers?.idAddress === null) {
-            const link = `${process.env.REACT_APP_API_URL_LOCAL}/users/address/${dataLoginUsers?.uuid}`
             const data = { idAddress: dataAddress[0].id }
+            dispatch(addAddressUtama({ data, link }))
+        }
+        if (address.id) {
+            const data = { idAddress: address.id }
             dispatch(addAddressUtama({ data, link }))
         }
     }, [dataAddress, dataLoginUsers?.uuid, dispatch, dataLoginUsers?.idAddress])
@@ -81,11 +86,11 @@ export const Address = () => {
     useEffect(() => {
         if (active.checkbox === false) dispatch(resetCheckeds())
         if (dataAddress !== null) setAddressLength(dataAddress.length);
-        if (dataAddress.length === 0) changeActive({ checkbox: false });
+        if (dataAddress.length - 1 === 0) changeActive({ checkbox: false });
         handleCallGetAddress();
         handleClassButtonIcon();
         // if the users enters an address for the first one, make this address the main address
-        handleAddressUtama();
+        handleAddressUtama(dataAddress);
         // if update main address success, call get users
         if (isMessage === "update address user success") requestUserApi();
     }, [active.checkbox, dispatch, dataAddress, handleCallGetAddress, handleClassButtonIcon, handleAddressUtama, isMessage, requestUserApi])
@@ -94,9 +99,12 @@ export const Address = () => {
         <>
             {/* Navbar */}
             {/* < NavigationBar /> */}
+
             {/* Form Address */}
             {active.formAddress === true && (
-                <FormAddress onClicks={() => handleOnCloseForm({ formAddress: false })} />
+                <FormAddress
+                    onClicks={() => handleOnCloseForm({ formAddress: false })}
+                />
             )}
 
             <div className={`${styles["global-container"]}`}>
@@ -139,7 +147,7 @@ export const Address = () => {
                                             <ButtonTooltip
                                                 styleButton={buttonIcon.selectAll}
                                                 onClicks={() => {
-                                                    if (dataAddress.length !== 0) return changeActive({ checkbox: true })
+                                                    if (dataAddress.length - 1 !== 0) return changeActive({ checkbox: true })
                                                 }}
                                                 textTooltip="Select All"
                                                 styleTooltip="tooltip"
@@ -210,7 +218,11 @@ export const Address = () => {
                                 </div>
                             )}
                             {/* Show Address */}
-                            <DisplayAddress activeCheckbox={active.checkbox} />
+                            <DisplayAddress
+                                activeCheckbox={active.checkbox}
+                                handleAddressUtama={handleAddressUtama}
+                                handleFormAddress={handleOnCloseForm}
+                            />
                         </div>
                     </div>
                 </div>
