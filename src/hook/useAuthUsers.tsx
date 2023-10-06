@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { authLogin } from "../app/actions/apiUsersSlice";
+import { authLogin, resetIsMessage } from "../app/actions/apiUsersSlice";
 import { rejectedAuthLogin } from "../utils/responseApi";
 
 export const useAuthUsers = () => {
@@ -9,6 +9,8 @@ export const useAuthUsers = () => {
     const uuid = localStorage.getItem("uuid");
 
     const requestUserApi = useCallback(() => {
+        dispatch(resetIsMessage());
+
         const link = `${process.env.REACT_APP_API_URL_LOCAL}/me/${uuid}`;
         dispatch(authLogin({ link }));
     }, [dispatch, uuid]);

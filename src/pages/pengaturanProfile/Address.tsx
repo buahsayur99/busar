@@ -98,7 +98,7 @@ export const Address = () => {
     return (
         <>
             {/* Navbar */}
-            {/* < NavigationBar /> */}
+            < NavigationBar />
 
             {/* Form Address */}
             {active.formAddress === true && (
