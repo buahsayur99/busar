@@ -107,5 +107,5 @@ export const useInputFormAddress = () => {
         validateCompleteAddressInput(input);
     }, [changeActiveSave, validateCompleteAddressInput, validateCodePosInput, validateSubdistrictInput, validateCityInput, validateNumberPhoneInput, validateNameInput, input]);
 
-    return { input, validasiInput, activeSave, changeInputValue }
+    return { input, validasiInput, activeSave, inputClicked, changeInputValue }
 }
