@@ -1,4 +1,4 @@
-import { RenderResult, cleanup, fireEvent, getByTestId, render } from "@testing-library/react";
+import { RenderResult, cleanup, fireEvent, render } from "@testing-library/react";
 import { InputsForm } from "../InputsForm";
 import { Provider } from "react-redux";
 import { store } from "../../app/store";
@@ -80,10 +80,6 @@ describe("Input Form", () => {
         // make sure onClick function is executed
         expect(onClickMock).toHaveBeenCalledTimes(1)
     });
-
-    test("", () => {
-
-    })
 
     test('renders PiLockKeyOpenFill icon when iconType is "PiLockKeyOpenFill"', () => {
         const { getByTestId } = render(<Icons iconType="PiLockKeyOpenFill" />);

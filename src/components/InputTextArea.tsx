@@ -30,7 +30,7 @@ export const InputTextArea = ({
         const textArea = textAreaRef.current;
 
         const handleKeyUp = () => {
-            if (textArea) {
+            if (textArea !== null) {
                 const scHeight = textArea.scrollHeight;
                 if (scHeight > heights) return setHeight(scHeight);
             }
