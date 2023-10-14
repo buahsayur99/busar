@@ -45,32 +45,14 @@ export const DisplayAddress = ({ activeCheckbox, handleAddressUtama, handleFormA
                         {/* Main Address */}
                         {dataAddress
                             .filter((data) => data.id === dataLoginUsers?.idAddress)
-                            .map((address, index) => (
+                            .map((address) => (
                                 <li
                                     key={address.id}
-                                    className={`
-                                    ${activeCheckbox && address.id !== dataLoginUsers?.idAddress && styles["li-grid"]}
-                                `}
                                 >
-                                    {activeCheckbox && address.id !== dataLoginUsers?.idAddress && (
-                                        <div className={styles["checkbox-container"]}>
-                                            <input
-                                                ref={checkboxRef}
-                                                type="checkbox"
-                                                className={styles["checkbox"]}
-                                                checked={checkeds.indexOf(address) === -1 ? false : true}
-                                                onChange={() => dispatch(handleOnCheckboxAddress(address))}
-                                            />
-                                            <BsCheck2All className={styles["icon"]} />
-                                        </div>
-                                    )}
-
                                     <div
                                         className={`
-                                        ${styles["parent-data-address"]}
-                                        ${activeCheckbox && styles["line-left"]}
-                                    `}
-                                        onClick={() => handleOnCheckbox(address)}
+                                            ${styles["parent-data-address"]}
+                                        `}
                                     >
                                         <div className={styles["parent-name-address"]}>
                                             <div className={styles["flex-name-phone"]}>
@@ -100,14 +82,6 @@ export const DisplayAddress = ({ activeCheckbox, handleAddressUtama, handleFormA
                                             <button onClick={() => handleOpenFormChangeAddress(address)}>
                                                 ubah
                                             </button>
-                                            {address.id !== dataLoginUsers?.idAddress && (
-                                                <>
-                                                    <div className={styles["line"]}></div>
-                                                    <button onClick={() => handleAddressUtama(address)}>
-                                                        jadikan alamat utama
-                                                    </button>
-                                                </>
-                                            )}
                                         </div>
                                     </div>
                                 </li>
@@ -137,6 +111,7 @@ export const DisplayAddress = ({ activeCheckbox, handleAddressUtama, handleFormA
                                     )}
 
                                     <div
+                                        data-testid="parent-data-address"
                                         className={`
                                         ${styles["parent-data-address"]}
                                         ${activeCheckbox && styles["line-left"]}
@@ -149,12 +124,6 @@ export const DisplayAddress = ({ activeCheckbox, handleAddressUtama, handleFormA
                                                 <div className={styles["line"]}></div>
                                                 <h4>{address.numberPhone}</h4>
                                             </div>
-
-                                            {address.id === dataLoginUsers?.idAddress && (
-                                                <span>
-                                                    main address
-                                                </span>
-                                            )}
                                         </div>
 
                                         <div className={styles["addressWrapper"]}>
