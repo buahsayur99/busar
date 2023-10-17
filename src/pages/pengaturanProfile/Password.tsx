@@ -148,7 +148,10 @@ export const Password = () => {
                                     validasiInput={validasiInput.confirmasiPassword}
                                 />
                             </div>
-                            <div className={`${styles["parent-button"]}`}>
+                            <div
+                                className={`${styles["parent-button"]}`}
+                                style={{ marginTop: "2rem" }}
+                            >
                                 <button>
                                     Save Changes
                                 </button>

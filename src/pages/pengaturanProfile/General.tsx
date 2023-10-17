@@ -102,7 +102,10 @@ export const General = () => {
                                 />
                             </div>
 
-                            <div className={`${styles["parent-button"]}`}>
+                            <div
+                                className={`${styles["parent-button"]}`}
+                                style={{ marginTop: "2rem" }}
+                            >
                                 <button>
                                     Save Changes
                                 </button>
