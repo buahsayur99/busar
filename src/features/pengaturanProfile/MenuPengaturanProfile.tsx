@@ -48,6 +48,7 @@ export const MenuPengaturanProfile = () => {
                 <div className={styles["nav-account-mobile"]}>
                     {infoHalaman.page_path && (
                         <div
+                            data-testid="btn-nav-active-mobile"
                             ref={btnRef}
                             className={`
                                 ${styles["parent-info-halaman"]}
