@@ -38,7 +38,7 @@ type InitialStateProps = {
 
 const initialState: InitialStateProps = {
     isLoading: false,
-    isLoadingAuth: null,
+    isLoadingAuth: false,
     isError: null,
     isMessage: "",
     dataLoginUsers: null,
