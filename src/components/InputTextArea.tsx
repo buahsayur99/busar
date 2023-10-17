@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "../style/index.module.scss";
 
 type InputTextAreaProps = {
@@ -59,6 +59,7 @@ export const InputTextArea = ({
             >
                 {/* Input */}
                 <textarea
+                    data-testid="input-textarea"
                     value={valueInput}
                     onChange={(input) => handleOnChange(input.target.value)}
                     ref={textAreaRef}
