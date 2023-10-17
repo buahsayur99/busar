@@ -12,6 +12,7 @@ import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
 import { UsersLogin } from "./UsersLogin";
 import { activeFormTransition } from "../../app/actions/formLoginRegisterSlice";
 import { useAuthUsers } from "../../hook/useAuthUsers";
+import { Link } from "react-router-dom";
 
 export const NavigationBar = () => {
     const { activeInputSearch } = useAppSelector(state => state.searchCatatanSlice);
@@ -47,12 +48,12 @@ export const NavigationBar = () => {
                         </Button>
 
                         {/* Icon Name Website */}
-                        <Navbar.Brand
-                            role="heading"
+                        <Link
+                            to={"/"}
                             className={`${styles["judul-nav"]} align-self-center`}
                         >
                             Keep Aduh
-                        </Navbar.Brand>
+                        </Link>
 
                         {/* Parent Search Dimensi Pc */}
                         <Stack className={styles["parent-search"]}>
