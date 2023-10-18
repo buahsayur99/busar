@@ -9,10 +9,12 @@ export const useAuthUsers = () => {
     const uuid = localStorage.getItem("uuid");
 
     const requestUserApi = useCallback(() => {
-        dispatch(resetIsMessage());
+        if (uuid) {
+            dispatch(resetIsMessage());
 
-        const link = `${process.env.REACT_APP_API_URL_LOCAL}/me/${uuid}`;
-        dispatch(authLogin({ link }));
+            const link = `${process.env.REACT_APP_API_URL_LOCAL}/me/${uuid}`;
+            dispatch(authLogin({ link }));
+        }
     }, [dispatch, uuid]);
 
     const removeLocalStorage = useCallback((event: string) => {
@@ -24,11 +26,9 @@ export const useAuthUsers = () => {
     useEffect(() => {
         // if dataLoginUsers has uuid, enter uuid in localStorage
         if (dataLoginUsers?.uuid) return localStorage.setItem("uuid", dataLoginUsers?.uuid);
-        // if uuid in localstorage exists, run requestUserApi function
-        requestUserApi();
         removeLocalStorage("uuid");
         // if (isMessage === rejectedAuthLogin.toLowerCase()) return removeLocalStorage("uuid");
-    }, [uuid, dataLoginUsers?.uuid, requestUserApi, removeLocalStorage])
+    }, [uuid, dataLoginUsers?.uuid, removeLocalStorage])
 
     return { requestUserApi }
 }

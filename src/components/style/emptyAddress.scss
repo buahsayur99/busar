@@ -1,0 +1,120 @@
+.container-empty-address {
+    border: 1px solid $gray-light-color;
+    border-radius: .5rem;
+    box-shadow: 0px 2px 10px 0px $gray-light-color;
+    margin-bottom: 1rem;
+
+    .parent-name-phone {
+        display: grid;
+        grid-template-columns: auto auto 1fr;
+        gap: 1.5rem;
+
+        .name {
+            background-color: $gray-medium-color;
+            width: 8rem;
+            height: 1.2rem;
+            margin: 1rem 0;
+            margin-left: 1.5rem;
+        }
+
+        .line {
+            background-color: $gray-light-color;
+            width: 1px;
+            height: 100%;
+        }
+
+        .phone {
+            background-color: $gray-medium-color;
+            width: 15rem;
+            height: 1.2rem;
+            margin: 1rem 0;
+
+            @include breakpoint-max(504px) {
+                width: 90%;
+            }
+        }
+    }
+
+    .detail-address {
+        box-shadow: 0px 0px 0px 1px $gray-light-color;
+        padding: .8rem 1.5rem;
+        display: grid;
+        gap: 1rem;
+
+        .complete-address {
+            background-color: $gray-medium-color;
+            width: 40rem;
+            height: 5rem;
+
+            @include breakpoint-max(730px) {
+                width: 100%;
+            }
+        }
+
+        .parent-subdis-city-codepos {
+            display: flex;
+            gap: .5rem;
+
+            @include breakpoint-max(500px) {
+                flex-direction: column;
+            }
+
+            .subdistrict {
+                background-color: $gray-medium-color;
+                width: 8rem;
+                height: 1.2rem;
+
+                @include breakpoint-max(500px) {
+                    width: 10rem;
+                }
+            }
+
+            .city {
+                background-color: $gray-medium-color;
+                width: 8rem;
+                height: 1.2rem;
+
+                @include breakpoint-max(500px) {
+                    width: 12rem;
+                }
+            }
+
+            .codepos {
+                background-color: $gray-medium-color;
+                width: 8rem;
+                height: 1.2rem;
+
+                @include breakpoint-max(500px) {
+                    width: 4rem;
+                }
+            }
+        }
+    }
+
+    .parent-ubah-alamat-utama {
+        display: grid;
+        grid-template-columns: auto auto 1fr;
+        gap: 1rem;
+
+        .ubah {
+            background-color: $gray-medium-color;
+            width: 3rem;
+            height: 1.2rem;
+            margin: 1rem 0;
+            margin-left: 1.5rem;
+        }
+
+        .line {
+            background-color: $gray-light-color;
+            width: 1px;
+            height: 100%;
+        }
+
+        .jadi-alamat-utama {
+            background-color: $gray-medium-color;
+            width: 11rem;
+            height: 1.2rem;
+            margin: 1rem 0;
+        }
+    }
+}

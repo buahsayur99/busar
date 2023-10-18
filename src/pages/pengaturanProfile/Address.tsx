@@ -14,6 +14,7 @@ import { useGetApiAddress } from "../../hook/useGetApiAddress";
 import addressEmpty from "../../assets/address/addressEmpty.svg";
 import { addAddressUtama } from "../../app/actions/apiUsersSlice";
 import { useAuthUsers } from "../../hook/useAuthUsers";
+import { EmptyAddress } from "../../components/EmptyAddress";
 
 export const Address = () => {
     // State
@@ -26,7 +27,7 @@ export const Address = () => {
     const { requestUserApi } = useAuthUsers();
     // useAppSelector
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
-    const { dataAddress, checkeds, isMessageAddress } = useAppSelector(state => state.apiAddress);
+    const { dataAddress, checkeds, isMessageAddress, isGetLoading } = useAppSelector(state => state.apiAddress);
     const { isMessage } = useAppSelector(state => state.apiUsers)
     // useDispatch
     const dispatch = useAppDispatch();
@@ -93,7 +94,9 @@ export const Address = () => {
         handleAddressUtama(dataAddress);
         // if update main address success, call get users
         if (isMessage === "update address user success") requestUserApi();
-    }, [active.checkbox, dispatch, dataAddress, handleCallGetAddress, handleClassButtonIcon, handleAddressUtama, isMessage, requestUserApi])
+    }, [active.checkbox, dispatch, dataAddress, requestUserApi, handleCallGetAddress, handleClassButtonIcon, handleAddressUtama, isMessage])
+
+    console.log(isGetLoading);
 
     return (
         <>
@@ -210,19 +213,26 @@ export const Address = () => {
                                 </div>
                             </div>
 
-                            {/* Img Address Empty */}
-                            {addressLength === 0 && (
+                            {/* {!isGetLoading ? (
+                                
+                            ) : (
+                                
+                            )} */}
+
+                            {isGetLoading && (<EmptyAddress />)}
+
+                            {addressLength === 0 && isGetLoading === false && (
                                 <div className={styles["parent-address-empty"]}>
                                     <img src={addressEmpty} alt="Img Address Empty" />
                                     <p>Address Empty</p>
                                 </div>
                             )}
-                            {/* Show Address */}
                             <DisplayAddress
                                 activeCheckbox={active.checkbox}
                                 handleAddressUtama={handleAddressUtama}
                                 handleFormAddress={handleOnCloseForm}
                             />
+
                         </div>
                     </div>
                 </div>

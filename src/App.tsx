@@ -6,14 +6,22 @@ import { General, Profile, Password, Address } from "./pages/pengaturanProfile/i
 import { useSaveLastPage } from "./hook/useSaveLastPage";
 import { useAuthUsers } from "./hook/useAuthUsers";
 import { NotFound } from "./pages/NotFound";
+import { useAppSelector } from "./app/hooks";
+import { useEffect } from "react";
 
 function App() {
-  useAuthUsers();
-  const { infoHalaman } = useSaveLastPage();
+  const { isLoadingAuth } = useAppSelector(state => state.apiUsers);
+  // Custome Hook
+  const { requestUserApi } = useAuthUsers();
+  useSaveLastPage();
+
+  useEffect(() => {
+    requestUserApi();
+  }, [requestUserApi])
 
   return (
     <>
-      {infoHalaman.is_authenticated && (
+      {isLoadingAuth === false && (
         <Router>
           <div>
             <Routes>
