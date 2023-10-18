@@ -96,8 +96,6 @@ export const Address = () => {
         if (isMessage === "update address user success") requestUserApi();
     }, [active.checkbox, dispatch, dataAddress, requestUserApi, handleCallGetAddress, handleClassButtonIcon, handleAddressUtama, isMessage])
 
-    console.log(isGetLoading);
-
     return (
         <>
             {/* Navbar */}
@@ -212,12 +210,6 @@ export const Address = () => {
                                     )}
                                 </div>
                             </div>
-
-                            {/* {!isGetLoading ? (
-                                
-                            ) : (
-                                
-                            )} */}
 
                             {isGetLoading && (<EmptyAddress />)}
 
