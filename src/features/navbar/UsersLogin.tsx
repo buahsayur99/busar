@@ -33,7 +33,15 @@ export const UsersLogin = () => {
                     </div>
                     <div className={`${styles["parent-users-menu"]}`}>
                         <ul>
-                            <li>
+                            <li style={{ display: "grid", gap: ".5rem" }}>
+                                {dataLoginUsers?.role === "admin" && (
+                                    <NavLink
+                                        to="/dashboard"
+                                        className={`${styles["btn-users"]}`}
+                                    >
+                                        dashboard
+                                    </NavLink>
+                                )}
                                 <NavLink
                                     to="/account"
                                     className={`${styles["btn-users"]}`}

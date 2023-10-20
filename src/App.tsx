@@ -8,6 +8,7 @@ import { useAuthUsers } from "./hook/useAuthUsers";
 import { NotFound } from "./pages/NotFound";
 import { useAppSelector } from "./app/hooks";
 import { useEffect } from "react";
+import { DashboardAdmin } from "./features/navbar/DashboardAdmin";
 
 function App() {
   const { isLoadingAuth } = useAppSelector(state => state.apiUsers);
@@ -26,6 +27,7 @@ function App() {
           <div>
             <Routes>
               <Route path="/" element={<Home />} />
+              {/* Account */}
               <Route
                 path="account"
                 element={<PrivateRoutes />}
@@ -35,7 +37,13 @@ function App() {
                 <Route path="profile" element={<Profile />} />
                 <Route path="address" element={<Address />} />
               </Route>
-
+              {/* Dashboard */}
+              <Route
+                path="dashboard"
+                element={<PrivateRoutes />}
+              >
+                <Route index element={<DashboardAdmin />} />
+              </Route>
               {/* Not Found */}
               <Route path="*" element={<NotFound />} />
             </Routes>
