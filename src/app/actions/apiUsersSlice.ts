@@ -341,5 +341,5 @@ const apiUsersSlice = createSlice({
     }
 });
 
-export const { resetIsMessage, resetUuid, resetDataLoginUsers } = apiUsersSlice.actions;
+export const { resetIsMessage, resetUuid, resetDataLoginUsers, logoutUsers } = apiUsersSlice.actions;
 export default apiUsersSlice.reducer;
