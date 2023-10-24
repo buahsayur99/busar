@@ -18,17 +18,14 @@ export const useAuthUsers = () => {
     }, [dispatch, uuid]);
 
     const removeLocalStorage = useCallback((event: string) => {
-        if (isMessage === rejectedAuthLogin.toLowerCase()) {
-            localStorage.removeItem(event);
-        }
-    }, [isMessage])
+        localStorage.removeItem(event);
+    }, [])
 
     useEffect(() => {
         // if dataLoginUsers has uuid, enter uuid in localStorage
         if (dataLoginUsers?.uuid) return localStorage.setItem("uuid", dataLoginUsers?.uuid);
-        removeLocalStorage("uuid");
-        // if (isMessage === rejectedAuthLogin.toLowerCase()) return removeLocalStorage("uuid");
-    }, [uuid, dataLoginUsers?.uuid, removeLocalStorage])
+        if (isMessage === rejectedAuthLogin.toLowerCase()) return removeLocalStorage("uuid");
+    }, [uuid, dataLoginUsers?.uuid, removeLocalStorage, isMessage])
 
-    return { requestUserApi }
+    return { requestUserApi, removeLocalStorage }
 }
