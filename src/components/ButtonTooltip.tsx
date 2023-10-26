@@ -6,35 +6,43 @@ type ButtonTooltipProps = {
     styleButton: string;
     textTooltip: string;
     styleTooltip: string;
-    positionX: number;
-    positionY: number;
+    positionX?: number;
+    positionY?: number;
     onClicks: () => void;
 }
 
 export const ButtonTooltip = ({ children, styleButton, textTooltip, styleTooltip, positionX, positionY, onClicks }: ButtonTooltipProps) => {
-    const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
+    const [active, setActive] = useState(false);
+    const [position, setPosition] = useState({ top: 0, left: 0 })
 
-    const handleMouseEnter = (event: any) => {
-        const buttonRect = event.target.getBoundingClientRect();
-        setTooltipPosition({ top: buttonRect.y + positionY, left: buttonRect.x - positionX });
-    };
+    const handlePositionTooltip = (event: any) => {
+        const { clientX, clientY } = event;
+        setPosition({ top: clientY + positionY, left: clientX + positionX });
+        setActive(true)
+    }
 
     return (
         <>
-            <button
-                onMouseEnter={handleMouseEnter}
-                className={styles[`${styleButton}`]}
-                onClick={onClicks}
-            >
-                {children}
-            </button>
+            <div style={{ position: "relative" }}>
+                <button
+                    onMouseMove={(event) => handlePositionTooltip(event)}
+                    onMouseLeave={() => setActive(false)}
+                    className={styles[`${styleButton}`]}
+                    onClick={onClicks}
+                    type="button"
+                >
+                    {children}
+                </button>
 
-            <span
-                className={styles[`${styleTooltip}`]}
-                style={{ top: tooltipPosition.top, left: tooltipPosition.left }}
-            >
-                {textTooltip}
-            </span>
+                {active && (
+                    <span
+                        className={styles[`${styleTooltip}`]}
+                        style={{ top: position.top, left: position.left }}
+                    >
+                        {textTooltip}
+                    </span>
+                )}
+            </div>
         </>
     )
 }
