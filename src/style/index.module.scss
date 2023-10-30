@@ -22,6 +22,9 @@
 @import "../components/style/alertText";
 @import "../components/style/alertConfirmasi";
 @import "../components/style/emptyAddress";
+@import "../components/style/tableData";
+@import "../components/style/inputCheckbox";
+@import "../components/style/tableEmpty";
 
 // Features /Navbar
 @import "../features/navbar/style/navbar";
@@ -43,6 +46,10 @@
 @import "../pages/pengaturanProfile/style/general";
 @import "../pages/pengaturanProfile/style/address";
 @import "../pages/style/notFound";
+// Pages /Dashboard
+@import "../pages/dashboard/components/styles/navbarDashboard";
+@import "../pages/dashboard/components/styles/formAddProduct";
+@import "../pages/dashboard/style/productAdmin";
 
 // Global Css
 @import "index.scss";
