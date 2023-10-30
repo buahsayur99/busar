@@ -3,6 +3,8 @@ import searchCatatanSlice from './actions/searchCatatanSlice';
 import formLoginRegisterSlice from './actions/formLoginRegisterSlice';
 import apiUsersSlice from './actions/apiUsersSlice';
 import apiAddressSlice from "./actions/apiAddressSlice";
+import onOffSlice from './actions/onOffSlice';
+import apiProductSlice from './actions/apiProductSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +12,8 @@ export const store = configureStore({
     formLoginRegisterSlice: formLoginRegisterSlice,
     apiUsers: apiUsersSlice,
     apiAddress: apiAddressSlice,
+    onOffSlice: onOffSlice,
+    apiProduct: apiProductSlice,
   },
 });
 
