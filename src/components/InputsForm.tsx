@@ -1,4 +1,4 @@
-import { FaUserAlt, PiLockKeyFill, PiLockKeyOpenFill, SiNamecheap } from "../utils/icons";
+import { FaSortAmountUp, FaUserAlt, MdOutlinePriceChange, PiLockKeyFill, PiLockKeyOpenFill, SiNamecheap } from "../utils/icons";
 import styles from "../style/index.module.scss";
 import { useEffect, useState } from "react";
 
@@ -28,6 +28,8 @@ export const Icons = ({ iconType }: { iconType: IconsProps }) => {
     if (iconType === "FaUserAlt") return <FaUserAlt />
     if (iconType === "PiLockKeyFill") return <PiLockKeyFill />
     if (iconType === "SiNamecheap") return <SiNamecheap />
+    if (iconType === "FaSortAmountUp") return <FaSortAmountUp />
+    if (iconType === "MdOutlinePriceChange") return <MdOutlinePriceChange />
     return null
 }
 
