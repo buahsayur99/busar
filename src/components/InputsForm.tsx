@@ -1,4 +1,4 @@
-import { FaUserAlt, PiLockKeyFill, PiLockKeyOpenFill } from "../utils/icons";
+import { FaUserAlt, PiLockKeyFill, PiLockKeyOpenFill, SiNamecheap } from "../utils/icons";
 import styles from "../style/index.module.scss";
 import { useEffect, useState } from "react";
 
@@ -27,6 +27,7 @@ export const Icons = ({ iconType }: { iconType: IconsProps }) => {
     if (iconType === "PiLockKeyOpenFill") return <PiLockKeyOpenFill />
     if (iconType === "FaUserAlt") return <FaUserAlt />
     if (iconType === "PiLockKeyFill") return <PiLockKeyFill />
+    if (iconType === "SiNamecheap") return <SiNamecheap />
     return null
 }
 
