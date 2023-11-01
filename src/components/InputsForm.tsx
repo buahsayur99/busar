@@ -14,7 +14,7 @@ export type InputFormProps = {
     maxInput?: number;
     typeInput: string;
     changeInput: (value: string) => void;
-    valueInput?: string | null | undefined;
+    valueInput?: string | number | null | undefined;
     valuePlaceholder: string;
     iconType?: IconsProps;
     validasiInput?: {
@@ -53,7 +53,7 @@ export const InputsForm = (
     }
 
     useEffect(() => {
-        if (valueInput !== null && valueInput !== undefined) return setInputLength(valueInput.length);
+        if (valueInput !== null && valueInput !== undefined) return setInputLength(valueInput.toString().length);
     }, [valueInput])
 
     return (
@@ -81,7 +81,7 @@ export const InputsForm = (
                         `${styles[`${cssPlaceholder}`]}
                         ${inputLength !== 0 && !validasiInput?.status && styles[`${cssPlaceholder}-active`]}
                         ${validasiInput?.status && styles[`${cssPlaceholder}-danger-focus`]}
-                        ${validasiInput?.status && valueInput?.length !== 0 && styles[`${cssPlaceholder}-danger`]}`
+                        ${validasiInput?.status && valueInput?.toString().length !== 0 && styles[`${cssPlaceholder}-danger`]}`
                     }
                 >
                     {valuePlaceholder}
@@ -140,7 +140,7 @@ export const InputsForm = (
 
                 {maxInput && (
                     <div className={styles[`${cssMaxInput}`]}>
-                        <p>{valueInput === null ? "0" : valueInput?.length}</p>
+                        <p>{valueInput === null ? "0" : valueInput?.toString().length}</p>
                         <span>/</span>
                         <p>{maxInput}</p>
                     </div>
