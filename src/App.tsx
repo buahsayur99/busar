@@ -8,10 +8,13 @@ import { useAuthUsers } from "./hook/useAuthUsers";
 import { NotFound } from "./pages/NotFound";
 import { useAppSelector } from "./app/hooks";
 import { useEffect } from "react";
-import { DashboardAdmin } from "./features/navbar/DashboardAdmin";
+import { DashboardAdmin } from "./pages/dashboard/DashboardAdmin";
+import { ProductAdmin } from "./pages/dashboard/ProductAdmin";
+import { UsersAdmin } from "./pages/dashboard/UsersAdmin";
 
 function App() {
   const { isLoadingAuth } = useAppSelector(state => state.apiUsers);
+  const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
   // Custome Hook
   const { requestUserApi } = useAuthUsers();
   useSaveLastPage();
@@ -30,7 +33,7 @@ function App() {
               {/* Account */}
               <Route
                 path="account"
-                element={<PrivateRoutes />}
+                element={<PrivateRoutes data={dataLoginUsers} />}
               >
                 <Route index element={<General />} />
                 <Route path="password" element={<Password />} />
@@ -40,9 +43,11 @@ function App() {
               {/* Dashboard */}
               <Route
                 path="dashboard"
-                element={<PrivateRoutes />}
+                element={<PrivateRoutes data={dataLoginUsers?.role === "admin"} />}
               >
                 <Route index element={<DashboardAdmin />} />
+                <Route path="product" element={<ProductAdmin />} />
+                <Route path="user" element={<UsersAdmin />} />
               </Route>
               {/* Not Found */}
               <Route path="*" element={<NotFound />} />
