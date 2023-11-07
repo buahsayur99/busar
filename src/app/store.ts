@@ -5,6 +5,7 @@ import apiUsersSlice from './actions/apiUsersSlice';
 import apiAddressSlice from "./actions/apiAddressSlice";
 import onOffSlice from './actions/onOffSlice';
 import apiProductSlice from './actions/apiProductSlice';
+import apiCategory from './actions/apiCategory';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     apiAddress: apiAddressSlice,
     onOffSlice: onOffSlice,
     apiProduct: apiProductSlice,
+    apiCategory: apiCategory,
   },
 });
 
