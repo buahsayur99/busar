@@ -1,0 +1,82 @@
+.container-input-textarea {
+    position: relative;
+
+    .input {
+        background-color: $gray-lighter-color;
+        width: 100%;
+        font-size: $font-size-md;
+        padding: 1.3rem 1rem .7rem 1rem;
+        border-radius: .5rem;
+        color: $gray-color;
+        resize: none;
+
+        &:focus {
+            outline: solid 2px $primary-color;
+            color: black;
+        }
+    }
+
+    .input-danger {
+        outline: solid 2px $primary-danger;
+    }
+
+    .placeholder {
+        transition-duration: 300ms;
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        font-size: $font-size-md;
+        color: $gray-color;
+    }
+
+    .placeholder::first-letter {
+        text-transform: capitalize;
+    }
+
+    &:focus-within .placeholder {
+        top: -.6rem;
+        left: .8rem;
+        background-color: white;
+        padding: .2rem .5rem;
+        color: $primary-color;
+        font-size: $font-size-sm;
+    }
+
+    .placeholder-active {
+        top: -.6rem;
+        left: .8rem;
+        background-color: white;
+        padding: .2rem .5rem;
+        font-size: $font-size-sm;
+    }
+
+    .placeholder-danger {
+        top: -.6rem;
+        left: .8rem;
+        background-color: white;
+        padding: .2rem .5rem;
+        color: $primary-danger;
+        font-size: $font-size-sm;
+    }
+
+    .validasi-input-text-area {
+        position: absolute;
+        bottom: -1rem;
+        left: 1rem;
+        color: $primary-danger;
+    }
+
+    .validasi-input-text-area::first-letter {
+        text-transform: capitalize;
+    }
+
+    .max-input-text-area {
+        position: absolute;
+        right: 0;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: .2rem;
+        color: $gray-medium-color;
+        gap: .2rem;
+    }
+}
