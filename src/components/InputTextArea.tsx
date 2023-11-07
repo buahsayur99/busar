@@ -54,7 +54,12 @@ export const InputTextArea = ({
     return (
         <>
             <div
-                className={`${styles[`parent-${cssInput}`]}`}
+                className={`
+                    ${styles["container-input-textarea"]}
+
+                    // Css Custome
+                    ${styles[`parent-${cssInput}`]}
+                `}
                 onClick={handleFocusInput}
             >
                 {/* Input */}
@@ -64,6 +69,10 @@ export const InputTextArea = ({
                     onChange={(input) => handleOnChange(input.target.value)}
                     ref={textAreaRef}
                     className={`
+                        ${styles["input"]}
+                        ${validasiInput?.status && styles["input-danger"]}
+
+                        // Css Custome
                         ${styles[`${cssInput}`]}
                         ${height > heights && styles[`${cssInput}-padding`]}
                         ${validasiInput?.status && styles[`${cssInput}-danger`]}
@@ -73,6 +82,11 @@ export const InputTextArea = ({
                 {/* Placeholder */}
                 <p
                     className={`
+                        ${styles["placeholder"]}
+                        ${valueInput?.length > 0 && styles["placeholder-active"]}
+                        ${validasiInput?.status && valueInput.length !== 0 && styles["placeholder-danger"]}
+
+                        // Css Custome
                         ${styles[`${cssPlaceholder}`]} 
                         ${valueInput?.length > 0 && styles[`${cssPlaceholder}-active`]}
                         ${validasiInput?.status && styles[`${cssPlaceholder}-danger-focus`]}
@@ -83,13 +97,23 @@ export const InputTextArea = ({
                 </p>
                 {/* Text Validasi */}
                 <span
-                    className={`${styles[`${cssValidasi}`]}`}
+                    className={`
+                        ${styles["validasi-input-text-area"]}
+
+                        // Css Custome
+                        ${styles[`${cssValidasi}`]}
+                    `}
                 >
                     {validasiInput?.text}
                 </span>
                 {/* Max Input */}
                 {maxInput && (
-                    <div className={styles[`${cssMaxInput}`]}>
+                    <div className={`
+                        ${styles["max-input-text-area"]}
+
+                        // Css Custome
+                        ${styles[`${cssMaxInput}`]}
+                    `}>
                         <p>{valueInput === null ? "0" : valueInput?.length}</p>
                         <span>/</span>
                         <p>{maxInput}</p>
