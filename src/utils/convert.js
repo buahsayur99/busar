@@ -8,3 +8,10 @@ export const covertInfoHalamanToNameButton = (pathPage) => {
     if (filterDataMenuByPathPage.length === 0) return ""
     return filterDataMenuByPathPage[0].nameLink
 }
+
+export const convertObjectToArray = (event) => {
+    const objFromDB = JSON.parse(event);
+    const arr = Object.values(objFromDB);
+
+    return arr
+}
