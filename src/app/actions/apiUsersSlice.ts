@@ -27,12 +27,20 @@ type ApiSettingProfileProps = {
     link: string;
 }
 
+export type DataUsersAllProps = {
+    id: number;
+    email: string;
+    idAddress: number;
+    role: string;
+}
+
 type InitialStateProps = {
     isLoading: boolean;
     isLoadingAuth: boolean | null;
     isError: any;
     isMessage: string | null;
     dataLoginUsers: LoginUsers | null;
+    dataUsersAll: DataUsersAllProps[];
     isUuid: string | null
 }
 
@@ -42,6 +50,7 @@ const initialState: InitialStateProps = {
     isError: null,
     isMessage: "",
     dataLoginUsers: null,
+    dataUsersAll: [],
     isUuid: null
 }
 export const authLogin = createAsyncThunk("api/getMe", async ({ link }: ApiSettingProfileProps, { rejectWithValue }) => {
@@ -81,6 +90,21 @@ export const getUsers = createAsyncThunk("api/getUsers", async ({ link }: ApiSet
         throw new Error(error.message);
     }
 });
+
+export const getUsersAll = createAsyncThunk("api/getUsersAll", async ({ link }: ApiSettingProfileProps, { rejectWithValue }) => {
+    try {
+        const response = await fetch(link, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        });
+        const responseData = response.json();
+
+        if (response.ok) return responseData;
+        return rejectWithValue(responseData);
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
+})
 
 export const updateSettingProfile = createAsyncThunk("api/updateSettingProfile", async ({ data, link }: ApiSettingProfileProps, { rejectWithValue }) => {
     try {
@@ -201,8 +225,10 @@ const apiUsersSlice = createSlice({
         },
         resetDataLoginUsers: (state) => {
             state.dataLoginUsers = null
+        },
+        resetDataUsersAll: (state) => {
+            state.dataUsersAll = []
         }
-
     },
     extraReducers: (builder) => {
         builder
@@ -341,5 +367,5 @@ const apiUsersSlice = createSlice({
     }
 });
 
-export const { resetIsMessage, resetUuid, resetDataLoginUsers, logoutUsers } = apiUsersSlice.actions;
+export const { resetIsMessage, resetUuid, resetDataLoginUsers, logoutUsers, resetDataUsersAll } = apiUsersSlice.actions;
 export default apiUsersSlice.reducer;
