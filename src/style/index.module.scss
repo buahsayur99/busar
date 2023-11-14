@@ -22,12 +22,13 @@
 @import "../components/style/alertText";
 @import "../components/style/alertConfirmasi";
 @import "../components/style/emptyAddress";
-@import "../components/style/tableData";
 @import "../components/style/inputCheckbox";
 @import "../components/style/tableEmpty";
 @import "../components/style/dropdown";
 @import "../components/style/uploadFile";
 @import "../components/style/inputTextArea";
+@import "../components/style/detailInfoTable";
+@import "../components/style/bigImage";
 
 // Features /Navbar
 @import "../features/navbar/style/navbar";
@@ -52,6 +53,7 @@
 // Pages /Dashboard
 @import "../pages/dashboard/components/styles/navbarDashboard";
 @import "../pages/dashboard/components/styles/formAddProduct";
+@import "../pages/dashboard/components/styles/tableDataAdmin";
 @import "../pages/dashboard/style/productAdmin";
 
 // Global Css
