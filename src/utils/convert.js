@@ -15,3 +15,10 @@ export const convertObjectToArray = (event) => {
 
     return arr
 }
+
+export const formattedNumber = (numbers) => {
+    // Format angka menggunakan toLocaleString
+    const formattedNumber = numbers.toLocaleString();
+
+    return formattedNumber;
+}
