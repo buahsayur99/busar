@@ -1,0 +1,62 @@
+.container-tableEmpty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    padding: 2rem 0;
+
+    @include breakpoint-max(630px) {
+        min-height: 70vh;
+        justify-content: center;
+    }
+
+    img {
+        margin-top: -4rem;
+        width: 30rem;
+
+        @include breakpoint-max(720px) {
+            width: 83%;
+        }
+
+        @include breakpoint-max(670px) {
+            width: 90%;
+        }
+
+        @include breakpoint-max(630px) {
+            width: 100%;
+        }
+    }
+
+    h3 {
+        font-size: $font-size-2xl;
+        text-transform: capitalize;
+        color: $primary-color-dark;
+
+        @include breakpoint-max(375px) {
+            font-size: $font-size-xl;
+        }
+
+        @include breakpoint-max(320px) {
+            font-size: $font-size-lg;
+        }
+    }
+
+    p {
+        margin-top: 1rem;
+        font-size: $font-size-lg;
+        text-align: center;
+
+        @include breakpoint-max(375px) {
+            font-size: $font-size-md;
+        }
+
+        @include breakpoint-max(320px) {
+            font-size: $font-size-base;
+        }
+    }
+
+    p::first-letter {
+        text-transform: capitalize;
+    }
+}
