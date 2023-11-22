@@ -1,0 +1,131 @@
+.container-upload-file {
+    position: relative;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    width: 9rem;
+    height: 9rem;
+    background-color: $gray-lighter-color;
+    border: 2px dashed $gray-medium-color;
+    transition-duration: 300ms;
+    cursor: pointer;
+
+    &:hover {
+        border: 2px dashed $primary-color;
+    }
+
+    @include breakpoint-max(320px) {
+        width: 7rem;
+        height: 7rem;
+    }
+
+    span {
+        color: $gray-medium-color;
+        font-size: 4.5rem;
+        transition-duration: 300ms;
+
+        @include breakpoint-max(320px) {
+            font-size: 3.5rem;
+        }
+    }
+
+    &:hover span {
+        color: $primary-color;
+    }
+
+    h5 {
+        color: $gray-medium-color;
+        transition-duration: 300ms;
+
+        @include breakpoint-max(320px) {
+            font-size: $font-size-xs;
+        }
+    }
+
+    &:hover h5 {
+        color: $primary-color;
+    }
+
+    h5::first-letter {
+        text-transform: capitalize;
+    }
+
+    .icon-image {
+        font-size: 4rem;
+        color: $primary-color;
+
+        @include breakpoint-max(320px) {
+            font-size: 3rem;
+        }
+    }
+
+    .icon-image-danger {
+        color: $primary-danger;
+    }
+
+    .name-file {
+        width: 100%;
+        font-size: $font-size-sm;
+        overflow: hidden;
+        margin-top: .5rem;
+        color: $primary-color;
+
+        @include breakpoint-max(320px) {
+            font-size: $font-size-xs;
+        }
+    }
+
+    .name-file-danger {
+        color: $primary-danger;
+    }
+
+    .icon-upload-danger {
+        color: $primary-danger
+    }
+
+    .text-danger {
+        color: $primary-danger;
+    }
+
+    img {
+        width: 7.8rem;
+        height: 7.8rem;
+    }
+}
+
+.button-tooltip-upload-file {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: transparent;
+    font-size: $font-size-xl;
+    z-index: 2;
+
+
+}
+
+.text-tooltip-form-upload-file {
+    position: absolute;
+    top: 1.7rem;
+    right: -2rem;
+    z-index: 1;
+    text-transform: capitalize;
+    font-size: $font-size-base;
+    color: white;
+    background-color: $primary-color-black65;
+    padding: .3rem .6rem;
+
+    @include breakpoint-max(320px) {
+        font-size: $font-size-xs;
+        padding: .1rem .4rem;
+        right: -1rem;
+    }
+}
+
+.container-uploaded {
+    border: 2px dashed $primary-color;
+}
+
+.upload-danger {
+    border: 2px dashed $primary-danger;
+}
