@@ -6,12 +6,14 @@ type ButtonTooltipProps = {
     styleButton: string;
     textTooltip: string;
     styleTooltip: string;
+    styleCssTooltip?: React.CSSProperties;
+    styleCssButton?: React.CSSProperties;
     positionX?: number;
     positionY?: number;
     onClicks: () => void;
 }
 
-export const ButtonTooltip = ({ children, styleButton, textTooltip, styleTooltip, positionX, positionY, onClicks }: ButtonTooltipProps) => {
+export const ButtonTooltip = ({ children, styleButton, textTooltip, styleTooltip, positionX, positionY, styleCssTooltip, styleCssButton, onClicks }: ButtonTooltipProps) => {
     const [active, setActive] = useState(false);
     const [position, setPosition] = useState({ top: 0, left: 0 })
 
@@ -28,6 +30,7 @@ export const ButtonTooltip = ({ children, styleButton, textTooltip, styleTooltip
                     onMouseMove={(event) => handlePositionTooltip(event)}
                     onMouseLeave={() => setActive(false)}
                     className={styles[`${styleButton}`]}
+                    style={{ ...styleCssButton }}
                     onClick={onClicks}
                     type="button"
                 >
@@ -37,7 +40,7 @@ export const ButtonTooltip = ({ children, styleButton, textTooltip, styleTooltip
                 {active && (
                     <span
                         className={styles[`${styleTooltip}`]}
-                        style={{ top: position.top, left: position.left }}
+                        style={{ top: position.top, left: position.left, ...styleCssTooltip }}
                     >
                         {textTooltip}
                     </span>

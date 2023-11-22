@@ -7,10 +7,10 @@ import { useSaveLastPage } from "./hook/useSaveLastPage";
 import { useAuthUsers } from "./hook/useAuthUsers";
 import { NotFound } from "./pages/NotFound";
 import { useAppSelector } from "./app/hooks";
-import { useEffect } from "react";
 import { DashboardAdmin } from "./pages/dashboard/DashboardAdmin";
 import { ProductAdmin } from "./pages/dashboard/ProductAdmin";
 import { UsersAdmin } from "./pages/dashboard/UsersAdmin";
+import React, { useEffect } from "react";
 
 function App() {
   const { isLoadingAuth } = useAppSelector(state => state.apiUsers);
@@ -40,6 +40,7 @@ function App() {
                 <Route path="profile" element={<Profile />} />
                 <Route path="address" element={<Address />} />
               </Route>
+
               {/* Dashboard */}
               <Route
                 path="dashboard"
@@ -49,6 +50,7 @@ function App() {
                 <Route path="product" element={<ProductAdmin />} />
                 <Route path="user" element={<UsersAdmin />} />
               </Route>
+
               {/* Not Found */}
               <Route path="*" element={<NotFound />} />
             </Routes>

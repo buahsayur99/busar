@@ -1,5 +1,5 @@
 import { renderHook, act } from "@testing-library/react";
-import { useOutsideClick } from "../useOutsideClick";
+import { useInsideClick } from "../useInsideClick";
 
 describe('useOutsideClick', () => {
     let ref: React.RefObject<HTMLDivElement>;
@@ -11,7 +11,7 @@ describe('useOutsideClick', () => {
     });
 
     it('should call faClose when event target is the ref', () => {
-        renderHook(() => useOutsideClick({ ref, faClose: faCloseMock }));
+        renderHook(() => useInsideClick({ ref, faClose: faCloseMock }));
 
         // Create a mock event with the correct target (your ref)
         const event = new MouseEvent('click', { bubbles: true });

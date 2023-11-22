@@ -30,3 +30,58 @@
         }
     }
 }
+
+.global-container-dashboard {
+    position: relative;
+    min-height: 100vh;
+    overflow: auto;
+
+    &::after {
+        content: "";
+        background-color: $gray-lighter-color;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+
+    .global-parent-dashboard {
+        position: relative;
+        margin: 0rem 2rem 0rem 0rem;
+        transition-duration: 300ms;
+
+        @include breakpoint-max(720px) {
+            margin: 0rem 1.7rem 0rem 0rem;
+        }
+
+        @include breakpoint-max(500px) {
+            margin: 0rem 1.2rem 0rem 0rem;
+        }
+
+        @include breakpoint-max(320px) {
+            margin: 0rem 1rem 0rem 0rem;
+        }
+    }
+
+    .global-margin-max-size {
+        margin-left: 18rem;
+    }
+
+    .global-margin-min-size {
+        margin-left: 7.5rem;
+
+        @include breakpoint-max(720px) {
+            margin-left: 7rem;
+        }
+
+        @include breakpoint-max(500px) {
+            margin-left: 5.5rem;
+        }
+
+        @include breakpoint-max(320px) {
+            margin-left: 5rem;
+        }
+    }
+}

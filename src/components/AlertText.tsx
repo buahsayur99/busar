@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "../style/index.module.scss";
 import { useAppSelector } from "../app/hooks";
-import { useOutsideClick } from "../hook/useOutsideClick";
+import { useInsideClick } from "../hook/useInsideClick";
 
 interface AlertTextProps extends React.HTMLAttributes<HTMLDivElement> {
     nameButton: string;
@@ -22,7 +22,7 @@ export const AlertText: React.FC<AlertTextProps> = ({ children, nameButton, onCl
     }, [onClicks])
 
     // Custome Hook Close Alert
-    useOutsideClick({
+    useInsideClick({
         ref: parentAlertRef,
         faClose: closeAlert
     });
