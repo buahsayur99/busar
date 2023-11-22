@@ -1,0 +1,82 @@
+.hidden-mobile {
+    @include breakpoint-max(720px) {
+        display: none;
+    }
+}
+
+.hidden-tablet-pc {
+    display: none;
+
+    @include breakpoint-max(720px) {
+        display: block;
+    }
+}
+
+.padding-table {
+    padding: 1.5rem 0;
+
+    @include breakpoint-max(320px) {
+        padding: 1rem 0;
+    }
+}
+
+.parent-product-admin {
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px $gray-green-color;
+    border-radius: 1rem;
+
+    .parent-button-judul-product {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1rem;
+
+        @include breakpoint-max(390px) {
+            flex-direction: column;
+            gap: .8rem;
+        }
+
+        h3 {
+            color: $primary-color;
+            text-transform: capitalize;
+            font-size: $font-size-xl;
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-lg;
+            }
+        }
+
+        button {
+            background-color: $primary-color-light;
+            border: 2px solid $primary-color-dark;
+            font-size: $font-size-base;
+            padding: .5rem 1.2rem;
+            border-radius: 1rem;
+            color: $primary-color-dark;
+            box-shadow: 1px 1px 3px 0px $gray-color;
+            text-transform: capitalize;
+            transition-duration: 300ms;
+
+            &:hover {
+                background-color: $primary-color-dark;
+                color: white;
+            }
+
+            &:focus {
+                outline: 2px solid $primary-color-light;
+            }
+
+            @include breakpoint-max(320px) {
+                padding: .4rem .9rem;
+                border-radius: .7rem;
+                font-size: $font-size-sm;
+            }
+        }
+    }
+
+    .line {
+        background-color: $gray-medium-color;
+        width: 100%;
+        height: 1px;
+    }
+}

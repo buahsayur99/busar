@@ -1,0 +1,338 @@
+.container-form-add-product {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: $primary-color-black65;
+    z-index: $z-index-form;
+    overflow: auto;
+    padding: 2rem 0;
+
+    @include breakpoint-max(320px) {
+        padding: 1rem 0;
+    }
+
+    .overflow-bg-white {
+        overflow: hidden;
+        border-radius: 3%;
+
+        @include breakpoint-max(680px) {
+            margin: 0 auto;
+            width: 94%;
+        }
+    }
+
+    .bg-white {
+        width: 40rem;
+        height: 36rem;
+        background-color: white;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $primary-color;
+            border-radius: 1rem;
+
+            &:hover {
+                background-color: $primary-color-dark;
+            }
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: #f0f0f0;
+        }
+
+        @include breakpoint-max(680px) {
+            width: 100%;
+        }
+
+        .judul-form {
+            text-transform: capitalize;
+            font-size: $font-size-2xl;
+            color: $primary-color;
+            text-align: center;
+            margin-top: 1rem;
+
+            @include breakpoint-max(500px) {
+                margin-top: .8rem;
+                font-size: 1.8rem;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: 1.6rem;
+            }
+        }
+
+        form {
+            padding: 2rem 2rem;
+
+            @include breakpoint-max(450px) {
+                padding: 2rem 1rem;
+            }
+
+            .parent-input {
+                display: grid;
+                gap: 2.2rem;
+            }
+
+            .parent-input-form {
+                .input {
+                    background-color: $gray-lighter-color;
+                    font-size: $font-size-md;
+                    width: 100%;
+                    padding: .8rem 1rem;
+                    padding-left: 3rem;
+                    border-radius: .5rem;
+                    border: 2px solid transparent;
+                    color: $gray-color;
+                    transition-duration: 300ms;
+
+                    &:focus {
+                        outline: none;
+                        border: 2px solid $primary-color;
+                        color: black;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        padding: .7rem 1rem .7rem 3rem;
+                        font-size: $font-size-base;
+
+                        &:focus {
+                            outline: none;
+                            border: 1px solid $primary-color;
+                            color: black;
+                        }
+                    }
+                }
+
+                .input-danger {
+                    border: 2px solid $primary-danger;
+
+                    @include breakpoint-max(320px) {
+                        border: 1.5px solid $primary-danger;
+                    }
+                }
+
+                .placeholder {
+                    position: absolute;
+                    left: 0px;
+                    margin-top: 0;
+                    margin-left: 3rem;
+                    text-transform: capitalize;
+                    color: $gray-color;
+                    transition-duration: 300ms;
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-sm;
+                    }
+                }
+
+                &:focus-within .placeholder {
+                    color: $primary-color;
+                    background-color: white;
+                    padding: .3rem;
+                    border-radius: 5px;
+                    margin-left: 2.7rem;
+                    margin-top: -2.9rem;
+                    font-weight: bold;
+                    font-size: $font-size-xs;
+
+                    @include breakpoint-max(320px) {
+                        font-size: .7rem;
+                        margin-top: -2.5rem;
+                        padding: .1rem .3rem;
+                    }
+                }
+
+                .placeholder-active {
+                    color: $gray-color;
+                    background-color: white;
+                    padding: .3rem;
+                    border-radius: 5px;
+                    margin-left: 2.7rem;
+                    margin-top: -2.9rem;
+                    font-weight: bold;
+                    font-size: $font-size-xs;
+
+                    @include breakpoint-max(320px) {
+                        font-size: .7rem;
+                        margin-top: -2.5rem;
+                        padding: .1rem .3rem;
+                    }
+                }
+
+                .placeholder-danger {
+                    color: $primary-danger;
+                    background-color: white;
+                    padding: .3rem;
+                    border-radius: 5px;
+                    margin-left: 2.7rem;
+                    margin-top: -2.9rem;
+                    font-weight: bold;
+                    font-size: $font-size-xs;
+
+                    @include breakpoint-max(320px) {
+                        font-size: .7rem;
+                        margin-top: -2.5rem;
+                        padding: .1rem .3rem;
+                    }
+                }
+
+                .icon {
+                    position: absolute;
+                    left: 0px;
+                    margin-left: .8rem;
+                    font-size: 1.5rem;
+                    color: $gray-color;
+                    transition-duration: 300ms;
+
+                    @include breakpoint-max(320px) {
+                        font-size: 1.3rem;
+                        margin-left: .9rem;
+                    }
+                }
+
+                &:focus-within .icon {
+                    color: $primary-color;
+                }
+
+                .icon-active {
+                    color: $gray-color;
+                }
+
+                .icon-danger {
+                    color: $primary-danger;
+                }
+
+                .validasi {
+                    position: absolute;
+                    color: red;
+                    bottom: -1.2rem;
+                    margin-left: .8rem;
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-sm;
+                        bottom: -1rem;
+                        margin-left: .9rem;
+                    }
+                }
+
+                .validasi::first-letter {
+                    text-transform: capitalize;
+                }
+
+                .max-input {
+                    position: absolute;
+                    right: 0;
+                    bottom: -1.3rem;
+                    display: flex;
+                    gap: .3rem;
+                    color: $gray-silver-color;
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-sm;
+                        bottom: -1rem;
+                        gap: .2rem;
+                    }
+                }
+            }
+
+            .validasi-image {
+                color: $primary-danger;
+                font-size: $font-size-md;
+                margin-bottom: -1rem;
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-base;
+                }
+            }
+
+            .validasi-image::first-letter {
+                text-transform: capitalize;
+            }
+
+            .parent-upload-file {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 1rem;
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding: 0rem 0 1rem 0;
+
+                &::-webkit-scrollbar {
+                    height: 10px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: $primary-color;
+                    border-radius: 1rem;
+
+                    &:hover {
+                        background-color: $primary-color-dark;
+                    }
+                }
+
+                &::-webkit-scrollbar-track {
+                    background-color: #f0f0f0;
+                }
+            }
+
+            .btn-submit-form-add-product {
+                background-color: $gray-color;
+                color: white;
+                width: 100%;
+                padding: .8rem 0;
+                transition-duration: 300ms;
+                margin-top: 1rem;
+                border-radius: .5rem;
+
+                &:hover {
+                    background-color: $primary-color;
+                }
+            }
+
+            .btn-submit-form-add-product::first-letter {
+                text-transform: capitalize;
+            }
+        }
+    }
+
+    .button-tooltip-form-add-product {
+        background-color: transparent;
+        font-size: 1.6rem;
+        position: absolute;
+        top: 0;
+        right: .3rem;
+        z-index: 2;
+
+        @include breakpoint-max(690px) {
+            right: 1.5rem;
+        }
+
+        @include breakpoint-max(500px) {
+            right: 1.2rem;
+        }
+    }
+
+    .text-tooltip-form-add-product {
+        position: absolute;
+        right: -1.8rem;
+        top: 2.2rem;
+        padding: .2rem 0;
+        background-color: $primary-color-black65;
+        z-index: 1;
+        text-align: center;
+        text-transform: capitalize;
+
+        @include breakpoint-max(500px) {
+            right: 0rem;
+            font-size: $font-size-sm;
+
+        }
+    }
+}

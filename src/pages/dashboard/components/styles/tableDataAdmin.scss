@@ -1,0 +1,362 @@
+.parent-feture-select {
+    position: relative;
+    margin: .7rem 0;
+    width: auto;
+
+    .button {
+        position: relative;
+        background-color: transparent;
+        font-size: 1.5rem;
+        z-index: 1;
+        margin-left: .45rem;
+    }
+
+    .invisible-button {
+        position: relative;
+        background-color: transparent;
+        font-size: 1.5rem;
+        z-index: 1;
+        margin-left: .45rem;
+        cursor: not-allowed;
+        color: $gray-light-color;
+    }
+}
+
+.parent-button-on-off-checkbox {
+    display: flex;
+
+    .flex-checkbox {
+        display: flex;
+        gap: 1rem;
+        padding: 0 1rem;
+
+        .buttonCloseCheckbox {
+            position: relative;
+            background-color: transparent;
+            padding: 0;
+            z-index: 1;
+            font-size: 1.5rem;
+
+            &:hover {
+                color: $primary-danger;
+            }
+        }
+
+        .line {
+            width: 1px;
+            height: 1.8rem;
+            background-color: $gray-color;
+        }
+    }
+
+    .buttonCheckbox {
+        position: relative;
+        background-color: transparent;
+        padding: 0;
+        z-index: 1;
+        font-size: 1.5rem;
+    }
+
+    .button-invisible {
+        position: relative;
+        background-color: transparent;
+        padding: 0;
+        z-index: 1;
+        font-size: 1.5rem;
+        cursor: not-allowed;
+        color: $gray-light-color;
+    }
+}
+
+.tooltip-table-data {
+    position: absolute;
+    display: inline;
+    background-color: $primary-color-black65;
+    color: white;
+    text-transform: capitalize;
+    font-size: .6rem;
+    width: auto;
+    padding: .3rem .5rem;
+    z-index: 0;
+    left: -1rem;
+    top: 2rem;
+}
+
+.parent-table {
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    border-radius: 0rem 0rem 1rem 1rem;
+
+    table {
+        border-collapse: collapse;
+        font-size: $font-size-md;
+        width: 100%;
+
+        th,
+        td {
+            padding: 12px 15px;
+            border-right: 1px solid $primary-color-dark;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th,
+        td:last-of-type {
+            border-right: none;
+        }
+
+        thead {
+            tr {
+                background-color: $primary-color;
+                color: $primary-color-hover;
+                text-transform: capitalize;
+                text-align: left;
+                font-weight: bold;
+
+                th {
+                    font-size: $font-size-lg;
+
+                    @include breakpoint-max(500px) {
+                        font-size: $font-size-base;
+                    }
+                }
+
+                .th1 {
+                    width: 0px;
+                }
+
+                .th2 {
+                    @include breakpoint-max(1025px) {
+                        width: 20rem;
+                    }
+                }
+
+                .th-image {
+                    width: 8rem;
+
+                    @include breakpoint-max(1040px) {
+                        display: none;
+                    }
+                }
+
+                .th-amount {
+                    @include breakpoint-max(1025px) {
+                        display: none;
+                    }
+                }
+
+                .th-price {
+                    width: 15rem;
+
+                    @include breakpoint-max(1111px) {
+                        width: 18rem;
+                    }
+
+                    @include breakpoint-max(755px) {
+                        display: none;
+                    }
+                }
+
+                .th-information {
+                    width: 0rem;
+
+                    @include breakpoint-max(1040px) {
+                        display: none;
+                    }
+                }
+
+                .th-detail-product {
+                    width: 100px;
+                    display: none;
+
+                    @include breakpoint-max(1040px) {
+                        display: flow-root;
+                    }
+                }
+
+                .th-actions {
+                    width: 120px;
+                    text-align: center;
+
+                    @include breakpoint-max(500px) {
+                        width: 80px;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                border-bottom: 1px solid $primary-color-dark;
+                text-transform: capitalize;
+
+                @include breakpoint-max(500px) {
+                    font-size: $font-size-sm;
+                }
+
+                td {
+                    .parent-btn-tooltip-table-product {
+                        button {
+                            background-color: $gray-color;
+                            color: white;
+                            border-radius: 100%;
+                            padding: 3px 4px 4px 4px;
+                            font-size: $font-size-lg;
+
+                            &:hover {
+                                color: $primary-color;
+                            }
+                        }
+
+                        .buttonPlus-image {
+                            display: none;
+
+                            &:hover {
+                                color: $primary-color;
+                            }
+                        }
+
+                        .tooltip-table-data {
+                            width: 100%;
+                        }
+                    }
+
+                    .parent-button-actions {
+                        display: grid;
+                        gap: 1.5rem;
+
+                        .buttonAction {
+                            background-color: transparent;
+                            font-size: $font-size-xl;
+
+                            @include breakpoint-max(500px) {
+                                font-size: $font-size-lg;
+                            }
+                        }
+
+                        .tooltip-table-data {
+                            width: 100%;
+                            text-align: center;
+                            left: 0rem;
+                            z-index: 2;
+                        }
+                    }
+                }
+
+                td:nth-child(3) {
+                    @include breakpoint-max(1040px) {
+                        display: none;
+                    }
+                }
+
+                td:nth-child(4) {
+                    @include breakpoint-max(1025px) {
+                        display: none;
+                    }
+                }
+
+                td:nth-child(5) {
+                    @include breakpoint-max(755px) {
+                        display: none;
+                    }
+                }
+
+                td:nth-child(6) {
+                    @include breakpoint-max(1040px) {
+                        display: none;
+                    }
+                }
+
+                td:nth-child(7) {
+                    display: none;
+                    word-wrap: break-word;
+                    max-width: 100px;
+
+                    @include breakpoint-max(1040px) {
+                        padding-top: 2rem;
+                        display: block;
+                        height: 6.5rem;
+                    }
+                }
+            }
+
+            tr:nth-of-type(even) {
+                background-color: $gray-lighter-color;
+            }
+
+            tr:last-of-type {
+                border-bottom: 0px solid $primary-color;
+            }
+
+            tr:hover {
+                overflow: hidden;
+                background-color: $primary-color-light;
+            }
+
+            .parent-image {
+                display: none;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                position: relative;
+                height: 5rem;
+
+                img {
+                    position: absolute;
+                    width: 5rem;
+                    height: 5rem;
+                    left: 0rem;
+                    top: .0rem;
+                    z-index: 0;
+
+                    &:hover {
+                        outline: 2px solid $primary-color-dark-hover;
+                        z-index: 5;
+                    }
+                }
+
+                img:nth-child(2) {
+                    left: 4rem;
+                    z-index: 1;
+
+                    &:hover {
+                        z-index: 5;
+                    }
+                }
+
+                img:nth-child(3) {
+                    left: 8rem;
+                    z-index: 2;
+
+                    &:hover {
+                        z-index: 5;
+                    }
+                }
+
+                img:nth-child(4) {
+                    left: 12rem;
+                    z-index: 3;
+
+                    &:hover {
+                        z-index: 5;
+                    }
+                }
+
+                img:nth-child(5) {
+                    left: 16rem;
+                    z-index: 4;
+
+                    &:hover {
+                        z-index: 5;
+                    }
+                }
+            }
+
+            .td-information {
+                word-wrap: break-word;
+                max-width: 3rem;
+            }
+        }
+    }
+}

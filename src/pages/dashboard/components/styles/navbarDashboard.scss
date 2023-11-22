@@ -1,0 +1,485 @@
+.container-navbar-dashboard {
+    position: fixed;
+    background-color: $primary-color;
+    width: 16rem;
+    height: 100%;
+    transition-duration: 300ms;
+    display: grid;
+    justify-content: baseline;
+    z-index: $z-index-2xl;
+
+    @include breakpoint-max(500px) {
+        width: 13.8rem;
+    }
+
+    @include breakpoint-max(320px) {
+        width: 11rem;
+    }
+
+    .parent-btn-resize-nav {
+        position: absolute;
+        right: -1rem;
+        margin-top: 3.7rem;
+        z-index: 1;
+
+        @include breakpoint-max(500px) {
+            right: -.7rem;
+        }
+
+        @include breakpoint-max(320px) {
+            margin-top: 2.7rem;
+            right: -.7rem;
+        }
+
+        button {
+            position: relative;
+            background-color: white;
+            box-shadow: 1px 0px 5px 1px $gray-medium-color;
+            border-radius: 100%;
+            color: $primary-color;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:focus {
+                outline: 2px solid $primary-color-light;
+            }
+
+            @include breakpoint-max(500px) {
+                width: 1.7rem;
+                height: 1.7rem;
+            }
+
+            @include breakpoint-max(320px) {
+                width: 1.6rem;
+                height: 1.6rem;
+            }
+        }
+
+        .icon-left {
+            margin-top: .1rem;
+            font-size: 1.5rem;
+            transform: rotate(0deg);
+            transition-duration: .8s;
+            position: absolute;
+
+            @include breakpoint-max(500px) {
+                font-size: 1.3rem;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: 1.2rem;
+            }
+        }
+
+        .icon-right {
+            margin-top: .1rem;
+            font-size: 1.5rem;
+            transform: rotate(180deg);
+            transition-duration: .8s;
+            position: absolute;
+
+            @include breakpoint-max(500px) {
+                font-size: 1.3rem;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: 1.2rem;
+            }
+        }
+
+        button:hover .icon-left {
+            margin-left: -.5rem;
+        }
+
+        button:hover .icon-right {
+            margin-left: .5rem;
+        }
+    }
+
+    .nav-scroll {
+        overflow: auto;
+        direction: rtl;
+        padding-left: .5rem;
+    }
+
+    .nav-scroll::-webkit-scrollbar {
+        width: 5px;
+        height: 0px;
+    }
+
+    .nav-scroll::-webkit-scrollbar-track {
+        background: #ffffff;
+        box-shadow: 0px 0px 5px 0px white;
+    }
+
+    .nav-scroll::-webkit-scrollbar-thumb {
+        background: $primary-color-dark;
+        border-radius: 25%;
+        box-shadow: 0px 0px 5px 0px $primary-color-black;
+    }
+
+    .nav-scroll::-webkit-scrollbar-thumb:hover {
+        background: $primary-color-dark-hover;
+    }
+
+    .profile-dashboard {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: $font-size-md;
+        gap: 1.2rem;
+        color: $gray-color;
+        margin-top: .5rem;
+        padding-left: .9rem;
+        width: 100%;
+        text-decoration: none;
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2.8rem;
+            margin-left: -.9rem;
+            background-color: transparent;
+        }
+
+        @include breakpoint-max(500px) {
+            gap: .9rem;
+            padding-left: .35rem;
+        }
+
+        @include breakpoint-max(320px) {
+            gap: .7rem;
+        }
+
+        .icon-profile {
+            background-color: white;
+            padding: .5rem .7rem .7rem .7rem;
+            border-radius: 100%;
+            font-size: $font-size-xl;
+            transition-duration: 300ms;
+
+            @include breakpoint-max(500px) {
+                font-size: $font-size-lg;
+                padding: .4rem .6rem .6rem .6rem;
+            }
+
+            @include breakpoint-max(320px) {
+                padding: .3rem .5rem .5rem .5rem;
+                font-size: $font-size-base;
+            }
+        }
+
+        h3 {
+            @include breakpoint-max(428px) {
+                font-size: $font-size-base;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-sm;
+            }
+        }
+
+        &:hover .icon-profile {
+            background-color: $gray-color;
+            color: white;
+        }
+
+        h3::first-letter {
+            text-transform: capitalize;
+        }
+
+        &:hover h3 {
+            color: white;
+            transition-duration: 300ms;
+        }
+    }
+
+    .nav-dashboard {
+        display: grid;
+        width: 100%;
+        margin-top: 4rem;
+
+        @include breakpoint-max(320px) {
+            margin-top: 3rem;
+            gap: .5rem;
+        }
+
+        a {
+            text-decoration: none;
+            display: flex;
+            justify-content: flex-end;
+            font-size: $font-size-lg;
+
+            &:focus {
+                outline: none;
+            }
+
+            @include breakpoint-max(428px) {
+                font-size: $font-size-md;
+            }
+
+            .parent-icon-name-dash-nav {
+                padding: .5rem 0;
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: flex-start;
+                align-items: center;
+                position: relative;
+
+                .icon {
+                    position: relative;
+                    font-size: 1.7rem;
+                    margin-left: 0rem;
+                    z-index: 1;
+                }
+
+                span {
+                    position: absolute;
+                    text-transform: capitalize;
+                    margin-left: 3.5rem;
+                }
+            }
+        }
+
+        .parent-tooltip {
+            left: 0;
+            margin-left: 4rem;
+            z-index: 1;
+
+            span {
+                margin-left: 0;
+                padding: .2rem .6rem;
+                background-color: rgba(65, 65, 65, 0.7);
+                color: white;
+                font-size: $font-size-sm;
+            }
+        }
+
+        .btn-nav-dash {
+            padding: .5rem 0;
+            margin-left: 1.15rem;
+            color: $gray-color;
+            transition-duration: 300ms;
+            position: relative;
+
+            &:hover {
+                color: white;
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                background-color: transparent;
+                width: 3rem;
+                height: 3.3rem;
+                z-index: 1;
+            }
+
+            .parent-icon-name-dash-nav {
+                @include breakpoint-max(500px) {
+                    padding: .3rem 0;
+                }
+
+                @include breakpoint-max(320px) {
+                    padding: 0rem 0;
+                }
+
+                .icon {
+                    @include breakpoint-max(500px) {
+                        margin-left: -.4rem;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        margin-left: -.8rem;
+                        font-size: $font-size-xl;
+                    }
+                }
+
+                span {
+                    @include breakpoint-max(500px) {
+                        margin-left: 2.4rem;
+                        font-size: $font-size-md;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        margin-left: 1.4rem;
+                        font-size: $font-size-sm;
+                    }
+                }
+            }
+        }
+
+        .btn-nav-dash-active {
+            background-color: $gray-lighter-color;
+            color: $primary-color;
+            border-radius: 2rem 0 0 2rem;
+            position: relative;
+            width: 103%;
+
+            &::after {
+                content: "";
+                position: absolute;
+                right: 0rem;
+                top: -2rem;
+                background-color: $primary-color;
+                width: 2rem;
+                height: 2rem;
+                border-radius: 0 0 100% 0;
+                box-shadow: 8px 8px 0 4px $gray-lighter-color;
+
+                @include breakpoint-max(500px) {
+                    width: 1.6rem;
+                    height: 1.6rem;
+                    top: -1.6rem;
+                }
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                right: 0rem;
+                bottom: -2rem;
+                background-color: $primary-color;
+                width: 2rem;
+                height: 2rem;
+                border-radius: 0 100% 0 0;
+                box-shadow: 8px -8px 0 4px $gray-lighter-color;
+
+                @include breakpoint-max(500px) {
+                    width: 1.6rem;
+                    height: 1.6rem;
+                    bottom: -1.6rem;
+                }
+            }
+
+            .parent-icon-name-dash-nav {
+                position: relative;
+
+                @include breakpoint-max(320px) {
+                    padding: .4rem 0;
+                }
+
+                .icon {
+                    background-color: $primary-color;
+                    color: $gray-lighter-color;
+                    padding: .3rem .4rem .4rem .4rem;
+                    border-radius: 100%;
+                    margin-left: .7rem;
+
+                    @include breakpoint-max(500px) {
+                        font-size: 1.4rem;
+                        margin-left: .45rem;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        font-size: 1.3rem;
+                        padding: .2rem .3rem .3rem .3rem;
+                        margin-left: .4rem;
+                    }
+                }
+
+                span {
+                    margin-left: 4.6rem;
+
+                    @include breakpoint-max(500px) {
+                        margin-left: 3.7rem;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        margin-left: 2.9rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .parent-tooltip {
+        position: absolute;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: .3rem 1rem;
+    }
+
+    .parent-dropdown-profile {
+        position: absolute;
+        top: 3.5rem;
+        left: .5rem;
+        z-index: 2;
+        background-color: $primary-color-black65;
+        width: 13.9rem;
+        display: flex;
+        flex-direction: column;
+        border-radius: .5rem;
+        overflow: hidden;
+        box-shadow: 1px 1px 2px 0px $gray-dark-color;
+
+        @include breakpoint-max(500px) {
+            width: 11rem;
+        }
+
+        @include breakpoint-max(320px) {
+            top: 3rem;
+            width: 9rem;
+        }
+
+        .button-dropdown {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: row-reverse;
+            color: white;
+            background-color: transparent;
+            font-size: $font-size-lg;
+            text-decoration: none;
+            gap: 1rem;
+            align-items: center;
+            transition-duration: 300ms;
+            padding: .7rem 1rem;
+
+
+            &:hover {
+                background-color: $primary-color-dark-hover;
+            }
+
+            p::first-letter {
+                text-transform: capitalize;
+            }
+
+            @include breakpoint-max(500px) {
+                font-size: $font-size-md;
+            }
+
+            @include breakpoint-max(320px) {
+                gap: .8rem;
+                padding: .5rem 1rem;
+                font-size: $font-size-base;
+            }
+        }
+    }
+}
+
+.shadow-maxsize-mobile {
+    @include breakpoint-max(720px) {
+        box-shadow: 0px 0px 5px 1px $gray-color;
+    }
+}
+
+.nav-dashboard-off {
+    width: 5.4rem;
+
+    @include breakpoint-max(500px) {
+        width: 4.3rem;
+    }
+
+    @include breakpoint-max(320px) {
+        width: 3.9rem;
+    }
+}
