@@ -1,0 +1,171 @@
+.container-detail-info-table {
+    background-color: $primary-color-black65;
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: $z-index-3xl;
+    overflow: auto;
+
+    .bg-white {
+        background-color: white;
+        margin: auto auto;
+        max-width: 40rem;
+        padding: 1.5rem;
+        position: relative;
+        border-radius: 1rem;
+
+        @include breakpoint-max(755px) {
+            width: 90%;
+            padding: 1rem;
+        }
+
+        @include breakpoint-max(500px) {
+            width: 95%;
+        }
+
+        .button-close {
+            position: relative;
+            z-index: 1;
+            background-color: transparent;
+            border-radius: 100%;
+            color: black;
+            font-size: 1.7rem;
+
+            @include breakpoint-max(755px) {
+                font-size: $font-size-xl;
+            }
+        }
+
+        .tooltip-detail-table {
+            position: absolute;
+            right: 0;
+            top: 2.5rem;
+            background-color: $primary-color-black65;
+            color: white;
+            padding: .3rem .5rem;
+            font-size: $font-size-sm;
+            text-transform: capitalize;
+            width: 6rem;
+            text-align: center;
+
+            @include breakpoint-max(755px) {
+                top: 2rem;
+                font-size: $font-size-xs;
+            }
+        }
+
+        .data-table {
+            margin-top: 1rem;
+            font-size: $font-size-xl;
+            display: grid;
+            gap: 1rem;
+
+            @include breakpoint-max(500px) {
+                font-size: $font-size-lg;
+            }
+
+            @include breakpoint-max(375px) {
+                font-size: $font-size-md;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-base;
+            }
+
+            .flex-table {
+                display: flex;
+            }
+
+            .flex-table:nth-child(1) {
+                gap: 3.9rem;
+
+                h2 {
+                    text-transform: capitalize;
+                }
+            }
+
+            .flex-table:nth-child(2) {
+                gap: 2.8rem;
+            }
+
+            .flex-table:nth-child(3) {
+                gap: 4.4rem;
+            }
+
+            .flex-table:nth-child(4) {
+                gap: 3.9rem;
+            }
+
+            .flex-table:nth-child(5) {
+                gap: .7rem;
+            }
+
+            span {
+                text-transform: capitalize;
+                font-weight: bold;
+            }
+
+            .parent-image {
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                position: relative;
+                height: 5rem;
+                overflow: hidden;
+
+                img {
+                    position: absolute;
+                    width: 5rem;
+                    height: 5rem;
+                    left: 0rem;
+                    top: .0rem;
+                    z-index: 0;
+
+                    &:hover {
+                        outline: 2px solid $primary-color-dark-hover;
+                        z-index: 5;
+                    }
+                }
+
+                img:nth-child(2) {
+                    left: 4rem;
+                    z-index: 1;
+
+                    &:hover {
+                        z-index: 5;
+                    }
+                }
+
+                img:nth-child(3) {
+                    left: 8rem;
+                    z-index: 2;
+
+                    &:hover {
+                        z-index: 5;
+                    }
+                }
+
+                img:nth-child(4) {
+                    left: 12rem;
+                    z-index: 3;
+
+                    &:hover {
+                        z-index: 5;
+                    }
+                }
+
+                img:nth-child(5) {
+                    left: 16rem;
+                    z-index: 4;
+
+                    &:hover {
+                        z-index: 5;
+                    }
+                }
+            }
+        }
+    }
+}
