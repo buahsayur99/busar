@@ -1,0 +1,129 @@
+.container-dropdown {
+    width: 100%;
+    position: relative;
+
+    .validasi-dropdown::first-letter {
+        text-transform: capitalize;
+    }
+
+    .validasi-dropdown {
+        color: $primary-danger;
+        margin-left: .8rem;
+        margin-top: .2rem;
+
+        @include breakpoint-max(320px) {
+            font-size: $font-size-sm;
+        }
+    }
+
+    .parent-choice {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $gray-lighter-color;
+        border: 2px solid transparent;
+        padding: .5rem .8rem;
+        border-radius: .5rem;
+        cursor: pointer;
+        transition-duration: 300ms;
+        color: $gray-color;
+
+        &:hover {
+            background-color: $gray-light-color;
+            color: white;
+        }
+
+        .text {
+            font-size: $font-size-xl;
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-sm;
+            }
+        }
+
+        .text::first-letter {
+            text-transform: capitalize;
+        }
+
+
+
+        span {
+            font-size: 1.6rem;
+            transform: rotate(270deg);
+
+            @include breakpoint-max(320px) {
+                font-size: 1.3rem;
+            }
+        }
+
+        .icon-active {
+            transform: rotate(90deg);
+        }
+
+        h3 {
+            font-size: $font-size-lg;
+        }
+    }
+
+    .active-choice {
+        border: 2px solid $primary-color;
+        color: $primary-color;
+
+        @include breakpoint-max(320px) {
+            border: 1.5px solid $primary-color;
+        }
+    }
+
+    .parent-ul {
+        margin-top: .3rem;
+        position: absolute;
+        z-index: $z-index-md;
+        width: 100%;
+
+        display: grid;
+        grid-template-rows: 0fr;
+        transition-duration: 300ms;
+
+        ul {
+            background-color: $gray-lighter-color;
+            border-radius: .7rem;
+            overflow: hidden;
+
+            li {
+                font-size: $font-size-lg;
+                text-align: center;
+                padding: .8rem 0;
+                transition-duration: 300ms;
+                cursor: pointer;
+                color: $gray-color;
+
+                &:hover {
+                    background-color: $gray-light-color;
+                    color: white;
+                }
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-sm;
+                    padding: .7rem 0;
+                }
+            }
+
+            li::first-letter {
+                text-transform: capitalize;
+            }
+        }
+    }
+
+    .choice-danger {
+        border: 2px solid $primary-danger;
+        color: $primary-danger;
+    }
+
+    .ul-active {
+        grid-template-rows: 1fr;
+    }
+
+    .shadow-active {
+        box-shadow: 0px 2px 5px 1px $gray-green-color;
+    }
+}
