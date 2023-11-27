@@ -297,7 +297,7 @@ export const FormAddProduct = ({ handleOnOffForm, dataUpdateProduct }: FormAddPr
                                             cssPlaceholder="placeholder"
                                             cssIcon="icon"
                                             cssValidasi="validasi"
-                                            maxInput={20}
+                                            maxInput={30}
                                             cssMaxInput="max-input"
                                             validasiInput={validasiProduct.name}
                                         />
