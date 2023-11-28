@@ -1,4 +1,4 @@
-import { FaUserAlt, FaUsers, FaHome, FaSortAmountUp } from "react-icons/fa"; // Icon User, all users, Home,Jumlah
+import { FaUserAlt, FaUsers, FaHome, FaSortAmountUp } from "react-icons/fa"; // Icon User, all users, Home, Jumlah
 import { PiLockKeyFill } from "react-icons/pi" // Closed Lock
 import { PiLockKeyOpenFill } from "react-icons/pi" // Open Lock
 import { IoIosCloseCircle, IoIosArrowDown } from "react-icons/io" // Close X, Arrow Down
@@ -11,7 +11,8 @@ import { FiLogOut } from "react-icons/fi" // logout,
 import { GrEdit } from "react-icons/gr" // pensil edit,
 import { SiNamecheap } from "react-icons/si" // Name,
 import { BiSolidCloudUpload } from "react-icons/bi" // Upload File,
+import { GoHeart, GoHeartFill } from "react-icons/go"; // Heart, Heart Full, 
 
 
 
-export { FaUserAlt, FaUsers, PiLockKeyFill, PiLockKeyOpenFill, IoIosCloseCircle, RiLockPasswordFill, BsCheck2All, MdDeselect, MdSelectAll, ImCheckboxChecked, BsTrashFill, IoIosArrowDown, BsCheckAll, RxDashboard, MdProductionQuantityLimits, RiArrowRightDoubleLine, RiArrowLeftDoubleLine, FaHome, FiLogOut, ImBin, GrEdit, MdOutlineModeEditOutline, SiNamecheap, FaSortAmountUp, MdOutlinePriceChange, BiSolidCloudUpload, BsFillImageFill, BsPlusCircle, BsArrowLeft, BsArrowRight };
+export { FaUserAlt, FaUsers, PiLockKeyFill, PiLockKeyOpenFill, IoIosCloseCircle, RiLockPasswordFill, BsCheck2All, MdDeselect, MdSelectAll, ImCheckboxChecked, BsTrashFill, IoIosArrowDown, BsCheckAll, RxDashboard, MdProductionQuantityLimits, RiArrowRightDoubleLine, RiArrowLeftDoubleLine, FaHome, FiLogOut, ImBin, GrEdit, MdOutlineModeEditOutline, SiNamecheap, FaSortAmountUp, MdOutlinePriceChange, BiSolidCloudUpload, BsFillImageFill, BsPlusCircle, BsArrowLeft, BsArrowRight, GoHeart, GoHeartFill };
