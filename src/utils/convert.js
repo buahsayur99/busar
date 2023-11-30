@@ -22,3 +22,11 @@ export const formattedNumber = (numbers) => {
 
     return formattedNumber;
 }
+
+export const faWishlist = (slide, dataWishlist) => {
+    const filterData = dataWishlist.filter((data) => {
+        return data.idProduct === slide.id
+    })
+
+    return filterData
+}
