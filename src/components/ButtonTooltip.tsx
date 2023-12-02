@@ -11,9 +11,10 @@ type ButtonTooltipProps = {
     positionX?: number;
     positionY?: number;
     onClicks: () => void;
+    ariaLabel?: string;
 }
 
-export const ButtonTooltip = ({ children, styleButton, textTooltip, styleTooltip, positionX, positionY, styleCssTooltip, styleCssButton, onClicks }: ButtonTooltipProps) => {
+export const ButtonTooltip = ({ children, styleButton, textTooltip, styleTooltip, positionX, positionY, styleCssTooltip, styleCssButton, onClicks, ariaLabel }: ButtonTooltipProps) => {
     const [active, setActive] = useState(false);
     const [position, setPosition] = useState({ top: 0, left: 0 })
 
@@ -33,17 +34,18 @@ export const ButtonTooltip = ({ children, styleButton, textTooltip, styleTooltip
                     style={{ ...styleCssButton }}
                     onClick={onClicks}
                     type="button"
+                    aria-label={ariaLabel}
                 >
                     {children}
                 </button>
 
                 {active && (
-                    <span
+                    <p
                         className={styles[`${styleTooltip}`]}
                         style={{ top: position.top, left: position.left, ...styleCssTooltip }}
                     >
                         {textTooltip}
-                    </span>
+                    </p>
                 )}
             </div>
         </>
