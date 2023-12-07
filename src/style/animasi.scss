@@ -228,6 +228,18 @@
     }
 }
 
+@-webkit-keyframes load-card {
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+@keyframes load-card {
+    100% {
+        background-position: -100% 0;
+    }
+}
+
 // class
 .scale-in-center {
     -webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -267,4 +279,18 @@
 .pulsate-bck {
     -webkit-animation: pulsate-bck 1.5s ease-in-out infinite both;
     animation: pulsate-bck 1.5s ease-in-out infinite both;
+}
+
+.loading-card {
+    background: linear-gradient(90deg,
+            $gray-light-color 30%,
+            $gray-lighter-color 38%,
+            $gray-lighter-color 40%,
+            $gray-light-color 48%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    animation: load 1.2s infinite;
+
+    -webkit-animation: load-card 1.2s infinite;
+    animation: load-card 1.2s infinite;
 }
