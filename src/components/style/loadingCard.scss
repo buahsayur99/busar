@@ -1,0 +1,50 @@
+.container-loading-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    .card {
+        width: 14rem;
+        height: auto;
+        border-radius: .5rem;
+        box-shadow: 0px 0px 5px 1px $gray-medium-color;
+        overflow: hidden;
+        padding: .5rem;
+
+        .img {
+            position: relative;
+            width: 100%;
+            height: 10rem;
+        }
+
+        .name {
+            width: 70%;
+            height: 1.3rem;
+            margin-top: .8rem;
+        }
+
+        .harga {
+            width: 50%;
+            height: 1.3rem;
+            margin-top: .8rem;
+        }
+
+        .button {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.2rem;
+
+            .heart {
+                width: 1.8rem;
+                height: 1.8rem;
+            }
+
+            .basket {
+                width: 4rem;
+                height: 1.8rem;
+                border-radius: .5rem;
+            }
+        }
+    }
+}

@@ -135,8 +135,15 @@ const apiProductSlice = createSlice({
     },
     extraReducers(builder) {
         builder
+            .addCase(getProduct.pending, (state) => {
+                state.isLoadingProduct = true
+            })
             .addCase(getProduct.fulfilled, (state, action) => {
+                state.isLoadingProduct = false
                 state.dataProductApi = action.payload
+            })
+            .addCase(getProduct.rejected, (state, action) => {
+                state.isLoadingProduct = false
             })
 
             .addCase(createProductsApi.pending, (state) => {

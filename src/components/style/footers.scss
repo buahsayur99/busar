@@ -1,0 +1,150 @@
+.container-footers {
+    overflow: hidden;
+    position: relative;
+    margin-top: 2rem;
+
+    .line {
+        border-top: 2px solid #000;
+        margin: 10px 0;
+
+        @include breakpoint-max(320px) {
+            border-top: 1px solid #000;
+        }
+    }
+
+    .line:nth-child(1) {
+        border-top: 2px solid hwb(0 0% 100% / 0.5);
+
+        @include breakpoint-max(320px) {
+            border-top: 1px solid hwb(0 0% 100% / 0.5);
+        }
+    }
+
+    .footer-head {
+        position: relative;
+        padding: 1rem 0;
+        background-color: $gray-lighter-color;
+        border-bottom: 1px solid $gray-color;
+
+        .flex {
+            display: flex;
+            justify-content: space-between;
+
+            @include breakpoint-max(800px) {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        .parent-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            @include breakpoint-max(500px) {
+                flex-direction: column;
+                gap: .5rem;
+            }
+
+            p {
+                color: $gray-color;
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-sm;
+                }
+            }
+
+            p::first-letter {
+                text-transform: capitalize;
+            }
+        }
+
+        .parent-sosial-media {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            @include breakpoint-max(500px) {
+                flex-direction: column;
+                gap: .5rem;
+            }
+
+            p {
+                color: $gray-color;
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-sm;
+                }
+            }
+
+            p::first-letter {
+                text-transform: capitalize;
+            }
+
+            .icon-sosial-media {
+                display: flex;
+                align-items: center;
+                gap: .3rem;
+
+                .icon {
+                    color: white;
+                    border-radius: 100%;
+                    font-size: $font-size-md;
+                    padding: .1rem .2rem .2rem .2rem;
+                    cursor: pointer;
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-sm;
+                    }
+                }
+
+                .tooltip {
+                    color: white;
+                    background-color: $gray-green-color;
+                    padding: .2rem .5rem;
+                    text-transform: capitalize;
+                    z-index: 1;
+                }
+            }
+        }
+    }
+
+    .footer-content {
+        background-color: $gray-lighter-color;
+
+        p {
+            padding: 1rem 0;
+            color: $gray-color;
+            line-height: 1.2rem;
+            text-align: justify;
+        }
+
+        p::first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+    .footer-footer {
+        background-color: black;
+        border-top: 1px solid $gray-color;
+        display: flex;
+        align-items: center;
+        gap: .2rem;
+        justify-content: center;
+
+        p {
+            padding: .5rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+
+            &:hover {
+                color: $primary-color;
+            }
+        }
+    }
+}

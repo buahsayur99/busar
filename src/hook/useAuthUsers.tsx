@@ -9,13 +9,13 @@ export const useAuthUsers = () => {
     const uuid = localStorage.getItem("uuid");
 
     const requestUserApi = useCallback(() => {
-        if (uuid) {
+        if (!dataLoginUsers) {
             dispatch(resetIsMessage());
 
             const link = `${process.env.REACT_APP_API_URL_LOCAL}/me/${uuid}`;
             dispatch(authLogin({ link }));
         }
-    }, [dispatch, uuid]);
+    }, [dispatch, uuid, dataLoginUsers]);
 
     const removeLocalStorage = useCallback((event: string) => {
         localStorage.removeItem(event);

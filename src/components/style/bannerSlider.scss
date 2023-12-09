@@ -1,0 +1,74 @@
+.container-banner-slider {
+    overflow: hidden;
+    position: relative;
+
+    img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        object-position: left;
+
+        @include breakpoint-max(1150px) {
+            height: 450px;
+        }
+
+        @include breakpoint-max(1000px) {
+            height: 380px;
+        }
+
+        @include breakpoint-max(800px) {
+            height: 300px;
+        }
+
+        @include breakpoint-max(630px) {
+            height: 230px;
+        }
+
+        @include breakpoint-max(440px) {
+            height: 180px;
+        }
+
+        @include breakpoint-max(340px) {
+            height: 135px;
+        }
+    }
+
+    .btn-prev-arrow,
+    .btn-next-arrow {
+        display: none;
+        position: absolute;
+        z-index: 1;
+        background-color: $primary-color-black65;
+        border-radius: 100%;
+        color: white;
+        font-size: $font-size-3xl;
+        top: 40%;
+    }
+
+    .btn-prev-arrow {
+        left: -2.5rem;
+        padding: 1rem 0rem 1rem 2rem;
+        transition-duration: 300ms;
+
+        &:hover {
+            padding: 1rem .5rem 1rem 1.5rem;
+            background-color: $primary-color;
+        }
+    }
+
+    .btn-next-arrow {
+        right: -2.5rem;
+        padding: 1rem 2rem 1rem 0rem;
+        transition-duration: 300ms;
+
+        &:hover {
+            padding: 1rem 1.5rem 1rem .5rem;
+            background-color: $primary-color;
+        }
+    }
+}
+
+.container-banner-slider:hover .btn-prev-arrow,
+.container-banner-slider:hover .btn-next-arrow {
+    display: inline;
+}

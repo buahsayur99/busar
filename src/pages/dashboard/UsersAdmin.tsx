@@ -51,8 +51,6 @@ export const UsersAdmin = () => {
 }
 
 const UsersTable = ({ dataUsersAll }: UsersAdminProps) => {
-    const theadData = ["no", "email", "password", "idAddress", "role"]
-
     return (
         <>
             <div className={styles["padding-table"]}>

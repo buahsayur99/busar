@@ -1,0 +1,214 @@
+.container-slider-product {
+    margin-top: 3rem;
+
+    .opposing-items {
+        display: flex;
+        justify-content: space-between;
+
+        h2 {
+            a {
+                color: $primary-color-black;
+                font-size: 1.5rem;
+                text-transform: capitalize;
+            }
+        }
+
+        a {
+            color: $primary-color;
+            font-size: $font-size-md;
+        }
+
+        a::first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+    .parent-slider {
+        margin: 1rem 1rem 0 1rem;
+
+        @include breakpoint-max(1150px) {
+            margin-top: 1rem;
+        }
+
+        @include breakpoint-max(1000px) {
+            margin-top: .5rem;
+        }
+
+        .flex-parent-card {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .padding-card {
+            padding: .6rem .6rem 1.5rem .6rem;
+
+            @include breakpoint-max(460px) {
+                padding: .6rem .5rem 1.5rem .5rem;
+            }
+
+            @include breakpoint-max(320px) {
+                padding: .6rem .2rem 1.5rem .2rem;
+            }
+
+            .card {
+                // width: 15rem;
+                box-shadow: 0px 0px 6px 0px $gray-medium-color;
+                background-color: rgb(255, 255, 255);
+                border-radius: 8px;
+
+                @include breakpoint-max(460px) {
+                    box-shadow: 0px 0px 5px 0px $gray-medium-color;
+                }
+
+                @include breakpoint-max(320px) {
+                    box-shadow: 0px 0px 3px 0px $gray-medium-color;
+                }
+
+                .card-top {
+                    padding: 5px;
+
+                    img {
+                        width: 100%;
+                        height: 50%;
+                        object-fit: cover;
+                    }
+                }
+
+                .card-bottom {
+                    padding: .5rem;
+
+                    h3 {
+                        font-size: $font-size-md;
+                        text-transform: capitalize;
+                        color: $gray-color;
+
+                        overflow-wrap: break-word;
+                        /* Memastikan bahwa kata-kata panjang dipecah untuk memenuhi lebar elemen */
+                        word-wrap: break-word;
+                        /* Properti yang sama dengan vendor prefix untuk dukungan browser yang lebih tua */
+
+                        @include breakpoint-max(770px) {
+                            font-size: $font-size-base;
+                        }
+
+                        @include breakpoint-max(460px) {
+                            font-size: $font-size-sm;
+                        }
+
+                        @include breakpoint-max(360px) {
+                            font-size: $font-size-xs;
+                        }
+                    }
+
+                    p {
+                        font-size: $font-size-xl;
+                        color: black;
+                        margin-top: .7rem;
+
+                        overflow-wrap: break-word;
+                        /* Memastikan bahwa kata-kata panjang dipecah untuk memenuhi lebar elemen */
+                        word-wrap: break-word;
+                        /* Properti yang sama dengan vendor prefix untuk dukungan browser yang lebih tua */
+
+                        @include breakpoint-max(770px) {
+                            font-size: $font-size-lg;
+                        }
+
+                        @include breakpoint-max(460px) {
+                            font-size: $font-size-md;
+                        }
+
+                        @include breakpoint-max(428px) {
+                            font-size: $font-size-base;
+                        }
+
+                        @include breakpoint-max(360px) {
+                            font-size: $font-size-sm;
+                        }
+                    }
+
+                    p::first-letter {
+                        text-transform: capitalize;
+                    }
+
+                    .parent-button {
+                        position: relative;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 100%;
+                        margin: 1.5rem 0 .5rem 0;
+
+                        @include breakpoint-max(360px) {
+                            margin: .7rem 0 .2rem 0;
+                        }
+
+                        .icon-basket {
+                            color: white;
+                            background-color: $primary-color;
+                            padding: .4rem 1.8rem;
+                            font-size: $font-size-xl;
+                            border-radius: .7rem;
+
+                            &:hover {
+                                background-color: $primary-color-hover;
+                            }
+
+                            @include breakpoint-max(770px) {
+                                padding: .35rem 1.5rem;
+                            }
+
+                            @include breakpoint-max(460px) {
+                                padding: .35rem 1.1rem;
+                                font-size: $font-size-lg;
+                                border-radius: .5rem;
+                            }
+
+                            @include breakpoint-max(360px) {
+                                padding: .35rem .9rem;
+                                font-size: $font-size-md;
+                            }
+
+                            @include breakpoint-max(320px) {
+                                padding: .25rem .8rem;
+                                font-size: $font-size-base;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .custom-prev-arrow,
+        .custom-next-arrow {
+            position: absolute;
+            z-index: 1;
+            top: 43%;
+            background-color: $gray-color;
+            color: white;
+            cursor: pointer;
+            font-size: $font-size-lg;
+            border-radius: 100%;
+            padding: 4px 5px 5px 5px;
+
+            &:hover {
+                background-color: $primary-color;
+            }
+        }
+
+        .custom-prev-arrow {
+            left: -.6rem;
+        }
+
+        .custom-next-arrow {
+            right: -.7rem;
+        }
+    }
+
+    .product-min-5 {
+        width: 16rem;
+        margin: 0 auto;
+    }
+}

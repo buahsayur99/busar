@@ -6,6 +6,7 @@ import apiAddressSlice from "./actions/apiAddressSlice";
 import onOffSlice from './actions/onOffSlice';
 import apiProductSlice from './actions/apiProductSlice';
 import apiCategory from './actions/apiCategory';
+import apiWishlist from './actions/apiWishlist';
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     onOffSlice: onOffSlice,
     apiProduct: apiProductSlice,
     apiCategory: apiCategory,
+    apiWishlist: apiWishlist,
   },
 });
 

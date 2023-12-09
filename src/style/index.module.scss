@@ -29,6 +29,12 @@
 @import "../components/style/inputTextArea";
 @import "../components/style/detailInfoTable";
 @import "../components/style/bigImage";
+@import "../components/style/imageArray";
+@import "../components/style/heartIcon";
+@import "../components/style/footers";
+@import "../components/style/logo";
+@import "../components/style/loadingCard";
+@import "../components/style/bannerSlider";
 
 // Features /Navbar
 @import "../features/navbar/style/navbar";
@@ -46,15 +52,19 @@
 @import "../features/pengaturanProfile/style/formAddress";
 @import "../features/pengaturanProfile/style/displayAddress";
 
+// Pages
+@import "../pages/style/notFound";
 // Pages /PengaturanProfile
 @import "../pages/pengaturanProfile/style/general";
 @import "../pages/pengaturanProfile/style/address";
-@import "../pages/style/notFound";
 // Pages /Dashboard
 @import "../pages/dashboard/components/styles/navbarDashboard";
 @import "../pages/dashboard/components/styles/formAddProduct";
 @import "../pages/dashboard/components/styles/tableDataAdmin";
 @import "../pages/dashboard/style/productAdmin";
+// Pages /Home
+@import "../pages/home/style/home";
+@import "../pages/home/components/style/sliderProduct";
 
 // Global Css
 @import "index.scss";

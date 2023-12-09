@@ -1,0 +1,7 @@
+.container-logo {
+    img {
+        @include breakpoint-max(320px) {
+            width: 120px;
+        }
+    }
+}
