@@ -26,28 +26,26 @@ export const ButtonTooltip = ({ children, styleButton, textTooltip, styleTooltip
 
     return (
         <>
-            <div style={{ position: "relative" }}>
-                <button
-                    onMouseMove={(event) => handlePositionTooltip(event)}
-                    onMouseLeave={() => setActive(false)}
-                    className={styles[`${styleButton}`]}
-                    style={{ ...styleCssButton }}
-                    onClick={onClicks}
-                    type="button"
-                    aria-label={ariaLabel}
-                >
-                    {children}
-                </button>
+            <button
+                onMouseMove={(event) => handlePositionTooltip(event)}
+                onMouseLeave={() => setActive(false)}
+                className={styles[`${styleButton}`]}
+                style={{ ...styleCssButton }}
+                onClick={onClicks}
+                type="button"
+                aria-label={ariaLabel}
+            >
+                {children}
+            </button>
 
-                {active && (
-                    <p
-                        className={styles[`${styleTooltip}`]}
-                        style={{ top: position.top, left: position.left, ...styleCssTooltip }}
-                    >
-                        {textTooltip}
-                    </p>
-                )}
-            </div>
+            {active && (
+                <p
+                    className={styles[`${styleTooltip}`]}
+                    style={{ top: position.top, left: position.left, ...styleCssTooltip }}
+                >
+                    {textTooltip}
+                </p>
+            )}
         </>
     )
 }
