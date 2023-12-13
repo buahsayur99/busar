@@ -12,11 +12,20 @@
         padding: .3rem .6rem .6rem .6rem;
         border-radius: 100%;
         cursor: pointer;
+
+        @include breakpoint-max(450px) {
+            font-size: 1.35rem;
+        }
+
+        @include breakpoint-max(360px) {
+            font-size: 1.3rem;
+            padding: .2rem .5rem .5rem .5rem;
+        }
     }
 
     .bg-black-mobile-users {
         position: fixed;
-        top: 5rem;
+        top: 4.5rem;
         left: 0;
         width: 100%;
         height: 100%;
@@ -40,6 +49,10 @@
                 margin-bottom: 3rem;
                 cursor: pointer;
 
+                @include breakpoint-max(320px){
+                    gap: 1rem;
+                }
+
                 .users-profile {
                     background-color: $gray-medium-color;
                     color: white;
@@ -48,6 +61,13 @@
                     padding-top: .3rem;
                     padding-bottom: 1rem;
                     border-radius: 100%;
+
+                    @include breakpoint-max(320px){
+                        font-size: 3rem;
+                        padding: 0 1rem;
+                        padding-top: .3rem;
+                        padding-bottom: 1rem;
+                    }
                 }
 
                 .email-users {
@@ -75,9 +95,11 @@
                     align-items: center;
                     padding-top: 0;
                 }
-
+                ul{
+                    display:grid;
+                    gap:.5rem;
+                }
                 li {
-                    font-size: $font-size-xl;
                     cursor: pointer;
 
                     .btn-users {
@@ -86,9 +108,14 @@
                         transition-duration: 300ms;
                         padding: 0;
                         color: black;
+                        font-size: 1.4rem;
 
                         &:hover {
                             color: $primary-color;
+                        }
+
+                        @include breakpoint-max(320px){
+                            font-size: $font-size-xl;
                         }
                     }
                 }
