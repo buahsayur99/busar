@@ -57,8 +57,10 @@ export const Footers = () => {
                         <div className={styles["parent-sosial-media"]}>
                             <p>temukan kami di:</p>
                             <div className={styles["icon-sosial-media"]}>
-                                {dataSosialMedia.map((data) => (
-                                    <IconTootip data={data} />
+                                {dataSosialMedia.map((data,index) => (
+                                    <div key={index}>
+                                        <IconTootip data={data} />
+                                    </div>
                                 ))}
                             </div>
                         </div>
