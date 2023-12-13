@@ -63,8 +63,9 @@ export const ImageArray = ({ imageUrl, indexs }: ImagesArrayProps) => {
                 onMouseLeave={() => setVisibleIconArrow(false)}
             >
                 <Slider {...settings}>
-                    {imageUrl.map((url) => (
+                    {imageUrl.map((url,index) => (
                         <img
+                            key={index}
                             src={`${process.env.REACT_APP_API_URL_LOCAL}/${url}`}
                             alt={imageUrl[0]}
                             loading={indexs < 5 ? "eager" : "lazy"}
