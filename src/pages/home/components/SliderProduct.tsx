@@ -113,7 +113,7 @@ export const SliderProduct = () => {
                                     <div key={index} className={styles["padding-card"]}>
                                         <div className={`${styles["card"]} `}>
                                             <div className={`${styles["card-top"]}`}>
-                                                <ImageArray indexs={index} imageUrl={convertObjectToArray(slide.url)} />
+                                                <ImageArray indexs={index} imageUrl={convertObjectToArray(slide.url)} nameProducts={slide.name} />
                                             </div>
                                             <div className={styles["card-bottom"]}>
                                                 <h3>{slide.name}</h3>
