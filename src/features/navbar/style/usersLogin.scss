@@ -16,6 +16,10 @@
         padding: .3rem .6rem .6rem .6rem;
         border-radius: 100%;
         cursor: pointer;
+
+        @include breakpoint-max(800px) {
+            font-size: 1.3rem;
+        }
     }
 
     .parent-users-hover {

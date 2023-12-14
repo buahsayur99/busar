@@ -1,14 +1,14 @@
 .container-logo {
     img {
-        @include breakpoint-max(500px) {
+        @include breakpoint-max(800px) {
             width: 120px;
         }
 
-        @include breakpoint-max(360px) {
+        @include breakpoint-max(600px) {
             width: 110px;
         }
 
-        @include breakpoint-max(320px) {
+        @include breakpoint-max(450px) {
             width: 100px;
         }
     }

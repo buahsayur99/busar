@@ -1,97 +1,126 @@
 // import React from "react"
 import styles from "../../style/index.module.scss";
-import { HiOutlineBars4 } from "react-icons/hi2";
-import { Navbar, Button, Stack } from "react-bootstrap";
-import SearchCatatan from "./SearchCatatan";
-import { BsSearch } from "react-icons/bs";
+import SearchProduct from "./SearchProduct";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { activeSearch } from "../../app/actions/searchCatatanSlice";
 import { Buttons } from "../../components/Buttons";
 import { useScrollNavbar } from "../../hook/useScrollNavbar";
 import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
 import { UsersLogin } from "./UsersLogin";
 import { activeFormTransition } from "../../app/actions/formLoginRegisterSlice";
 import { useAuthUsers } from "../../hook/useAuthUsers";
-import { Link } from "react-router-dom";
+import { Logo } from "../../components/Logo";
+import { GoHeartFill, SlBasket, BsSearch } from "../../utils/icons";
+import { ButtonTooltip } from "../../components/ButtonTooltip";
+import { useState } from "react";
 
 export const NavigationBar = () => {
-    const { activeInputSearch } = useAppSelector(state => state.searchCatatanSlice);
-    const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
-    const { toggle } = useBodyScrollLock();
     const { scrolled } = useScrollNavbar();
-    // Auth Login Users
-    useAuthUsers();
-
-    const dispatch = useAppDispatch()
 
     return (
         <>
-            <div className="shadow-sm">
-                <Navbar
-                    className={`
-                    ${!scrolled ? "" : styles["nav-fixed"]} 
-                    ${styles["global-container"]} ${styles.nav}`
-                    }
-                >
-                    <Stack className="flex-row position-relative me-3 me-md-5" >
-                        {/* Search Catatan dimensi Tablet and Mobile */}
-                        <Stack
-                            data-testid="input-search-mobile"
-                            className={`${styles["parent-search-mobile"]} ${!activeInputSearch ? styles["search-notActive"] : styles["search-active"]}`}
-                        >
-                            <SearchCatatan tipe={"mobile"} />
-                        </Stack>
-
-                        {/* Button Sidebar */}
-                        <Button className={`${styles["btn-menu-utama-nav"]} align-self-center me-3`}>
-                            <HiOutlineBars4 />
-                        </Button>
-
-                        {/* Icon Name Website */}
-                        <Link
-                            to={"/"}
-                            className={`${styles["judul-nav"]} align-self-center`}
-                        >
-                            Keep Aduh
-                        </Link>
-
-                        {/* Parent Search Dimensi Pc */}
-                        <Stack className={styles["parent-search"]}>
-                            {/* Search Dimensi PC */}
-                            <Stack className={`${styles["search-catatan"]} justify-content-center align-self-end`}>
-                                <SearchCatatan tipe={"noMobile"} />
-                            </Stack>
-
-                            {/* Button Active Search Dimensi Tablet And Mobile */}
-                            <Button
-                                className={`${styles["btn-search-on-off"]}`}
-                                onClick={() => dispatch(activeSearch(!activeInputSearch))}
-                            >
-                                <BsSearch />
-                            </Button>
-                        </Stack>
-                    </Stack>
-
-                    {/* Button Login */}
-                    {dataLoginUsers?.uuid === undefined
-                        ? (
-                            <Buttons
-                                styleScss={"btn"}
-                                stylesBtn={{ width: "6rem", height: "2.5rem", fontSize: "1.2rem" }}
-                                onClicks={() => {
-                                    toggle(true)
-                                    dispatch(activeFormTransition({ onOffForm: true }))
-                                }}
-                            >
-                                Login
-                            </Buttons>
-                        )
-                        : (
-                            <UsersLogin />
-                        )
-                    }
-                </Navbar >
+            <div
+                className={`${styles["fixed-navigation-bar-invisible"]} ${scrolled && styles["fixeds"]}`}
+            >
+                <Navbar />
             </div>
+
+        </>
+    )
+}
+
+const Navbar = () => {
+    // State
+    const [input, setInput] = useState("");
+    const [searchMobile, setSearchMobile] = useState(false);
+    // useAppSelector
+    const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
+    const { toggle } = useBodyScrollLock();
+    // Auth Login Users
+    useAuthUsers();
+    const dispatch = useAppDispatch();
+
+    return (
+        <>
+            <nav className={`${styles["container-navigation-bar"]}`}>
+                <div className={styles["global-container"]}>
+                    <div className={styles["toolbar-container"]}>
+                        <div className={styles["toolbar-left"]}>
+                            {/* Logo */}
+                            <div className={styles["parent-logo"]}>
+                                <Logo />
+                            </div>
+                            {/* Search Pc */}
+                            <div className={styles["parent-search-pc"]}>
+                                <SearchProduct inputs={input} setInputs={(input) => setInput(input)} />
+                            </div>
+
+                            {searchMobile && (
+                                <div className={`
+                                    ${styles["parent-search-600"]}
+                                    ${searchMobile && styles["visible-search-mobile-navbar"]}
+                                `}>
+                                    <SearchProduct inputs={input} setInputs={(input) => setInput(input)} onClicks={() => setSearchMobile(false)} />
+                                </div>
+                            )}
+                        </div>
+                        <div className={styles["toolbar-right"]}>
+                            {/* Search Mobile */}
+                            {!searchMobile && (
+                                <ButtonTooltip
+                                    styleButton={"btn-search-navigation"}
+                                    textTooltip={"see wishlist"}
+                                    styleTooltip={"tooltip"}
+                                    positionX={13}
+                                    positionY={17}
+                                    onClicks={() => setSearchMobile(true)}
+                                >
+                                    <BsSearch />
+                                </ButtonTooltip>
+                            )}
+
+                            <ButtonTooltip
+                                styleButton={"btn-heart"}
+                                textTooltip={"see wishlist"}
+                                styleTooltip={"tooltip"}
+                                positionX={13}
+                                positionY={17}
+                                onClicks={() => { }}
+                            >
+                                <GoHeartFill />
+                            </ButtonTooltip>
+
+                            <ButtonTooltip
+                                styleButton={"btn-basket"}
+                                textTooltip={"see basket"}
+                                styleTooltip={"tooltip"}
+                                positionX={-35}
+                                positionY={25}
+                                onClicks={() => { }}
+                            >
+                                <SlBasket />
+                            </ButtonTooltip>
+                            {/* Button Login */}
+                            {dataLoginUsers?.uuid === undefined
+                                ? (
+                                    <Buttons
+                                        styleScss={"btn"}
+                                        stylesBtn={{ width: "6rem", height: "2.5rem", fontSize: "1.2rem" }}
+                                        onClicks={() => {
+                                            toggle(true)
+                                            dispatch(activeFormTransition({ onOffForm: true }))
+                                        }}
+                                    >
+                                        Login
+                                    </Buttons>
+                                )
+                                : (
+                                    <UsersLogin />
+                                )
+                            }
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </>
     )
 }

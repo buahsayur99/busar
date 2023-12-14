@@ -1,0 +1,145 @@
+.search-auto-complete-wrapper {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    padding-bottom: 1rem;
+    overflow: auto;
+
+    .search-auto-complete {
+        position: relative;
+        width: 50rem;
+        box-shadow: 0px 0px 4px 0px $gray-color;
+        margin-left: 13.2rem;
+        margin-top: 15px;
+        z-index: 0;
+
+        @include breakpoint-max(1270px) {
+            width: 63%;
+        }
+
+        @include breakpoint-max(1200px) {
+            width: 62%;
+            margin-left: 12rem;
+        }
+
+        @include breakpoint-max(768px) {
+            margin-left: 10.9rem;
+        }
+
+        @include breakpoint-max(700px) {
+            margin-left: 0rem;
+            width: 100%;
+        }
+
+        @include breakpoint-max(450px) {
+            box-shadow: 0px 3px 4px 0px $gray-color;
+        }
+
+        .search-auto-complete-group {
+            position: relative;
+            background-color: $primary-color-white;
+
+            &::before {
+                content: "";
+                position: absolute;
+                background-color: rgb(255, 255, 255);
+                top: -.4rem;
+                left: 1rem;
+                width: 1rem;
+                height: 1rem;
+                transform: rotate(45deg);
+                box-shadow: 0px 0px 4px 0px $gray-color;
+                z-index: -1;
+
+                @include breakpoint-max(700px) {
+                    display: none;
+                }
+            }
+
+            .search-auto-complete-header-product {
+                font-size: $font-size-base;
+                text-transform: uppercase;
+                color: $gray-color;
+                padding: 1rem;
+
+                @include breakpoint-max(375px) {
+                    font-size: $font-size-sm;
+                }
+            }
+
+            ul {
+                padding: 1rem;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+                gap: 1rem;
+                overflow: auto;
+                max-height: 350px;
+
+                @include breakpoint-max(450px) {
+                    gap: .3rem;
+                }
+
+                @include breakpoint-max(320px) {
+                    max-height: 280px;
+                }
+
+                li {
+                    a {
+                        display: flex;
+                        gap: .5rem;
+                        padding: .5rem;
+
+                        &:hover {
+                            background-color: $gray-lighter-color;
+                        }
+
+                        .search-auto-complete-left {
+                            img {
+                                width: 60px;
+                            }
+                        }
+
+                        .search-auto-complete-right {
+                            .search-auto-complete-product-tittle {
+                                text-transform: capitalize;
+                                color: $primary-color-black;
+                            }
+
+                            .search-auto-complete-product-price {
+                                color: $primary-color-black;
+                                font-weight: bold;
+                                margin-top: .5rem;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .search-auto-complete-view-all {
+                display: flex;
+
+                a {
+                    text-align: center;
+                    font-size: $font-size-sm;
+                    box-shadow: 0px -1px 0px 0px $gray-medium-color;
+                    width: 100%;
+                    padding: 1rem;
+                    color: $primary-color-black;
+
+                    &:hover {
+                        background-color: $gray-lighter-color;
+                    }
+
+                    .icon {
+                        transform: translateX(.5rem);
+                        transition-duration: 300ms;
+                    }
+
+                    &:hover .icon {
+                        transform: translateX(1rem);
+                    }
+                }
+            }
+        }
+    }
+}

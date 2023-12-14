@@ -1,0 +1,97 @@
+.container-search-product {
+    form {
+        width: 50rem;
+        position: relative;
+        display: flex;
+        align-items: center;
+        z-index:2;
+
+        @include breakpoint-max(1270px) {
+            width: 100%;
+        }
+
+        .btn-close,
+        .btn-search,
+        .btn-arrow-left {
+            padding: 0;
+            position: absolute;
+            font-size: $font-size-1xl;
+            background-color: transparent;
+        }
+
+        .btn-search {
+            font-size: 1.4rem;
+            left: 1rem;
+
+            @include breakpoint-max(800px) {
+                font-size: 1.3rem;
+            }
+
+            @include breakpoint-max(600px) {
+                display: none;
+            }
+        }
+
+        .btn-close {
+            font-size: $font-size-1xl;
+            right: 1rem;
+
+            @include breakpoint-max(800px) {
+                font-size: 1.5rem;
+            }
+        }
+
+        .btn-arrow-left {
+            font-size: 1.4rem;
+            background-color: transparent;
+            border-radius: 100%;
+            padding: .3rem;
+            left: .5rem;
+            display: none;
+
+            &:hover {
+                background-color: $gray-light-color;
+            }
+
+            @include breakpoint-max(600px) {
+                display: inline;
+            }
+        }
+
+        .tooltip {
+            position: fixed;
+            background-color: $primary-color-black65;
+            color: white;
+            padding: .3rem .4rem;
+            text-transform: capitalize;
+            font-size: $font-size-sm;
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-xs;
+            }
+        }
+
+        .input-search {
+            background-color: $gray-lighter-color;
+            font-size: $font-size-xl;
+            padding: .9rem 3rem;
+            border-radius: .5rem;
+            width: 100%;
+
+            &:focus {
+                outline: none;
+            }
+
+            @include breakpoint-max(800px) {
+                font-size: $font-size-lg;
+                padding: .8rem 3rem;
+            }
+        }
+
+        .hidden-mobile {
+            @include breakpoint-max(650px) {
+                display: none;
+            }
+        }
+    }
+}

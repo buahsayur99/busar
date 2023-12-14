@@ -1,0 +1,199 @@
+// Animasi
+@-webkit-keyframes slide-in-blurred-top {
+    0% {
+        -webkit-transform: translateY(-1000px) scaleY(1) scaleX(1);
+        transform: translateY(-1000px) scaleY(1) scaleX(1);
+        -webkit-transform-origin: 50% 0%;
+        transform-origin: 50% 0%;
+        -webkit-filter: blur(40px);
+        filter: blur(40px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+        transform: translateY(0) scaleY(1) scaleX(1);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-filter: blur(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-blurred-top {
+    0% {
+        -webkit-transform: translateY(-1000px) scaleY(1) scaleX(1);
+        transform: translateY(-1000px) scaleY(1) scaleX(1);
+        -webkit-transform-origin: 50% 0%;
+        transform-origin: 50% 0%;
+        -webkit-filter: blur(40px);
+        filter: blur(40px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+        transform: translateY(0) scaleY(1) scaleX(1);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-filter: blur(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+.fixed-navigation-bar-invisible {
+    position: static;
+    width: 100%;
+    z-index: $z-index-navbar;
+    transition: 300ms;
+    top: -80px;
+}
+
+.fixed-navigation-bar-visible {
+    position: fixed;
+    width: 100%;
+    z-index: $z-index-navbar;
+    transition: 300ms;
+    top: 0px;
+}
+
+.fixeds {
+    position: fixed;
+    top: 0px;
+}
+
+.container-navigation-bar {
+    position: relative;
+    background-color: $primary-color-white;
+    padding: .8rem 0;
+    box-shadow: 0px 0px 5px 1px $primary-color-black;
+    z-index: $z-index-navbar;
+
+    @include breakpoint-max(800px) {
+        padding: .7rem 0;
+    }
+
+    .toolbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+
+        @include breakpoint-max(700px) {
+            gap: 1rem;
+        }
+
+        @include breakpoint-max(600px) {
+            gap: .7rem;
+        }
+
+        .toolbar-left {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: 3rem;
+
+            @include breakpoint-max(1200px) {
+                gap: 2rem;
+            }
+
+            @include breakpoint-max(700px) {
+                gap: 1rem;
+            }
+
+            @include breakpoint-max(360px) {
+                position: static;
+            }
+
+            .parent-logo {
+                display: flex;
+                align-items: center;
+            }
+
+            .parent-search-pc {
+                width: 100%;
+
+                @include breakpoint-max(600px) {
+                    display: none;
+                }
+            }
+
+            .parent-search-600 {
+                width: 100%;
+                position: absolute;
+                right: 0;
+                overflow: hidden;
+                display: none;
+
+                @include breakpoint-max(600px) {
+                    display: inline;
+                }
+            }
+        }
+
+        .toolbar-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+
+            @include breakpoint-max(650px) {
+                gap: 1rem;
+            }
+
+            .btn-heart,
+            .btn-basket {
+                position: relative;
+                font-size: $font-size-1xl;
+                color: $gray-color;
+                padding: 0;
+                background-color: transparent;
+                cursor: pointer;
+                z-index: 1;
+
+                @include breakpoint-max(800px) {
+                    font-size: 1.5rem;
+                }
+
+                @include breakpoint-max(800px) {
+                    font-size: 1.4rem;
+                }
+
+                @include breakpoint-max(360px) {
+                    font-size: 1.3rem;
+                }
+            }
+
+            .tooltip {
+                position: fixed;
+                padding: .3rem .5rem;
+                text-transform: capitalize;
+                font-size: $font-size-sm;
+                background-color: $primary-color-black65;
+                color: white;
+                z-index: 1;
+            }
+
+            .btn-search-navigation {
+                color: $gray-color;
+                font-size: 1.4rem;
+                background-color: transparent;
+                display: none;
+
+                @include breakpoint-max(600px) {
+                    display: inline;
+                }
+
+                @include breakpoint-max(450px) {
+                    font-size: 1.3rem;
+                }
+
+                @include breakpoint-max(360px) {
+                    font-size: 1.25rem;
+                }
+            }
+        }
+    }
+}

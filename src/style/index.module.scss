@@ -37,11 +37,12 @@
 @import "../components/style/bannerSlider";
 
 // Features /Navbar
-@import "../features/navbar/style/navbar";
-@import "../features/navbar/style/searchCatatan";
+@import "../features/navbar/style/navigationBar";
+@import "../features/navbar/style/searchProduct";
 @import "../features/navbar/style/usersLogin";
 @import "../features/navbar/style/mobileUsers";
 @import "../features/navbar/style/dashboardAdmin";
+@import "../features/navbar/style/autoComplete";
 // Features /FormLoginRegister
 @import "../features/formLoginRegister/style/formLoginRegister";
 @import "../features/formLoginRegister/style/login";
