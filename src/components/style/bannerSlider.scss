@@ -44,14 +44,24 @@
         font-size: $font-size-3xl;
         top: 40%;
 
-        @include breakpoint-max(450px){
-            top: 30%;
-            font-size:$font-size-2xl;
+        @include breakpoint-max(800px) {
+            top: 35%;
+            font-size: 2.3rem;
         }
 
-        @include breakpoint-max(320px){
+        @include breakpoint-max(630px) {
+            top: 32%;
+            font-size: 2rem;
+        }
+
+        @include breakpoint-max(450px) {
+            top: 30%;
+            font-size: $font-size-2xl;
+        }
+
+        @include breakpoint-max(320px) {
             top: 26%;
-            font-size:$font-size-1xl;
+            font-size: $font-size-1xl;
         }
     }
 
