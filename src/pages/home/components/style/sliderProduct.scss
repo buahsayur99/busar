@@ -1,6 +1,14 @@
 .container-slider-product {
     margin-top: 3rem;
 
+    @include breakpoint-max(450px){
+        margin-top: 2rem;
+    }
+
+    @include breakpoint-max(320px){
+        margin-top: 1.5rem;
+    }
+
     .opposing-items {
         display: flex;
         justify-content: space-between;
