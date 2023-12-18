@@ -11,6 +11,7 @@ import { DashboardAdmin } from "./pages/dashboard/DashboardAdmin";
 import { ProductAdmin } from "./pages/dashboard/ProductAdmin";
 import { UsersAdmin } from "./pages/dashboard/UsersAdmin";
 import React, { useEffect } from "react";
+import { CollectProduct } from "./pages/collections/CollectProduct";
 
 function App() {
   const { isLoadingAuth } = useAppSelector(state => state.apiUsers);
@@ -50,6 +51,9 @@ function App() {
                 <Route path="product" element={<ProductAdmin />} />
                 <Route path="user" element={<UsersAdmin />} />
               </Route>
+
+              {/* collections */}
+              <Route path="collections/sayur-buah/products/:nameProduct" element={<CollectProduct />} />
 
               {/* Not Found */}
               <Route path="*" element={<NotFound />} />

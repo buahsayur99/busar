@@ -6,11 +6,12 @@ import { Link } from "react-router-dom";
 
 type ImagesArrayProps = {
     imageUrl: string[];
-    indexs: number;
-    nameProducts?: string
+    indexs?: number;
+    nameProducts?: string;
+    faHandleBigImage?: (url: string) => void
 }
 
-export const ImageArray = ({ imageUrl, indexs, nameProducts }: ImagesArrayProps) => {
+export const ImageArray = ({ imageUrl, indexs, nameProducts, faHandleBigImage }: ImagesArrayProps) => {
     const [visibleIconArrow, setVisibleIconArrow] = useState(false);
 
     const CustomPrevArrow = (props: any) => {
@@ -66,30 +67,29 @@ export const ImageArray = ({ imageUrl, indexs, nameProducts }: ImagesArrayProps)
             >
                 <Slider {...settings}>
                     {imageUrl.map((url, index) => (
-                        <>
+                        <div key={index}>
                             {nameProducts ? (
                                 <Link to={`/collections/sayur-buah/products/${nameProducts}`}>
                                     <img
-                                        key={index}
                                         src={`${process.env.REACT_APP_API_URL_LOCAL}/${url}`}
                                         alt={imageUrl[0]}
-                                        loading={indexs < 5 ? "eager" : "lazy"}
+                                        loading={indexs !== undefined && indexs < 5 ? "eager" : "lazy"}
                                         width={300}
                                         height={300}
                                     />
                                 </Link>
                             ) : (
                                 <img
-                                    key={index}
                                     src={`${process.env.REACT_APP_API_URL_LOCAL}/${url}`}
                                     alt={imageUrl[0]}
-                                    loading={indexs < 5 ? "eager" : "lazy"}
+                                    loading={indexs !== undefined && indexs < 5 ? "eager" : "lazy"}
                                     width={300}
                                     height={300}
+                                    onClick={() => faHandleBigImage && faHandleBigImage(url)}
                                 />
                             )}
 
-                        </>
+                        </div>
                     ))}
                 </Slider>
             </div>

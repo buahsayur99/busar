@@ -13,6 +13,8 @@ import { useGetWishlist } from "../../../hook/useGetWishlist";
 import { activeFormTransition } from "../../../app/actions/formLoginRegisterSlice";
 import { LoadingCard } from "../../../components/LoadingCard";
 import { Link } from "react-router-dom";
+import { useGetApiCart } from "../../../hook/useGetApiCart";
+import { productProps } from "../../../app/actions/apiProductSlice";
 
 export const SliderProduct = () => {
     const arrayLoadingCard = [1, 2, 3, 4, 5]
@@ -22,7 +24,8 @@ export const SliderProduct = () => {
     const { dataWishlist, isMessageWishlist } = useAppSelector(state => state.apiWishlist);
     const dispatch = useAppDispatch();
     // Custome Hook
-    useGetProduct(); // Get Data Product
+    useGetProduct(); // Get Api's Product
+    const { handleAddCart } = useGetApiCart(); // Get Api's Cart
     const { handleGetApiWishlist } = useGetWishlist(); // Get Data Wishlist
 
     const CustomPrevArrow = (props: any) => {
@@ -84,10 +87,30 @@ export const SliderProduct = () => {
         ]
     };
 
+    const baseStyleTooltips = {
+        color: "red",
+        fontSize: ".6rem"
+    }
+
+    const settingHeart = {
+        cssButton: "icon-heart",
+        cssTooltipRemove: "text-tooltip-remove",
+        cssTooltipAdd: "text-tooltip-add",
+        textTooltipRemove: "remove from wishlist",
+        textTooltipAdd: "add from wishlist",
+        styleButtonFill: { color: "red" },
+        styleTooltips: { color: "red" },
+        styleTooltip: {
+            ...baseStyleTooltips,
+        },
+        positionX: 0,
+        positionY: 0,
+        arialLabelFill: "heart fill",
+        arialLabelNoFill: "heart",
+    }
+
     const handleLoginRedirect = () => {
-        if (!dataLoginUsers) {
-            dispatch(activeFormTransition({ onOffForm: true }))
-        }
+        if (!dataLoginUsers) return dispatch(activeFormTransition({ onOffForm: true }))
     }
 
     useEffect(() => {
@@ -119,12 +142,15 @@ export const SliderProduct = () => {
                                                 <h3>{slide.name}</h3>
                                                 <p>rp {formattedNumber(slide.price)}</p>
                                                 <div className={styles["parent-button"]}>
-                                                    <HeartIcon onClicks={() => handleLoginRedirect()} dataWishlist={faWishlist(slide, dataWishlist)} products={slide} />
+                                                    <HeartIcon settingHeart={settingHeart} onClicks={() => handleLoginRedirect()} dataWishlist={faWishlist(slide, dataWishlist)} products={slide} />
                                                     <button
                                                         type="button"
                                                         aria-label="basket"
                                                         className={styles["icon-basket"]}
-                                                        onClick={() => handleLoginRedirect()}
+                                                        onClick={() => {
+                                                            handleLoginRedirect()
+                                                            handleAddCart(slide)
+                                                        }}
                                                     >
                                                         <SlBasket />
                                                     </button>

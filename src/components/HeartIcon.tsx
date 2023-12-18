@@ -7,12 +7,13 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { productProps } from "../app/actions/apiProductSlice";
 
 export type HeartIconProps = {
+    settingHeart?: any;
     dataWishlist: DataWishlistProps[];
     products: productProps;
     onClicks: () => void;
 }
 
-export const HeartIcon = ({ dataWishlist, products, onClicks }: HeartIconProps) => {
+export const HeartIcon = ({ settingHeart, dataWishlist, products, onClicks }: HeartIconProps) => {
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
     const dispatch = useAppDispatch();
 
@@ -35,25 +36,29 @@ export const HeartIcon = ({ dataWishlist, products, onClicks }: HeartIconProps) 
                 {dataWishlist.length !== 0 ? (
                     <>
                         <ButtonTooltip
-                            styleButton={"icon-heart"}
-                            textTooltip={"remove from wishlist"}
-                            styleCssButton={{ color: "red" }}
-                            styleTooltip={"tooltip-heart-icon-remove"}
-                            styleCssTooltip={{ color: "white", fontSize: ".8rem" }}
+                            styleButton={settingHeart && settingHeart.cssButton ? settingHeart.cssButton : ""}
+                            textTooltip={settingHeart && settingHeart.textTooltipRemove ? settingHeart.textTooltipRemove : ""}
+                            styleCssButton={settingHeart && settingHeart.styleButtonFill ? settingHeart.styleButtonFill : {}}
+                            styleTooltip={settingHeart && settingHeart.cssTooltipRemove ? settingHeart.cssTooltipRemove : ""}
+                            styleCssTooltip={settingHeart && settingHeart.styleTooltip ? settingHeart.styleTooltip : {}}
                             onClicks={() => handleRemoveWishlist(dataWishlist[0].id)}
-                            ariaLabel={"heart fill"}
+                            ariaLabel={settingHeart && settingHeart.arialLabelFill ? settingHeart.arialLabelFill : ""}
+                            positionX={settingHeart && settingHeart.positionX ? settingHeart.positionX : 0}
+                            positionY={settingHeart && settingHeart.positionY ? settingHeart.positionY : 0}
                         >
                             <GoHeartFill />
                         </ButtonTooltip>
                     </>
                 ) : (
                     <ButtonTooltip
-                        styleButton={"icon-heart"}
-                        textTooltip={"add from wishlist"}
-                        styleTooltip={"tooltip-heart-icon-add"}
-                        styleCssTooltip={{ color: "white", fontSize: ".8rem" }}
+                        styleButton={settingHeart && settingHeart.cssButton ? settingHeart.cssButton : ""}
+                        textTooltip={settingHeart && settingHeart.textTooltipAdd ? settingHeart.textTooltipAdd : ""}
+                        styleTooltip={settingHeart && settingHeart.cssTooltipAdd ? settingHeart.cssTooltipAdd : ""}
+                        styleCssTooltip={settingHeart && settingHeart.styleTooltip ? settingHeart.styleTooltip : {}}
                         onClicks={() => handleCreateWishlist()}
-                        ariaLabel={"heart"}
+                        ariaLabel={settingHeart && settingHeart.arialLabelNoFill ? settingHeart.arialLabelNoFill : ""}
+                        positionX={settingHeart && settingHeart.positionX ? settingHeart.positionX : 0}
+                        positionY={settingHeart && settingHeart.positionY ? settingHeart.positionY : 0}
                     >
                         <GoHeart />
                     </ButtonTooltip>

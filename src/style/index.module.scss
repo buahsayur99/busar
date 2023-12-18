@@ -30,7 +30,6 @@
 @import "../components/style/detailInfoTable";
 @import "../components/style/bigImage";
 @import "../components/style/imageArray";
-@import "../components/style/heartIcon";
 @import "../components/style/footers";
 @import "../components/style/logo";
 @import "../components/style/loadingCard";
@@ -66,6 +65,8 @@
 // Pages /Home
 @import "../pages/home/style/home";
 @import "../pages/home/components/style/sliderProduct";
+// Pages /Collections
+@import "../pages/collections/style/collectProduct";
 
 // Global Css
 @import "index.scss";

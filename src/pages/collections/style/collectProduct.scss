@@ -1,0 +1,173 @@
+.container-collect-product {
+    padding-top: 3rem;
+
+    @include breakpoint-max(560px) {
+        padding-top: 2rem;
+    }
+
+    .collect-product-group {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 2rem;
+
+        @include breakpoint-max(780px) {
+            gap: 1.4rem;
+        }
+
+        @include breakpoint-max(560px) {
+            display: inline;
+        }
+
+        .product-image {
+            width: 35rem;
+
+            @include breakpoint-max(1090px) {
+                width: 30rem;
+            }
+
+            @include breakpoint-max(850px) {
+                width: 26rem;
+            }
+
+            @include breakpoint-max(780px) {
+                width: 21rem;
+            }
+
+            @include breakpoint-max(660px) {
+                width: 17rem;
+            }
+
+            @include breakpoint-max(560px) {
+                width: auto;
+            }
+        }
+
+        .product-detail {
+
+            .product-detail-top {
+                display: grid;
+                gap: .5rem;
+                box-shadow: 0px 1px 0px 0px $gray-color;
+                padding-bottom: 1rem;
+
+                @include breakpoint-max(560px) {
+                    margin-top: 1rem;
+                }
+
+                @include breakpoint-max(450px) {
+                    padding-bottom: .5rem;
+                }
+
+                h4 {
+                    font-size: $font-size-1xl;
+                    color: $primary-color-black;
+                    text-transform: capitalize;
+                    font-weight: bold;
+
+                    @include breakpoint-max(768px) {
+                        font-size: 1.6rem;
+                    }
+
+                    @include breakpoint-max(660px) {
+                        font-size: 1.5rem;
+                    }
+
+                    @include breakpoint-max(560px) {
+                        font-size: $font-size-xl
+                    }
+                }
+
+                .icon-heart-wraps {
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+
+                    .icon-heart {
+                        padding: 0;
+                        background-color: transparent;
+                        border-radius: none;
+
+                        color: $gray-color;
+                        font-size: $font-size-lg;
+
+                        &:hover {
+                            background-color: transparent;
+                            color: $gray-color;
+                        }
+                    }
+
+                    p {
+                        font-size: $font-size-sm;
+                        color: $gray-color;
+                        text-transform: capitalize;
+                    }
+                }
+
+                .text-tooltip-add,
+                .text-tooltip-remove {
+                    position: fixed;
+                    text-transform: capitalize;
+                    text-align: center;
+                    padding: .4rem .5rem;
+                    background-color: $primary-color-black65;
+                }
+            }
+
+            .product-detail-mid {
+                box-shadow: 0px 1px 0px 0px $gray-color;
+                padding: 1rem 0;
+
+                @include breakpoint-max(450px) {
+                    padding: .7rem 0;
+                }
+
+                .price {
+                    font-size: $font-size-1xl;
+                    color: $primary-color-dark-hover;
+
+                    @include breakpoint-max(768px) {
+                        font-size: 1.6rem;
+                    }
+
+                    @include breakpoint-max(660px) {
+                        font-size: 1.5rem;
+                    }
+
+                    @include breakpoint-max(560px) {
+                        font-size: $font-size-xl
+                    }
+                }
+
+                button {
+                    color: white;
+                    background-color: $primary-color;
+                    padding: .5rem 4rem;
+                    border-radius: .3rem;
+                    margin-top: .7rem;
+
+                    @include breakpoint-max(768px) {
+                        padding: .5rem 3.5rem;
+                    }
+
+                    @include breakpoint-max(450px) {
+                        padding: .5rem 3rem;
+                        font-size: $font-size-sm;
+                    }
+                }
+            }
+
+            .informasi {
+                font-size: $font-size-base;
+                color: $gray-color;
+                white-space: pre-line;
+                text-align: justify;
+                margin-top: 1rem;
+                line-height: 1.4rem;
+
+                @include breakpoint-max(450px) {
+                    font-size: $font-size-sm;
+                }
+            }
+        }
+    }
+}
