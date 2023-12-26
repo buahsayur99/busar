@@ -1,4 +1,3 @@
-// import React from "react"
 import styles from "../../style/index.module.scss";
 import SearchProduct from "./SearchProduct";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
@@ -9,9 +8,10 @@ import { UsersLogin } from "./UsersLogin";
 import { activeFormTransition } from "../../app/actions/formLoginRegisterSlice";
 import { useAuthUsers } from "../../hook/useAuthUsers";
 import { Logo } from "../../components/Logo";
-import { GoHeartFill, SlBasket, BsSearch } from "../../utils/icons";
+import { BsSearch, GoHeartFill } from "../../utils/icons";
 import { ButtonTooltip } from "../../components/ButtonTooltip";
 import { useState } from "react";
+import { IconBasket } from "./IconBasket";
 
 export const NavigationBar = () => {
     const { scrolled } = useScrollNavbar();
@@ -77,7 +77,6 @@ const Navbar = () => {
                                     <BsSearch />
                                 </ButtonTooltip>
                             )}
-
                             <ButtonTooltip
                                 styleButton={"btn-heart"}
                                 textTooltip={"see wishlist"}
@@ -89,16 +88,8 @@ const Navbar = () => {
                                 <GoHeartFill />
                             </ButtonTooltip>
 
-                            <ButtonTooltip
-                                styleButton={"btn-basket"}
-                                textTooltip={"see basket"}
-                                styleTooltip={"tooltip"}
-                                positionX={-35}
-                                positionY={25}
-                                onClicks={() => { }}
-                            >
-                                <SlBasket />
-                            </ButtonTooltip>
+                            <IconBasket />
+
                             {/* Button Login */}
                             {dataLoginUsers?.uuid === undefined
                                 ? (
