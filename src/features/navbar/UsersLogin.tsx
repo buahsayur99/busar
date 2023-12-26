@@ -57,6 +57,7 @@ export const UsersLogin = () => {
                                     onClick={() => {
                                         dispatch(resetDataLoginUsers());
                                         localStorage.removeItem("uuid");
+                                        localStorage.removeItem("checkedCart");
                                     }}
                                 >
                                     Sign out
