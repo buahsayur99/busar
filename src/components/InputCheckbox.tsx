@@ -1,26 +1,41 @@
 import { BsCheck2All } from "../utils/icons";
 import styles from "../style/index.module.scss";
-import { productProps } from "../app/actions/apiProductSlice";
 
 type InputCheckboxProps = {
     valueInput: any;
-    checkeds: productProps[];
-    fcHandleCheckeds: (event: productProps) => void;
+    checkeds: any[] | string;
+    dataToCheckeds?: any[];
+    fcHandleCheckeds: (event: any) => void;
 }
 
-export const InputCheckbox = ({ valueInput, checkeds, fcHandleCheckeds }: InputCheckboxProps) => {
+export const InputCheckbox = ({ valueInput, checkeds, dataToCheckeds, fcHandleCheckeds }: InputCheckboxProps) => {
 
     return (
         <>
-            <div className={styles["checkbox-container"]}>
-                <input
-                    type="checkbox"
-                    className={styles["checkbox"]}
-                    checked={checkeds.indexOf(valueInput) === -1 ? false : true}
-                    onChange={() => fcHandleCheckeds(valueInput)}
-                />
-                <BsCheck2All className={styles["icon"]} />
-            </div>
+            {valueInput === "selectAll" ? (
+                <div className={styles["checkbox-container"]}>
+                    <input
+                        type="checkbox"
+                        value="selectAll"
+                        id="selectAll"
+                        className={styles["checkbox"]}
+                        checked={checkeds.length === dataToCheckeds?.length ? true : false}
+                        onChange={() => fcHandleCheckeds(valueInput)}
+                    />
+                    <BsCheck2All className={styles["icon"]} />
+                </div>
+            ) : (
+                <div className={styles["checkbox-container"]}>
+                    <input
+                        type="checkbox"
+                        className={styles["checkbox"]}
+                        checked={checkeds.indexOf(valueInput) === -1 ? false : true}
+                        onChange={() => fcHandleCheckeds(valueInput)}
+                    />
+                    <BsCheck2All className={styles["icon"]} />
+                </div>
+            )}
+
         </>
     )
 }
