@@ -4,10 +4,19 @@ import { FaUserAlt } from "../../utils/icons";
 import { resetDataLoginUsers } from "../../app/actions/apiUsersSlice";
 import { MobileUsers } from "./MobileUsers";
 import { NavLink } from "react-router-dom";
+import { handleResetData, updateCheckedCart } from "../../app/actions/apiCartSlice";
 
 export const UsersLogin = () => {
     const dispatch = useAppDispatch()
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
+
+    const handleLogout = () => {
+        dispatch(resetDataLoginUsers());
+        dispatch(handleResetData());
+        dispatch(updateCheckedCart([]));
+        localStorage.removeItem("uuid");
+        localStorage.removeItem("checkedCart");
+    }
 
     return (
         <>
@@ -54,11 +63,7 @@ export const UsersLogin = () => {
                                 <button
                                     className={`${styles["btn-users"]}`}
                                     type="button"
-                                    onClick={() => {
-                                        dispatch(resetDataLoginUsers());
-                                        localStorage.removeItem("uuid");
-                                        localStorage.removeItem("checkedCart");
-                                    }}
+                                    onClick={() => handleLogout()}
                                 >
                                     Sign out
                                 </button>
