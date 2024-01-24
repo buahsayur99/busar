@@ -91,10 +91,10 @@ export const useInputFormAddress = () => {
             validasiInput.city.status === false && inputClicked.city &&
             validasiInput.subdistrict.status === false && inputClicked.subdistrict &&
             validasiInput.codePos.status === false && inputClicked.codePos &&
-            validasiInput.completeAddress.status === false && inputClicked.completeAddress
+            validasiInput.completeAddress.status === false && inputClicked.completeAddress && input.addressLabel !== "address label"
         ) return setActiveSave(true)
         return setActiveSave(false)
-    }, [validasiInput.name.status, inputClicked.name, validasiInput.numberPhone.status, inputClicked.numberPhone, validasiInput.city.status, inputClicked.city, validasiInput.subdistrict.status, inputClicked.subdistrict, validasiInput.codePos.status, inputClicked.codePos, validasiInput.completeAddress.status, inputClicked.completeAddress])
+    }, [validasiInput.name.status, inputClicked.name, validasiInput.numberPhone.status, inputClicked.numberPhone, validasiInput.city.status, inputClicked.city, validasiInput.subdistrict.status, inputClicked.subdistrict, validasiInput.codePos.status, inputClicked.codePos, validasiInput.completeAddress.status, inputClicked.completeAddress, input.addressLabel])
 
     useEffect(() => {
         changeActiveSave()
