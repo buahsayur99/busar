@@ -6,17 +6,30 @@ export type DataAddressProps = {
     id?: number;
     name: string;
     numberPhone: string;
+    addressLabel: string;
     city: string;
     subdistrict: string;
     codePos: string;
     completeAddress: string;
     courierNote: string | null;
     uuidUser?: string | null;
+    main?: boolean | null;
+    choice?: boolean | null;
+}
+
+type MainAddressUpdateDataProps = {
+    mainAddress: { id: number },
+    address: { id: number }
 }
 
 type ApiSettingProfileProps = {
-    data?: DataAddressProps | number[];
+    data?: DataAddressProps | MainAddressUpdateDataProps | number[];
     link: string;
+}
+
+type AddressLabelProps = {
+    id: number;
+    name: string;
 }
 
 type InitialStateProps = {
@@ -24,6 +37,7 @@ type InitialStateProps = {
     isGetLoading: boolean;
     isMessageAddress: string | null;
     dataAddress: DataAddressProps[];
+    dataAddressLabel: AddressLabelProps[];
     checkeds: DataAddressProps[];
     inputFormAddress: DataAddressProps;
 }
@@ -34,6 +48,7 @@ const initialState: InitialStateProps = {
     isMessageAddress: null,
     inputFormAddress: dataInputFormAddress,
     dataAddress: [],
+    dataAddressLabel: [],
     checkeds: [],
 }
 
@@ -52,6 +67,24 @@ export const getAddress = createAsyncThunk("api/getAddress", async ({ link }: Ap
         }
     } catch (error: any) {
         throw new Error(error.message)
+    }
+})
+
+export const getAddressLabel = createAsyncThunk("api/getAddressLabel", async ({ link }: ApiSettingProfileProps, { rejectWithValue }) => {
+    try {
+        const response = await fetch(link, {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json' }
+        });
+        const responseData = response.json();
+
+        if (response.ok) {
+            return responseData
+        } else {
+            return rejectWithValue(responseData)
+        }
+    } catch (error: any) {
+        throw new Error(error.message);
     }
 })
 
@@ -98,12 +131,50 @@ export const updateAddress = createAsyncThunk("api/updateAddress", async ({ data
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...data })
         });
-        const responseData = response.json();
+        const responseData = await response.json();
 
         if (response.ok) {
             return responseData;
         } else {
             rejectWithValue(responseData);
+        }
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
+})
+
+export const updateMainAddress = createAsyncThunk("api/updateMainAddress", async ({ data, link }: ApiSettingProfileProps, { rejectWithValue }) => {
+    try {
+        const response = await fetch(link, {
+            method: "PATCH",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...data })
+        });
+        const responseData = await response.json();
+
+        if (response.ok) {
+            return responseData
+        } else {
+            return rejectWithValue(responseData);
+        }
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
+})
+
+export const updateChoiceAddress = createAsyncThunk("api/updateChoiceAddress", async ({ data, link }: { data: { choiceAddress: { id: number }, address: { id: number } }; link: string }, { rejectWithValue }) => {
+    try {
+        const response = await fetch(link, {
+            method: "PATCH",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...data })
+        });
+        const responseData = await response.json();
+
+        if (response.ok) {
+            return responseData
+        } else {
+            return rejectWithValue(responseData);
         }
     } catch (error: any) {
         throw new Error(error.message);
@@ -192,6 +263,18 @@ const apiAddressSlice = createSlice({
                 state.isGetLoading = false
             })
 
+            .addCase(getAddressLabel.pending, (state) => {
+                state.isGetLoading = true
+            })
+            .addCase(getAddressLabel.fulfilled, (state, action) => {
+                state.isGetLoading = false
+                state.dataAddressLabel = action.payload
+            })
+            .addCase(getAddressLabel.rejected, (state, action: any) => {
+                state.isGetLoading = false
+                state.isMessageAddress = action.payload.message
+            })
+
             .addCase(removeAddress.pending, (state) => {
                 state.isLoading = true
             })
@@ -221,6 +304,32 @@ const apiAddressSlice = createSlice({
             .addCase(updateAddress.rejected, (state, action) => {
                 state.isLoading = false
             })
+
+            .addCase(updateMainAddress.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateMainAddress.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isMessageAddress = action.payload.message
+            })
+            .addCase(updateMainAddress.rejected, (state, action: any) => {
+                state.isLoading = false
+                state.isMessageAddress = action.payload.message
+            })
+
+            .addCase(updateChoiceAddress.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateChoiceAddress.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isMessageAddress = action.payload.message
+            })
+            .addCase(updateChoiceAddress.rejected, (state, action: any) => {
+                state.isLoading = false
+                state.isMessageAddress = action.payload.message
+            })
+
+
     }
 });
 
