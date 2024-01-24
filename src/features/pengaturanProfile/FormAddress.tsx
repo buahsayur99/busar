@@ -1,14 +1,16 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styles from "../../style/index.module.scss";
 import { InputsForm } from "../../components/InputsForm";
 import { IoIosCloseCircle } from "../../utils/icons";
 import { useInputFormAddress } from "../../hook/useInputFormAddress";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { createAddress, resetInputAddress, resetIsMessageAddress, updateAddress } from "../../app/actions/apiAddressSlice";
+import { createAddress, getAddressLabel, resetInputAddress, resetIsMessageAddress, updateAddress } from "../../app/actions/apiAddressSlice";
 import { InputTextArea } from "../../components/InputTextArea";
 import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
 import { AlertText } from "../../components/AlertText";
 import { Loading } from "../../components/Loading";
+import { IoIosArrowDown } from "../../utils/icons";
+import { useOutsideClick } from "../../hook";
 
 type FormAddressProps = {
     onClicks: () => void
@@ -16,17 +18,21 @@ type FormAddressProps = {
 
 export const FormAddress = ({ onClicks }: FormAddressProps) => {
     // State
-    const [active, setActive] = useState({ bgBlack: true, bgWhite: true, alertText: false });
+    const [active, setActive] = useState({ bgBlack: true, bgWhite: true, alertText: false, inputLabelAddress: false });
     const [onOffBgWhite, setOnOffBgWhite] = useState(false);
+    const addressLabelRef = useRef<HTMLDivElement>(null);
+    // useAppSelector
+    const { inputFormAddress, isMessageAddress, isLoading, dataAddressLabel } = useAppSelector(state => state.apiAddress);
     // Custome Hook
-    const { inputFormAddress } = useAppSelector(state => state.apiAddress);
     const { input, validasiInput, activeSave, changeInputValue } = useInputFormAddress();
-    const { toggle } = useBodyScrollLock();
     // Dispatch
     const dispatch = useAppDispatch();
-    // Selector
-    const { isMessageAddress, isLoading } = useAppSelector(state => state.apiAddress);
     const uuid = localStorage.getItem("uuid")
+
+    const closeInputLabelAddress = () => {
+        changeActive({ inputLabelAddress: false })
+    }
+    useOutsideClick({ ref: addressLabelRef, faClose: closeInputLabelAddress });
 
     const changeActive = (event: any) => {
         setActive(state => {
@@ -59,7 +65,6 @@ export const FormAddress = ({ onClicks }: FormAddressProps) => {
         setTimeout(() => { changeActive({ bgBlack: false }) }, 800)
         setTimeout(() => {
             onClicks();
-            toggle(false);
             dispatch(resetInputAddress());
         }, 1000);
     }
@@ -87,6 +92,14 @@ export const FormAddress = ({ onClicks }: FormAddressProps) => {
         if (isMessageAddress === "add address success" || isMessageAddress === "update address success") changeActive({ alertText: true });
     }, [handleOnOpenForm, isMessageAddress])
 
+    // Get Api's Address Label
+    useEffect(() => {
+        if (dataAddressLabel.length === 0) {
+            const link = `${process.env.REACT_APP_API_URL_LOCAL}/label/address`;
+            dispatch(getAddressLabel({ link }));
+        }
+    }, [dataAddressLabel.length, dispatch])
+
     return (
         <>
             {/* Alert add address success */}
@@ -98,6 +111,7 @@ export const FormAddress = ({ onClicks }: FormAddressProps) => {
                     {isMessageAddress}
                 </AlertText>
             )}
+
             {/* Loading add address */}
             {isLoading && <Loading />}
 
@@ -154,6 +168,41 @@ export const FormAddress = ({ onClicks }: FormAddressProps) => {
                                 valuePlaceholder={"Number Phone"}
                                 validasiInput={validasiInput.numberPhone}
                             />
+                            {/* Address Label */}
+                            <div
+                                className={styles["parent-address-label"]}
+                            >
+                                <div
+                                    className={`
+                                        ${styles["address-label"]}
+                                        ${active.inputLabelAddress && styles["active"]}
+                                    `}
+                                    ref={addressLabelRef}
+                                    onClick={() => changeActive({ inputLabelAddress: !active.inputLabelAddress })}
+                                >
+                                    <p>{input.addressLabel}</p>
+                                    <IoIosArrowDown className={styles["icon"]} />
+                                </div>
+                                <div
+                                    className={`
+                                        ${styles["list-label-address"]}
+                                        ${active.inputLabelAddress && styles["invisible"]}
+                                    `}
+                                >
+                                    <ul>
+                                        {dataAddressLabel
+                                            .filter(data => data.name !== input.addressLabel)
+                                            .map((data) => (
+                                                <li
+                                                    key={data.id}
+                                                    onClick={() => changeInputValue({ addressLabel: data.name })}
+                                                >
+                                                    {data.name}
+                                                </li>
+                                            ))}
+                                    </ul>
+                                </div>
+                            </div>
                             {/* City */}
                             <InputsForm
                                 cssInput="input-form"
