@@ -34,6 +34,7 @@
 @import "../components/style/logo";
 @import "../components/style/loadingCard";
 @import "../components/style/bannerSlider";
+@import "../components/style/cardAddress";
 
 // Features /Navbar
 @import "../features/navbar/style/navigationBar";
@@ -51,6 +52,8 @@
 @import "../features/pengaturanProfile/style/profileEmailAndLink";
 @import "../features/pengaturanProfile/style/formAddress";
 @import "../features/pengaturanProfile/style/displayAddress";
+// Features /basket
+@import "../features/basket/style/basketComponent";
 
 // Pages
 @import "../pages/style/notFound";
@@ -67,6 +70,13 @@
 @import "../pages/home/components/style/sliderProduct";
 // Pages /Collections
 @import "../pages/collections/style/collectProduct";
+// Pages /Cart
+@import "../pages/cart/style/cart";
+@import "../pages/cart/style/shipment";
+@import "../pages/cart/components/style/recommendationCart";
+@import "../pages/cart/components/style/basketEmpty";
+@import "../pages/cart/components/style/alertCart";
+@import "../pages/cart/components/style/daftarAddressCart";
 
 // Global Css
 @import "index.scss";
