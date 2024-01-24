@@ -14,7 +14,6 @@ import { activeFormTransition } from "../../../app/actions/formLoginRegisterSlic
 import { LoadingCard } from "../../../components/LoadingCard";
 import { Link } from "react-router-dom";
 import { useGetApiCart } from "../../../hook/useGetApiCart";
-import { productProps } from "../../../app/actions/apiProductSlice";
 
 export const SliderProduct = () => {
     const arrayLoadingCard = [1, 2, 3, 4, 5]
@@ -134,7 +133,7 @@ export const SliderProduct = () => {
                             <Slider {...settings}>
                                 {dataProductApi.map((slide, index) => (
                                     <div key={index} className={styles["padding-card"]}>
-                                        <div className={`${styles["card"]} `}>
+                                        <div className={`${styles["card"]}`}>
                                             <div className={`${styles["card-top"]}`}>
                                                 <ImageArray indexs={index} imageUrl={convertObjectToArray(slide.url)} nameProducts={slide.name} />
                                             </div>
@@ -149,7 +148,7 @@ export const SliderProduct = () => {
                                                         className={styles["icon-basket"]}
                                                         onClick={() => {
                                                             handleLoginRedirect()
-                                                            handleAddCart(slide)
+                                                            handleAddCart(slide, 1)
                                                         }}
                                                     >
                                                         <SlBasket />
