@@ -1,6 +1,7 @@
 export const dataInputFormAddress = {
     name: "",
     numberPhone: "",
+    addressLabel: "address label",
     city: "",
     subdistrict: "",
     codePos: "",

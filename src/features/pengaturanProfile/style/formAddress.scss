@@ -235,6 +235,91 @@
             gap: .1rem;
             color: $gray-medium-color;
         }
+
+        .parent-address-label {
+            position: relative;
+            font-size: $font-size-xl;
+
+            @include breakpoint-max(500px) {
+                font-size: $font-size-md;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-sm;
+            }
+
+            .address-label {
+                position: relative;
+                z-index: 2;
+                background-color: #f1f0f0;
+                border: solid 2px $gray-light-color;
+                padding: .8rem .8rem;
+                color: $gray-medium-color;
+                display: flex;
+                justify-content: space-between;
+                border-radius: .5rem;
+                text-transform: capitalize;
+                font-weight: lighter;
+                font-style: italic;
+
+                &:hover {
+                    box-shadow: 0px 0px 5px $gray-silver-color;
+                }
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: transparent;
+                }
+            }
+
+            .active {
+                box-shadow: 0px 0px 2px $primary-color;
+                border: solid 2px $primary-color;
+                color: $primary-color;
+                border-radius: .5rem .5rem 0 0;
+            }
+
+            .list-label-address {
+                position: absolute;
+                margin-top: -.5rem;
+                width: 100%;
+                z-index: 1;
+                display: grid;
+                grid-template-rows: 0fr;
+                transition: grid-template-rows 500ms;
+
+                ul {
+                    padding-top: .4rem;
+                    color: $gray-medium-color;
+                    text-transform: capitalize;
+                    background-color: #f1f0f0;
+                    border: solid 2px $gray-light-color;
+                    border-top: none;
+                    border-radius: 0 0 .7rem .7rem;
+                    overflow: hidden;
+
+                    li {
+                        padding: .8rem .8rem;
+                        border-bottom: solid 2px $gray-light-color;
+                        cursor: pointer;
+
+                        &:hover {
+                            color: $gray-color;
+                            background-color: rgb(235, 235, 235);
+                        }
+                    }
+                }
+            }
+
+            .invisible {
+                grid-template-rows: 1fr;
+            }
+        }
     }
 }
 
@@ -299,7 +384,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: transparent;
         }
     }
 
@@ -308,6 +392,7 @@
         left: 1rem;
         font-size: $font-size-sm;
         color: $primary-color;
+        background-color: transparent;
     }
 
     &:focus-within>.input-placeholder-textarea {
@@ -315,6 +400,7 @@
         left: 1rem;
         font-size: $font-size-sm;
         color: $primary-color;
+        background-color: transparent;
     }
 
     .input-placeholder-textarea-danger {
