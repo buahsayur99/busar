@@ -1,20 +1,60 @@
 import { useCallback, useEffect } from "react";
-import { useAppDispatch } from "../app/hooks";
-import { getAddress } from "../app/actions/apiAddressSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { getAddress, removeAddress, resetIsMessageAddress, updateChoiceAddress, updateMainAddress } from "../app/actions/apiAddressSlice";
 
 export const useGetApiAddress = () => {
+    const { dataAddress, isMessageAddress } = useAppSelector(state => state.apiAddress);
+    const uuid = localStorage.getItem("uuid");
     // useAppDispatch
     const dispatch = useAppDispatch();
 
     const callGetApiAddress = useCallback(() => {
-        const uuid = localStorage.getItem("uuid");
+        if (isMessageAddress === "update main address success" ||
+            isMessageAddress === "delete address success" ||
+            isMessageAddress === "update choice address success") dispatch(resetIsMessageAddress());
+
         const link = `${process.env.REACT_APP_API_URL_LOCAL}/address/${uuid}`;
         return dispatch(getAddress({ link }));
-    }, [dispatch])
+    }, [dispatch, uuid, isMessageAddress])
+
+    const deleteApiAddress = (id: number[]) => {
+        const link = `${process.env.REACT_APP_API_URL_LOCAL}/address/${uuid}`;
+        const data = { id: [...id] }
+
+        return dispatch(removeAddress({ data, link }))
+    }
+
+    const updateApiAddressMain = (idAddress: number) => {
+        const link = `${process.env.REACT_APP_API_URL_LOCAL}/update/main/address`;
+        const filterAddress = dataAddress.filter(data => data.main === true);
+        const idMainAddress = filterAddress[0].id
+
+        if (idMainAddress && idAddress) {
+            const data = {
+                mainAddress: { id: idMainAddress },
+                address: { id: idAddress }
+            };
+            dispatch(updateMainAddress({ data, link }))
+        }
+    }
+
+    const updateApiAddressChoice = (idAddress: number) => {
+        const link = `${process.env.REACT_APP_API_URL_LOCAL}/update/choice/address`;
+        const filterAddress = dataAddress.filter(data => data.choice === true);
+        const idChoiceAddress = filterAddress[0].id
+
+        if (idChoiceAddress && idAddress) {
+            const data = {
+                choiceAddress: { id: idChoiceAddress },
+                address: { id: idAddress }
+            };
+            dispatch(updateChoiceAddress({ data, link }))
+        }
+    }
 
     useEffect(() => {
-        callGetApiAddress();
-    }, [callGetApiAddress])
+        if (dataAddress.length === 0) callGetApiAddress();
+    }, [callGetApiAddress, dataAddress.length])
 
-    return { callGetApiAddress }
+    return { callGetApiAddress, deleteApiAddress, updateApiAddressMain, updateApiAddressChoice }
 }
