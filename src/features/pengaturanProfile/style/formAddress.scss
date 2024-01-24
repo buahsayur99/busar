@@ -9,22 +9,52 @@
     display: grid;
     justify-content: center;
     align-items: center;
-    padding: 2rem 0;
-    overflow: auto;
+    // overflow: auto;
 
     @include breakpoint-max(850px) {
         display: flex;
     }
 
+    @include breakpoint-max(500px) {
+        padding: 0rem 0;
+    }
+
+    .in-animasi-bg-white {
+        -webkit-animation: slide-in-elliptic-top-fwd .7s cubic-bezier(.25, .46, .45, .94) both;
+        animation: slide-in-elliptic-top-fwd .7s cubic-bezier(.25, .46, .45, .94) both;
+
+        @include breakpoint-max(500px) {
+            -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+    }
+
+    .out-animasi-bg-white {
+        -webkit-animation: slide-out-elliptic-top-bck .7s ease-in both;
+        animation: slide-out-elliptic-top-bck .7s ease-in both;
+
+        @include breakpoint-max(500px) {
+            -webkit-animation: slide-out-bottom 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+            animation: slide-out-bottom 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+        }
+    }
+
     .bg-white {
         background-color: white;
         width: 50rem;
-        height: 33rem;
+        height: 90%;
         border-radius: 2rem;
 
         @include breakpoint-max(850px) {
             width: 100%;
             margin: 0 1rem;
+        }
+
+        @include breakpoint-max(500px) {
+            width: 100%;
+            height: 100%;
+            margin: 0 0rem;
+            border-radius: 0rem;
         }
 
         .judul-form {
@@ -37,7 +67,7 @@
                 margin: 1rem 0;
 
                 @include breakpoint-max(500px) {
-                    font-size: 1.7rem;
+                    font-size: 1.5rem;
                 }
 
                 @include breakpoint-max(360px) {
@@ -52,9 +82,12 @@
                 margin-right: .5rem;
                 background-color: transparent;
                 font-size: $font-size-2xl;
+                cursor: pointer;
+                z-index: 1;
 
                 @include breakpoint-max(500px) {
                     font-size: 1.9rem;
+                    top: -.5rem;
                 }
 
                 @include breakpoint-max(360px) {
@@ -73,12 +106,40 @@
             }
         }
 
+        .parent-form-address {
+            position: fixed;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            padding-top: 4.2rem;
+            border-radius: 2rem;
+            overflow: hidden;
+
+            @include breakpoint-max(500px) {
+                padding-top: 3.7rem;
+            }
+        }
+
         .form-address {
             padding: 1rem 1.5rem;
             display: grid;
             gap: 2rem;
             overflow: auto;
-            height: 27rem;
+            height: 100%;
+            width: 100%;
+
+            &::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: $gray-medium-color;
+                border-radius: 1rem;
+            }
+
+            &::-webkit-scrollbar-track {
+                background-color: #f0f0f0;
+            }
 
             .input-form {
                 background-color: #f1f0f0;
@@ -190,8 +251,13 @@
                 font-size: $font-size-base;
                 color: $primary-danger;
 
-                @include breakpoint-max(320px) {
-                    bottom: -.8rem;
+                @include breakpoint-max(390px) {
+                    bottom: -1.1rem;
+                    font-size: $font-size-sm
+                }
+
+                @include breakpoint-max(375px) {
+                    bottom: -.9rem;
                     font-size: $font-size-xs;
                 }
             }
@@ -209,6 +275,10 @@
                     &:hover {
                         color: $gray-color;
                         background-color: transparent;
+                    }
+
+                    @include breakpoint-max(500px) {
+                        margin-top: .5rem;
                     }
                 }
 
@@ -419,8 +489,13 @@
         font-size: $font-size-base;
         color: $primary-danger;
 
-        @include breakpoint-max(320px) {
-            bottom: -.8rem;
+        @include breakpoint-max(390px) {
+            bottom: -1.1rem;
+            font-size: $font-size-sm
+        }
+
+        @include breakpoint-max(375px) {
+            bottom: -.9rem;
             font-size: $font-size-xs;
         }
     }

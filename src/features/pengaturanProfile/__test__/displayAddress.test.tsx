@@ -51,24 +51,30 @@ const checkedData = [
     {
         id: 2,
         name: "Jane Smith",
+        addressLabel: "home",
         numberPhone: "0987654321",
         city: "Los Angeles",
         subdistrict: "Hollywood",
         codePos: "90001",
         completeAddress: "5678 Oak Ave",
         courierNote: "Handle with care 2",
-        uuidUser: "abc123"
+        uuidUser: "abc123",
+        main: true,
+        choice: true
     },
     {
         id: 3,
         name: "Joko",
+        addressLabel: "home",
         numberPhone: "0987654321",
         city: "Los Angeles",
         subdistrict: "Hollywood",
         codePos: "90001",
         completeAddress: "5678 Oak Ave",
         courierNote: "Handle with care 2",
-        uuidUser: "abc123"
+        uuidUser: "abc123",
+        main: null,
+        choice: null
     }
 ]
 
