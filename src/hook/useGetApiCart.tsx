@@ -1,22 +1,17 @@
-import { useCallback, useEffect } from "react"
+import { useCallback } from "react"
 import { productProps } from "../app/actions/apiProductSlice"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { addCart, getCart, resetIsMessageCart } from "../app/actions/apiCartSlice";
+import { DataCartProps, addCart, deleteCart, getCart, resetIsMessageCart, updateCart } from "../app/actions/apiCartSlice";
 
 export const useGetApiCart = () => {
     const dispatch = useAppDispatch();
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
-    const { dataCart, isMessageCart } = useAppSelector(state => state.apiCart);
 
-    const handleAddCart = (product: productProps) => {
+    const handleAddCart = (product: productProps, amounts: number) => {
         const link = `${process.env.REACT_APP_API_URL_LOCAL}/cart/${dataLoginUsers?.uuid}`;
-        const data = {
-            idProduct: product.id,
-            amount: 1,
-            urlImage: product.url,
-            price: product.price,
-        }
+        const amount = { amount: amounts }
 
+        const data = { ...product, ...amount }
         dispatch(addCart({ data, link }))
     }
 
@@ -26,10 +21,20 @@ export const useGetApiCart = () => {
         dispatch(resetIsMessageCart());
     }, [dataLoginUsers?.uuid, dispatch])
 
-    useEffect(() => {
-        if (isMessageCart === "success add cart") return handleGetCart();
-        if (dataCart.length === 0) return handleGetCart();
-    }, [isMessageCart, handleGetCart, dataCart.length])
+    const handleUpdateCart = useCallback((productCart: DataCartProps, amounts: number) => {
+        const link = `${process.env.REACT_APP_API_URL_LOCAL}/cart/update`;
+        const amount = { amount: amounts }
 
-    return { handleAddCart, handleGetCart }
+        const data = { ...productCart, ...amount }
+        dispatch(updateCart({ data, link }))
+    }, [dispatch])
+
+    const handleDeleteCart = useCallback((id: number[]) => {
+        const link = `${process.env.REACT_APP_API_URL_LOCAL}/cart/delete`;
+        const data = { arrayId: [...id] }
+
+        dispatch(deleteCart({ data, link }))
+    }, [dispatch])
+
+    return { handleAddCart, handleGetCart, handleUpdateCart, handleDeleteCart }
 }
