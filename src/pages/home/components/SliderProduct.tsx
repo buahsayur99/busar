@@ -141,7 +141,12 @@ export const SliderProduct = () => {
                                                 <h3>{slide.name}</h3>
                                                 <p>rp {formattedNumber(slide.price)}</p>
                                                 <div className={styles["parent-button"]}>
-                                                    <HeartIcon settingHeart={settingHeart} onClicks={() => handleLoginRedirect()} dataWishlist={faWishlist(slide, dataWishlist)} products={slide} />
+                                                    <HeartIcon
+                                                        settingHeart={settingHeart}
+                                                        onClicks={() => handleLoginRedirect()}
+                                                        dataWishlist={faWishlist(slide, dataWishlist)}
+                                                        products={slide}
+                                                    />
                                                     <button
                                                         type="button"
                                                         aria-label="basket"
