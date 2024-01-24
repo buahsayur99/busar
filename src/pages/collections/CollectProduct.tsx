@@ -115,7 +115,7 @@ export const CollectProduct = () => {
                                     <p className={styles["price"]}>Rp {formattedNumber(data.price)}</p>
                                     <button
                                         type="button"
-                                        onClick={() => handleAddCart(data)}
+                                        onClick={() => handleAddCart(data, 1)}
                                     >
                                         +Keranjang
                                     </button>
