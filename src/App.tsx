@@ -10,27 +10,67 @@ import { useAppSelector } from "./app/hooks";
 import { DashboardAdmin } from "./pages/dashboard/DashboardAdmin";
 import { ProductAdmin } from "./pages/dashboard/ProductAdmin";
 import { UsersAdmin } from "./pages/dashboard/UsersAdmin";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { CollectProduct } from "./pages/collections/CollectProduct";
+import { BasketComponent } from "./features/basket/BasketComponent";
+import { Carts } from "./pages/cart/Carts";
+import { useGetApiCart, useGetProduct } from "./hook";
+import { AlertCart } from "./pages/cart/components/AlertCart";
+import { Shipment } from "./pages/cart/Shipment";
 
 function App() {
-  const { isLoadingAuth } = useAppSelector(state => state.apiUsers);
-  const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
+  // State
+  const [activeAlert, setActiveAlert] = useState({ alertCart: { status: false, text: "" } });
+  // useAppSelector
+  const { isLoadingAuth, dataLoginUsers } = useAppSelector(state => state.apiUsers);
+  const { dataProductApi } = useAppSelector(state => state.apiProduct)
+  const { activeCart, isMessageCart } = useAppSelector(state => state.apiCart);
   // Custome Hook
   const { requestUserApi } = useAuthUsers();
+  const { handleGetProduct } = useGetProduct();
+  const { handleGetCart } = useGetApiCart();
   useSaveLastPage();
+
+  // Update function activeAlert
+  const updateActiveAlert = (event: any) => {
+    setActiveAlert((prev) => {
+      return { ...prev, ...event }
+    })
+  }
 
   useEffect(() => {
     requestUserApi();
-  }, [requestUserApi])
+    if (dataProductApi.length === 0) return handleGetProduct();
+  }, [dataProductApi.length, handleGetProduct, requestUserApi])
+
+  // Get Cart if update cart and add cart success
+  useEffect(() => {
+    if (isMessageCart === "success update amount cart" || dataLoginUsers) handleGetCart();
+    if (isMessageCart === "success add cart") {
+      updateActiveAlert({ alertCart: { status: true, text: "the product successfully inserted into the shopping cart" } })
+      return handleGetCart()
+    }
+    if (isMessageCart === "delete cart success") {
+      updateActiveAlert({ alertCart: { status: true, text: "product telah di hapus" } })
+      return handleGetCart()
+    }
+  }, [isMessageCart, dataLoginUsers])
 
   return (
     <>
       {isLoadingAuth === false && (
         <Router>
           <div>
+            {/* Alert Cart */}
+            {activeAlert.alertCart.status === true && (
+              <AlertCart activeAlert={activeAlert.alertCart} faVisibleAlert={() => updateActiveAlert({ alertCart: { status: false, text: "" } })} />
+            )}
+
+            {activeCart && (<BasketComponent />)}
+
             <Routes>
               <Route path="/" element={<Home />} />
+
               {/* Account */}
               <Route
                 path="account"
@@ -40,6 +80,14 @@ function App() {
                 <Route path="password" element={<Password />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="address" element={<Address />} />
+              </Route>
+
+              <Route
+                path="cart"
+                element={<PrivateRoutes data={dataLoginUsers} />}
+              >
+                <Route index element={<Carts />} />
+                <Route path="shipment" element={<Shipment />} />
               </Route>
 
               {/* Dashboard */}
