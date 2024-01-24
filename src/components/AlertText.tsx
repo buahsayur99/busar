@@ -44,10 +44,7 @@ export const AlertText: React.FC<AlertTextProps> = ({ children, nameButton, onCl
                 {...props}
                 ref={parentAlertRef}
             >
-                <div className={`
-                        ${styles["alert"]}
-                        ${active ? styles["puff-in-center"] : styles["puff-out-center"]}
-                    `}
+                <div className={`${styles["alert"]}`}
                 >
                     <h1>{children}</h1>
                     <button
