@@ -1,0 +1,117 @@
+.basket-empty-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 85vh;
+
+    @include breakpoint-max(450px) {
+        min-height: 80vh;
+    }
+
+    @include breakpoint-max(360px) {
+        min-height: 73vh;
+    }
+
+    @include breakpoint-max(320px) {
+        min-height: 60vh;
+    }
+
+    img {
+        margin: 0 auto;
+
+        @include breakpoint-max(500px) {
+            width: 78%;
+        }
+
+        @include breakpoint-max(375px) {
+            width: 90%;
+        }
+
+        @include breakpoint-max(320px) {
+            width: 75%;
+        }
+    }
+
+    .text-contain {
+        text-align: center;
+        padding: 1.5rem;
+
+        @include breakpoint-max(375px) {
+            padding: 1.3rem;
+        }
+
+        h4 {
+            font-weight: bold;
+            font-size: $font-size-2xl;
+            color: $primary-color-black;
+            margin-bottom: .9rem;
+
+            @include breakpoint-max(834px) {
+                font-size: $font-size-1xl;
+            }
+
+            @include breakpoint-max(500px) {
+                font-size: $font-size-xl;
+            }
+
+            @include breakpoint-max(360px) {
+                margin-bottom: .6rem;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-lg;
+            }
+        }
+
+        h4::first-letter {
+            text-transform: capitalize;
+        }
+
+        p {
+            color: $gray-color;
+            font-size: $font-size-xl;
+
+            @include breakpoint-max(500px) {
+                font-size: $font-size-lg;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-base;
+            }
+        }
+
+        p::first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+    a {
+        display: inline-block;
+        align-self: center;
+
+        button {
+            background-color: $primary-color;
+            border-radius: .5rem;
+            padding: .8rem 3rem;
+            color: white;
+            font-size: $font-size-lg;
+            font-weight: bold;
+            text-transform: capitalize;
+            transition-duration: 300ms;
+
+            &:hover {
+                background-color: $primary-color-hover;
+            }
+
+            @include breakpoint-max(500px) {
+                padding: .7rem 2rem;
+                font-size: $font-size-md;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-base;
+                padding: .7rem 1.8rem;
+            }
+        }
+    }
+}

@@ -7,6 +7,7 @@ import apiProductSlice from './actions/apiProductSlice';
 import apiCategory from './actions/apiCategory';
 import apiWishlist from './actions/apiWishlist';
 import apiCartSlice from './actions/apiCartSlice';
+import apiPaymentSlice from './actions/apiPaymentSlice';
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     apiCategory: apiCategory,
     apiWishlist: apiWishlist,
     apiCart: apiCartSlice,
+    apiPayment: apiPaymentSlice
   },
 });
 

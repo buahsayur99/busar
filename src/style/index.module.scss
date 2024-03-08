@@ -77,6 +77,11 @@
 @import "../pages/cart/components/style/basketEmpty";
 @import "../pages/cart/components/style/alertCart";
 @import "../pages/cart/components/style/daftarAddressCart";
+// Pages /payment
+@import "../pages/payment/style/detailTransaction";
+@import "../pages/payment/components/style/loadingPayment";
+@import "../pages/payment/components/style/cardDetailPayment";
+@import "../pages/payment/components/style/notifSuccessTrans";
 
 // Global Css
 @import "index.scss";

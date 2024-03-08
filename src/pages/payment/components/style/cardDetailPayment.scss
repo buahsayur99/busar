@@ -1,0 +1,197 @@
+.container-card-detail-payment {
+    margin-top: 2rem;
+    border-radius: 1rem;
+    background-color: transparent;
+    border: solid 2px $gray-lighter-color;
+
+    .parent-type-bank {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 1rem;
+        border-bottom: solid 2px $gray-lighter-color;
+
+        p {
+            font-weight: bold;
+            color: $primary-color-black;
+            text-transform: capitalize;
+            font-size: $font-size-lg;
+
+            @include breakpoint-max(360px) {
+                font-size: $font-size-base
+            }
+        }
+
+        .img-bank {
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: transparent;
+                z-index: 1;
+            }
+
+            img {
+                @include breakpoint-max(320px) {
+                    width: 55px;
+                }
+            }
+
+            .bank-permata {
+                @include breakpoint-max(450px) {
+                    width: 80px;
+                }
+
+                @include breakpoint-max(375px) {
+                    width: 70px;
+                }
+
+                @include breakpoint-max(320px) {
+                    width: 60px;
+                }
+            }
+        }
+    }
+
+    .parent_nomor-account_total-payment {
+        padding: 2rem 1rem;
+        display: grid;
+        gap: 2rem;
+    }
+
+    .parent-nomor-virtual-account {
+        h4 {
+            font-size: $font-size-md;
+            color: $primary-color-black;
+            text-transform: capitalize;
+        }
+
+        .nomor {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: .5rem;
+            font-size: $font-size-lg;
+
+            p {
+                font-weight: bold;
+                color: $primary-color-black;
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-md;
+                }
+            }
+
+            .parent-button-salin {
+                position: relative;
+                display: flex;
+                gap: 0rem;
+
+                &:hover {
+                    button {
+                        color: $primary-color-hover;
+                    }
+                }
+
+                button {
+                    background-color: transparent;
+                    text-transform: capitalize;
+                    font-weight: bold;
+                    color: $primary-color;
+
+                    @include breakpoint-max(375px) {
+                        font-weight: lighter;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-base;
+                    }
+                }
+
+                .tooltip-virtual-account {
+                    width: 9rem;
+                    left: -3.5rem;
+                    font-weight: lighter;
+
+                    @include breakpoint-max(900px) {
+                        left: auto;
+                        right: 0rem;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        width: 8rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .parent-total-payment {
+        h4 {
+            font-size: $font-size-md;
+            color: $primary-color-black;
+        }
+
+        .total-payment {
+            margin-top: .5rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: $font-size-lg;
+
+            .price {
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+
+                p {
+                    font-weight: bold;
+                    color: $primary-color-black;
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-md;
+                    }
+                }
+
+                p::first-letter {
+                    text-transform: capitalize;
+                }
+
+            }
+        }
+    }
+
+    .button-view-detail {
+        background-color: transparent;
+        color: $primary-color;
+        font-weight: bold;
+        text-transform: capitalize;
+
+        &:hover {
+            color: $primary-color-hover;
+        }
+
+        @include breakpoint-max(360px) {
+            font-weight: lighter;
+        }
+
+        @include breakpoint-max(320px) {
+            font-size: $font-size-base;
+        }
+    }
+
+    // Component Button Tooltip
+    .button-copy-total-payment {
+        color: $primary-color;
+        background-color: transparent;
+    }
+
+    .tooltip-button {
+        left: -2.3rem;
+        width: 6.5rem;
+    }
+}

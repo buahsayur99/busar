@@ -1,0 +1,347 @@
+.container-daftar-address-cart {
+    position: fixed;
+    background-color: $primary-color-black65;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: $z-index-navbar+1;
+
+    @mixin margin-contain-list-address {
+        margin: 1rem 2rem;
+
+        @include breakpoint-max(768px) {
+            margin: 1rem 1.5rem;
+        }
+
+        @include breakpoint-max(500px) {
+            margin: 1rem 1rem;
+        }
+
+        @include breakpoint-max(320px) {
+            margin: 1rem .6rem;
+        }
+    }
+
+    @include breakpoint-max(500px) {
+        align-items: flex-end;
+    }
+
+    .in-bg-white {
+        -webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+        @include breakpoint-max(500px) {
+            -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+    }
+
+    .out-bg-white {
+        -webkit-animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+        animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+
+        @include breakpoint-max(500px) {
+            -webkit-animation: slide-out-bottom 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+            animation: slide-out-bottom 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+        }
+    }
+
+    .bg-white {
+        position: relative;
+        width: 50rem;
+        height: 90%;
+        background-color: white;
+        border-radius: 1rem;
+        padding: 1rem 0;
+
+        @include breakpoint-max(850px) {
+            width: 96%;
+        }
+
+        @include breakpoint-max(500px) {
+            width: 100%;
+            height: 95%;
+            border-radius: .7rem .7rem 0 0;
+            padding: .5rem 0 1rem 0;
+        }
+
+        @include breakpoint-max(375px) {
+            padding: .3rem 0;
+        }
+
+        .css-line-cart {
+            @include breakpoint-max(500px) {
+                margin: .5rem 0;
+            }
+        }
+
+        .nav-daftar-address {
+            @include breakpoint-max(500px) {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 1rem 0 .7rem;
+            }
+
+            @include breakpoint-max(320px) {
+                padding: .2rem 1rem .2rem .7rem;
+            }
+
+            .parent-btn_close-heading {
+                @include breakpoint-max(500px) {
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+                }
+
+                .button-close-wrapper {
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-right: .5rem;
+                    z-index: 1;
+
+                    @include breakpoint-max(500px) {
+                        margin-right: 0rem;
+                    }
+
+                    .button-close {
+                        position: relative;
+                        font-size: $font-size-1xl;
+                        color: $gray-color;
+                        background-color: transparent;
+                        z-index: 2;
+                        padding: 0;
+
+                        &::before {
+                            content: "close list address";
+                            position: absolute;
+                            top: 2.5rem;
+                            left: -2.5rem;
+                            background-color: $primary-color-black65;
+                            color: white;
+                            font-size: .8rem;
+                            width: 7rem;
+                            padding: .5rem 0;
+                            text-transform: capitalize;
+                            border-radius: .3rem;
+                            z-index: 0;
+                            display: none;
+
+                            @include breakpoint-max(500px) {
+                                left: 0rem;
+                            }
+                        }
+
+                        &:hover::before {
+                            display: inline;
+                        }
+
+                        @include breakpoint-max(500px) {
+                            font-size: 1.6rem;
+                        }
+
+                        @include breakpoint-max(320px) {
+                            font-size: $font-size-xl;
+                        }
+                    }
+                }
+
+                h1 {
+                    font-size: $font-size-1xl;
+                    font-weight: bold;
+                    text-transform: capitalize;
+                    text-align: center;
+                    color: $primary-color-black;
+                    margin-top: .8rem;
+
+                    @include breakpoint-max(500px) {
+                        font-size: $font-size-xl;
+                        margin-top: 0rem;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-lg;
+                        margin-top: 0rem;
+                    }
+                }
+            }
+
+            .button-add-address-mobile {
+                z-index: 1;
+                display: none;
+                background-color: transparent;
+                color: $primary-color;
+                text-transform: capitalize;
+                font-size: $font-size-md;
+                padding: 0;
+
+                &:hover {
+                    color: $primary-color-hover;
+                }
+
+                @include breakpoint-max(500px) {
+                    display: inline;
+                }
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-base;
+                    margin-top: 2px;
+                }
+            }
+        }
+
+        .contain-address {
+            @include margin-contain-list-address();
+
+            .parent-button-add-address {
+                position: relative;
+                background-color: rgb(255, 255, 255);
+                padding-bottom: .8rem;
+                z-index: 1;
+
+                @include breakpoint-max(500px) {
+                    display: none;
+                }
+
+                .button-add-address {
+                    background-color: transparent;
+                    width: 100%;
+                    font-size: $font-size-lg;
+                    color: $primary-color;
+                    border: solid 2px $primary-color;
+                    border-radius: .5rem;
+                    padding: .7rem;
+                    text-transform: capitalize;
+                    font-weight: bold;
+                    transition-duration: 300ms;
+
+                    &:hover {
+                        border: solid 2px $primary-color-hover;
+                        color: $primary-color-hover;
+                    }
+
+                    @include breakpoint-max(500px) {
+                        font-size: $font-size-base;
+                        padding: .6rem;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-base;
+                        font-weight: normal;
+                        padding: .6rem;
+                    }
+                }
+            }
+
+            .ul-address {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                padding-top: 11.5rem;
+                z-index: 0;
+                border-radius: 1rem;
+                overflow: hidden;
+
+                @include breakpoint-max(500px) {
+                    border-radius: .7rem .7rem 0 0;
+                    padding: 4rem 0 3rem 0;
+                }
+
+                ul {
+                    height: 100%;
+                    overflow: auto;
+                    padding: 1rem 1.5rem 1.5rem 2rem;
+
+                    @include breakpoint-max(768px) {
+                        padding: 1rem 1rem 1rem 1.5rem;
+                    }
+
+                    @include breakpoint-max(500px) {
+                        padding: 0rem .5rem 1rem 1rem;
+                    }
+
+                    @include breakpoint-max(450px) {
+                        padding: 0rem 1rem 1rem 1rem;
+                    }
+
+                    &::-webkit-scrollbar {
+                        width: 10px;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background-color: $gray-medium-color;
+                        border-radius: 1rem;
+                    }
+
+                    &::-webkit-scrollbar-track {
+                        background-color: #f0f0f0;
+                    }
+
+                    .list-address {
+                        display: grid;
+                        gap: 1.5rem;
+
+                        @include breakpoint-max(500px) {
+                            display: none;
+                        }
+                    }
+
+                    .list-address-mobile {
+                        display: none;
+
+                        @include breakpoint-max(500px) {
+                            display: grid;
+                            gap: 1rem;
+                        }
+                    }
+                }
+
+                .ul-padding {
+                    padding: 1rem 2rem;
+
+                    @include breakpoint-max(768px) {
+                        padding: 1rem 1.5rem;
+                    }
+
+                    @include breakpoint-max(500px) {
+                        padding: 1rem 1rem;
+                    }
+                }
+            }
+        }
+
+        .parent-select-address-mobile {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            padding: .5rem 1rem;
+            display: none;
+
+            @include breakpoint-max(500px) {
+                display: inline;
+            }
+
+            .button-select-address {
+                background-color: $primary-color;
+                color: white;
+                border-radius: .5rem;
+                padding: .5rem;
+                width: 100%;
+                text-transform: capitalize;
+
+                &:hover {
+                    background-color: $primary-color-hover;
+                }
+            }
+        }
+    }
+}

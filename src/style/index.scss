@@ -127,3 +127,14 @@
     min-height: 100vh;
     width: 100%;
 }
+
+// Component ButtonTooltipCss
+.global-tooltip-css {
+    top: 2rem;
+    font-size: $font-size-xs;
+    padding: .5rem 0rem;
+    border-radius: .3rem;
+    background-color: $gray-color-footer;
+    text-transform: capitalize;
+    color: white;
+}

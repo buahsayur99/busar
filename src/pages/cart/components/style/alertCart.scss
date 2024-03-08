@@ -1,0 +1,43 @@
+.container-alert-cart {
+    position: fixed;
+    z-index: $z-index-alert;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    transition-duration: 300ms;
+    top: -4rem;
+
+    @include breakpoint-max(530px) {
+        padding: 0 .8rem;
+    }
+
+    .contain-text {
+        background-color: rgb(39, 39, 39);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: .6rem;
+        align-self: center;
+        display: flex;
+        justify-content: space-between;
+        gap: 4rem;
+
+        @include breakpoint-max(580px) {
+            padding: 1rem 1rem;
+        }
+
+        p::first-letter {
+            text-transform: capitalize;
+        }
+
+        button {
+            background-color: transparent;
+            text-transform: capitalize;
+            color: white;
+        }
+    }
+}
+
+.visible-alert-cart {
+    transition-duration: 300ms;
+    top: 8rem;
+}

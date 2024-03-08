@@ -1,0 +1,164 @@
+.container-rekomendasi {
+    margin-top: 2rem;
+
+    .heading-wrapper {
+        display: flex;
+        justify-content: space-between;
+
+        h2 {
+            font-size: $font-size-xl;
+            font-weight: bold;
+            color: $primary-color-black;
+
+            @include breakpoint-max(450px) {
+                font-size: $font-size-lg;
+            }
+
+            @include breakpoint-max(375px) {
+                font-size: $font-size-md;
+            }
+        }
+
+        h2::first-letter {
+            text-transform: capitalize;
+        }
+
+        a {
+            font-size: $font-size-xl;
+            text-transform: capitalize;
+            color: $primary-color;
+            transition-duration: 300ms;
+
+            &:hover {
+                color: $primary-color-hover;
+            }
+
+            @include breakpoint-max(450px) {
+                font-size: $font-size-lg;
+            }
+
+            @include breakpoint-max(375px) {
+                font-size: $font-size-md;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-base;
+            }
+        }
+    }
+
+    ul {
+        display: flex;
+        gap: .5rem;
+        margin-top: 1rem;
+
+        overflow: auto;
+        padding: .5rem .5rem;
+
+        &::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $primary-color;
+            border-radius: 1rem;
+
+            &:hover {
+                background-color: $primary-color-hover;
+            }
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: #f0f0f0;
+        }
+
+        li {
+            box-shadow: 0px 0px 3px 2px $gray-lighter-color;
+            min-width: 15rem;
+            padding: .5rem;
+            border-radius: .5rem;
+            display: grid;
+            gap: .5rem;
+
+            .card {
+                display: flex;
+                gap: .5rem;
+
+                .card-left {
+                    .container-image-array {
+                        width: 5rem;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+
+                .card-right {
+                    h3 {
+                        font-size: $font-size-lg;
+                        color: $gray-color;
+                        font-weight: lighter;
+                        margin: 0;
+
+                        @include breakpoint-max(320px) {
+                            font-size: $font-size-base;
+                        }
+                    }
+
+                    p {
+                        margin-top: .5rem;
+                        font-weight: bold;
+                        font-size: $font-size-lg;
+
+                        @include breakpoint-max(320px) {
+                            font-size: $font-size-base;
+                        }
+                    }
+
+                    p::first-letter {
+                        text-transform: capitalize;
+                    }
+                }
+            }
+
+            .parent-button {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: .5rem;
+
+                button {
+                    padding: 0;
+                    border-radius: 0;
+                    background-color: transparent;
+                    color: $primary-color;
+                }
+
+                button:nth-child(1) {
+                    color: $gray-color;
+                }
+
+                button:nth-child(2) {
+                    border: 1px solid $primary-color;
+                    padding: .5rem;
+                    width: 100%;
+                    border-radius: .5rem;
+                    font-size: $font-size-md;
+                    transition-duration: 300ms;
+
+                    &:hover {
+                        color: $primary-color-hover;
+                        border: 1px solid $primary-color-hover;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-sm;
+                        padding: .4rem;
+                    }
+                }
+            }
+        }
+    }
+}

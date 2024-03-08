@@ -1,0 +1,258 @@
+.parent-transaction {
+    padding-top: 2rem;
+    width: 50rem;
+    margin: 0 auto;
+
+    @include breakpoint-max(850px) {
+        width: 100%;
+    }
+
+    .parent-judul-transaction {
+        text-align: center;
+
+        h1 {
+            font-size: $font-size-1xl;
+            font-weight: bold;
+            color: $primary-color-black;
+
+            @include breakpoint-max(375px) {
+                font-size: 1.5rem;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-xl;
+            }
+        }
+
+        h1::first-letter {
+            text-transform: capitalize;
+        }
+
+        p {
+            color: $primary-color;
+            font-size: $font-size-xl;
+            font-weight: bold;
+            margin-top: .4rem;
+
+            @include breakpoint-max(450px) {
+                font-size: $font-size-1xl;
+            }
+
+            @include breakpoint-max(375px) {
+                font-size: 1.5rem;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-xl;
+            }
+        }
+    }
+
+    .parent-expiration-time {
+        margin-top: 1rem;
+
+        h3 {
+            text-transform: capitalize;
+            font-weight: bold;
+            margin-top: .4rem;
+            font-size: $font-size-xl;
+
+            @include breakpoint-max(375px) {
+                font-size: $font-size-lg;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-md;
+            }
+        }
+
+        p {
+            color: $gray-color;
+            font-size: $font-size-xl;
+            font-weight: bold;
+            margin-top: .4rem;
+            text-transform: capitalize;
+
+            @include breakpoint-max(375px) {
+                font-size: $font-size-lg;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-md;
+            }
+        }
+    }
+
+    .contain-transaction {
+        margin-top: 2rem;
+        border-radius: 1rem;
+        background-color: transparent;
+        border: solid 2px $gray-lighter-color;
+    }
+
+    .parent-button-transaction {
+        display: grid;
+        grid-template-columns: 49% 49%;
+        gap: 1rem;
+        margin-top: 2rem;
+
+        @include breakpoint-max(500px) {
+            grid-template-columns: 48% 48%;
+        }
+
+        @include breakpoint-max(450px) {
+            grid-template-columns: 1fr;
+        }
+
+        button {
+            font-size: $font-size-xl;
+            padding: .5rem 0;
+            border-radius: .4rem;
+
+            @include breakpoint-max(375px) {
+                font-size: $font-size-md;
+            }
+        }
+
+        button::first-letter {
+            text-transform: capitalize;
+        }
+
+        button:nth-child(1) {
+            border: solid 1px $primary-color;
+            color: $primary-color;
+            background-color: transparent;
+
+            &:hover {
+                color: $primary-color-hover;
+                border: solid 1px $primary-color-hover;
+            }
+        }
+
+        button:nth-child(2) {
+            border: solid 1px $primary-color;
+            background-color: $primary-color;
+            color: white;
+
+            &:hover {
+                border: solid 1px $primary-color-hover;
+                background-color: $primary-color-hover;
+            }
+        }
+    }
+
+    .payment-method {
+        margin-top: 2rem;
+
+        h3 {
+            font-size: 1.5rem;
+            color: $primary-color-black;
+            text-transform: capitalize;
+            font-weight: bold;
+
+            @include breakpoint-max(360px) {
+                font-size: $font-size-xl;
+            }
+        }
+    }
+
+    .parent-note {
+        display: flex;
+        gap: .2rem;
+        margin-top: .5rem;
+
+        @include breakpoint-max(450px) {
+            font-size: $font-size-md;
+        }
+
+        @include breakpoint-max(320px) {
+            font-size: $font-size-base;
+        }
+
+        p:nth-child(1) {
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        p:nth-child(2) {
+            text-transform: capitalize;
+        }
+    }
+
+    .parent-panduan-pembayaran {
+        margin-top: 3rem;
+        margin-left: 1rem;
+        background-color: $gray-lighter-color;
+        border-radius: .2rem;
+
+        @include breakpoint-max(450px) {
+            margin-top: 2rem;
+        }
+
+        .button-panduan-pembayaran {
+            text-transform: uppercase;
+            font-weight: bold;
+            color: $primary-color-black;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: transparent;
+            font-size: $font-size-md;
+
+            span {
+                font-size: $font-size-1xl;
+                transform: rotate(270deg);
+                transition-duration: 300ms;
+            }
+
+            .active-icon-panduan-pembayaran {
+                transform: rotate(90deg);
+            }
+        }
+    }
+
+    .parent-list-panduan-pembayaran {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition-duration: 500ms;
+        padding-top: 0rem;
+
+        ul {
+            margin-left: 1rem;
+            display: grid;
+            gap: .5rem;
+            overflow: hidden;
+
+            @include breakpoint-max(320px) {
+                margin-left: 0rem;
+                gap: .7rem;
+            }
+
+            li {
+                @include breakpoint-max(450px) {
+                    font-size: $font-size-md;
+                }
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-base;
+                }
+
+                .link-midtrans-simulator {
+                    text-transform: capitalize;
+                }
+            }
+
+            li:nth-child(1) {
+                display: flex;
+                gap: .2rem;
+            }
+        }
+    }
+
+    .active-list-panduan-pembayaran {
+        grid-template-rows: 1fr;
+        padding-top: 1rem;
+        padding-bottom: .5rem;
+    }
+}

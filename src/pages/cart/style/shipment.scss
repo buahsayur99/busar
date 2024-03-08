@@ -1,0 +1,689 @@
+.nav-shipment-wrapper {
+    border-bottom: solid 1px $gray-light-color;
+    padding: .8rem 0rem;
+    background-color: white;
+    width: 100%;
+    transition-duration: 300ms;
+    position: absolute;
+    top: 0;
+
+    @include breakpoint-max(800px) {
+        padding: .8rem 0;
+    }
+
+    @include breakpoint-max(600px) {
+        padding: .6rem 0;
+    }
+
+    @include breakpoint-max(450px) {
+        padding: .5rem 0;
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        font-size: $font-size-1xl;
+        color: $gray-color;
+        transition-duration: 300ms;
+
+        &:hover {
+            color: $primary-color;
+        }
+
+        @include breakpoint-max(800px) {
+            font-size: 1.4rem;
+        }
+
+        @include breakpoint-max(600px) {
+            font-size: $font-size-xl;
+        }
+
+        @include breakpoint-max(450px) {
+            font-size: $font-size-lg;
+        }
+
+        @include breakpoint-max(320px) {
+            font-size: $font-size-md;
+        }
+
+        .icon {
+            transition-duration: 300ms;
+        }
+
+        &:hover .icon {
+            transform: translateX(-.5rem);
+
+            @include breakpoint-max(600px) {
+                transform: translateX(-.2rem);
+            }
+        }
+
+        span {
+            font-size: 1.5rem;
+            text-transform: capitalize;
+
+            @include breakpoint-max(600px) {
+                font-size: $font-size-xl;
+            }
+
+            @include breakpoint-max(450px) {
+                font-size: $font-size-lg;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-base;
+            }
+        }
+    }
+}
+
+.fixed-nav-shipment {
+    top: 0rem;
+    position: fixed;
+    z-index: $z-index-navbar;
+}
+
+.container-shipment {
+    margin-top: 4.8rem;
+    padding: 2rem 0rem;
+
+    @mixin padding-cart-shipment {
+        padding: 1rem;
+    }
+
+    @include breakpoint-max(800px) {
+        margin-top: 4rem;
+    }
+
+    @include breakpoint-max(600px) {
+        margin-top: 3.5rem;
+        padding: 2rem 0 1.5rem 0;
+    }
+
+    @include breakpoint-max(450px) {
+        margin-top: 3rem;
+        padding: 2rem 0 1rem 0;
+    }
+
+    @include breakpoint-max(320px) {
+        padding: 0rem 0rem;
+        padding-top: 1.5rem;
+    }
+
+    .shipment-wrapper {
+        display: grid;
+        grid-template-columns: auto 0fr;
+        gap: 2rem;
+        margin-top: 1rem;
+
+        @include breakpoint-max(850px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    h1 {
+        font-size: $font-size-1xl;
+        text-transform: capitalize;
+        color: $primary-color-black;
+        font-weight: bold;
+
+        @include breakpoint-max(450px) {
+            font-size: $font-size-xl;
+        }
+    }
+
+    h2 {
+        font-size: $font-size-xl;
+        font-weight: bold;
+        color: $gray-color;
+        text-transform: capitalize;
+
+        @include breakpoint-max(450px) {
+            font-size: $font-size-lg;
+        }
+
+        @include breakpoint-max(320px) {
+            font-size: $font-size-base;
+        }
+    }
+
+    // Address Card
+    .address-wrapper {
+        box-shadow: 0px 0px 5px 0px $gray-light-color;
+        border-radius: .5rem;
+        background-color: white;
+        @include padding-cart-shipment();
+
+        .title-wrapper {
+            display: flex;
+            gap: .5rem;
+            align-items: center;
+            margin-top: 1rem;
+
+            @include breakpoint-max(450px) {
+                gap: .3rem;
+            }
+
+            .icon {
+                color: $primary-color;
+                font-size: $font-size-xl;
+            }
+
+            p {
+                font-size: $font-size-md;
+                color: $primary-color-black;
+                font-weight: bold;
+                text-transform: capitalize;
+                margin: 0;
+
+                @include breakpoint-max(450px) {
+                    font-size: $font-size-base;
+                }
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-sm;
+                }
+            }
+        }
+
+        .number-phone {
+            margin-top: .5rem;
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-sm;
+            }
+        }
+
+        .detail-address {
+            margin-top: .5rem;
+            display: grid;
+            gap: .3rem;
+            text-transform: capitalize;
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-sm;
+                margin-top: .3rem;
+            }
+
+            p:nth-child(1) {
+                width: 100%;
+                overflow: hidden;
+
+                text-overflow: ellipsis;
+                // white-space: nowrap;
+            }
+
+            p:nth-child(2) {
+                text-transform: uppercase;
+            }
+        }
+
+        .button-wrapper {
+            button {
+                background-color: white;
+                border: solid 2px $gray-lighter-color;
+                border-radius: .5rem;
+                padding: .8rem 2rem;
+                font-size: $font-size-lg;
+                text-transform: capitalize;
+                color: $gray-color;
+
+                &:hover {
+                    border: solid 2px $gray-light-color;
+                }
+
+                @include breakpoint-max(450px) {
+                    font-size: $font-size-md;
+                    padding: .7rem 1.7rem;
+                }
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-sm;
+                    padding: .7rem 1.5rem;
+                }
+            }
+        }
+    }
+
+    // Address Empty
+    .address-empty-wrapper {
+        button {
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            gap: .5rem;
+
+            span {
+                font-size: $font-size-1xl;
+                color: $gray-color;
+                border: solid 1px $gray-color;
+                border-radius: 100%;
+                padding: .1rem .5rem;
+            }
+
+            p {
+                font-size: $font-size-xl;
+                text-transform: capitalize;
+                color: $gray-color;
+            }
+
+            &:hover p {
+                color: $primary-color;
+            }
+
+            &:hover span {
+                color: $primary-color;
+                border: solid 1px $primary-color;
+            }
+        }
+    }
+
+    // Product Cart Card
+    .order-wrapper {
+        margin-top: 2rem;
+        display: grid;
+        gap: 1rem;
+
+        @include breakpoint-max(320px) {
+            margin-top: 1.5rem;
+        }
+
+        li {
+            background-color: white;
+            padding: 1rem;
+            box-shadow: 0px 0px 5px 0px $gray-light-color;
+            border-radius: .5rem;
+
+            @include breakpoint-max(320px) {
+                padding: .8rem;
+            }
+
+            .box-order {
+                display: flex;
+                gap: 1rem;
+
+                img {
+                    width: 70px;
+                    height: 70px;
+                }
+
+                .detail-order {
+                    font-size: $font-size-md;
+                    display: grid;
+                    align-self: baseline;
+                    gap: .3rem;
+
+                    @include breakpoint-max(450px) {
+                        font-size: $font-size-base;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-sm;
+                    }
+
+                    p:nth-child(1)::first-letter {
+                        text-transform: capitalize;
+                    }
+
+                    p:nth-child(2) {
+                        text-transform: capitalize;
+                    }
+
+                    p:nth-child(3) {
+                        font-weight: bold;
+                        text-transform: capitalize;
+                    }
+                }
+            }
+
+            .order-total-price {
+                display: flex;
+                justify-content: space-between;
+                text-transform: capitalize;
+                font-weight: bold;
+                color: $primary-color-black;
+                font-size: $font-size-md;
+
+                @include breakpoint-max(450px) {
+                    font-size: $font-size-base;
+                }
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-sm;
+                }
+            }
+        }
+    }
+
+    // Playment Card
+    .parent-select-payment {
+        width: 22rem;
+        position: relative;
+
+        @include breakpoint-max(850px) {
+            position: fixed;
+            bottom: 0rem;
+            z-index: $z-index-navbar;
+            left: 0;
+            width: 100%;
+        }
+
+        .cart-select-payment {
+            width: 22rem;
+            box-shadow: 0px 0px 5px 0px $gray-light-color;
+            border-radius: .5rem;
+            background-color: white;
+            align-self: baseline;
+            @include padding-cart-shipment();
+            transition-duration: 500ms;
+
+            @include breakpoint-max(850px) {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                padding-top: .8rem;
+                padding-bottom: .8rem;
+                border-radius: 0rem;
+                box-shadow: 0px 0px 2px 1px $gray-light-color;
+            }
+
+            @include breakpoint-max(320px) {
+                padding: .5rem;
+            }
+
+            .text-contain {
+                display: flex;
+                justify-content: space-between;
+                color: $primary-color-black;
+                font-weight: bold;
+                font-size: $font-size-xl;
+                text-align: end;
+
+                @include breakpoint-max(850px) {
+                    display: grid;
+                    text-align: start;
+                }
+
+                @include breakpoint-max(450px) {
+                    font-size: $font-size-lg;
+                }
+
+                @include breakpoint-max(360px) {
+                    font-size: $font-size-md;
+                }
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-sm;
+                }
+
+                p {
+                    text-transform: capitalize;
+
+                    @include breakpoint-max(850px) {
+                        font-weight: normal;
+                        font-size: $font-size-base;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-xs;
+                    }
+                }
+
+                span::first-letter {
+                    text-transform: capitalize
+                }
+            }
+
+            .button-wrapper {
+                margin-top: 1rem;
+
+                @include breakpoint-max(935px) {
+                    margin-top: 0rem;
+                    padding: 0;
+                }
+
+                button {
+                    background-color: $primary-color;
+                    width: 100%;
+                    padding: 1rem 0;
+                    transition-duration: 300ms;
+                    border-radius: .5rem;
+                    text-transform: capitalize;
+                    color: white;
+                    font-size: $font-size-lg;
+
+                    &:hover {
+                        background-color: $primary-color-hover;
+                    }
+
+                    @include breakpoint-max(850px) {
+                        font-size: $font-size-md;
+                        padding: .9rem 2rem;
+                    }
+
+                    @include breakpoint-max(450px) {
+                        padding: .9rem 1.8rem;
+                    }
+
+                    @include breakpoint-max(360px) {
+                        padding: .7rem 1.2rem;
+                        font-size: $font-size-base;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        padding: .7rem 1rem;
+                        font-size: $font-size-sm;
+                    }
+                }
+            }
+
+            h2 {
+                @include breakpoint-max(850px) {
+                    display: none;
+                }
+            }
+
+            .css-line-cart {
+                @include breakpoint-max(850px) {
+                    display: none;
+                }
+            }
+        }
+
+        .fixed-cart {
+            position: fixed;
+            top: 6rem;
+
+            @include breakpoint-max(850px) {
+                position: relative;
+                top: 0rem;
+            }
+        }
+
+        .absolute-card-payment {
+            position: absolute;
+            bottom: 0;
+
+            @include breakpoint-max(850px) {
+                position: relative;
+            }
+        }
+    }
+
+    // Address Card Loading
+    .address-card-loading {
+        .loading-card {
+            border-radius: .2rem;
+        }
+
+        .loading-card:nth-child(1) {
+            width: 10rem;
+            height: 1.5rem;
+        }
+
+        .loading-card:nth-child(2) {
+            width: 100%;
+            height: 8px;
+            margin: .8rem 0;
+        }
+
+        .loading-card:nth-child(3) {
+            width: 14rem;
+            height: 1rem;
+        }
+
+        .loading-card:nth-child(4) {
+            width: 5rem;
+            height: .8rem;
+            margin-top: .5rem;
+        }
+
+        .loading-card:nth-child(5) {
+            width: 8rem;
+            height: .8rem;
+            margin-top: .5rem;
+        }
+
+        .loading-card:nth-child(6) {
+            width: 20rem;
+            height: 1rem;
+            margin-top: .3rem;
+        }
+
+        .loading-card:nth-child(7) {
+            width: 100%;
+            height: 8px;
+            margin: .8rem 0;
+        }
+
+        .loading-card:nth-child(8) {
+            width: 10rem;
+            height: 2rem;
+        }
+    }
+
+    // Order Card Loading
+    .loading-order-card {
+        margin-top: 2rem;
+
+        .loading-card {
+            border-radius: .2rem;
+        }
+
+        .loading-card:nth-child(1) {
+            width: 10rem;
+            height: 1.2rem;
+        }
+
+        .loading-card:nth-child(2) {
+            width: 100%;
+            height: 8px;
+            margin: .8rem 0;
+        }
+
+        .flex {
+            display: flex;
+            gap: 1rem;
+
+            .loading-card:nth-child(1) {
+                width: 5rem;
+                height: 5rem;
+            }
+
+            .loading-text {
+                .loading-card:nth-child(1) {
+                    width: 11rem;
+                    height: 1rem;
+                }
+
+                .loading-card:nth-child(2) {
+                    width: 5rem;
+                    height: 1rem;
+                }
+
+                .loading-card:nth-child(3) {
+                    width: 6rem;
+                    height: 1rem;
+                }
+            }
+        }
+
+        .loading-card:nth-child(4) {
+            width: 100%;
+            height: 8px;
+            margin: .8rem 0;
+        }
+
+        .total-price-loading {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+
+            .loading-card:nth-child(1) {
+                width: 5rem;
+                height: 1rem;
+            }
+        }
+    }
+
+    // Payment Card Loading
+    .loading-payment {
+        .loading-card {
+            border-radius: .2rem;
+        }
+
+        .loading-card:nth-child(1) {
+            width: 10rem;
+            height: 1.3rem;
+        }
+
+        .loading-card:nth-child(2) {
+            width: 100%;
+            height: 8px;
+            margin: .8rem 0;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: space-between;
+
+            .loading-card:nth-child(1) {
+                width: 11.5rem;
+                height: 1.5rem;
+            }
+
+            .contain-2 {
+                .loading-card:nth-child(1) {
+                    width: 5.5rem;
+                    height: 1.5rem;
+                }
+            }
+        }
+
+        .loading-card:nth-child(4) {
+            width: 100%;
+            height: 8px;
+            margin: .8rem 0;
+        }
+
+        .loading-card:nth-child(5) {
+            width: 100%;
+            height: 3rem;
+        }
+    }
+}
+
+.footer-chipment {
+    @include breakpoint-max(850px) {
+        margin-bottom: 4.3rem;
+    }
+
+    @include breakpoint-max(360px) {
+        margin-bottom: 4rem;
+    }
+
+    @include breakpoint-max(320px) {
+        margin-bottom: 3.2rem;
+    }
+}

@@ -1,0 +1,131 @@
+.bg-success-transaction {
+    background-color: $primary-color-black65;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: $z-index-alert;
+
+    .bg-white {
+        position: relative;
+        background-color: white;
+        width: 25rem;
+        height: 100vh;
+        margin: 0 auto;
+
+        @include breakpoint-max(500px) {
+            width: 100%;
+        }
+    }
+
+    .bg-green {
+        background-color: #d0ffdf;
+        height: 75%;
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include breakpoint-max(320px) {
+            height: 68%;
+        }
+    }
+
+    .parent-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin-bottom: 4rem;
+
+        .icon-star {
+            position: absolute;
+            color: $primary-color;
+            font-size: 5rem;
+
+            @include breakpoint-max(320px) {
+                font-size: 4rem;
+            }
+        }
+
+        .icon-check {
+            position: absolute;
+            color: white;
+            font-size: 2.5rem;
+            z-index: 1;
+            margin-top: .5rem;
+
+            @include breakpoint-max(320px) {
+                font-size: 1.8rem;
+            }
+        }
+    }
+
+    h3 {
+        text-transform: capitalize;
+        font-size: $font-size-xl;
+        text-align: center;
+    }
+
+    .line-horizontal {
+        background-color: $primary-color;
+        width: 50%;
+        height: 3px;
+        margin: 0 auto;
+        margin-top: 1.5rem;
+    }
+
+    h4 {
+        text-align: center;
+        font-size: $font-size-1xl;
+        font-weight: bold;
+        color: $primary-color-black;
+        margin-top: 1.5rem;
+    }
+
+    h4::first-letter {
+        text-transform: capitalize;
+    }
+
+    p {
+        font-size: $font-size-sm;
+        margin-top: 1.3rem;
+        text-align: center;
+    }
+
+    .parent-button-redirect {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 1rem;
+        width: 100%;
+
+        p {
+            text-align: center;
+        }
+
+        p::first-letter {
+            text-transform: capitalize;
+        }
+
+        button {
+            margin-top: 1rem;
+            width: 100%;
+            padding: 1rem 0;
+            background-color: $gray-color;
+            color: white;
+            font-size: $font-size-md;
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-base;
+                padding: .7rem 0;
+            }
+        }
+
+        button::first-letter {
+            text-transform: capitalize;
+        }
+    }
+}

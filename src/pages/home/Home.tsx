@@ -5,8 +5,8 @@ import { NavigationBar } from "../../features/navbar/NavigationBar";
 import styles from "../../style/index.module.scss";
 import { SliderProduct } from "./components/SliderProduct";
 
-
 export const Home = () => {
+
     return (
         <>
             {/* Form Login Register */}

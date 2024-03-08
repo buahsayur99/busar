@@ -17,6 +17,8 @@ import { Carts } from "./pages/cart/Carts";
 import { useGetApiCart, useGetProduct } from "./hook";
 import { AlertCart } from "./pages/cart/components/AlertCart";
 import { Shipment } from "./pages/cart/Shipment";
+import { DetailTransaction } from "./pages/payment/DetailTransaction";
+import { AllPurchase } from "./pages/purchase/AllPurchase";
 
 function App() {
   // State
@@ -54,6 +56,7 @@ function App() {
       updateActiveAlert({ alertCart: { status: true, text: "product telah di hapus" } })
       return handleGetCart()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMessageCart, dataLoginUsers])
 
   return (
@@ -82,6 +85,7 @@ function App() {
                 <Route path="address" element={<Address />} />
               </Route>
 
+              {/* Cart */}
               <Route
                 path="cart"
                 element={<PrivateRoutes data={dataLoginUsers} />}
@@ -90,7 +94,7 @@ function App() {
                 <Route path="shipment" element={<Shipment />} />
               </Route>
 
-              {/* Dashboard */}
+              {/* Dashboard Admin */}
               <Route
                 path="dashboard"
                 element={<PrivateRoutes data={dataLoginUsers?.role === "admin"} />}
@@ -100,8 +104,24 @@ function App() {
                 <Route path="user" element={<UsersAdmin />} />
               </Route>
 
-              {/* collections */}
+              {/* Collections */}
               <Route path="collections/sayur-buah/products/:nameProduct" element={<CollectProduct />} />
+
+              {/* Status Order */}
+              <Route
+                path="order-status/busar/:id"
+                element={<PrivateRoutes data={dataLoginUsers} />}
+              >
+                <Route index element={<DetailTransaction />} />
+              </Route>
+
+              {/* Purchase */}
+              <Route
+                path="user/purchase/packaged"
+                element={<PrivateRoutes data={dataLoginUsers} />}
+              >
+                <Route index element={<AllPurchase />} />
+              </Route>
 
               {/* Not Found */}
               <Route path="*" element={<NotFound />} />

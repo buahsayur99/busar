@@ -110,6 +110,14 @@
 
         h1 {
             text-align: center;
+
+            &::first-letter {
+                text-transform: capitalize;
+            }
+
+            @include breakpoint-max(360px) {
+                line-height: 1.5rem;
+            }
         }
 
         button {
@@ -118,10 +126,16 @@
             color: white;
             font-size: $font-size-xl;
             transition-duration: 300ms;
+            text-transform: capitalize;
 
             &:hover {
                 color: white;
                 background-color: $primary-color;
+            }
+
+            @include breakpoint-max(360px) {
+                font-size: $font-size-lg;
+                padding: .9rem 1rem;
             }
         }
     }

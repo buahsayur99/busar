@@ -328,8 +328,6 @@ const apiAddressSlice = createSlice({
                 state.isLoading = false
                 state.isMessageAddress = action.payload.message
             })
-
-
     }
 });
 

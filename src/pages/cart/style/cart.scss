@@ -1,0 +1,650 @@
+.container-carts {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    display: grid;
+    grid-template-columns: auto 0fr;
+    gap: 5rem;
+
+    @include breakpoint-max(935px) {
+        grid-template-columns: none;
+    }
+
+    @include breakpoint-max(320px) {
+        margin-bottom: -1rem;
+    }
+
+    .container-select-product-table {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        z-index: $z-index-navbar;
+        display: none;
+
+        @include breakpoint-max(935px) {
+            display: inline;
+            top: 4.8rem;
+        }
+
+        @include breakpoint-max(800px) {
+            top: 4.5rem;
+        }
+
+        @include breakpoint-max(600px) {
+            top: 4.2rem;
+        }
+
+        @include breakpoint-max(450px) {
+            top: 4rem;
+        }
+
+        .parent-select-product-table {
+            display: flex;
+            justify-content: space-between;
+            background-color: white;
+            padding: .4rem .8rem;
+            align-items: center;
+            border-top: solid 1px $gray-light-color;
+            border-bottom: solid 1px $gray-light-color;
+
+            @include breakpoint-max(320px) {
+                padding: .3rem .5rem;
+            }
+
+            .text-contain {
+                p {
+                    color: $gray-medium-color;
+                    font-size: $font-size-md;
+                    text-transform: capitalize;
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-sm
+                    }
+                }
+            }
+
+            button {
+                background-color: $primary-danger;
+                color: white;
+                font-size: $font-size-md;
+                padding: .3rem .6rem;
+                border-radius: .5rem;
+                text-transform: capitalize;
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-sm;
+                }
+            }
+        }
+    }
+
+    .index-0 {
+        z-index: 0;
+    }
+
+    .fixed {
+        position: fixed;
+        z-index: $z-index-navbar;
+    }
+
+    h3 {
+        font-size: $font-size-1xl;
+        font-weight: bold;
+        text-transform: capitalize;
+        margin-bottom: 1rem;
+
+        @include breakpoint-max(935px) {
+            margin-top: 1rem;
+        }
+
+        @include breakpoint-max(450px) {
+            font-size: $font-size-xl;
+        }
+
+        @include breakpoint-max(935px) {
+            margin-top: 0.2rem;
+            font-size: $font-size-lg;
+        }
+    }
+
+    .cart-select-all {
+        height: 1.9rem;
+
+        @include breakpoint-max(930px) {
+            display: none;
+        }
+
+        .button-select-all {
+            text-transform: capitalize;
+            font-size: $font-size-xl;
+            color: $gray-color;
+            background-color: transparent;
+        }
+
+        button {
+            background-color: $primary-danger;
+            color: white;
+            font-size: $font-size-md;
+            padding: .3rem .6rem;
+            border-radius: .5rem;
+            text-transform: capitalize;
+        }
+    }
+
+    .parent-product-box {
+        display: flex;
+
+        @include breakpoint-max(450px) {
+            gap: .4rem;
+        }
+
+        img {
+            width: 100px;
+
+            @include breakpoint-max(320px) {
+                width: 80px;
+            }
+        }
+
+        .text-wrapper {
+            font-size: $font-size-lg;
+            color: $primary-color-black;
+
+            @include breakpoint-max(450px) {
+                font-size: $font-size-md;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-base;
+            }
+
+            a {
+                color: $primary-color-black;
+                text-transform: capitalize;
+            }
+
+            p {
+                text-transform: capitalize;
+                font-weight: bold;
+                margin-top: .7rem;
+
+                @include breakpoint-max(320px) {
+                    margin-top: .5rem;
+                }
+            }
+        }
+    }
+
+    .wrapper-button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .button-left {
+            .increment-decrement-wrapper {
+                .input-amounts[type="number"] {
+                    -moz-appearance: textfield;
+                }
+
+                .input-amounts[type="number"]::-webkit-outer-spin-button,
+                .input-amounts[type="number"]::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                }
+
+                .input-amounts {
+                    width: min-content;
+                    text-transform: capitalize;
+                    color: $primary-color-black;
+                    font-weight: 600;
+                    text-align: center;
+                    width: 50px;
+
+                    &:focus {
+                        outline: none;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-sm;
+                    }
+                }
+
+                .button-increm-decremen {
+                    color: white;
+                    background-color: $primary-color;
+                    width: 1.7rem;
+                    height: 1.7rem;
+                    border-radius: .3rem;
+
+                    @include breakpoint-max(320px) {
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        border-radius: .25rem;
+                    }
+                }
+            }
+
+            .line-vertical {
+                @include breakpoint-max(450px) {
+                    display: none;
+                }
+            }
+
+            .parent-total-price {
+                display: flex;
+                align-items: center;
+                color: $primary-color-black;
+                font-weight: bold;
+                gap: .2rem;
+                text-transform: capitalize;
+
+                @include breakpoint-max(450px) {
+                    display: none;
+                }
+            }
+        }
+
+        .icon-heart {
+            padding: 0;
+            background-color: transparent;
+            border-radius: none;
+
+            color: $gray-color;
+            font-size: $font-size-1xl;
+
+            &:hover {
+                background-color: transparent;
+                color: $gray-color;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-xl;
+            }
+        }
+
+        .text-tooltip {
+            position: fixed;
+            text-transform: capitalize;
+            text-align: center;
+            padding: .4rem .5rem;
+            background-color: $primary-color-black65;
+            color: white;
+            font-size: $font-size-xs;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .button-remove-cart {
+            padding: 0;
+            background-color: transparent;
+            border-radius: none;
+
+            color: $gray-color;
+            font-size: 1.4rem;
+
+            &:hover {
+                color: $primary-danger;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-md;
+            }
+        }
+    }
+
+    .alert-reset-pass {
+        left: 0;
+        top: 0;
+    }
+
+    .bg-white-alert {
+        width: 30rem;
+        padding-top: 1.5rem;
+        padding-bottom: 2rem;
+
+        @include breakpoint-max(500px) {
+            width: 90%;
+            padding-top: 1.8rem;
+            padding-bottom: 1.8rem;
+        }
+
+        @include breakpoint-max(320px) {
+            padding-top: 1.3rem;
+            padding-bottom: 1.3rem;
+        }
+
+        p {
+            padding-top: .5rem;
+            margin: 0 1.5rem;
+
+            @include breakpoint-max(390px) {
+                padding-top: 0rem;
+                margin: 0 0rem;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-sm;
+            }
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            text-transform: lowercase;
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-xl;
+            }
+        }
+
+        h3::first-letter {
+            text-transform: capitalize;
+        }
+
+        p::first-letter {
+            text-transform: capitalize;
+        }
+
+        .parent-btn {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            margin: 1.8rem 1.5rem 0 1.5rem;
+
+            @include breakpoint-max(390px) {
+                margin: 1.7rem .7rem 0 .7rem;
+            }
+
+            @include breakpoint-max(320px) {
+                margin: 1.4rem .7rem 0 .7rem;
+            }
+
+            button {
+                width: 100%;
+                font-size: $font-size-xl;
+                text-transform: capitalize;
+                padding: .7rem 0;
+                border-radius: .5rem;
+                transition-duration: 300ms;
+                font-weight: bold;
+
+                &:hover {
+                    background-color: $primary-color-hover;
+                }
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-base;
+                }
+            }
+
+            button:nth-child(2) {
+                background-color: transparent;
+                color: $primary-danger;
+                border: 1px solid $primary-danger;
+
+                &:hover {
+                    border: 1px solid rgb(190, 0, 0);
+                    color: rgb(190, 0, 0);
+                }
+            }
+        }
+    }
+
+    .parent-total-harga {
+        position: relative;
+        width: 22rem;
+
+        @mixin padding-total-harga() {
+            padding: 0 1rem;
+
+            @include breakpoint-max(450px) {
+                padding: 0 .8rem;
+            }
+        }
+
+        @include breakpoint-max(935px) {
+            position: fixed;
+            bottom: 0rem;
+            left: 0rem;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .card-total-harga {
+            width: 22rem;
+            box-shadow: 0px 0px 5px 0px $gray-light-color;
+            padding: 1rem 0;
+            border-radius: .5rem;
+            align-self: baseline;
+
+            @include breakpoint-max(935px) {
+                background-color: white;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                border-radius: 0rem;
+            }
+
+            @include breakpoint-max(450px) {
+                padding: .8rem 0;
+            }
+
+            @include breakpoint-max(375px) {
+                padding: .5rem 0;
+            }
+
+            .header-input-wrapper {
+                @include breakpoint-max(935px) {
+                    display: flex;
+                    align-items: center;
+
+                    @include padding-total-harga();
+                }
+
+                @include breakpoint-max(320px) {
+                    padding: 0 0 0 .5rem;
+                }
+
+                .parent-input-select-all {
+                    display: none;
+
+                    @include breakpoint-max(935px) {
+                        display: flex;
+                        gap: 1rem;
+                    }
+
+                    button {
+                        font-size: $font-size-xl;
+                        background-color: transparent;
+                        padding: 0;
+                        text-transform: capitalize;
+
+                        @include breakpoint-max(450px) {
+                            font-size: $font-size-md;
+                        }
+
+                        @include breakpoint-max(375px) {
+                            font-size: $font-size-base;
+                        }
+
+                        @include breakpoint-max(320px) {
+                            font-size: $font-size-sm;
+                        }
+                    }
+                }
+
+                h3 {
+                    @include padding-total-harga();
+
+                    @include breakpoint-max(935px) {
+                        display: none;
+                    }
+                }
+            }
+
+            .tablet-hidden {
+                @include breakpoint-max(935px) {
+                    display: none;
+                }
+            }
+
+            .parent-button-text {
+                @include padding-total-harga();
+
+                @include breakpoint-max(935px) {
+                    display: flex;
+                    gap: 0;
+                    align-items: center;
+                }
+
+                @include breakpoint-max(320px) {
+                    padding: 0 .5rem 0 0;
+                }
+
+                .text-contain {
+                    display: flex;
+                    justify-content: space-between;
+                    color: $primary-color-black;
+                    font-weight: bold;
+                    font-size: $font-size-xl;
+                    text-align: end;
+
+                    @include breakpoint-max(935px) {
+                        font-size: $font-size-lg;
+                        flex-direction: column;
+                        justify-content: left;
+                        font-weight: lighter;
+                        gap: .3rem
+                    }
+
+                    @include breakpoint-max(450px) {
+                        font-size: $font-size-md;
+                    }
+
+                    @include breakpoint-max(375px) {
+                        font-size: $font-size-base;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-sm;
+                    }
+
+                    @include padding-total-harga();
+
+                    p {
+                        text-transform: capitalize;
+
+                        @include breakpoint-max(375px) {
+                            font-size: $font-size-xs;
+                        }
+
+                        @include breakpoint-max(320px) {
+                            font-size: 0.6rem;
+                        }
+                    }
+
+                    span {
+                        @include breakpoint-max(935px) {
+                            font-weight: bold;
+                        }
+                    }
+
+                    span::first-letter {
+                        text-transform: capitalize
+                    }
+                }
+
+                .button-wrapper {
+                    margin-top: 1rem;
+
+                    @include padding-total-harga();
+
+                    @include breakpoint-max(935px) {
+                        margin-top: 0rem;
+                        padding: 0;
+                    }
+
+                    button {
+                        background-color: $primary-color;
+                        width: 100%;
+                        padding: 1rem 0;
+                        transition-duration: 300ms;
+                        border-radius: .5rem;
+                        text-transform: capitalize;
+                        color: white;
+                        font-size: $font-size-lg;
+
+                        &:hover {
+                            background-color: $primary-color-hover;
+                        }
+
+                        @include breakpoint-max(935px) {
+                            font-size: $font-size-md;
+                            padding: 1rem 2rem;
+                        }
+
+                        @include breakpoint-max(450px) {
+                            padding: .8rem 1.8rem;
+                        }
+
+                        @include breakpoint-max(375px) {
+                            padding: .6rem 1.5rem;
+                            font-size: $font-size-md;
+                        }
+
+                        @include breakpoint-max(320px) {
+                            padding: .5rem 1rem;
+                            font-size: $font-size-sm;
+                        }
+                    }
+
+                    .invisible {
+                        cursor: not-allowed;
+                        background-color: $gray-lighter-color;
+
+                        &:hover {
+                            background-color: $gray-lighter-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.card-absolute {
+    position: absolute;
+    bottom: .5rem;
+
+    @include breakpoint-max(935px) {
+        position: static;
+    }
+}
+
+.card-fixed {
+    position: fixed;
+
+    @include breakpoint-max(935px) {
+        position: static;
+    }
+}
+
+.cart-footers-wrapper {
+    background-color: red;
+
+    @include breakpoint-max(935px) {
+        padding-bottom: 5rem;
+    }
+
+    @include breakpoint-max(450px) {
+        padding-bottom: 4.2rem;
+    }
+
+    @include breakpoint-max(375px) {
+        padding-bottom: 3.2rem;
+    }
+
+    @include breakpoint-max(320px) {
+        padding-bottom: 2.91rem;
+    }
+}

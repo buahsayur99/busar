@@ -1,0 +1,151 @@
+.container-card-address {
+    position: relative;
+    width: 100%;
+    border: solid 2px $gray-lighter-color;
+    padding: 1rem;
+    border-radius: 1rem;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 1.7rem;
+        left: 0;
+        background-color: $primary-color;
+        width: .35rem;
+        height: 2.5rem;
+        z-index: 1;
+        border-radius: 0 1rem 1rem 0;
+    }
+
+    .card-address {
+        display: grid;
+        grid-template-columns: auto 0fr;
+        align-items: center;
+    }
+
+    .header-wrapper {
+        display: flex;
+        color: $gray-color;
+        align-items: center;
+        gap: .5rem;
+
+        h2 {
+            font-size: $font-size-xl;
+            text-transform: capitalize;
+
+            @include breakpoint-max(500px) {
+                font-size: $font-size-lg;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-md;
+            }
+        }
+
+        span {
+            font-size: $font-size-xs;
+            background-color: $gray-lighter-color;
+            padding: .1rem .5rem;
+            border-radius: .2rem;
+            text-transform: capitalize;
+        }
+    }
+
+    .contain-address-wrapper {
+        display: grid;
+        gap: .4rem;
+        margin-top: 1rem;
+
+        @include breakpoint-max(500px) {
+            font-size: $font-size-sm;
+        }
+
+        @include breakpoint-max(500px) {
+            margin-top: .7rem;
+        }
+
+        p:nth-child(1) {
+            color: $primary-color-black;
+            font-weight: bolder;
+        }
+
+        p:nth-child(3) {
+            width: 95%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    .button-card-address-wrapper {
+        margin-top: 1rem;
+        display: flex;
+        gap: .5rem;
+
+        @include breakpoint-max(500px) {
+            display: none;
+        }
+
+        .change-address {
+            background-color: transparent;
+            color: $primary-color;
+            font-size: $font-size-sm;
+            text-transform: capitalize;
+
+            &:hover {
+                color: $primary-color-hover;
+            }
+        }
+    }
+
+    .icon {
+        font-size: $font-size-1xl;
+        color: $primary-color;
+    }
+
+    .button-choice {
+        background-color: $primary-color;
+        color: white;
+        font-size: $font-size-sm;
+        padding: .5rem 1.7rem;
+        border-radius: .5rem;
+        text-transform: capitalize;
+
+        &:hover {
+            background-color: $primary-color-hover;
+        }
+
+        @include breakpoint-max(500px) {
+            display: none;
+        }
+    }
+
+    .parent-button-mobile {
+        display: none;
+
+        @include breakpoint-max(500px) {
+            display: grid;
+            margin-top: .7rem;
+            gap: .5rem;
+        }
+
+        .button-address-mobile {
+            border: solid 1px $gray-color;
+            color: $gray-color;
+            padding: .4rem;
+            background-color: transparent;
+            border-radius: .3rem;
+            text-transform: capitalize;
+            font-size: $font-size-xs;
+
+            &:hover {
+                color: $primary-color;
+                border: solid 1px $primary-color;
+            }
+        }
+    }
+}
+
+.main-card-address {
+    border: solid 2px $primary-color;
+}
