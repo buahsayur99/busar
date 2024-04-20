@@ -19,6 +19,11 @@ import { AlertCart } from "./pages/cart/components/AlertCart";
 import { Shipment } from "./pages/cart/Shipment";
 import { DetailTransaction } from "./pages/payment/DetailTransaction";
 import { AllPurchase } from "./pages/purchase/AllPurchase";
+import { PendingPurchase } from "./pages/purchase/PendingPurchase";
+import { PackagedPurchase } from "./pages/purchase/PackagedPurchase";
+import { CancelledPurchase } from "./pages/purchase/CancelledPurchase";
+import { SendPurchase } from "./pages/purchase/SendPurchase";
+import { SuccessPurchase } from "./pages/purchase/SuccessPurchase";
 
 function App() {
   // State
@@ -117,10 +122,15 @@ function App() {
 
               {/* Purchase */}
               <Route
-                path="user/purchase/packaged"
+                path="user/purchase"
                 element={<PrivateRoutes data={dataLoginUsers} />}
               >
                 <Route index element={<AllPurchase />} />
+                <Route path="pedding" element={<PendingPurchase />} />
+                <Route path="packaged" element={<PackagedPurchase />} />
+                <Route path="send" element={<SendPurchase />} />
+                <Route path="finished" element={<SuccessPurchase />} />
+                <Route path="cancelled" element={<CancelledPurchase />} />
               </Route>
 
               {/* Not Found */}

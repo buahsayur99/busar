@@ -3,18 +3,17 @@ import { DataAddressProps } from "../app/actions/apiAddressSlice";
 import { DataCartProps } from "../app/actions/apiCartSlice";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { useNavigate } from "react-router-dom";
-import { handleGetPayment, handleGetPaymentByTransactionId } from "../app/actions/apiPaymentSlice";
+import { handleGetAllTransaction, handleGetPayment, handleGetPaymentByTransactionId } from "../app/actions/apiPaymentSlice";
 
 export const useApiPayment = () => {
     // UseAppSelector
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
-    const { dataPayment } = useAppSelector(state => state.apiPayment);
     // State
     const [snapShow, setSnapShow] = useState(false);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
-    const postPayment = async (dataCart: DataCartProps[], dataAddress: DataAddressProps[]) => {
+    const postApiSnapPaymentMidtrans = async (dataCart: DataCartProps[], dataAddress: DataAddressProps[]) => {
         const totalPrice = dataCart.reduce((accumulator, currentProduct) => {
             return accumulator + currentProduct.totalPrice;
         }, 0);
@@ -39,7 +38,7 @@ export const useApiPayment = () => {
 
         if (response.ok) {
             setSnapShow(true);
-            handelSnap(responseData.snap_token, responseData.id);
+            handelNewSnap(responseData.snap_token, responseData.transaction_id, responseData.data);
         }
     }
 
@@ -74,26 +73,62 @@ export const useApiPayment = () => {
     }, [])
 
     // Handle Snap Midtrans
+    const handelNewSnap = (token: any, transaction_id: any, data: any) => {
+        if (token) {
+            const snap = (window as any).snap.pay(token, {
+                onSuccess: (result: any) => {
+                    setSnapShow(false);
+                    navigate(`/user/purchase/packaged`);
+                },
+                onPending: (result: any) => {
+                    setSnapShow(false);
+                    navigate(`/order-status/busar/${transaction_id}`);
+                },
+                onClose: () => {
+                    setSnapShow(false);
+                    // navigate(`/order-status/busar/${id}`);
+                }
+            });
+
+            if (snap && snap.close) {
+                // Menutup Snap Midtrans setelah beberapa detik
+                setTimeout(() => {
+                    snap.close();
+                }, 5000); // Contoh: menutup setelah 5 detik
+            }
+        }
+    }
+
+    // Handle Snap Midtrans
     const handelSnap = (token: any, id: any) => {
         if (token) {
             (window as any).snap.pay(token, {
                 onSuccess: (result: any) => {
-                    localStorage.setItem("payment", JSON.stringify(result));
-                    setSnapShow(false)
-                    navigate(`/order-status/busar/${id}`);
+                    setSnapShow(false);
+                    // navigate(`/order-status/busar/${id}`);
                 },
                 onPending: (result: any) => {
-                    localStorage.setItem("payment", JSON.stringify(result));
                     setSnapShow(false);
-                    navigate(`/order-status/busar/${id}`);
+                    // navigate(`/order-status/busar/${id}`);
                 },
                 onClose: () => {
-                    setSnapShow(false)
-                    navigate(`/order-status/busar/${id}`);
+                    setSnapShow(false);
+                    // navigate(`/order-status/busar/${id}`);
                 }
             });
         }
     }
 
-    return { postPayment, getpayment, handelSnap, getPaymentByTransactionId, snapShow }
+    // Handle Get Api Transaction
+    const handleGetTransaction = () => {
+        if (dataLoginUsers) {
+            const link = `${process.env.REACT_APP_API_URL_LOCAL}/transaction/${dataLoginUsers.uuid}`
+
+            dispatch(handleGetAllTransaction({ link }))
+        }
+    }
+
+
+
+    return { postApiSnapPaymentMidtrans, getpayment, handelSnap, getPaymentByTransactionId, handleGetTransaction, snapShow }
 }

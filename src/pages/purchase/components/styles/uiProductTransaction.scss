@@ -1,0 +1,119 @@
+.container-ui-product-transaction {
+
+    .wrapper-button-detail-product {
+        box-shadow: 0px -4px 0px 0px $gray-lighter-color;
+        font-size: $font-size-lg;
+        padding: .5rem 1rem;
+
+        @include breakpoint-max(500px) {
+            font-size: $font-size-md;
+        }
+
+        .button-detail-product {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            text-transform: capitalize;
+            background-color: transparent;
+
+            .icon {
+                font-size: 1.4rem;
+                rotate: -90deg;
+                transition-duration: 300ms;
+            }
+
+            .icon-button {
+                rotate: 90deg;
+            }
+        }
+    }
+
+    .parent-product-transaction {
+        padding: 0rem 1rem;
+
+        .product-transaction {
+            display: grid;
+            grid-template-rows: 1fr;
+            transition: grid-template-rows 500ms;
+        }
+
+        .invisible {
+            grid-template-rows: 0fr;
+        }
+
+        .padding-0 {
+            padding: 0rem 0rem;
+        }
+    }
+
+    .wrapper-product {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0px -1px 0px 0px $gray-light-color;
+
+        padding: 1rem 0rem;
+        overflow: hidden;
+
+        @include breakpoint-max(450px) {
+            flex-direction: column;
+            justify-content: baseline;
+            align-items: baseline;
+            position: relative;
+        }
+
+        .product {
+            display: flex;
+            gap: 1rem;
+
+            .detail-product {
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+
+                h5 {
+                    font-size: $font-size-lg;
+                    text-transform: capitalize;
+                }
+
+                p {
+                    font-size: $font-size-md;
+                    text-transform: capitalize;
+                    font-weight: bold;
+                }
+
+                span {
+                    font-size: $font-size-base;
+                    color: $gray-color;
+
+                    @include breakpoint-max(450px) {
+                        position: absolute;
+                        right: 0;
+                        bottom: 2.2rem;
+                    }
+                }
+
+                // Total Price Product
+                .total-price-product {
+                    display: none;
+
+                    @include breakpoint-max(450px) {
+                        display: inline;
+                        position: absolute;
+                        right: 0;
+                        bottom: 1rem;
+                    }
+                }
+            }
+        }
+
+        .total-price-product {
+            text-transform: capitalize;
+
+            @include breakpoint-max(450px) {
+                display: none;
+            }
+        }
+    }
+}

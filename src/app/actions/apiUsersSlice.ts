@@ -137,14 +137,15 @@ export const postToApi = createAsyncThunk("api/postToApi", async ({ data, link }
             credentials: 'include',
             body: JSON.stringify({ ...data })
         });
+        const responseData = await response.json();
+
+        console.log(responseData)
 
         if (response.ok) {
-            const responseData = await response.json();
             return responseData
         } else {
             // Jika respons tidak berhasil, lemparkan galat dengan pesan respons dari server
-            const errorResponseData = await response.json();
-            return rejectWithValue(errorResponseData)
+            return rejectWithValue(responseData)
         }
     } catch (error: any) {
         throw new Error(error.message);

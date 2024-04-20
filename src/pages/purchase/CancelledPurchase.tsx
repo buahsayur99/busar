@@ -1,25 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavigationBar } from "../../features/navbar/NavigationBar";
 import styles from "../../style/index.module.scss";
 import { NavPurchase } from "./components/NavPurchase";
-import { useApiPayment } from "../../hook/useApiPayment";
 import { useAppSelector } from "../../app/hooks";
+import { LoadingTransaction } from "./components/LoadingTransaction";
 import { DisplayTransaction } from "./components/DisplayTransaction";
 import { Footers } from "../../components/Footers";
-import { useSocketsPayment } from "../../hookSockets/useSocketsPayment";
-import { LoadingTransaction } from "./components/LoadingTransaction";
 
-export const AllPurchase = () => {
-    // State Redux
-    const { dataPaymentAll, isLoadingPayment } = useAppSelector(state => state.apiPayment);
-    // Custome Hook
-    const { handleGetTransaction } = useApiPayment();
-    useSocketsPayment();
+export const CancelledPurchase = () => {
+    const { isLoadingPayment, dataPaymentAll } = useAppSelector(state => state.apiPayment)
 
-    useEffect(() => {
-        if (dataPaymentAll.length === 0) return handleGetTransaction();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    const handleFilterPaymentCancelled = () => {
+        const filterData = dataPaymentAll.filter((data) => {
+            return data.status === `${process.env.REACT_APP_CANCEL_PAYMENT}`
+        });
+
+        return filterData
+    }
 
     return (
         <>
@@ -35,7 +32,7 @@ export const AllPurchase = () => {
 
                     {isLoadingPayment && dataPaymentAll.length === 0 && <LoadingTransaction />}
 
-                    <DisplayTransaction dataTransaction={dataPaymentAll} />
+                    <DisplayTransaction dataTransaction={handleFilterPaymentCancelled()} />
                 </div>
 
                 <Footers />

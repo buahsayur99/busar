@@ -27,7 +27,7 @@ export const Shipment = () => {
     const { toggle } = useBodyScrollLock();
     const { scrolled } = useScrollNavbar();
     const { isScrollShipment } = useScrollShipment(shipmentRef);
-    const { postPayment, snapShow } = useApiPayment();
+    const { postApiSnapPaymentMidtrans, snapShow } = useApiPayment();
 
     const handleActive = (event: any) => {
         setActive(prev => {
@@ -47,7 +47,7 @@ export const Shipment = () => {
 
     const handleSelectPayment = () => {
         if (dataAddress.length === 0) return handleActive({ alertEmptyAddress: true });
-        postPayment(checkedCart, dataAddress)
+        postApiSnapPaymentMidtrans(checkedCart, dataAddress)
     }
 
     const closeAlertEmptyAddress = () => {

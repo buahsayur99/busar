@@ -1,0 +1,88 @@
+.container-nav-purchase {
+    .parent-nav-purchase {
+        background-color: white;
+        margin-top: 2rem;
+        width: 100%;
+        box-shadow: 0px 0px 5px 0px $gray-light-color;
+        overflow: auto;
+
+        @include breakpoint-max(360px) {
+            margin-top: 1.7rem;
+        }
+
+        @include breakpoint-max(320px) {
+            margin-top: 1.5rem;
+        }
+
+        &::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $gray-color;
+            border-radius: 1rem;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: $gray-light-color;
+        }
+
+        .nav-purchase {
+            display: flex;
+
+            a {
+                color: $primary-color-black;
+                font-size: $font-size-xl;
+                text-transform: capitalize;
+                transition-duration: 300ms;
+                width: 10rem;
+                text-align: center;
+                padding: 1rem 0;
+
+                &:hover {
+                    color: $primary-color;
+                }
+
+                @include breakpoint-max(768px) {
+                    font-size: $font-size-lg;
+                }
+
+                @include breakpoint-max(450px) {
+                    font-size: $font-size-md;
+                    width: 8rem;
+                }
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-base;
+                    width: 7rem;
+                    padding: .8rem 0;
+                }
+            }
+
+            .btn-active {
+                position: relative;
+                color: $primary-color;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 4px;
+                    background-color: $primary-color;
+
+                    @include breakpoint-max(841px) {
+                        top: 0;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        height: 3px;
+                    }
+                }
+            }
+        }
+    }
+
+
+}

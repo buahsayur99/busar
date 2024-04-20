@@ -82,6 +82,12 @@
 @import "../pages/payment/components/style/loadingPayment";
 @import "../pages/payment/components/style/cardDetailPayment";
 @import "../pages/payment/components/style/notifSuccessTrans";
+// Pages /Purchase
+@import "../pages/purchase/styles/allPurchase";
+@import "../pages/purchase/components/styles/navPurchase";
+@import "../pages/purchase/components/styles/displayTransaction";
+@import "../pages/purchase/components/styles/uiProductTransaction";
+@import "../pages/purchase/components/styles/loadingTransaction";
 
 // Global Css
 @import "index.scss";

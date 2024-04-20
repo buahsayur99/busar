@@ -35,7 +35,6 @@ export const Login: React.FC<LoginProps> = ({ toggleBackgroundWhite }) => {
         }
 
         const data = eventInput
-        // const link = "https://rich-tan-llama-wear.cyclic.app/login"
         const link = `${process.env.REACT_APP_API_URL_LOCAL}/login`
         if (inputValueForm.email !== "" && inputValueForm.password !== "") return dispatch(postToApi({ data, link }));
     }

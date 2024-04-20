@@ -52,6 +52,12 @@ export const UsersLogin = () => {
                                     </NavLink>
                                 )}
                                 <NavLink
+                                    to="/user/purchase"
+                                    className={`${styles["btn-users"]}`}
+                                >
+                                    my order
+                                </NavLink>
+                                <NavLink
                                     to="/account"
                                     className={`${styles["btn-users"]}`}
                                 >

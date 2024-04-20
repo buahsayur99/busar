@@ -25,12 +25,6 @@ export const DetailTransaction = () => {
     const { timer, fullTime } = useTimerPayment(id);
     // Hanlde midtrans payment response
     const { socket } = useWebSocketClient({ dataPayment });
-    console.log({
-        socket,
-        dataPayment,
-        isMessagePayment,
-        location
-    })
 
     const updateActive = (event: any) => {
         setActive((prev) => {

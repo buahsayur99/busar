@@ -20,12 +20,18 @@ export type PaymentStoreProps = {
 }
 
 export type DataPaymentProps = {
+    id: number,
     transaction_id: string,
     status: string,
     total_price: number,
     uuid_users: string,
     customer_details: string,
-    item_details: any,
+    item_details: {
+        idProduct: number,
+        name: string,
+        price: number,
+        quantity: number
+    }[],
     snap_token: string,
     date: number,
     expiration_time: number,
@@ -80,7 +86,21 @@ export const handleGetPaymentByTransactionId = createAsyncThunk("api/getPaymentB
     } else {
         return rejectWithValue(responseData);
     }
-})
+});
+
+export const handleGetAllTransaction = createAsyncThunk(`api/handleGetAllTransaction`, async ({ link }: { link: string }, { rejectWithValue }) => {
+    const response = await fetch(link, {
+        method: "GET",
+        headers: { 'Content-Type': 'application/json' }
+    });
+    const responseData = await response.json();
+
+    if (response.ok) {
+        return responseData;
+    } else {
+        return rejectWithValue(responseData);
+    }
+});
 
 const apiPaymentSlice = createSlice({
     name: "api payment",
@@ -89,6 +109,9 @@ const apiPaymentSlice = createSlice({
         resetIsMessagePayment: (state) => {
             state.isMessagePayment = ""
         },
+        handleUpdateAllPaymentRedux: (state, action) => {
+            state.dataPaymentAll = action.payload
+        }
     },
     extraReducers(builder) {
         builder
@@ -115,9 +138,20 @@ const apiPaymentSlice = createSlice({
                 state.isLoadingPayment = false
                 state.isMessagePayment = action.payload.message
             })
+
+            .addCase(handleGetAllTransaction.pending, (state) => {
+                state.isLoadingPayment = true
+            })
+            .addCase(handleGetAllTransaction.fulfilled, (state, action) => {
+                state.isLoadingPayment = false
+                state.dataPaymentAll = action.payload
+            })
+            .addCase(handleGetAllTransaction.rejected, (state) => {
+                state.isLoadingPayment = false
+            })
     },
 });
 
 
-export const { resetIsMessagePayment } = apiPaymentSlice.actions
+export const { resetIsMessagePayment, handleUpdateAllPaymentRedux } = apiPaymentSlice.actions
 export default apiPaymentSlice.reducer;
