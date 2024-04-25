@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useAppSelector } from "../../app/hooks";
 import { useApiPayment } from "../../hook/useApiPayment";
-import { useSocketsPayment } from "../../hookSockets/useSocketsPayment";
 import styles from "../../style/index.module.scss";
 import { NavigationBar } from "../../features/navbar/NavigationBar";
 import { NavPurchase } from "./components/NavPurchase";
@@ -15,8 +14,6 @@ export const SuccessPurchase = () => {
     const { dataPaymentAll, isLoadingPayment } = useAppSelector(state => state.apiPayment);
     // Custome Hook
     const { handleGetTransaction } = useApiPayment();
-    // Handle Socket Get Payment, if Data Payment update
-    useSocketsPayment();
 
     const handleFilterPaymentSuccess = (payment: DataPaymentProps[]) => {
         const filterPaymentPending = payment.filter((data) => {

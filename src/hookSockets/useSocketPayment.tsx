@@ -3,7 +3,8 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { io } from "socket.io-client";
 import { DataPaymentProps, handleUpdateAllPaymentRedux } from "../app/actions/apiPaymentSlice";
 
-export const useSocketsPayment = () => {
+
+export const useSocketPayment = () => {
     // State Redux
     const dispatch = useAppDispatch();
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);

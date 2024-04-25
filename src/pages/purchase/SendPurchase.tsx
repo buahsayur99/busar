@@ -7,7 +7,6 @@ import { useAppSelector } from "../../app/hooks";
 import styles from "../../style/index.module.scss";
 import { LoadingTransaction } from "./components/LoadingTransaction";
 import { useApiPayment } from "../../hook/useApiPayment";
-import { useSocketsPayment } from "../../hookSockets/useSocketsPayment";
 import { DataPaymentProps } from "../../app/actions/apiPaymentSlice";
 
 export const SendPurchase = () => {
@@ -15,8 +14,6 @@ export const SendPurchase = () => {
     const { dataPaymentAll, isLoadingPayment } = useAppSelector(state => state.apiPayment);
     // Custome Hook
     const { handleGetTransaction } = useApiPayment();
-    // Handle Socket Get Payment, if Data Payment update
-    useSocketsPayment();
 
     const handleFilterPaymentDelivered = (payment: DataPaymentProps[]) => {
         const paymentDilivered = payment.filter((data) => {

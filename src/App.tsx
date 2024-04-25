@@ -25,6 +25,7 @@ import { CancelledPurchase } from "./pages/purchase/CancelledPurchase";
 import { SendPurchase } from "./pages/purchase/SendPurchase";
 import { SuccessPurchase } from "./pages/purchase/SuccessPurchase";
 import { useSocketCart } from "./hookSockets/useSocketCart";
+import { useSocketPayment } from "./hookSockets/useSocketPayment";
 
 function App() {
   // State
@@ -40,6 +41,7 @@ function App() {
   useSaveLastPage();
   // Socket
   useSocketCart();
+  useSocketPayment();
 
   // Update function activeAlert
   const updateActiveAlert = (event: any) => {
