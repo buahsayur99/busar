@@ -130,6 +130,9 @@ const apiCartSlice = createSlice({
         },
         handleResetData: (state) => {
             state.dataCart = []
+        },
+        updateCartsData: (state, action) => {
+            state.dataCart = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -183,5 +186,5 @@ const apiCartSlice = createSlice({
     }
 })
 
-export const { resetIsMessageCart, activeCarts, handleCheckedCart, updateCheckedCart, handleResetData } = apiCartSlice.actions;
+export const { resetIsMessageCart, activeCarts, handleCheckedCart, updateCheckedCart, handleResetData, updateCartsData } = apiCartSlice.actions;
 export default apiCartSlice.reducer;

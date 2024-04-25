@@ -24,6 +24,7 @@ import { PackagedPurchase } from "./pages/purchase/PackagedPurchase";
 import { CancelledPurchase } from "./pages/purchase/CancelledPurchase";
 import { SendPurchase } from "./pages/purchase/SendPurchase";
 import { SuccessPurchase } from "./pages/purchase/SuccessPurchase";
+import { useSocketCart } from "./hookSockets/useSocketCart";
 
 function App() {
   // State
@@ -37,6 +38,8 @@ function App() {
   const { handleGetProduct } = useGetProduct();
   const { handleGetCart } = useGetApiCart();
   useSaveLastPage();
+  // Socket
+  useSocketCart();
 
   // Update function activeAlert
   const updateActiveAlert = (event: any) => {
@@ -52,11 +55,10 @@ function App() {
 
   // Get Cart if update cart and add cart success
   useEffect(() => {
-    if (isMessageCart === "success update amount cart" || dataLoginUsers) handleGetCart();
-    if (isMessageCart === "success add cart") {
-      updateActiveAlert({ alertCart: { status: true, text: "the product successfully inserted into the shopping cart" } })
-      return handleGetCart()
-    }
+    // if (isMessageCart === "success add cart") {
+    //   updateActiveAlert({ alertCart: { status: true, text: "the product successfully inserted into the shopping cart" } })
+    //   return handleGetCart()
+    // }
     if (isMessageCart === "delete cart success") {
       updateActiveAlert({ alertCart: { status: true, text: "product telah di hapus" } })
       return handleGetCart()

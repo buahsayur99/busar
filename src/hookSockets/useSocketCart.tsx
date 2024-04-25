@@ -1,19 +1,19 @@
 import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { io } from "socket.io-client";
-import { DataPaymentProps, handleUpdateAllPaymentRedux } from "../app/actions/apiPaymentSlice";
+import { DataCartProps, updateCartsData } from "../app/actions/apiCartSlice";
 
-export const useSocketsPayment = () => {
-    // State Redux
-    const dispatch = useAppDispatch();
+export const useSocketCart = () => {
+    // useAppSelector
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
+    const dispatch = useAppDispatch();
 
-    const handleSocketsGetAllPayment = useCallback(() => {
+    const handleSocketCart = useCallback(() => {
         if (dataLoginUsers) {
             const sockets = io(`${process.env.REACT_APP_API_URL_LOCAL}`);
 
-            sockets.on(`${dataLoginUsers.uuid}-socket-payment`, (data: DataPaymentProps[]) => {
-                dispatch(handleUpdateAllPaymentRedux(data));
+            sockets.on(`${dataLoginUsers.uuid}-socket-cart`, (data: DataCartProps[]) => {
+                dispatch(updateCartsData(data));
             });
 
             return () => {
@@ -21,12 +21,12 @@ export const useSocketsPayment = () => {
                 sockets.disconnect();
             };
         }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dataLoginUsers])
 
-    // Handle Socket Payment
     useEffect(() => {
-        handleSocketsGetAllPayment();
+        handleSocketCart();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [])
 }
