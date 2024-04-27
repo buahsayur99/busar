@@ -14,10 +14,9 @@ import { NotifSuccessTrans } from "./components/NotifSuccessTrans";
 import { PaymentBankProps, PaymentStoreProps, resetIsMessagePayment } from "../../app/actions/apiPaymentSlice";
 
 export const DetailTransaction = () => {
-    const [active, setActive] = useState({ panduanPembayaran: false })
+    const [active, setActive] = useState({ panduanPembayaran: false, loadingHidden: false })
     const { id } = useParams();
     const navigate = useNavigate();
-    const location = useLocation();
     // UseAppSelector
     const { dataPayment, isLoadingPayment, isMessagePayment } = useAppSelector(state => state.apiPayment);
     // Custome Hook
@@ -46,7 +45,8 @@ export const DetailTransaction = () => {
         if (dataPayment && dataPayment.status_purchase === `${process.env.REACT_APP_PURCHASE_PACKAGED}`) {
             navigate("/user/purchase/packaged")
         }
-        // if (dataPayment?.status === `${process.env.REACT_APP_SUCCESS_PAYMENT}` || dataPayment?.status === `${process.env.REACT_APP_CANCEL_PAYMENT}`) return navigate("/");
+        // if payment status not  redirect to home
+        if (dataPayment && dataPayment?.status !== `${process.env.REACT_APP_PENDING_PAYMENT}`) return navigate("/");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isMessagePayment, dataPayment])
 
@@ -307,16 +307,20 @@ export const DetailTransaction = () => {
         }
     }
 
+    console.log(active)
+
     return (
         <>
+            {/* <LoadingPayment handleHiddenLoading={() => updateActive({ loadingHidden: true })} /> */}
+
             {/* Display Loading */}
-            {isLoadingPayment && <LoadingPayment />}
+            {(!active.loadingHidden || isLoadingPayment) && <LoadingPayment handleHiddenLoading={() => updateActive({ loadingHidden: true })} />}
 
             {socket && socket.status === `${process.env.REACT_APP_SUCCESS_PAYMENT}` && (
                 <NotifSuccessTrans totalPrice={socket.total_price} orderId={socket.transaction_id} />
             )}
 
-            {!socket && !isLoadingPayment && dataPayment && (
+            {!socket && active.loadingHidden && !isLoadingPayment && dataPayment && dataPayment.status === `${process.env.REACT_APP_PENDING_PAYMENT}` && (
                 <>
                     <NavigationBar />
 
