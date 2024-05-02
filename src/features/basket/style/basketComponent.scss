@@ -217,6 +217,15 @@
             gap: .1rem;
             align-items: center;
 
+            .button-increm-decremen-invisible {
+                color: white;
+                background-color: $gray-lighter-color;
+                width: 1.7rem;
+                height: 1.7rem;
+                border-radius: .3rem;
+                cursor: not-allowed;
+            }
+
             .button-increm-decremen {
                 color: white;
                 background-color: $primary-color;

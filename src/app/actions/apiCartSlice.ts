@@ -19,6 +19,7 @@ export type DataCartProps = {
 
 type InitialStateProps = {
     dataCart: DataCartProps[],
+    dataCartBasket: DataCartProps[],
     isLoadingCart: boolean,
     isMessageCart: string,
     activeCart: boolean,
@@ -27,6 +28,7 @@ type InitialStateProps = {
 
 const initialState: InitialStateProps = {
     dataCart: [],
+    dataCartBasket: [],
     isLoadingCart: true,
     isMessageCart: "",
     activeCart: false,
@@ -55,7 +57,7 @@ export const addCart = createAsyncThunk("api/addCart", async ({ data, link }: ap
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...data })
         });
-        const responseData = response.json();
+        const responseData = await response.json();
 
         if (response.ok) return responseData;
         return rejectWithValue(responseData)
@@ -143,6 +145,7 @@ const apiCartSlice = createSlice({
             .addCase(getCart.fulfilled, (state, action) => {
                 state.isLoadingCart = false
                 state.dataCart = action.payload
+                state.dataCartBasket = action.payload
             })
             .addCase(getCart.rejected, (state, action) => {
                 state.isLoadingCart = false

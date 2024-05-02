@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import { useGetApiCart } from "../../../hook/useGetApiCart";
 
 export const SliderProduct = () => {
+    // Data total Loding Card
     const arrayLoadingCard = [1, 2, 3, 4, 5]
     // UseAppSelector
     const { dataProductApi, isLoadingProduct } = useAppSelector(state => state.apiProduct);
@@ -152,7 +153,7 @@ export const SliderProduct = () => {
                                                         aria-label="basket"
                                                         className={styles["icon-basket"]}
                                                         onClick={() => {
-                                                            handleLoginRedirect()
+                                                            handleLoginRedirect();
                                                             handleAddCart(slide, 1)
                                                         }}
                                                     >

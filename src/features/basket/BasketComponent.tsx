@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../style/index.module.scss"
+import styles from "../../style/index.module.scss";
 import { IoIosArrowUp, MdOutlineKeyboardArrowLeft } from "../../utils/icons";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { convertObjectToArray, convertProductByCart, convertTotalAmountProduct, convertTotalPrice, formattedNumber } from "../../utils/convert";
 import { Link, useNavigate } from "react-router-dom";
 import { DataCartProps, activeCarts } from "../../app/actions/apiCartSlice";
-import { ButtonLoading } from "../../components/ButtonLoading";
+import { ButtonLoading } from "./ButtonLoading";
 import { useDebounce } from "use-debounce";
 import { AlertText } from "../../components/AlertText";
 import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
@@ -117,7 +117,7 @@ const Products = ({ product, isLoading }: ProductsProps) => {
     // Custome Hook
     const { handleUpdateCart, handleDeleteCart } = useGetApiCart();
 
-    const [debouncedValue] = useDebounce(amounts, 3500);
+    const [debouncedValue] = useDebounce(amounts, 1000);
     const productByCart = convertProductByCart(dataProductApi, product)
 
     const increment = () => {
@@ -152,6 +152,8 @@ const Products = ({ product, isLoading }: ProductsProps) => {
         }, 3000)
     }
 
+    console.log(dataProductApi)
+
     return (
         <>
             {alert && (
@@ -182,7 +184,7 @@ const Products = ({ product, isLoading }: ProductsProps) => {
                 <p>{`rp ${formattedNumber(product.price)}`}</p>
                 <div className={styles["parent-amount"]}>
                     <ButtonLoading
-                        classButton={"button-increm-decremen"}
+                        classButton={amounts === 1 ? "button-increm-decremen-invisible" : "button-increm-decremen"}
                         isLoading={isLoading}
                         onClicks={() => decrement()}
                     >
@@ -198,7 +200,7 @@ const Products = ({ product, isLoading }: ProductsProps) => {
                     />
 
                     <ButtonLoading
-                        classButton={"button-increm-decremen"}
+                        classButton={amounts === productByCart.amount ? "button-increm-decremen-invisible" : "button-increm-decremen"}
                         isLoading={isLoading}
                         onClicks={() => increment()}
                     >
@@ -215,7 +217,7 @@ const Products = ({ product, isLoading }: ProductsProps) => {
                         remove
                     </ButtonLoading>
                 </div>
-            </div>
+            </div >
         </>
     )
 }

@@ -10,11 +10,11 @@ import { useAppSelector } from "./app/hooks";
 import { DashboardAdmin } from "./pages/dashboard/DashboardAdmin";
 import { ProductAdmin } from "./pages/dashboard/ProductAdmin";
 import { UsersAdmin } from "./pages/dashboard/UsersAdmin";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { CollectProduct } from "./pages/collections/CollectProduct";
 import { BasketComponent } from "./features/basket/BasketComponent";
 import { Carts } from "./pages/cart/Carts";
-import { useGetApiCart, useGetProduct } from "./hook";
+import { useGetProduct } from "./hook";
 import { AlertCart } from "./pages/cart/components/AlertCart";
 import { Shipment } from "./pages/cart/Shipment";
 import { DetailTransaction } from "./pages/payment/DetailTransaction";
@@ -28,45 +28,22 @@ import { useSocketCart } from "./hookSockets/useSocketCart";
 import { useSocketPayment } from "./hookSockets/useSocketPayment";
 
 function App() {
-  // State
-  const [activeAlert, setActiveAlert] = useState({ alertCart: { status: false, text: "" } });
   // useAppSelector
   const { isLoadingAuth, dataLoginUsers } = useAppSelector(state => state.apiUsers);
   const { dataProductApi } = useAppSelector(state => state.apiProduct)
-  const { activeCart, isMessageCart } = useAppSelector(state => state.apiCart);
+  const { activeCart } = useAppSelector(state => state.apiCart);
   // Custome Hook
   const { requestUserApi } = useAuthUsers();
   const { handleGetProduct } = useGetProduct();
-  const { handleGetCart } = useGetApiCart();
   useSaveLastPage();
   // Socket
   useSocketCart();
   useSocketPayment();
 
-  // Update function activeAlert
-  const updateActiveAlert = (event: any) => {
-    setActiveAlert((prev) => {
-      return { ...prev, ...event }
-    })
-  }
-
   useEffect(() => {
     requestUserApi();
     if (dataProductApi.length === 0) return handleGetProduct();
   }, [dataProductApi.length, handleGetProduct, requestUserApi])
-
-  // Get Cart if update cart and add cart success
-  useEffect(() => {
-    // if (isMessageCart === "success add cart") {
-    //   updateActiveAlert({ alertCart: { status: true, text: "the product successfully inserted into the shopping cart" } })
-    //   return handleGetCart()
-    // }
-    if (isMessageCart === "delete cart success") {
-      updateActiveAlert({ alertCart: { status: true, text: "product telah di hapus" } })
-      return handleGetCart()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isMessageCart, dataLoginUsers])
 
   return (
     <>
@@ -74,9 +51,7 @@ function App() {
         <Router>
           <div>
             {/* Alert Cart */}
-            {activeAlert.alertCart.status === true && (
-              <AlertCart activeAlert={activeAlert.alertCart} faVisibleAlert={() => updateActiveAlert({ alertCart: { status: false, text: "" } })} />
-            )}
+            <AlertCart />
 
             {activeCart && (<BasketComponent />)}
 

@@ -6,13 +6,16 @@ import { DataCartProps, addCart, deleteCart, getCart, resetIsMessageCart, update
 export const useGetApiCart = () => {
     const dispatch = useAppDispatch();
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
+    const { isMessageCart } = useAppSelector(state => state.apiCart);
 
     const handleAddCart = (product: productProps, amounts: number) => {
-        const link = `${process.env.REACT_APP_API_URL_LOCAL}/cart/${dataLoginUsers?.uuid}`;
-        const amount = { amount: amounts }
+        if (!isMessageCart) {
+            const link = `${process.env.REACT_APP_API_URL_LOCAL}/cart/${dataLoginUsers?.uuid}`;
+            const amount = { amount: amounts }
 
-        const data = { ...product, ...amount }
-        dispatch(addCart({ data, link }))
+            const data = { ...product, ...amount }
+            dispatch(addCart({ data, link }))
+        }
     }
 
     const handleGetCart = useCallback(() => {

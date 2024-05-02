@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect } from "react";
 import { SlBasket } from "../../utils/icons";
 import { ButtonTooltip } from "../../components/ButtonTooltip";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";

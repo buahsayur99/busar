@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import styles from "../../style/index.module.scss";
 import { useAppSelector } from "../../app/hooks";
 import { useApiPayment } from "../../hook/useApiPayment";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTimerPayment } from "../../hook/useTimerPayment";
 import { NavigationBar } from "../../features/navbar/NavigationBar";
 import { Footers } from "../../components/Footers";
@@ -306,8 +306,6 @@ export const DetailTransaction = () => {
             }
         }
     }
-
-    console.log(active)
 
     return (
         <>
