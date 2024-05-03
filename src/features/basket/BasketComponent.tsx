@@ -152,8 +152,6 @@ const Products = ({ product, isLoading }: ProductsProps) => {
         }, 3000)
     }
 
-    console.log(dataProductApi)
-
     return (
         <>
             {alert && (

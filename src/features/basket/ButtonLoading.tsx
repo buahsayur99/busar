@@ -4,13 +4,11 @@ import styles from "../../style/index.module.scss";
 type ButtonLoadingProps = {
     children: React.ReactNode;
     classButton: string;
-    invisibleButton?: { class: string, amount: number }
     isLoading: boolean;
     onClicks: () => void;
 }
 
-export const ButtonLoading = ({ children, classButton, invisibleButton, isLoading, onClicks }: ButtonLoadingProps) => {
-    console.log(invisibleButton)
+export const ButtonLoading = ({ children, classButton, isLoading, onClicks }: ButtonLoadingProps) => {
     return (
         <>
             {!isLoading ? (
