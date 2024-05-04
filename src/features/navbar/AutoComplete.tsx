@@ -3,7 +3,7 @@ import styles from "../../style/index.module.scss";
 import { useAppSelector } from "../../app/hooks";
 import { productProps } from "../../app/actions/apiProductSlice";
 import { convertObjectToArray, formattedNumber } from "../../utils/convert";
-import { BsArrowRight } from "../../utils/icons";
+import { BsArrowRight, BsSearch } from "../../utils/icons";
 import { Link } from "react-router-dom";
 import { useScrollNavbar } from "../../hook/useScrollNavbar";
 
@@ -61,38 +61,47 @@ export const AutoComplete = ({ inputSearch }: AutoCompleteProps) => {
                         <div
                             className={styles["search-auto-complete-group"]} aria-label="product search"
                         >
-                            <h4 className={styles["search-auto-complete-header-product"]}>product</h4>
-                            <ul>
-                                {suggestions.map((suggestion, index) => (
-                                    <li key={index}>
-                                        <Link to={`/collections/sayur-buah/products/${suggestion.name}`}>
-                                            <div className={styles["search-auto-complete-left"]}>
-                                                <img
-                                                    width={60}
-                                                    src={`${process.env.REACT_APP_API_URL_LOCAL}/${convertObjectToArray(suggestion.url)[0]}`}
-                                                    alt={suggestion.name}
-                                                />
-                                            </div>
-                                            <div className={styles["search-auto-complete-right"]}>
-                                                <p className={styles["search-auto-complete-product-tittle"]}>
-                                                    {suggestion.name}
-                                                </p>
-                                                <p className={styles["search-auto-complete-product-price"]}>
-                                                    Rp {formattedNumber(suggestion.price)}
-                                                </p>
-                                            </div>
+                            {suggestions.length !== 0 ? (
+                                <>
+                                    <h4 className={styles["search-auto-complete-header-product"]}>product</h4>
+                                    <ul>
+                                        {suggestions.map((suggestion, index) => (
+                                            <li key={index}>
+                                                <Link to={`/collections/sayur-buah/products/${suggestion.name}`}>
+                                                    <div className={styles["search-auto-complete-left"]}>
+                                                        <img
+                                                            width={60}
+                                                            src={`${process.env.REACT_APP_API_URL_LOCAL}/${convertObjectToArray(suggestion.url)[0]}`}
+                                                            alt={suggestion.name}
+                                                        />
+                                                    </div>
+                                                    <div className={styles["search-auto-complete-right"]}>
+                                                        <p className={styles["search-auto-complete-product-tittle"]}>
+                                                            {suggestion.name}
+                                                        </p>
+                                                        <p className={styles["search-auto-complete-product-price"]}>
+                                                            Rp {formattedNumber(suggestion.price)}
+                                                        </p>
+                                                    </div>
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <div className={styles["search-auto-complete-view-all"]}>
+                                        <Link to={`/collections/sayur-buah/products/${inputSearch}`}>
+                                            <span>
+                                                {`lihat semua ${suggestions.length} product`}
+                                            </span>
+                                            <BsArrowRight className={styles["icon"]} />
                                         </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                            <div className={styles["search-auto-complete-view-all"]}>
-                                <Link to={`/collections/sayur-buah/products/${inputSearch}`}>
-                                    <span>
-                                        {`lihat semua ${suggestions.length} product`}
-                                    </span>
-                                    <BsArrowRight className={styles["icon"]} />
-                                </Link>
-                            </div>
+                                    </div>
+                                </>
+                            ) : (
+                                <div className={styles["search-not-found-wrapper"]}>
+                                    <BsSearch />
+                                    <p>Cari product "{inputSearch}"</p>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

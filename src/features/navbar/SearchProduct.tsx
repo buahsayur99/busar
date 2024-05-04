@@ -3,6 +3,7 @@ import styles from "../../style/index.module.scss";
 import { BsSearch, IoCloseSharp, BsArrowLeft } from "../../utils/icons";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { AutoComplete } from "./AutoComplete";
+import { useNavigate } from "react-router-dom";
 
 type SearchProductProps = {
     onClicks?: () => void;
@@ -13,12 +14,15 @@ type SearchProductProps = {
 const SearchProduct = ({ onClicks, inputs, setInputs }: SearchProductProps) => {
     // state
     const [isInputFocused, setIsInputFocused] = useState(false);
+    const navigate = useNavigate();
     // useRef
     const focusInputRef = useRef<HTMLInputElement | null>(null);
     const focusAutoRef = useRef<HTMLInputElement | null>(null);
 
     const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
+        event.preventDefault();
+
+        navigate(`/collections/sayur-buah/products/${inputs}`)
     }
 
     const handleFocusInput = () => {

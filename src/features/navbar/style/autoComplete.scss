@@ -142,4 +142,21 @@
             }
         }
     }
+
+    .search-not-found-wrapper {
+        display: flex;
+        gap: .5rem;
+        align-items: center;
+        margin: 0 1rem;
+        padding: 1rem 0;
+        color: $primary-color-dark;
+        overflow: hidden;
+
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            /* Menampilkan elipsis (...) jika teks melebihi lebar */
+        }
+    }
 }
