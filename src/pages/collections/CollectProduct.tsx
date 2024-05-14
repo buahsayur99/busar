@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import { productProps } from "../../app/actions/apiProductSlice";
 import { NavigationBar } from "../../features/navbar/NavigationBar";
@@ -13,12 +13,14 @@ import { useGetProduct } from "../../hook/useGetProduct";
 import { BigImage } from "../../components/BigImage";
 import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
 import { useGetApiCart } from "../../hook/useGetApiCart";
+import { usePageTittle } from "../../hook/usePageTittle";
 
 export const CollectProduct = () => {
-    const { nameProduct } = useParams();
     const [product, setProduct] = useState<productProps[]>([]);
     const [visibleBigImage, setVisibleBigImage] = useState<boolean>(false);
     const [targetImage, setTargetImage] = useState<string | null>(null);
+    const { nameProduct } = useParams();
+    const navigate = useNavigate();
     // UseAppSelector
     const { dataProductApi } = useAppSelector(state => state.apiProduct);
     const { dataWishlist, isMessageWishlist } = useAppSelector(state => state.apiWishlist);
@@ -26,6 +28,7 @@ export const CollectProduct = () => {
     const { handleGetApiWishlist } = useGetWishlist();
     const { toggle } = useBodyScrollLock();
     const { handleAddCart } = useGetApiCart();
+    const { handleTitle } = usePageTittle();
     useGetProduct();
 
     const baseStyleTooltips = {
@@ -93,36 +96,60 @@ export const CollectProduct = () => {
 
             <div className={styles["global-container"]}>
                 <div className={styles["container-collect-product"]}>
+
+                    {/* if there is no product available */}
+                    {product.length === 0 && (
+                        <>
+                            {handleTitle(`404 Not Found - BUSAR`)}
+
+                            <div className={styles["error-link-wrapper"]}>
+                                <h3>Oops, link ini sudah berubah</h3>
+                                <p>Maaf, website kami telah dilakukan perbaharuan. Link yang kamu tuju kini sudah berubah.</p>
+                                <button
+                                    type="button"
+                                    onClick={() => navigate("/")}
+                                >
+                                    lanjutkan belanja
+                                </button>
+                            </div>
+                        </>
+                    )}
+
+                    {/* if the product is available */}
                     {product.map(data => (
-                        <div key={data.id} className={styles["collect-product-group"]}>
-                            <div className={styles["product-image"]}>
-                                <ImageArray imageUrl={convertObjectToArray(data.url)} faHandleBigImage={(url: string) => handleVisibleBigImage(url)} />
-                            </div>
-                            <div className={styles["product-detail"]}>
-                                <div className={styles["product-detail-top"]}>
-                                    <h4>{data.name}</h4>
-                                    <div className={styles["icon-heart-wraps"]}>
-                                        <HeartIcon
-                                            settingHeart={settingHeart}
-                                            dataWishlist={faWishlist(data, dataWishlist)}
-                                            products={data}
-                                            onClicks={() => { }}
-                                        />
-                                        <p>favorit</p>
+                        <>
+                            {handleTitle(`${data.name} - BUSAR`)}
+
+                            <div key={data.id} className={styles["collect-product-group"]}>
+                                <div className={styles["product-image"]}>
+                                    <ImageArray imageUrl={convertObjectToArray(data.url)} faHandleBigImage={(url: string) => handleVisibleBigImage(url)} />
+                                </div>
+                                <div className={styles["product-detail"]}>
+                                    <div className={styles["product-detail-top"]}>
+                                        <h4>{data.name}</h4>
+                                        <div className={styles["icon-heart-wraps"]}>
+                                            <HeartIcon
+                                                settingHeart={settingHeart}
+                                                dataWishlist={faWishlist(data, dataWishlist)}
+                                                products={data}
+                                                onClicks={() => { }}
+                                            />
+                                            <p>favorit</p>
+                                        </div>
                                     </div>
+                                    <div className={styles["product-detail-mid"]}>
+                                        <p className={styles["price"]}>Rp {formattedNumber(data.price)}</p>
+                                        <button
+                                            type="button"
+                                            onClick={() => handleAddCart(data, 1)}
+                                        >
+                                            +Keranjang
+                                        </button>
+                                    </div>
+                                    <p className={styles["informasi"]}>{data.information}</p>
                                 </div>
-                                <div className={styles["product-detail-mid"]}>
-                                    <p className={styles["price"]}>Rp {formattedNumber(data.price)}</p>
-                                    <button
-                                        type="button"
-                                        onClick={() => handleAddCart(data, 1)}
-                                    >
-                                        +Keranjang
-                                    </button>
-                                </div>
-                                <p className={styles["informasi"]}>{data.information}</p>
                             </div>
-                        </div>
+                        </>
                     ))}
                 </div>
             </div>
