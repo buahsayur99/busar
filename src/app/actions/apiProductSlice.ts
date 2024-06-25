@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export type productProps = {
-    id?: number;
+    id: number;
     name: string;
     image: string;
     information: string;

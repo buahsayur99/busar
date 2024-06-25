@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export type DataCategoryProps = {
-    id?: number,
-    name?: string,
+    id: number,
+    name: string,
 }
 
 type InitialStateProps = {

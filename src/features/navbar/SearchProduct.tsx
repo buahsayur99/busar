@@ -22,7 +22,7 @@ const SearchProduct = ({ onClicks, inputs, setInputs }: SearchProductProps) => {
     const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        navigate(`/collections/sayur-buah/products/${inputs}`)
+        navigate(`/search/${inputs}`);
     }
 
     const handleFocusInput = () => {

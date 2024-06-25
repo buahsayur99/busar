@@ -1,0 +1,55 @@
+.button-wishlist-container {
+    .button-wishlist-wrapper {
+        position: relative;
+
+        .button-wishlist:hover+.tooltip-wishlist {
+            display: inline;
+        }
+
+        .button-wishlist {
+            position: relative;
+            padding: 0;
+            background-color: transparent;
+            border-radius: none;
+
+            color: $gray-color;
+            font-size: $font-size-1xl;
+
+            &:hover {
+                background-color: transparent;
+                color: $gray-color;
+            }
+
+            @include breakpoint-max(770px) {
+                font-size: 1.7rem;
+            }
+
+            @include breakpoint-max(460px) {
+                font-size: 1.6rem;
+            }
+
+            @include breakpoint-max(360px) {
+                font-size: 1.4rem;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: 1.2rem;
+            }
+        }
+
+        .tooltip-wishlist {
+            display: none;
+            position: absolute;
+            bottom: -3rem;
+            left: 0;
+            z-index: 1;
+            background-color: hsl(0, 0%, 20%);
+            font-size: $font-size-xs  !important; // Adjusted for visibility
+            color: white !important;
+            font-weight: lighter !important;
+            white-space: nowrap;
+            padding: .5rem 1rem;
+            border-radius: .3rem;
+        }
+    }
+}

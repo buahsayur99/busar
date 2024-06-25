@@ -67,7 +67,7 @@ export const AutoComplete = ({ inputSearch }: AutoCompleteProps) => {
                                     <ul>
                                         {suggestions.map((suggestion, index) => (
                                             <li key={index}>
-                                                <Link to={`/collections/sayur-buah/products/${suggestion.name}`}>
+                                                <Link to={`/products/${suggestion.name}`}>
                                                     <div className={styles["search-auto-complete-left"]}>
                                                         <img
                                                             width={60}

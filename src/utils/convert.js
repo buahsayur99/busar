@@ -68,3 +68,30 @@ export const totalCartByAllProductCart = (cart) => {
 
     return total
 }
+
+export const settingHeart = () => {
+    const baseStyleTooltips = {
+        color: "red",
+        fontSize: ".6rem"
+    }
+
+    const css = {
+        cssButton: "icon-heart",
+        cssTooltipRemove: "text-tooltip-remove",
+        cssTooltipAdd: "text-tooltip-add",
+        textTooltipRemove: "remove from wishlist",
+        textTooltipAdd: "add from wishlist",
+        styleButtonFill: { color: "red" },
+        styleTooltips: { color: "red" },
+        styleTooltip: {
+            ...baseStyleTooltips,
+        },
+        positionX: 0,
+        positionY: 0,
+        arialLabelFill: "heart fill",
+        arialLabelNoFill: "heart",
+    }
+
+    return css
+}
+

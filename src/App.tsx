@@ -1,31 +1,19 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Home } from "./pages/home/Home";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { PrivateRoutes } from "./routes/PrivateRoutes";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { General, Profile, Password, Address } from "./pages/pengaturanProfile/index";
-import { useSaveLastPage } from "./hook/useSaveLastPage";
-import { useAuthUsers } from "./hook/useAuthUsers";
+import { DashboardAdmin, ProductAdmin, UsersAdmin } from "./pages/dashboard/index";
+import { useSocketPayment, useSocketCart, useSocketWishlist } from "./hookSockets/index";
+import { useGetProduct, useSaveLastPage, useAuthUsers, } from "./hook/index";
+import { AllPurchase, PendingPurchase, PackagedPurchase, CancelledPurchase, SendPurchase, SuccessPurchase } from "./pages/purchase/index";
+import { CollectProduct, Products } from "./pages/collections/index";
+import { BasketComponent } from "./features/basket/index";
+import { Carts, Shipment, AlertCart } from "./pages/cart/index";
+import { DetailTransaction } from "./pages/payment/index";
+import { Home } from "./pages/home/Home";
+import { PrivateRoutes } from "./routes/PrivateRoutes";
 import { NotFound } from "./pages/NotFound";
 import { useAppSelector } from "./app/hooks";
-import { DashboardAdmin } from "./pages/dashboard/DashboardAdmin";
-import { ProductAdmin } from "./pages/dashboard/ProductAdmin";
-import { UsersAdmin } from "./pages/dashboard/UsersAdmin";
-import React, { useEffect } from "react";
-import { CollectProduct } from "./pages/collections/CollectProduct";
-import { BasketComponent } from "./features/basket/BasketComponent";
-import { Carts } from "./pages/cart/Carts";
-import { useGetProduct } from "./hook";
-import { AlertCart } from "./pages/cart/components/AlertCart";
-import { Shipment } from "./pages/cart/Shipment";
-import { DetailTransaction } from "./pages/payment/DetailTransaction";
-import { AllPurchase } from "./pages/purchase/AllPurchase";
-import { PendingPurchase } from "./pages/purchase/PendingPurchase";
-import { PackagedPurchase } from "./pages/purchase/PackagedPurchase";
-import { CancelledPurchase } from "./pages/purchase/CancelledPurchase";
-import { SendPurchase } from "./pages/purchase/SendPurchase";
-import { SuccessPurchase } from "./pages/purchase/SuccessPurchase";
-import { useSocketCart } from "./hookSockets/useSocketCart";
-import { useSocketPayment } from "./hookSockets/useSocketPayment";
 
 function App() {
   // useAppSelector
@@ -39,6 +27,7 @@ function App() {
   // Socket
   useSocketCart();
   useSocketPayment();
+  useSocketWishlist();
 
   useEffect(() => {
     requestUserApi();
@@ -88,8 +77,14 @@ function App() {
                 <Route path="user" element={<UsersAdmin />} />
               </Route>
 
+              {/* Detail Product */}
+              <Route path="products/:nameProduct" element={<CollectProduct />} />
+
               {/* Collections */}
-              <Route path="collections/sayur-buah/products/:nameProduct" element={<CollectProduct />} />
+              <Route path="collections">
+                <Route index element={<Products />} />
+                <Route path="category/*" element={<Products />} />
+              </Route>
 
               {/* Status Order */}
               <Route

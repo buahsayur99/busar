@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Slider from "react-slick";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { useGetProduct } from "../../../hook/useGetProduct";
@@ -8,12 +8,11 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from "../../../style/index.module.scss";
 import { convertObjectToArray, faWishlist, formattedNumber } from "../../../utils/convert";
 import { ImageArray } from "../../../components/ImageArray";
-import { HeartIcon } from "../../../components/HeartIcon";
-import { useGetWishlist } from "../../../hook/useGetWishlist";
 import { activeFormTransition } from "../../../app/actions/formLoginRegisterSlice";
 import { LoadingCard } from "../../../components/LoadingCard";
 import { Link } from "react-router-dom";
 import { useGetApiCart } from "../../../hook/useGetApiCart";
+import { ButtonWishlist } from "../../collections/components/index";
 
 export const SliderProduct = () => {
     // Data total Loding Card
@@ -21,12 +20,11 @@ export const SliderProduct = () => {
     // UseAppSelector
     const { dataProductApi, isLoadingProduct } = useAppSelector(state => state.apiProduct);
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
-    const { dataWishlist, isMessageWishlist } = useAppSelector(state => state.apiWishlist);
+    const { dataWishlist } = useAppSelector(state => state.apiWishlist);
     const dispatch = useAppDispatch();
     // Custome Hook
     useGetProduct(); // Get Api's Product
     const { handleAddCart } = useGetApiCart(); // Get Api's Cart
-    const { handleGetApiWishlist } = useGetWishlist(); // Get Data Wishlist
 
     const CustomPrevArrow = (props: any) => {
         const { onClick } = props;
@@ -87,36 +85,9 @@ export const SliderProduct = () => {
         ]
     };
 
-    const baseStyleTooltips = {
-        color: "red",
-        fontSize: ".6rem"
-    }
-
-    const settingHeart = {
-        cssButton: "icon-heart",
-        cssTooltipRemove: "text-tooltip-remove",
-        cssTooltipAdd: "text-tooltip-add",
-        textTooltipRemove: "remove from wishlist",
-        textTooltipAdd: "add from wishlist",
-        styleButtonFill: { color: "red" },
-        styleTooltips: { color: "red" },
-        styleTooltip: {
-            ...baseStyleTooltips,
-        },
-        positionX: 0,
-        positionY: 0,
-        arialLabelFill: "heart fill",
-        arialLabelNoFill: "heart",
-    }
-
     const handleLoginRedirect = () => {
         if (!dataLoginUsers) return dispatch(activeFormTransition({ onOffForm: true }))
     }
-
-    useEffect(() => {
-        if (isMessageWishlist === "success remove wishlist") handleGetApiWishlist()
-        if (isMessageWishlist === "success add wishlist") handleGetApiWishlist()
-    }, [isMessageWishlist, handleGetApiWishlist])
 
     return (
         <>
@@ -142,12 +113,12 @@ export const SliderProduct = () => {
                                                 <h3>{slide.name}</h3>
                                                 <p>rp {formattedNumber(slide.price)}</p>
                                                 <div className={styles["parent-button"]}>
-                                                    <HeartIcon
-                                                        settingHeart={settingHeart}
-                                                        onClicks={() => handleLoginRedirect()}
+                                                    <ButtonWishlist
                                                         dataWishlist={faWishlist(slide, dataWishlist)}
-                                                        products={slide}
+                                                        handleLoginRedirect={() => handleLoginRedirect()}
+                                                        idProduct={slide.id}
                                                     />
+
                                                     <button
                                                         type="button"
                                                         aria-label="basket"

@@ -1,3 +1,4 @@
 import { CollectProduct } from "./CollectProduct";
+import { Products } from "./Products";
 
-export { CollectProduct }
+export { CollectProduct, Products }

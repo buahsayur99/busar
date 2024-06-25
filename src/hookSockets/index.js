@@ -1,4 +1,5 @@
 import { useSocketPayment } from "./useSocketPayment";
 import { useSocketCart } from "./useSocketCart";
+import { useSocketWishlist } from "./useSocketWishlist";
 
-export { useSocketPayment, useSocketCart };
+export { useSocketPayment, useSocketCart, useSocketWishlist };

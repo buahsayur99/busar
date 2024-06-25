@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { getWishlist, removeWishlist, resetIsMessageWishlist } from "../app/actions/apiWishlist";
+import { addWishlist, getWishlist, removeWishlist, resetIsMessageWishlist } from "../app/actions/apiWishlist";
 
 export const useGetWishlist = () => {
     // UseAppSelector
@@ -15,9 +15,15 @@ export const useGetWishlist = () => {
 
     }, [dispatch, dataLoginUsers?.uuid]);
 
-    const handleRemoveWishlist = (idProduct: number) => {
-        const link = `${process.env.REACT_APP_API_URL_LOCAL}/wishlist/${idProduct}`;
-        if (idProduct) dispatch(removeWishlist({ link }))
+    const handleRemoveWishlist = (idWishlist: number) => {
+        const link = `${process.env.REACT_APP_API_URL_LOCAL}/wishlist/${idWishlist}`;
+        if (idWishlist) dispatch(removeWishlist({ link }))
+    }
+
+    const createWishlistApi = (idProduct: number) => {
+        const link = `${process.env.REACT_APP_API_URL_LOCAL}/add/wishlist`;
+        const data = { uuidUser: dataLoginUsers?.uuid, idProduct: idProduct }
+        dispatch(addWishlist({ link, data }))
     }
 
     useEffect(() => {
@@ -25,5 +31,5 @@ export const useGetWishlist = () => {
         if (isMessageWishlist === "success remove wishlist") return handleGetApiWishlist();
     }, [handleGetApiWishlist, dataWishlist.length, isMessageWishlist]);
 
-    return { handleGetApiWishlist, handleRemoveWishlist };
+    return { handleGetApiWishlist, handleRemoveWishlist, createWishlistApi };
 };

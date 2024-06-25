@@ -170,4 +170,41 @@
             }
         }
     }
+
+    .error-link-wrapper {
+        height: 55vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        h3 {
+            color: $primary-color-black;
+            font-size: $font-size-1xl;
+            font-weight: bold;
+
+            @include breakpoint-max(360px) {
+                font-size: $font-size-xl;
+            }
+        }
+
+        p {
+            color: $gray-color;
+            text-align: center;
+            line-height: 1.2rem;
+        }
+
+        button {
+            background-color: $primary-color;
+            color: white;
+            padding: .7rem 1.2rem;
+            border-radius: .5rem;
+            text-transform: capitalize;
+
+            @include breakpoint-max(320px) {
+                padding: .6rem 1.1rem;
+            }
+        }
+    }
 }

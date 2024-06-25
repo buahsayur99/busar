@@ -12,5 +12,7 @@ import { useOutsideClick } from "./useOutsideClick";
 import { useSaveLastPage } from "./useSaveLastPage";
 import { useScrollNavbar } from "./useScrollNavbar";
 import { useGetApiCart } from "./useGetApiCart";
+import { usePageTittle } from "./usePageTittle";
+import { useApiCategory } from "./useApiCategory";
 
-export { useAuthUsers, useBodyScrollLock, useCheckbox, useCheckedCart, useGetApiAddress, useGetApiUsers, useGetProduct, useGetWishlist, useInputFormAddress, useInsideClick, useOutsideClick, useSaveLastPage, useScrollNavbar, useGetApiCart }
+export { useAuthUsers, useBodyScrollLock, useCheckbox, useCheckedCart, useGetApiAddress, useGetApiUsers, useGetProduct, useGetWishlist, useInputFormAddress, useInsideClick, useOutsideClick, useSaveLastPage, useScrollNavbar, useGetApiCart, usePageTittle, useApiCategory }

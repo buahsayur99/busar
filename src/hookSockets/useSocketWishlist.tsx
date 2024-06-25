@@ -1,10 +1,9 @@
 import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { io } from "socket.io-client";
-import { DataCartProps, updateCartsData } from "../app/actions/apiCartSlice";
+import { DataWishlistProps, updateDataWishlist } from "../app/actions/apiWishlist";
 
-export const useSocketCart = () => {
-    // useAppSelector
+export const useSocketWishlist = () => {
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
     const dispatch = useAppDispatch();
 
@@ -12,12 +11,12 @@ export const useSocketCart = () => {
         if (dataLoginUsers) {
             const sockets = io(`${process.env.REACT_APP_API_URL_LOCAL}`);
 
-            sockets.on(`${dataLoginUsers.uuid}-socket-cart`, (data: DataCartProps[]) => {
-                dispatch(updateCartsData(data));
+            sockets.on(`${dataLoginUsers.uuid}-socket-wishlists`, (wishlist: DataWishlistProps[]) => {
+                dispatch(updateDataWishlist(wishlist));
             });
 
             return () => {
-                sockets.off(`${dataLoginUsers.uuid}-socket-cart`);
+                sockets.off(`${dataLoginUsers.uuid}-socket-wishlists`);
                 sockets.disconnect();
             };
         }
