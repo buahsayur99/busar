@@ -1,23 +1,19 @@
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { NavigationBar } from "../../features/navbar/NavigationBar"
 import styles from "../../style/index.module.scss";
-import { Footers } from "../../components/Footers";
-import { InputCheckbox } from "../../components/InputCheckbox";
 import { useAppSelector } from "../../app/hooks";
-import { filterAllProductByWithlist, convertObjectToArray, convertProductByCart, convertTotalAmountProduct, faWishlist, formattedNumber, convertTotalPrice } from "../../utils/convert";
-import { Link, useNavigate } from "react-router-dom";
+import { filterAllProductByWithlist, convertObjectToArray, convertProductByCart, convertTotalAmountProduct, faWishlist, formattedNumber } from "../../utils/convert";
 import { ButtonLoading } from "../../features/basket/ButtonLoading";
 import { DataCartProps } from "../../app/actions/apiCartSlice";
-import { HeartIcon } from "../../components/HeartIcon";
-import { ButtonTooltip } from "../../components/ButtonTooltip";
 import { BsTrashFill } from "../../utils/icons";
 import { useDebounce } from "use-debounce";
 import { AlertText } from "../../components/AlertText";
 import { AlertConfirmasi } from "../../components/AlertConfirmasi";
 import { useBodyScrollLock, useCheckedCart, useGetWishlist, useGetProduct, useGetApiCart, useScrollNavbar } from "../../hook/index";
-import { RecommendationCart } from "./components/RecommendationCart";
-import { BasketEmpty } from "./components/BasketEmpty";
 import { useScrollTotalPrice } from "../../hook/useScrollTotalPrice";
+import { CardTotalHarga, BasketEmpty, RecommendationCart } from "./components/index";
+import { HeartIcon, ButtonTooltip, InputCheckbox, Footers } from "../../components/index";
 
 export const Carts = () => {
     // UseAppSelector
@@ -35,7 +31,6 @@ export const Carts = () => {
     const { scrolledTotalPrice, scrolledSelectAll, isScrolling } = useScrollTotalPrice(containerRef);
     // State
     const [alerts, setAlert] = useState<boolean>(false);
-    const navigate = useNavigate();
 
     const handleCanselAlert = () => {
         toggle(false);
@@ -62,12 +57,6 @@ export const Carts = () => {
         selectAllRef.current?.click()
     }
 
-    const handleBuyProduct = () => {
-        if (checkedCart.length !== 0) {
-            navigate("shipment")
-        }
-    }
-
     return (
         <>
             {/* Navbar */}
@@ -92,7 +81,7 @@ export const Carts = () => {
                         </AlertConfirmasi>
                     )}
 
-                    <div>
+                    <div className={styles["contain-carts"]} >
                         {dataCart.length === 0 ? (
                             <BasketEmpty />
                         ) : (
@@ -125,58 +114,57 @@ export const Carts = () => {
                                 )}
 
                                 <h3>basket</h3>
-                                <div>
-                                    <div className={styles["parent-left-side"]}>
-                                        <div className={`${styles["cart-select-all"]} ${styles["flex-alig-center"]}`}>
-                                            <div className={styles["wrapper-left"]}>
-                                                <label
-                                                    data-testid="cartSelectAll"
-                                                    ref={selectAllRef}
-                                                    htmlFor="selectAll"
-                                                >
-                                                    <InputCheckbox
-                                                        valueInput={"selectAll"}
-                                                        checkeds={checkedCart}
-                                                        dataToCheckeds={dataCart}
-                                                        fcHandleCheckeds={(event) => handleCheckedCart(event)}
-                                                    />
-                                                </label>
-                                            </div>
-                                            <div className={styles["wrapper-right"]}>
+
+                                <div className={styles["parent-left-side"]}>
+                                    <div className={`${styles["cart-select-all"]} ${styles["flex-alig-center"]}`}>
+                                        <div className={styles["wrapper-left"]}>
+                                            <label
+                                                data-testid="cartSelectAll"
+                                                ref={selectAllRef}
+                                                htmlFor="selectAll"
+                                            >
+                                                <InputCheckbox
+                                                    valueInput={"selectAll"}
+                                                    checkeds={checkedCart}
+                                                    dataToCheckeds={dataCart}
+                                                    fcHandleCheckeds={(event) => handleCheckedCart(event)}
+                                                />
+                                            </label>
+                                        </div>
+                                        <div className={styles["wrapper-right"]}>
+                                            <button
+                                                type="button"
+                                                className={styles["button-select-all"]}
+                                                onClick={() => handleClickCheckbox()}
+                                            >
+                                                select all
+                                            </button>
+                                            {checkedCart.length !== 0 && (
                                                 <button
                                                     type="button"
-                                                    className={styles["button-select-all"]}
-                                                    onClick={() => handleClickCheckbox()}
+                                                    onClick={() => handleActiveAlert()}
                                                 >
-                                                    select all
+                                                    delete
                                                 </button>
-                                                {checkedCart.length !== 0 && (
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => handleActiveAlert()}
-                                                    >
-                                                        delete
-                                                    </button>
-                                                )}
-                                            </div>
+                                            )}
                                         </div>
-
-                                        <div className={styles["css-line-cart"]}></div>
-
-                                        <ul>
-                                            {dataCart.map((data) => (
-                                                <li key={data.id}>
-                                                    <Products
-                                                        product={data}
-                                                        isLoading={isLoadingCart}
-                                                        faHandleDeleteCart={(id) => handleDeleteCart(id)}
-                                                        faHandleCheckedCart={(event) => handleCheckedCart(event)}
-                                                        checkedCart={checkedCart}
-                                                    />
-                                                </li>
-                                            ))}
-                                        </ul>
                                     </div>
+
+                                    <div className={styles["css-line-cart"]}></div>
+
+                                    <ul>
+                                        {dataCart.map((data) => (
+                                            <li key={data.id}>
+                                                <Products
+                                                    product={data}
+                                                    isLoading={isLoadingCart}
+                                                    faHandleDeleteCart={(id) => handleDeleteCart(id)}
+                                                    faHandleCheckedCart={(event) => handleCheckedCart(event)}
+                                                    checkedCart={checkedCart}
+                                                />
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
                             </>
                         )}
@@ -190,55 +178,7 @@ export const Carts = () => {
                         )}
                     </div>
 
-                    <div className={styles["parent-total-harga"]}>
-                        <div
-                            className={`
-                                ${styles["card-total-harga"]}
-                                ${scrolledTotalPrice ? styles["card-absolute"] : styles["card-fixed"]}
-                            `}
-                        >
-                            <div className={styles["header-input-wrapper"]}>
-                                <div className={styles["parent-input-select-all"]}>
-                                    <InputCheckbox
-                                        valueInput={"selectAll"}
-                                        checkeds={checkedCart}
-                                        dataToCheckeds={dataCart}
-                                        fcHandleCheckeds={(event) => handleCheckedCart(event)}
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={() => handleClickCheckbox()}
-                                    >
-                                        select all
-                                    </button>
-                                </div>
-
-                                <h3>ringkasan belanja</h3>
-                            </div>
-
-                            <div className={`${styles["css-line-cart"]} ${styles["tablet-hidden"]}`}></div>
-
-                            <div className={styles["parent-button-text"]}>
-                                <div className={styles["text-contain"]}>
-                                    <p>total harga</p>
-                                    <span>rp {convertTotalPrice(checkedCart)}</span>
-                                </div>
-                                <div className={styles["button-wrapper"]}>
-                                    {/* <Link to={"shipment"}>
-                                        
-                                    </Link> */}
-
-                                    <button
-                                        type="button"
-                                        className={`${checkedCart.length === 0 && styles["invisible"]}`}
-                                        onClick={() => handleBuyProduct()}
-                                    >
-                                        {`buy (${checkedCart.length})`}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <CardTotalHarga scrolledTotalPrice={scrolledTotalPrice} />
                 </div>
             </div>
 

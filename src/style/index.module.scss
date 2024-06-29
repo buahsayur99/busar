@@ -54,7 +54,6 @@
 @import "../features/pengaturanProfile/style/displayAddress";
 // Features /basket
 @import "../features/basket/style/basketComponent";
-
 // Pages
 @import "../pages/style/notFound";
 // Pages /PengaturanProfile
@@ -81,6 +80,7 @@
 @import "../pages/cart/components/style/basketEmpty";
 @import "../pages/cart/components/style/alertCart";
 @import "../pages/cart/components/style/daftarAddressCart";
+@import "../pages/cart/components/style/cardTotalHarga";
 // Pages /payment
 @import "../pages/payment/style/detailTransaction";
 @import "../pages/payment/components/style/loadingPayment";

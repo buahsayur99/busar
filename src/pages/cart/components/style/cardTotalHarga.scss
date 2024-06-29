@@ -1,0 +1,238 @@
+.parent-total-harga {
+    width: 22rem;
+    position: relative;
+
+    @mixin padding-total-harga() {
+        padding: 0 1rem;
+
+        @include breakpoint-max(450px) {
+            padding: 0 .8rem;
+        }
+    }
+
+    @include breakpoint-max(935px) {
+        position: fixed;
+        bottom: 0rem;
+        left: 0rem;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .card-total-harga {
+        width: 22rem;
+        box-shadow: 0px 0px 5px 0px $gray-light-color;
+        padding: 1rem 0;
+        border-radius: .5rem;
+        align-self: baseline;
+        background-color: white;
+
+        @include breakpoint-max(935px) {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 0rem;
+        }
+
+        @include breakpoint-max(450px) {
+            padding: .8rem 0;
+        }
+
+        @include breakpoint-max(375px) {
+            padding: .5rem 0;
+        }
+
+        .header-input-wrapper {
+            @include breakpoint-max(935px) {
+                display: flex;
+                align-items: center;
+
+                @include padding-total-harga();
+            }
+
+            @include breakpoint-max(320px) {
+                padding: 0 0 0 .5rem;
+            }
+
+            .parent-input-select-all {
+                display: none;
+
+                @include breakpoint-max(935px) {
+                    display: flex;
+                    gap: 1rem;
+                }
+
+                button {
+                    font-size: $font-size-xl;
+                    background-color: transparent;
+                    padding: 0;
+                    text-transform: capitalize;
+
+                    @include breakpoint-max(450px) {
+                        font-size: $font-size-md;
+                    }
+
+                    @include breakpoint-max(375px) {
+                        font-size: $font-size-base;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        font-size: $font-size-sm;
+                    }
+                }
+            }
+
+            h3 {
+                @include padding-total-harga();
+
+                @include breakpoint-max(935px) {
+                    display: none;
+                }
+            }
+        }
+
+        .tablet-hidden {
+            @include breakpoint-max(935px) {
+                display: none;
+            }
+        }
+
+        .parent-button-text {
+            @include padding-total-harga();
+
+            @include breakpoint-max(935px) {
+                display: flex;
+                gap: 0;
+                align-items: center;
+            }
+
+            @include breakpoint-max(320px) {
+                padding: 0 .5rem 0 0;
+            }
+
+            .text-contain {
+                display: flex;
+                justify-content: space-between;
+                color: $primary-color-black;
+                font-weight: bold;
+                font-size: $font-size-xl;
+                text-align: end;
+
+                @include breakpoint-max(935px) {
+                    font-size: $font-size-lg;
+                    flex-direction: column;
+                    justify-content: left;
+                    font-weight: lighter;
+                    gap: .3rem
+                }
+
+                @include breakpoint-max(450px) {
+                    font-size: $font-size-md;
+                }
+
+                @include breakpoint-max(375px) {
+                    font-size: $font-size-base;
+                }
+
+                @include breakpoint-max(320px) {
+                    font-size: $font-size-sm;
+                }
+
+                @include padding-total-harga();
+
+                p {
+                    text-transform: capitalize;
+
+                    @include breakpoint-max(375px) {
+                        font-size: $font-size-xs;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        font-size: 0.6rem;
+                    }
+                }
+
+                span {
+                    @include breakpoint-max(935px) {
+                        font-weight: bold;
+                    }
+                }
+
+                span::first-letter {
+                    text-transform: capitalize
+                }
+            }
+
+            .button-wrapper {
+                margin-top: 1rem;
+
+                @include padding-total-harga();
+
+                @include breakpoint-max(935px) {
+                    margin-top: 0rem;
+                    padding: 0;
+                }
+
+                button {
+                    background-color: $primary-color;
+                    width: 100%;
+                    padding: 1rem 0;
+                    transition-duration: 300ms;
+                    border-radius: .5rem;
+                    text-transform: capitalize;
+                    color: white;
+                    font-size: $font-size-lg;
+
+                    &:hover {
+                        background-color: $primary-color-hover;
+                    }
+
+                    @include breakpoint-max(935px) {
+                        font-size: $font-size-md;
+                        padding: 1rem 2rem;
+                    }
+
+                    @include breakpoint-max(450px) {
+                        padding: .8rem 1.8rem;
+                    }
+
+                    @include breakpoint-max(375px) {
+                        padding: .6rem 1.5rem;
+                        font-size: $font-size-md;
+                    }
+
+                    @include breakpoint-max(320px) {
+                        padding: .5rem 1rem;
+                        font-size: $font-size-sm;
+                    }
+                }
+
+                .invisible {
+                    cursor: not-allowed;
+                    background-color: $gray-lighter-color;
+
+                    &:hover {
+                        background-color: $gray-lighter-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.card-absolute {
+    position: absolute;
+    bottom: .5rem;
+
+    @include breakpoint-max(935px) {
+        position: static;
+    }
+}
+
+.card-fixed {
+    position: fixed;
+    top: 8rem;
+
+    @include breakpoint-max(935px) {
+        position: static;
+    }
+}

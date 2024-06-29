@@ -78,11 +78,6 @@ export const SliderAllProduct = ({ products }: SliderAllProductProps) => {
         )
     };
 
-    const baseStyleTooltips = {
-        color: "red",
-        fontSize: ".6rem"
-    }
-
     return (
         <>
             {products.length !== 0 && (

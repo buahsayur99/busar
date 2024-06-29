@@ -161,4 +161,54 @@
             }
         }
     }
+
+    .custom-prev-arrow-image-array,
+    .custom-next-arrow-image-array {
+        position: absolute;
+        top: 26%;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border-radius: 100%;
+        font-size: $font-size-lg;
+        cursor: pointer;
+    }
+
+    .custom-prev-arrow-image-array {
+        padding: .7rem .1rem .7rem 1.7rem;
+        left: -1.8rem;
+        transition-duration: 300ms;
+
+        &:hover {
+            padding: .7rem .3rem .7rem 1.5rem;
+            color: $primary-color;
+        }
+
+        @include breakpoint-max(390px) {
+            padding: .8rem .1rem .8rem 1.5rem;
+
+            &:hover {
+                padding: .8rem .3rem .8rem 1.3rem;
+            }
+        }
+    }
+
+    .custom-next-arrow-image-array {
+        padding: .7rem 1.7rem .7rem .1rem;
+        right: -1.8rem;
+        transition-duration: 300ms;
+
+        &:hover {
+            padding: .7rem 1.5rem .7rem .3rem;
+            color: $primary-color;
+        }
+
+        @include breakpoint-max(390px) {
+            padding: .8rem 1.5rem .8rem .1rem;
+
+            &:hover {
+                padding: .8rem 1.3rem .8rem .3rem;
+            }
+        }
+    }
 }
