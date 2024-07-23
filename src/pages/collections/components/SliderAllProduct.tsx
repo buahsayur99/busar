@@ -84,8 +84,8 @@ export const SliderAllProduct = ({ products }: SliderAllProductProps) => {
                 <div className={styles["container-slider-all-product"]}>
                     <Slider {...settings} className={styles["custom-slider"]}>
                         {products.map((slide, index) => (
-                            <div key={slide.id} className={styles["card-padding"]}>
-                                <div className={`${styles["card"]}`}>
+                            <div key={slide.id} className={styles["global-card-padding"]}>
+                                <div className={`${styles["global-card-product"]}`}>
                                     <div className={`${styles["card-top"]}`}>
                                         <ImageArray indexs={index} imageUrl={convertObjectToArray(slide.url)} nameProducts={slide.name} />
                                     </div>

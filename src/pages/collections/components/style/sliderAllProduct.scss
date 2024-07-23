@@ -7,117 +7,77 @@
         overflow: visible !important;
     }
 
-    // .active-paging {
-    //     color: $primary-color;
-    //     font-weight: bold;
-    // }
+    .parent-button {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 1rem;
 
-    .card-padding {
-        padding: 1px 1rem 2.5rem 1rem;
-        overflow: visible;
-    }
+        .icon-heart {
+            padding: 0;
+            background-color: transparent;
+            border-radius: none;
 
-    .card {
-        background-color: transparent;
-        box-shadow: 0px 0px 5px 1px $gray-medium-color;
-        border-radius: 1rem;
-        overflow: visible;
+            color: $gray-color;
+            font-size: $font-size-1xl;
 
-        .card-top {
-            border-radius: 1rem 1rem 0 0;
-            overflow: hidden;
+            &:hover {
+                background-color: transparent;
+                color: $gray-color;
+            }
+
+            @include breakpoint-max(770px) {
+                font-size: 1.7rem;
+            }
+
+            @include breakpoint-max(460px) {
+                font-size: 1.6rem;
+            }
+
+            @include breakpoint-max(360px) {
+                font-size: 1.4rem;
+            }
+
+            @include breakpoint-max(320px) {
+                font-size: 1.2rem;
+            }
         }
 
-        .card-bottom {
-            padding: .5rem;
+        .text-tooltip-add,
+        .text-tooltip-remove {
+            display: none;
+        }
 
-            h3 {
-                color: $gray-color;
-                font-size: $font-size-md;
-                text-transform: capitalize;
+        .icon-basket {
+            color: white;
+            background-color: $primary-color;
+            padding: .4rem 1.8rem;
+            font-size: $font-size-xl;
+            border-radius: .7rem;
+
+            &:hover {
+                background-color: $primary-color-hover;
             }
 
-            p {
+            @include breakpoint-max(770px) {
+                padding: .35rem 1.5rem;
+            }
+
+            @include breakpoint-max(460px) {
+                padding: .35rem 1.1rem;
                 font-size: $font-size-lg;
-                font-weight: bold;
-                color: $primary-color-black;
-                text-transform: capitalize;
-                margin-top: .5rem;
+                border-radius: .5rem;
             }
 
-            .parent-button {
-                position: relative;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                margin-top: 1rem;
+            @include breakpoint-max(360px) {
+                padding: .35rem .9rem;
+                font-size: $font-size-md;
+            }
 
-                .icon-heart {
-                    padding: 0;
-                    background-color: transparent;
-                    border-radius: none;
-
-                    color: $gray-color;
-                    font-size: $font-size-1xl;
-
-                    &:hover {
-                        background-color: transparent;
-                        color: $gray-color;
-                    }
-
-                    @include breakpoint-max(770px) {
-                        font-size: 1.7rem;
-                    }
-
-                    @include breakpoint-max(460px) {
-                        font-size: 1.6rem;
-                    }
-
-                    @include breakpoint-max(360px) {
-                        font-size: 1.4rem;
-                    }
-
-                    @include breakpoint-max(320px) {
-                        font-size: 1.2rem;
-                    }
-                }
-
-                .text-tooltip-add,
-                .text-tooltip-remove {
-                    display: none;
-                }
-
-                .icon-basket {
-                    color: white;
-                    background-color: $primary-color;
-                    padding: .4rem 1.8rem;
-                    font-size: $font-size-xl;
-                    border-radius: .7rem;
-
-                    &:hover {
-                        background-color: $primary-color-hover;
-                    }
-
-                    @include breakpoint-max(770px) {
-                        padding: .35rem 1.5rem;
-                    }
-
-                    @include breakpoint-max(460px) {
-                        padding: .35rem 1.1rem;
-                        font-size: $font-size-lg;
-                        border-radius: .5rem;
-                    }
-
-                    @include breakpoint-max(360px) {
-                        padding: .35rem .9rem;
-                        font-size: $font-size-md;
-                    }
-
-                    @include breakpoint-max(320px) {
-                        padding: .25rem .8rem;
-                        font-size: $font-size-base;
-                    }
-                }
+            @include breakpoint-max(320px) {
+                padding: .25rem .8rem;
+                font-size: $font-size-base;
             }
         }
     }

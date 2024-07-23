@@ -14,6 +14,7 @@ import { Home } from "./pages/home/Home";
 import { PrivateRoutes } from "./routes/PrivateRoutes";
 import { NotFound } from "./pages/NotFound";
 import { useAppSelector } from "./app/hooks";
+import { Wishlist } from "./pages/wishlist/index";
 
 function App() {
   // useAppSelector
@@ -84,6 +85,7 @@ function App() {
               <Route path="collections">
                 <Route index element={<Products />} />
                 <Route path="category/*" element={<Products />} />
+                <Route path="sayur-buah/products/:nameProduct" element={<CollectProduct />} />
               </Route>
 
               {/* Status Order */}
@@ -106,6 +108,9 @@ function App() {
                 <Route path="finished" element={<SuccessPurchase />} />
                 <Route path="cancelled" element={<CancelledPurchase />} />
               </Route>
+
+              {/* Wishlist */}
+              <Route path="wishlist" element={<Wishlist />} />
 
               {/* Not Found */}
               <Route path="*" element={<NotFound />} />

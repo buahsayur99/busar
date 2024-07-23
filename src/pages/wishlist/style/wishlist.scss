@@ -1,0 +1,66 @@
+.container-wishlist {
+    padding-top: 2rem;
+
+    @include breakpoint-max(320px) {
+        padding-top: 1rem;
+    }
+
+    .card-top {
+        img {
+            @include breakpoint-max(500px) {
+                width: 100%;
+                height: 13rem;
+            }
+
+            @include breakpoint-max(375px) {
+                height: 11rem;
+            }
+
+            @include breakpoint-max(320px) {
+                height: 10rem;
+            }
+        }
+    }
+
+    .global-card-product {
+        &:hover {
+            .wrapper-button button {
+                visibility: visible;
+            }
+        }
+    }
+
+    .wrapper-button {
+        width: 100%;
+        height: 2.9rem;
+
+        button {
+            background-color: $primary-color;
+            padding: .5rem 0;
+            width: 100%;
+            margin-top: .7rem;
+            font-size: $font-size-base;
+            color: white;
+            text-transform: capitalize;
+            border-radius: .3rem;
+            visibility: hidden;
+
+            &:hover {
+                background-color: $primary-color-dark;
+            }
+
+            @include breakpoint-max(450px) {
+                font-size: $font-size-sm;
+            }
+
+            @include breakpoint-max(360px) {
+                font-size: $font-size-xs;
+            }
+
+            @include breakpoint-max(320px) {
+                margin-top: .6rem;
+                font-size: $font-size-xs;
+            }
+        }
+    }
+}
