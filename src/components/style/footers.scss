@@ -24,7 +24,6 @@
         position: relative;
         padding: 1rem 0;
         background-color: $gray-lighter-color;
-        border-bottom: 1px solid $gray-color;
 
         .flex {
             display: flex;
@@ -110,7 +109,7 @@
     }
 
     .footer-content {
-        background-color: $gray-lighter-color;
+        background-color: $gray-light-color;
 
         p {
             padding: 1rem 0;
