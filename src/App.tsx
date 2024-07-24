@@ -78,9 +78,6 @@ function App() {
                 <Route path="user" element={<UsersAdmin />} />
               </Route>
 
-              {/* Detail Product */}
-              <Route path="products/:nameProduct" element={<CollectProduct />} />
-
               {/* Collections */}
               <Route path="collections">
                 <Route index element={<Products />} />
