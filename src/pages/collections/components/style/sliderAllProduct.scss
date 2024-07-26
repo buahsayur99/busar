@@ -7,6 +7,18 @@
         overflow: visible !important;
     }
 
+    .card-top {
+        img {
+            @include breakpoint-max(500px) {
+                height: 13rem;
+            }
+
+            @include breakpoint-max(320px) {
+                height: 10rem;
+            }
+        }
+    }
+
     .parent-button {
         position: relative;
         display: flex;

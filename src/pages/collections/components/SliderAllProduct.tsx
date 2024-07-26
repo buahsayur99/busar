@@ -24,7 +24,7 @@ export const SliderAllProduct = ({ products }: SliderAllProductProps) => {
     // State
     const [activeSlide, setActiveSlide] = useState(0);
     let slidesPerRows = 4;
-    let rows = 2;
+    let rows = 6;
 
     const handleLoginRedirect = () => {
         if (!dataLoginUsers) return dispatch(activeFormTransition({ onOffForm: true }))
@@ -36,6 +36,22 @@ export const SliderAllProduct = ({ products }: SliderAllProductProps) => {
         speed: 500,
         rows: rows,
         slidesPerRow: slidesPerRows,
+        responsive: [
+            {
+                breakpoint: 1180,
+                settings: {
+                    rows: rows,
+                    slidesPerRow: 3,
+                }
+            },
+            {
+                breakpoint: 1000,
+                settings: {
+                    rows: rows,
+                    slidesPerRow: 2,
+                }
+            }
+        ],
         // Mengambil data next slider
         beforeChange: (current: number, next: number) => {
             const slide = next;
@@ -85,7 +101,7 @@ export const SliderAllProduct = ({ products }: SliderAllProductProps) => {
                     <Slider {...settings} className={styles["custom-slider"]}>
                         {products.map((slide, index) => (
                             <div key={slide.id} className={styles["global-card-padding"]}>
-                                <div className={`${styles["global-card-product"]}`}>
+                                <div className={`${styles["global-card-product"]} card`}>
                                     <div className={`${styles["card-top"]}`}>
                                         <ImageArray indexs={index} imageUrl={convertObjectToArray(slide.url)} nameProducts={slide.name} />
                                     </div>

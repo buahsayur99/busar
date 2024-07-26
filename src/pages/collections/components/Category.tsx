@@ -7,7 +7,7 @@ import { IoIosArrowDown } from "../../../utils/icons";
 
 export const Category = () => {
     const [checkedItems, setCheckedItems] = useState<string[]>([]);
-    const [invisibleCategory, setInvisibleCategory] = useState(false);
+    const [invisibleCategory, setInvisibleCategory] = useState(true);
     // Redux
     const { dataCategory } = useAppSelector(state => state.apiCategory);
     const navigate = useNavigate();
@@ -47,24 +47,26 @@ export const Category = () => {
                     ${styles["list-category-wrapper"]}
                     ${invisibleCategory && styles["list-category-wrapper_invisible"]}
                 `}>
-                    {dataCategory.length !== 0 && (
-                        <ul>
-                            {dataCategory.map((category) => (
-                                <li key={category.id}>
-                                    <input
-                                        type="checkbox"
-                                        checked={checkedItems.includes(category.name)}
-                                        onChange={() => handleCheckboxChange(category.name)}
-                                    />
-                                    <p className={`
+                    <div className={styles["list-category"]}>
+                        {dataCategory.length !== 0 && (
+                            <ul>
+                                {dataCategory.map((category) => (
+                                    <li key={category.id}>
+                                        <input
+                                            type="checkbox"
+                                            checked={checkedItems.includes(category.name)}
+                                            onChange={() => handleCheckboxChange(category.name)}
+                                        />
+                                        <p className={`
                                     ${checkedItems.includes(category.name) && styles["active-category"]}
                                 `}>
-                                        {category.name}
-                                    </p>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
+                                            {category.name}
+                                        </p>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
                 </div>
             </div>
         </>

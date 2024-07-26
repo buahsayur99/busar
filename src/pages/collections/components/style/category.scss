@@ -1,4 +1,5 @@
 .container-category {
+    position: relative;
 
     .title-category {
         display: flex;
@@ -7,14 +8,31 @@
         margin-bottom: .8rem;
         background-color: transparent;
 
+        @include breakpoint-max(670px) {
+            justify-content: space-between;
+            flex-direction: row-reverse;
+            width: 100%;
+            border-top: 1px solid $gray-light-color;
+            border-bottom: 1px solid $gray-light-color;
+            padding: .5rem 0;
+        }
+
         .icon {
             font-size: $font-size-xl;
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-lg;
+            }
         }
 
         h4 {
             color: $primary-color-black;
             text-transform: uppercase;
             font-weight: bold;
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-sm;
+            }
         }
     }
 
@@ -22,18 +40,36 @@
         display: grid;
         grid-template-rows: 1fr;
         transition: grid-template-rows 500ms;
+
+        @include breakpoint-max(670px) {
+            position: absolute;
+            width: 100%;
+            z-index: $z-index-md;
+            margin-top: -.8rem;
+        }
     }
 
     .list-category-wrapper_invisible {
         grid-template-rows: 0fr;
     }
 
-    ul {
+    .list-category {
         overflow: hidden;
+    }
+
+    ul {
         display: grid;
         gap: .5rem;
-        margin-left: .5rem;
+        padding-left: 1rem;
 
+        @include breakpoint-max(670px) {
+            padding-left: 0rem;
+            border: 1px solid $gray-light-color; // Border transparan untuk memastikan border shorthand berfungsi dengan benar
+            border-width: 0px 1px 1px 1px; // Border atas dan bawah
+            padding: .5rem;
+            border-radius: 0 0 .5rem .5rem;
+            background-color: white;
+        }
 
         li {
             display: flex;
