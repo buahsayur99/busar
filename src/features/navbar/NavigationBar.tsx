@@ -12,6 +12,7 @@ import { BsSearch, GoHeartFill } from "../../utils/icons";
 import { ButtonTooltip } from "../../components/ButtonTooltip";
 import { useState } from "react";
 import { IconBasket } from "./IconBasket";
+import { useNavigate } from "react-router-dom";
 
 export const NavigationBar = () => {
     const { scrolled } = useScrollNavbar();
@@ -32,6 +33,7 @@ const Navbar = () => {
     // State
     const [input, setInput] = useState("");
     const [searchMobile, setSearchMobile] = useState(false);
+    const navigate = useNavigate();
     // useAppSelector
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
     const { toggle } = useBodyScrollLock();
@@ -83,7 +85,7 @@ const Navbar = () => {
                                 styleTooltip={"tooltip"}
                                 positionX={13}
                                 positionY={17}
-                                onClicks={() => { }}
+                                onClicks={() => navigate("/wishlist")}
                             >
                                 <GoHeartFill />
                             </ButtonTooltip>
