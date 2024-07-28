@@ -1,11 +1,11 @@
 .container-loading-card {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
-    gap: 1rem;
+    gap: 2rem;
     flex-wrap: wrap;
 
     .card {
-        width: 14rem;
+        width: 100%;
         height: auto;
         border-radius: .5rem;
         box-shadow: 0px 0px 5px 1px $gray-medium-color;

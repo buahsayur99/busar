@@ -1,0 +1,116 @@
+.container-search-product {
+    margin-top: 1rem;
+
+    .total-products-wrapper {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid $gray-light-color;
+        padding: 1rem 0 2rem 0;
+
+        @include breakpoint-max(500px) {
+            padding: .7rem 0 1.7rem 0;
+        }
+
+        @include breakpoint-max(360px) {
+            padding: .5rem 0 1.5rem 0;
+        }
+
+        @include breakpoint-max(360px) {
+            padding: .5rem 0 1rem 0;
+        }
+
+        h2 {
+            font-weight: bold;
+            text-transform: capitalize;
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-sm;
+            }
+        }
+
+        p {
+            display: flex;
+            gap: .5rem;
+            text-transform: capitalize;
+            color: $gray-color;
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-sm;
+            }
+
+            strong {
+                font-weight: bold;
+                color: black;
+            }
+        }
+
+        .total-product-1 {
+            width: 6rem;
+            height: 1.5rem;
+        }
+
+        .total-product-2 {
+            width: 10rem;
+            height: 1.5rem;
+        }
+    }
+
+    .card-products-wrapper {
+        margin-top: 1.5rem;
+
+        @include breakpoint-max(360px) {
+            margin-top: 1rem;
+        }
+
+        @include breakpoint-max(320px) {
+            margin-top: .5rem;
+        }
+
+        // Loading Card
+        .container-loading-card {
+            grid-template-columns: repeat(4, auto);
+            gap: 2rem;
+
+            @include breakpoint-max(1160px) {
+                grid-template-columns: repeat(3, auto);
+            }
+
+            @include breakpoint-max(900px) {
+                grid-template-columns: repeat(2, auto);
+            }
+
+            @include breakpoint-max(450px) {
+                gap: 1rem;
+            }
+
+            .card {
+                .img {
+                    height: 15rem;
+
+                    @include breakpoint-max(500px) {
+                        height: 13rem;
+                    }
+
+                    @include breakpoint-max(450px) {
+                        height: 11rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .search-product-empty-wrapper {
+        height: 68vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .info-product-empty {
+            text-align: center;
+
+            @include breakpoint-max(320px) {
+                font-size: $font-size-sm;
+            }
+        }
+    }
+}

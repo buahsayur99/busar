@@ -15,6 +15,7 @@ import { PrivateRoutes } from "./routes/PrivateRoutes";
 import { NotFound } from "./pages/NotFound";
 import { useAppSelector } from "./app/hooks";
 import { Wishlist } from "./pages/wishlist/index";
+import { SearchProduct } from "./pages/searchProduct";
 
 function App() {
   // useAppSelector
@@ -108,6 +109,9 @@ function App() {
 
               {/* Wishlist */}
               <Route path="wishlist" element={<Wishlist />} />
+
+              {/* Product Search */}
+              <Route path="search/:nameProduct" element={<SearchProduct />} />
 
               {/* Not Found */}
               <Route path="*" element={<NotFound />} />
