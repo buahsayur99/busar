@@ -34,11 +34,12 @@ const Navbar = () => {
     const [input, setInput] = useState("");
     const [searchMobile, setSearchMobile] = useState(false);
     const navigate = useNavigate();
-    // useAppSelector
-    const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
-    const { toggle } = useBodyScrollLock();
-    // Auth Login Users
+    // Hook
+    // useOutsideClick({ ref, faClose: () => invisibleInputSearch() });
     useAuthUsers();
+    const { toggle } = useBodyScrollLock();
+    // Redux
+    const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
     const dispatch = useAppDispatch();
 
     return (
@@ -55,16 +56,19 @@ const Navbar = () => {
                             <div className={styles["parent-search-pc"]}>
                                 <SearchProduct inputs={input} setInputs={(input) => setInput(input)} />
                             </div>
-
+                            {/* Search Mobile */}
                             {searchMobile && (
-                                <div className={`
-                                    ${styles["parent-search-600"]}
-                                    ${searchMobile && styles["visible-search-mobile-navbar"]}
-                                `}>
+                                <div
+                                    className={`
+                                        ${styles["parent-search-600"]}
+                                        ${searchMobile && styles["visible-search-mobile-navbar"]}
+                                    `}
+                                >
                                     <SearchProduct inputs={input} setInputs={(input) => setInput(input)} onClicks={() => setSearchMobile(false)} />
                                 </div>
                             )}
                         </div>
+
                         <div className={styles["toolbar-right"]}>
                             {/* Search Mobile */}
                             {!searchMobile && (

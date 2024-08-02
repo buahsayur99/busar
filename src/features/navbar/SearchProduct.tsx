@@ -23,6 +23,12 @@ const SearchProduct = ({ onClicks, inputs, setInputs }: SearchProductProps) => {
         event.preventDefault();
 
         navigate(`/search/${inputs}`);
+        setInputs("");
+    }
+
+    const handleOnClick = () => {
+        navigate(`/search/${inputs}`);
+        setInputs("");
     }
 
     const handleFocusInput = () => {
@@ -70,7 +76,7 @@ const SearchProduct = ({ onClicks, inputs, setInputs }: SearchProductProps) => {
                         styleTooltip={"tooltip"}
                         positionX={13}
                         positionY={21}
-                        onClicks={() => { }}
+                        onClicks={() => handleOnClick()}
                         ariaLabel={"search"}
                     >
                         <BsSearch />
