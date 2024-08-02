@@ -119,7 +119,7 @@ const SearchProduct = ({ onClicks, inputs, setInputs }: SearchProductProps) => {
                 {/* if the users focus on the search product input, show component AutoComplete */}
                 {isInputFocused && (
                     <div ref={focusAutoRef}>
-                        <AutoComplete inputSearch={inputs} />
+                        <AutoComplete inputSearch={inputs} close={() => setIsInputFocused(false)} />
                     </div>
                 )}
             </div>

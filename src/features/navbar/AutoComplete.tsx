@@ -4,17 +4,19 @@ import { useAppSelector } from "../../app/hooks";
 import { productProps } from "../../app/actions/apiProductSlice";
 import { convertObjectToArray, formattedNumber } from "../../utils/convert";
 import { BsArrowRight, BsSearch } from "../../utils/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useScrollNavbar } from "../../hook/useScrollNavbar";
 
 type AutoCompleteProps = {
     inputSearch: string;
+    close: () => void;
 }
 
-export const AutoComplete = ({ inputSearch }: AutoCompleteProps) => {
+export const AutoComplete = ({ inputSearch, close }: AutoCompleteProps) => {
     const { dataProductApi } = useAppSelector(state => state.apiProduct);
     const [suggestions, setSuggestions] = useState<productProps[]>([]);
     const { scrolled, scrolls } = useScrollNavbar();
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Hanya update daftar saran jika inputSearch tidak kosong
@@ -67,7 +69,7 @@ export const AutoComplete = ({ inputSearch }: AutoCompleteProps) => {
                                     <ul>
                                         {suggestions.map((suggestion, index) => (
                                             <li key={index}>
-                                                <Link to={`/products/${suggestion.name}`}>
+                                                <Link to={`/collections/sayur-buah/products/${suggestion.name}`}>
                                                     <div className={styles["search-auto-complete-left"]}>
                                                         <img
                                                             width={60}
@@ -88,12 +90,16 @@ export const AutoComplete = ({ inputSearch }: AutoCompleteProps) => {
                                         ))}
                                     </ul>
                                     <div className={styles["search-auto-complete-view-all"]}>
-                                        <Link to={`/collections/sayur-buah/products/${inputSearch}`}>
-                                            <span>
-                                                {`lihat semua ${suggestions.length} product`}
-                                            </span>
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                navigate(`/search/${inputSearch}`);
+                                                close();
+                                            }}
+                                        >
+                                            {`lihat semua ${suggestions.length} product`}
                                             <BsArrowRight className={styles["icon"]} />
-                                        </Link>
+                                        </button>
                                     </div>
                                 </>
                             ) : (
