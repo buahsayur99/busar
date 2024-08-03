@@ -108,7 +108,12 @@ function App() {
               </Route>
 
               {/* Wishlist */}
-              <Route path="wishlist" element={<Wishlist />} />
+              <Route
+                path="wishlist"
+                element={<PrivateRoutes data={dataLoginUsers} />}
+              >
+                <Route index element={<Wishlist />} />
+              </Route>
 
               {/* Product Search */}
               <Route path="search/:nameProduct" element={<SearchProduct />} />

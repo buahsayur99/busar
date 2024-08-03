@@ -42,6 +42,11 @@ const Navbar = () => {
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
     const dispatch = useAppDispatch();
 
+
+    const handleNavigateToWishlist = () => {
+        if (dataLoginUsers) return navigate("/wishlist");
+    }
+
     return (
         <>
             <nav className={`${styles["container-navigation-bar"]}`}>
@@ -89,7 +94,7 @@ const Navbar = () => {
                                 styleTooltip={"tooltip"}
                                 positionX={13}
                                 positionY={17}
-                                onClicks={() => navigate("/wishlist")}
+                                onClicks={() => handleNavigateToWishlist()}
                             >
                                 <GoHeartFill />
                             </ButtonTooltip>

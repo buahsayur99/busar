@@ -34,11 +34,12 @@ export const FormLoginRegister = () => {
 
     useEffect(() => {
         if (dataLoginUsers?.uuid !== undefined) {
-            dispatch(resetTrasitionForm())
-            dispatch(resetValidasi())
-            dispatch(resetIsMessage())
-            return
+            dispatch(resetTrasitionForm());
+            dispatch(resetValidasi());
+            dispatch(resetIsMessage());
+            return toggle(false);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dataLoginUsers?.uuid, dispatch])
 
     useEffect(() => {
