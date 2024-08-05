@@ -21,7 +21,7 @@ type InitialStateProps = {
     dataCart: DataCartProps[],
     dataCartBasket: DataCartProps[],
     isLoadingCart: boolean,
-    isMessageCart: string,
+    isMessageCart: string | null,
     activeCart: boolean,
     checkedCart: DataCartProps[]
 }
@@ -99,7 +99,7 @@ const apiCartSlice = createSlice({
     initialState,
     reducers: {
         resetIsMessageCart: (state) => {
-            state.isMessageCart = ""
+            state.isMessageCart = null
         },
         activeCarts: (state, action) => {
             state.activeCart = action.payload

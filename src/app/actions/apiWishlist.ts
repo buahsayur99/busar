@@ -78,6 +78,9 @@ const apiWishlist = createSlice({
         resetIsMessageWishlist: (state) => {
             state.isMessageWishlist = ""
         },
+        resetDataWishlist: (state) => {
+            state.dataWishlist = []
+        },
         updateDataWishlist: (state, action) => {
             state.dataWishlist = action.payload
         }
@@ -121,5 +124,5 @@ const apiWishlist = createSlice({
     }
 });
 
-export const { resetIsMessageWishlist, updateDataWishlist } = apiWishlist.actions;
+export const { resetIsMessageWishlist, updateDataWishlist, resetDataWishlist } = apiWishlist.actions;
 export default apiWishlist.reducer;

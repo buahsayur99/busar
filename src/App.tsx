@@ -4,11 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { General, Profile, Password, Address } from "./pages/pengaturanProfile/index";
 import { DashboardAdmin, ProductAdmin, UsersAdmin } from "./pages/dashboard/index";
 import { useSocketPayment, useSocketCart, useSocketWishlist } from "./hookSockets/index";
-import { useGetProduct, useSaveLastPage, useAuthUsers, } from "./hook/index";
+import { useGetProduct, useSaveLastPage, useAuthUsers, useGetApiCart, } from "./hook/index";
 import { AllPurchase, PendingPurchase, PackagedPurchase, CancelledPurchase, SendPurchase, SuccessPurchase } from "./pages/purchase/index";
 import { CollectProduct, Products } from "./pages/collections/index";
 import { BasketComponent } from "./features/basket/index";
-import { Carts, Shipment, AlertCart } from "./pages/cart/index";
+import { AlertCart, Carts, Shipment } from "./pages/cart/index";
 import { DetailTransaction } from "./pages/payment/index";
 import { Home } from "./pages/home/Home";
 import { PrivateRoutes } from "./routes/PrivateRoutes";
@@ -25,6 +25,7 @@ function App() {
   // Custome Hook
   const { requestUserApi } = useAuthUsers();
   const { handleGetProduct } = useGetProduct();
+  const { handleGetCart } = useGetApiCart();
   useSaveLastPage();
   // Socket
   useSocketCart();
@@ -34,7 +35,8 @@ function App() {
   useEffect(() => {
     requestUserApi();
     if (dataProductApi.length === 0) return handleGetProduct();
-  }, [dataProductApi.length, handleGetProduct, requestUserApi])
+    if (dataLoginUsers) return handleGetCart();
+  }, [dataProductApi.length, handleGetProduct, requestUserApi, dataLoginUsers, handleGetCart])
 
   return (
     <>

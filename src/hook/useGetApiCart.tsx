@@ -2,20 +2,25 @@ import { useCallback } from "react"
 import { productProps } from "../app/actions/apiProductSlice"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { DataCartProps, addCart, deleteCart, getCart, resetIsMessageCart, updateCart } from "../app/actions/apiCartSlice";
+import { activeFormTransition } from "../app/actions/formLoginRegisterSlice";
+import { useBodyScrollLock } from "./useBodyScrollLock";
 
 export const useGetApiCart = () => {
     const dispatch = useAppDispatch();
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
-    const { isMessageCart } = useAppSelector(state => state.apiCart);
+    const { toggle } = useBodyScrollLock();
 
     const handleAddCart = (product: productProps, amounts: number) => {
-        if (!isMessageCart) {
-            const link = `${process.env.REACT_APP_API_URL_LOCAL}/cart/${dataLoginUsers?.uuid}`;
-            const amount = { amount: amounts }
-
-            const data = { ...product, ...amount }
-            dispatch(addCart({ data, link }))
+        if (!dataLoginUsers) {
+            toggle(true);
+            return dispatch(activeFormTransition({ onOffForm: true }));
         }
+
+        const link = `${process.env.REACT_APP_API_URL_LOCAL}/cart/${dataLoginUsers?.uuid}`;
+        const amount = { amount: amounts }
+
+        const data = { ...product, ...amount }
+        dispatch(addCart({ data, link }))
     }
 
     const handleGetCart = useCallback(() => {

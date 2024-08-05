@@ -4,8 +4,7 @@ import { productProps } from "../../../app/actions/apiProductSlice";
 import Slider from "react-slick";
 import { ImageArray } from "../../../components/ImageArray";
 import { convertObjectToArray, faWishlist, formattedNumber } from "../../../utils/convert";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { activeFormTransition } from "../../../app/actions/formLoginRegisterSlice";
+import { useAppSelector } from "../../../app/hooks";
 import { useGetApiCart } from "../../../hook";
 import { SlBasket } from "../../../utils/icons";
 import { ButtonWishlist } from "./index";
@@ -16,19 +15,13 @@ type SliderAllProductProps = {
 
 export const SliderAllProduct = ({ products }: SliderAllProductProps) => {
     // Redux
-    const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
     const { dataWishlist } = useAppSelector(state => state.apiWishlist);
-    const dispatch = useAppDispatch();
     // Custome Hook
     const { handleAddCart } = useGetApiCart(); // Get Api's Cart
     // State
     const [activeSlide, setActiveSlide] = useState(0);
     let slidesPerRows = 4;
     let rows = 6;
-
-    const handleLoginRedirect = () => {
-        if (!dataLoginUsers) return dispatch(activeFormTransition({ onOffForm: true }))
-    }
 
     const settings = {
         dots: true,
@@ -111,7 +104,6 @@ export const SliderAllProduct = ({ products }: SliderAllProductProps) => {
                                         <div className={styles["parent-button"]}>
                                             <ButtonWishlist
                                                 dataWishlist={faWishlist(slide, dataWishlist)}
-                                                handleLoginRedirect={() => handleLoginRedirect()}
                                                 idProduct={slide.id}
                                             />
 
@@ -120,7 +112,6 @@ export const SliderAllProduct = ({ products }: SliderAllProductProps) => {
                                                 aria-label="basket"
                                                 className={styles["icon-basket"]}
                                                 onClick={() => {
-                                                    handleLoginRedirect();
                                                     handleAddCart(slide, 1)
                                                 }}
                                             >

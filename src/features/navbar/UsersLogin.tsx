@@ -5,6 +5,7 @@ import { resetDataLoginUsers } from "../../app/actions/apiUsersSlice";
 import { MobileUsers } from "./MobileUsers";
 import { NavLink } from "react-router-dom";
 import { handleResetData, updateCheckedCart } from "../../app/actions/apiCartSlice";
+import { resetDataWishlist } from "../../app/actions/apiWishlist";
 
 export const UsersLogin = () => {
     const dispatch = useAppDispatch()
@@ -14,6 +15,7 @@ export const UsersLogin = () => {
         dispatch(resetDataLoginUsers());
         dispatch(handleResetData());
         dispatch(updateCheckedCart([]));
+        dispatch(resetDataWishlist());
         localStorage.removeItem("uuid");
         localStorage.removeItem("checkedCart");
     }

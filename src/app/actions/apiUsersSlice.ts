@@ -139,8 +139,6 @@ export const postToApi = createAsyncThunk("api/postToApi", async ({ data, link }
         });
         const responseData = await response.json();
 
-        console.log(responseData)
-
         if (response.ok) {
             return responseData
         } else {

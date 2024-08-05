@@ -3,24 +3,15 @@ import styles from "../../../style/index.module.scss";
 import { GoHeart, GoHeartFill } from "../../../utils/icons";
 import { useGetWishlist } from "../../../hook";
 import { DataWishlistProps } from "../../../app/actions/apiWishlist";
-import { useAppSelector } from "../../../app/hooks";
 
 type ButtonWishlistProps = {
     dataWishlist: DataWishlistProps[];
     idProduct: number;
-    handleLoginRedirect: () => void;
 }
 
-export const ButtonWishlist = ({ dataWishlist, idProduct, handleLoginRedirect }: ButtonWishlistProps) => {
-    // Redux
-    const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
+export const ButtonWishlist = ({ dataWishlist, idProduct }: ButtonWishlistProps) => {
     // Custome Hook
     const { handleRemoveWishlist, createWishlistApi } = useGetWishlist();
-
-    const handleCreateWishlist = (idProducts: number) => {
-        if (!dataLoginUsers) return handleLoginRedirect();
-        return createWishlistApi(idProducts);
-    }
 
     return (
         <>
@@ -44,7 +35,7 @@ export const ButtonWishlist = ({ dataWishlist, idProduct, handleLoginRedirect }:
                         <button
                             type="button"
                             className={styles["button-wishlist"]}
-                            onClick={() => handleCreateWishlist(idProduct)}
+                            onClick={() => createWishlistApi(idProduct)}
                         >
                             <GoHeart />
                         </button>

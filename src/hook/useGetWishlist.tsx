@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { addWishlist, getWishlist, removeWishlist, resetIsMessageWishlist } from "../app/actions/apiWishlist";
+import { activeFormTransition } from "../app/actions/formLoginRegisterSlice";
 
 export const useGetWishlist = () => {
     // UseAppSelector
@@ -21,6 +22,8 @@ export const useGetWishlist = () => {
     }
 
     const createWishlistApi = (idProduct: number) => {
+        if (!dataLoginUsers) return dispatch(activeFormTransition({ onOffForm: true }))
+
         const link = `${process.env.REACT_APP_API_URL_LOCAL}/add/wishlist`;
         const data = { uuidUser: dataLoginUsers?.uuid, idProduct: idProduct }
         dispatch(addWishlist({ link, data }))

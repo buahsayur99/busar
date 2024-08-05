@@ -25,7 +25,7 @@ export const CollectProduct = () => {
     const { dataProductApi } = useAppSelector(state => state.apiProduct);
     const { dataWishlist, isMessageWishlist } = useAppSelector(state => state.apiWishlist);
     // Custome Hook
-    const { handleGetApiWishlist } = useGetWishlist();
+    const { handleGetApiWishlist, createWishlistApi } = useGetWishlist();
     const { toggle } = useBodyScrollLock();
     const { handleAddCart } = useGetApiCart();
     const { handleTitle } = usePageTittle();
@@ -63,6 +63,8 @@ export const CollectProduct = () => {
         });
         setProduct(productFilter);
     }, [dataProductApi, nameProduct])
+
+    console.log(product)
 
     useEffect(() => {
         faGetApiWishlist();
@@ -132,7 +134,7 @@ export const CollectProduct = () => {
                                                 settingHeart={settingHeart}
                                                 dataWishlist={faWishlist(data, dataWishlist)}
                                                 products={data}
-                                                onClicks={() => { }}
+                                                onClicks={() => createWishlistApi(product[0].id)}
                                             />
                                             <p>favorit</p>
                                         </div>

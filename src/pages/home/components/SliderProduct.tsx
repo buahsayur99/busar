@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { useAppSelector } from "../../../app/hooks";
 import { useGetProduct } from "../../../hook/useGetProduct";
 import { BsArrowRight, BsArrowLeft, SlBasket } from "../../../utils/icons";
 import "slick-carousel/slick/slick.css";
@@ -8,7 +8,6 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from "../../../style/index.module.scss";
 import { convertObjectToArray, faWishlist, formattedNumber } from "../../../utils/convert";
 import { ImageArray } from "../../../components/ImageArray";
-import { activeFormTransition } from "../../../app/actions/formLoginRegisterSlice";
 import { LoadingCard } from "../../../components/LoadingCard";
 import { Link } from "react-router-dom";
 import { useGetApiCart } from "../../../hook/useGetApiCart";
@@ -19,9 +18,7 @@ export const SliderProduct = () => {
     const arrayLoadingCard = [1, 2, 3, 4, 5]
     // UseAppSelector
     const { dataProductApi, isLoadingProduct } = useAppSelector(state => state.apiProduct);
-    const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
     const { dataWishlist } = useAppSelector(state => state.apiWishlist);
-    const dispatch = useAppDispatch();
     // Custome Hook
     useGetProduct(); // Get Api's Product
     const { handleAddCart } = useGetApiCart(); // Get Api's Cart
@@ -85,10 +82,6 @@ export const SliderProduct = () => {
         ]
     };
 
-    const handleLoginRedirect = () => {
-        if (!dataLoginUsers) return dispatch(activeFormTransition({ onOffForm: true }))
-    }
-
     return (
         <>
             <div className={styles["container-slider-product"]}>
@@ -115,7 +108,6 @@ export const SliderProduct = () => {
                                                 <div className={styles["parent-button"]}>
                                                     <ButtonWishlist
                                                         dataWishlist={faWishlist(slide, dataWishlist)}
-                                                        handleLoginRedirect={() => handleLoginRedirect()}
                                                         idProduct={slide.id}
                                                     />
 
@@ -123,10 +115,7 @@ export const SliderProduct = () => {
                                                         type="button"
                                                         aria-label="basket"
                                                         className={styles["icon-basket"]}
-                                                        onClick={() => {
-                                                            handleLoginRedirect();
-                                                            handleAddCart(slide, 1)
-                                                        }}
+                                                        onClick={() => handleAddCart(slide, 1)}
                                                     >
                                                         <SlBasket />
                                                     </button>

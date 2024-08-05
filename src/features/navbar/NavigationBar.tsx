@@ -13,6 +13,7 @@ import { ButtonTooltip } from "../../components/ButtonTooltip";
 import { useState } from "react";
 import { IconBasket } from "./IconBasket";
 import { useNavigate } from "react-router-dom";
+import { FormLoginRegister } from "../formLoginRegister/FormLoginRegister";
 
 export const NavigationBar = () => {
     const { scrolled } = useScrollNavbar();
@@ -35,7 +36,6 @@ const Navbar = () => {
     const [searchMobile, setSearchMobile] = useState(false);
     const navigate = useNavigate();
     // Hook
-    // useOutsideClick({ ref, faClose: () => invisibleInputSearch() });
     useAuthUsers();
     const { toggle } = useBodyScrollLock();
     // Redux
@@ -45,10 +45,15 @@ const Navbar = () => {
 
     const handleNavigateToWishlist = () => {
         if (dataLoginUsers) return navigate("/wishlist");
+        toggle(true)
+        dispatch(activeFormTransition({ onOffForm: true }))
     }
 
     return (
         <>
+            {/* Form Login Register */}
+            <FormLoginRegister />
+
             <nav className={`${styles["container-navigation-bar"]}`}>
                 <div className={styles["global-container"]}>
                     <div className={styles["toolbar-container"]}>

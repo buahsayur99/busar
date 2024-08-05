@@ -19,12 +19,14 @@ export const AlertCart = () => {
         })
     }
 
-    const handleInvisibleAlert = useCallback((message: string) => {
-        updateStateAlert({ active: false, message: message })
-        setTimeout(() => {
-            dispatch(resetIsMessageCart());
-            updateStateAlert({ active: false, message: "" })
-        }, 500)
+    const handleInvisibleAlert = useCallback((message: string | null) => {
+        if (message) {
+            updateStateAlert({ active: false, message: message })
+            setTimeout(() => {
+                dispatch(resetIsMessageCart());
+                updateStateAlert({ active: false, message: "" })
+            }, 500)
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
