@@ -6,7 +6,6 @@ import { useInputFormAddress } from "../../hook/useInputFormAddress";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { createAddress, getAddressLabel, resetInputAddress, resetIsMessageAddress, updateAddress } from "../../app/actions/apiAddressSlice";
 import { InputTextArea } from "../../components/InputTextArea";
-import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
 import { AlertText } from "../../components/AlertText";
 import { Loading } from "../../components/Loading";
 import { IoIosArrowDown } from "../../utils/icons";

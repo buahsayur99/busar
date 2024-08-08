@@ -126,6 +126,8 @@ function App() {
               {/* Product Search */}
               <Route path="search/:nameProduct" element={<SearchProduct />} />
 
+              <Route path="busar" element={<PrivateRoutes data={false} />} ></Route>
+
               {/* Not Found */}
               <Route path="*" element={<NotFound />} />
             </Routes>

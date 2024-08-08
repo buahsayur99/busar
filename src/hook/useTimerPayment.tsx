@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import { DataPaymentProps } from "../app/actions/apiPaymentSlice";
 import { useAppSelector } from "../app/hooks";
 
 export const useTimerPayment = (id: string | undefined) => {
@@ -50,7 +49,7 @@ export const useTimerPayment = (id: string | undefined) => {
                 updateTimer({ jam: remainingHours, menit: remainingMinutes, detik: remainingSeconds });
             }
         }
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dataPayment]);
 
     // Handle Default Timer

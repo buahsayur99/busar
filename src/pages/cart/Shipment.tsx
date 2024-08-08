@@ -7,7 +7,7 @@ import { convertObjectToArray, convertTotalPrice, formattedNumber } from "../../
 import { useBodyScrollLock, useCheckedCart, useGetApiAddress, useScrollNavbar } from "../../hook";
 import { useScrollShipment } from "../../hook/useScrollShipment";
 import { Footers } from "../../components/Footers";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { DaftarAddressCart } from "./components/DaftarAddressCart";
 import { FormAddress } from "../../features/pengaturanProfile/FormAddress";
 import { AlertText } from "../../components/AlertText";
