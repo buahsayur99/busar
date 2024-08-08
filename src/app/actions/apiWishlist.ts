@@ -9,9 +9,16 @@ type ApiWishlistProps = {
 }
 
 export type DataWishlistProps = {
-    id: number,
-    uuidUser: string,
-    idProduct: number,
+    id: number;
+    uuidUser: string;
+    idProduct: number;
+    name: string;
+    image: string;
+    information: string;
+    amount: number;
+    url: string;
+    price: number;
+    category?: number;
 }
 
 type InitialStateProps = {

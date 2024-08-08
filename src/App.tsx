@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { General, Profile, Password, Address } from "./pages/pengaturanProfile/index";
 import { DashboardAdmin, ProductAdmin, UsersAdmin } from "./pages/dashboard/index";
 import { useSocketPayment, useSocketCart, useSocketWishlist } from "./hookSockets/index";
-import { useGetProduct, useSaveLastPage, useAuthUsers, useGetApiCart, } from "./hook/index";
+import { useGetProduct, useSaveLastPage, useAuthUsers, useGetApiCart, useGetWishlist, } from "./hook/index";
 import { AllPurchase, PendingPurchase, PackagedPurchase, CancelledPurchase, SendPurchase, SuccessPurchase } from "./pages/purchase/index";
 import { CollectProduct, Products } from "./pages/collections/index";
 import { BasketComponent } from "./features/basket/index";
@@ -22,10 +22,12 @@ function App() {
   const { isLoadingAuth, dataLoginUsers } = useAppSelector(state => state.apiUsers);
   const { dataProductApi } = useAppSelector(state => state.apiProduct)
   const { activeCart } = useAppSelector(state => state.apiCart);
+  const { dataWishlist } = useAppSelector(state => state.apiWishlist);
   // Custome Hook
   const { requestUserApi } = useAuthUsers();
   const { handleGetProduct } = useGetProduct();
   const { handleGetCart } = useGetApiCart();
+  const { handleGetApiWishlist } = useGetWishlist();
   useSaveLastPage();
   // Socket
   useSocketCart();
@@ -35,8 +37,12 @@ function App() {
   useEffect(() => {
     requestUserApi();
     if (dataProductApi.length === 0) return handleGetProduct();
+    if (dataWishlist.length === 0) return handleGetApiWishlist();
     if (dataLoginUsers) return handleGetCart();
-  }, [dataProductApi.length, handleGetProduct, requestUserApi, dataLoginUsers, handleGetCart])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataProductApi.length, dataLoginUsers, dataWishlist.length])
+
+  console.log(dataWishlist)
 
   return (
     <>
