@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { postToApi, resetIsMessage } from "../../app/actions/apiUsersSlice";
 import { InputProps } from "./Login";
 import { useEffect } from "react";
+import { apiUrl } from "../../utils/variable";
 
 export const Register = () => {
     const { isMessage } = useAppSelector(state => state.apiUsers);
@@ -50,7 +51,7 @@ export const Register = () => {
 
         const data = { ...eventInput, role: "user", idAddress: null }
         // const link = "https://rich-tan-llama-wear.cyclic.app/users"
-        const link = `${process.env.REACT_APP_API_URL_LOCAL}/users`
+        const link = `${apiUrl}/users`
         if (inputValueForm.email !== "" && inputValueForm.password !== "" && inputValueForm.confirmasiPassword !== "") return dispatch(postToApi({ data, link }));
     }
 
