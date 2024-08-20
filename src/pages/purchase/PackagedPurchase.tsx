@@ -8,6 +8,7 @@ import { Footers } from "../../components/Footers";
 import { LoadingTransaction } from "./components/LoadingTransaction";
 import { useApiPayment } from "../../hook/useApiPayment";
 import { DataPaymentProps } from "../../app/actions/apiPaymentSlice";
+import { purchasePackaged } from "../../utils/variable";
 
 export const PackagedPurchase = () => {
     const { isLoadingPayment, dataPaymentAll } = useAppSelector(state => state.apiPayment);
@@ -15,12 +16,11 @@ export const PackagedPurchase = () => {
     const { handleGetTransaction } = useApiPayment();
 
     const handleFilterPaymentPackaged = (payment: DataPaymentProps[]) => {
-        console.log(payment);
 
         if (!Array.isArray(payment)) return [];
 
         const paymentPackaged = payment.filter((data) => {
-            return data.status_purchase === `${process.env.REACT_APP_PURCHASE_PACKAGED}`
+            return data.status_purchase === `${purchasePackaged}`
         });
         if (paymentPackaged.length === 0) return []
         return paymentPackaged

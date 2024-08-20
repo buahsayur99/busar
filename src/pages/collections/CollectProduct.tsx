@@ -7,7 +7,7 @@ import { Footers } from "../../components/Footers";
 import styles from "../../style/index.module.scss";
 import { ImageArray } from "../../components/ImageArray";
 import { convertObjectToArray, faWishlist, formattedNumber } from "../../utils/convert";
-import { HeartIcon } from "../../components/HeartIcon";
+import { HeartIcon } from "../../components/index";
 import { useGetWishlist } from "../../hook/useGetWishlist";
 import { useGetProduct } from "../../hook/useGetProduct";
 import { BigImage } from "../../components/BigImage";
@@ -63,8 +63,6 @@ export const CollectProduct = () => {
         });
         setProduct(productFilter);
     }, [dataProductApi, nameProduct])
-
-    console.log(product)
 
     useEffect(() => {
         faGetApiWishlist();

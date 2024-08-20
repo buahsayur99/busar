@@ -2,6 +2,7 @@ import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { io } from "socket.io-client";
 import { DataPaymentProps, handleUpdateAllPaymentRedux } from "../app/actions/apiPaymentSlice";
+import { apiUrl } from "../utils/variable";
 
 
 export const useSocketPayment = () => {
@@ -11,7 +12,8 @@ export const useSocketPayment = () => {
 
     const handleSocketsGetAllPayment = useCallback(() => {
         if (dataLoginUsers) {
-            const sockets = io(`${process.env.REACT_APP_API_URL_LOCAL}`);
+            const sockets = io(`${apiUrl}`);
+            console.log("socket")
 
             sockets.on(`${dataLoginUsers.uuid}-socket-payment`, (data: DataPaymentProps[]) => {
                 dispatch(handleUpdateAllPaymentRedux(data));
@@ -23,7 +25,7 @@ export const useSocketPayment = () => {
             };
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dataLoginUsers])
+    }, [])
 
     // Handle Socket Payment
     useEffect(() => {

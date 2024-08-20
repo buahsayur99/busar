@@ -1,12 +1,13 @@
 import { getCategory } from "../app/actions/apiCategory";
 import { useAppDispatch } from "../app/hooks"
+import { apiUrl } from "../utils/variable";
 
 
 export const useApiCategory = () => {
     const dispatch = useAppDispatch();
 
     const handleGetCategory = () => {
-        const link = `${process.env.REACT_APP_API_URL_LOCAL}/category`;
+        const link = `${apiUrl}/category`;
 
         dispatch(getCategory(link));
     }

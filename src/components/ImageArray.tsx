@@ -3,6 +3,7 @@ import styles from "../style/index.module.scss";
 import Slider from "react-slick";
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "../utils/icons";
 import { Link } from "react-router-dom";
+import { apiUrl } from "../utils/variable";
 
 type ImagesArrayProps = {
     imageUrl: string[];
@@ -71,7 +72,7 @@ export const ImageArray = ({ imageUrl, indexs, nameProducts, faHandleBigImage }:
                             {nameProducts ? (
                                 <Link to={`/collections/sayur-buah/products/${nameProducts}`}>
                                     <img
-                                        src={`${process.env.REACT_APP_API_URL_LOCAL}/${url}`}
+                                        src={`${apiUrl}/${url}`}
                                         alt={imageUrl[0]}
                                         loading={indexs !== undefined && indexs < 5 ? "eager" : "lazy"}
                                         width={300}
@@ -80,7 +81,7 @@ export const ImageArray = ({ imageUrl, indexs, nameProducts, faHandleBigImage }:
                                 </Link>
                             ) : (
                                 <img
-                                    src={`${process.env.REACT_APP_API_URL_LOCAL}/${url}`}
+                                    src={`${apiUrl}/${url}`}
                                     alt={imageUrl[0]}
                                     loading={indexs !== undefined && indexs < 5 ? "eager" : "lazy"}
                                     width={300}

@@ -2,6 +2,7 @@ import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { io } from "socket.io-client";
 import { DataCartProps, updateCartsData } from "../app/actions/apiCartSlice";
+import { apiUrl } from "../utils/variable";
 
 export const useSocketCart = () => {
     // useAppSelector
@@ -10,7 +11,7 @@ export const useSocketCart = () => {
 
     const handleSocketCart = useCallback(() => {
         if (dataLoginUsers) {
-            const sockets = io(`${process.env.REACT_APP_API_URL_LOCAL}`);
+            const sockets = io(`${apiUrl}`);
 
             sockets.on(`${dataLoginUsers.uuid}-socket-cart`, (data: DataCartProps[]) => {
                 dispatch(updateCartsData(data));

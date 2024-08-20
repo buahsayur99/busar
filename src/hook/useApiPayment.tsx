@@ -4,6 +4,7 @@ import { DataCartProps } from "../app/actions/apiCartSlice";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { useNavigate } from "react-router-dom";
 import { handleGetAllTransaction, handleGetPayment, handleGetPaymentByTransactionId } from "../app/actions/apiPaymentSlice";
+import { apiUrl, midtransClientKey } from "../utils/variable";
 
 export const useApiPayment = () => {
     // UseAppSelector
@@ -27,7 +28,7 @@ export const useApiPayment = () => {
             product: dataCart
         }
 
-        const link = `${process.env.REACT_APP_API_URL_LOCAL}/process-transaction`;
+        const link = `${apiUrl}/process-transaction`;
 
         const response = await fetch(link, {
             method: "POST",
@@ -44,14 +45,14 @@ export const useApiPayment = () => {
 
     const getpayment = () => {
         if (dataLoginUsers?.uuid) {
-            const link = `${process.env.REACT_APP_API_URL_LOCAL}/transaction/${dataLoginUsers.uuid}`;
+            const link = `${apiUrl}/transaction/${dataLoginUsers.uuid}`;
             dispatch(handleGetPayment({ link }))
         }
     }
 
     const getPaymentByTransactionId = (transactionId: string | undefined) => {
         if (dataLoginUsers?.uuid && transactionId) {
-            const link = `${process.env.REACT_APP_API_URL_LOCAL}/transaction/${dataLoginUsers.uuid}/${transactionId}`;
+            const link = `${apiUrl}/transaction/${dataLoginUsers.uuid}/${transactionId}`;
             dispatch(handleGetPaymentByTransactionId({ link }))
         }
     }
@@ -62,7 +63,7 @@ export const useApiPayment = () => {
         let scriptTag = document.createElement("script");
         scriptTag.src = midtransUrl
 
-        const midtransClientKey = `${process.env.MIDTRANS_CLIENT_KEY}`;
+        // const midtransClientKey = `${process.env.MIDTRANS_CLIENT_KEY}`;
         scriptTag.setAttribute("data-client-key", midtransClientKey);
 
         document.body.appendChild(scriptTag);
@@ -122,7 +123,7 @@ export const useApiPayment = () => {
     // Handle Get Api Transaction
     const handleGetTransaction = () => {
         if (dataLoginUsers) {
-            const link = `${process.env.REACT_APP_API_URL_LOCAL}/transaction/${dataLoginUsers.uuid}`
+            const link = `${apiUrl}/transaction/${dataLoginUsers.uuid}`
 
             dispatch(handleGetAllTransaction({ link }))
         }

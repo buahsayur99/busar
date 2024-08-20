@@ -5,6 +5,7 @@ import { GoHeart, GoHeartFill } from "../utils/icons";
 import { DataWishlistProps, addWishlist, removeWishlist } from "../app/actions/apiWishlist";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { productProps } from "../app/actions/apiProductSlice";
+import { apiUrl } from "../utils/variable";
 
 export type HeartIconProps = {
     settingHeart?: any;
@@ -18,14 +19,14 @@ export const HeartIcon = ({ settingHeart, dataWishlist, products, onClicks }: He
     const dispatch = useAppDispatch();
 
     const handleRemoveWishlist = (idProduct: number | undefined) => {
-        const link = `${process.env.REACT_APP_API_URL_LOCAL}/wishlist/${idProduct}`;
+        const link = `${apiUrl}/wishlist/${idProduct}`;
         if (idProduct) dispatch(removeWishlist({ link }))
     }
 
     const handleCreateWishlist = () => {
         if (!dataLoginUsers) return onClicks()
 
-        const link = `${process.env.REACT_APP_API_URL_LOCAL}/add/wishlist`;
+        const link = `${apiUrl}/add/wishlist`;
         const data = { uuidUser: dataLoginUsers?.uuid, idProduct: products.id }
         dispatch(addWishlist({ link, data }))
     }

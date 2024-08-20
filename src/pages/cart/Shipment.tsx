@@ -12,6 +12,7 @@ import { DaftarAddressCart } from "./components/DaftarAddressCart";
 import { FormAddress } from "../../features/pengaturanProfile/FormAddress";
 import { AlertText } from "../../components/AlertText";
 import { useApiPayment } from "../../hook/useApiPayment";
+import { apiUrl } from "../../utils/variable";
 
 export const Shipment = () => {
     // State
@@ -187,7 +188,7 @@ export const Shipment = () => {
                                                     <div className={styles["css-line-cart"]}></div>
 
                                                     <div className={styles["box-order"]}>
-                                                        <img width={80} height={80} src={`${process.env.REACT_APP_API_URL_LOCAL}/${convertObjectToArray(data.urlImage)[0]}`} alt={data.nameProduct} />
+                                                        <img width={80} height={80} src={`${apiUrl}/${convertObjectToArray(data.urlImage)[0]}`} alt={data.nameProduct} />
 
                                                         <div className={styles["detail-order"]}>
                                                             <p>{data.nameProduct}</p>

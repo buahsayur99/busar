@@ -42,8 +42,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataProductApi.length, dataLoginUsers, dataWishlist.length])
 
-  console.log(dataWishlist)
-
   return (
     <>
       {isLoadingAuth === false && (

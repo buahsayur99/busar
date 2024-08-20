@@ -12,6 +12,7 @@ import { MdOutlineKeyboardArrowLeft } from "../../utils/icons";
 import { useWebSocketClient } from "../../hook/useWebSocketClient";
 import { NotifSuccessTrans } from "./components/NotifSuccessTrans";
 import { PaymentBankProps, PaymentStoreProps, resetIsMessagePayment } from "../../app/actions/apiPaymentSlice";
+import { pendingPayment, purchasePackaged } from "../../utils/variable";
 
 export const DetailTransaction = () => {
     const [active, setActive] = useState({ panduanPembayaran: false, loadingHidden: false })
@@ -42,11 +43,11 @@ export const DetailTransaction = () => {
             resetIsMessagePayment()
             navigate(-1);
         }
-        if (dataPayment && dataPayment.status_purchase === `${process.env.REACT_APP_PURCHASE_PACKAGED}`) {
+        if (dataPayment && dataPayment.status_purchase === `${purchasePackaged}`) {
             navigate("/user/purchase/packaged")
         }
         // if payment status not  redirect to home
-        if (dataPayment && dataPayment?.status !== `${process.env.REACT_APP_PENDING_PAYMENT}`) return navigate("/");
+        if (dataPayment && dataPayment?.status !== `${pendingPayment}`) return navigate("/");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isMessagePayment, dataPayment])
 

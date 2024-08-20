@@ -2,6 +2,7 @@ import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { authLogin, resetIsMessage } from "../app/actions/apiUsersSlice";
 import { rejectedAuthLogin } from "../utils/responseApi";
+import { apiUrl } from "../utils/variable";
 
 export const useAuthUsers = () => {
     const { dataLoginUsers, isMessage } = useAppSelector(state => state.apiUsers);
@@ -12,7 +13,7 @@ export const useAuthUsers = () => {
         if (!dataLoginUsers) {
             dispatch(resetIsMessage());
 
-            const link = `${process.env.REACT_APP_API_URL_LOCAL}/me/${uuid}`;
+            const link = `${apiUrl}/me/${uuid}`;
             dispatch(authLogin({ link }));
         }
     }, [dispatch, uuid, dataLoginUsers]);

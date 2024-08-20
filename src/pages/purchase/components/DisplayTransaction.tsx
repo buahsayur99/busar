@@ -5,6 +5,7 @@ import { useAppSelector } from "../../../app/hooks";
 import { NavLink } from "react-router-dom";
 import { UiProductTransaction } from "./UiProductTransaction";
 import noteEmpty from "../../../assets/purchase/note-empty.webp";
+import { pendingPayment, purchaseDelivered, purchasePackaged, successPayment } from "../../../utils/variable";
 
 type DisplayTransactionProps = {
     dataTransaction: DataPaymentProps[] | []
@@ -15,6 +16,7 @@ const handleTimeTransaction = (dataTransaction: DataPaymentProps) => {
         const dates = new Date(date);
         const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false };
         const formattedDate = dates.toLocaleString('id-ID', options).replace(/\//g, '-').replace(',', '');
+        console.log(formattedDate)
         const [datePart, timePart] = formattedDate.split(' ');
         const formattedDateTime = `${datePart}  |  ${timePart}`;
 
@@ -22,8 +24,8 @@ const handleTimeTransaction = (dataTransaction: DataPaymentProps) => {
     }
 
     const handleStatusTransaction = () => {
-        if (dataTransaction.status === `${process.env.REACT_APP_SUCCESS_PAYMENT}`) {
-            if (dataTransaction.status_purchase === `${process.env.REACT_APP_PURCHASE_DELIVERED}`) {
+        if (dataTransaction.status === `${successPayment}`) {
+            if (dataTransaction.status_purchase === `${purchaseDelivered}`) {
                 return (
                     <div className={`${styles["wrapper-status-transaction"]} ${styles["status-finished"]}`}>
                         <p className={styles["status-transaction"]}>delivered</p>
@@ -31,7 +33,7 @@ const handleTimeTransaction = (dataTransaction: DataPaymentProps) => {
                 )
             }
 
-            if (dataTransaction.status_purchase === `${process.env.REACT_APP_PURCHASE_PACKAGED}`) {
+            if (dataTransaction.status_purchase === `${purchasePackaged}`) {
                 return (
                     <div className={`${styles["wrapper-status-transaction"]} ${styles["status-finished"]}`}>
                         <p className={styles["status-transaction"]}>packaged</p>
@@ -45,7 +47,7 @@ const handleTimeTransaction = (dataTransaction: DataPaymentProps) => {
                 </div>
             )
         }
-        if (dataTransaction.status === `${process.env.REACT_APP_PENDING_PAYMENT}`) {
+        if (dataTransaction.status === `${pendingPayment}`) {
             return (
                 <div className={styles["wrapper-status-transaction"]}>
                     <NavLink

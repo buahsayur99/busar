@@ -14,6 +14,7 @@ import { useBodyScrollLock, useCheckedCart, useGetWishlist, useGetProduct, useGe
 import { useScrollTotalPrice } from "../../hook/useScrollTotalPrice";
 import { CardTotalHarga, BasketEmpty, RecommendationCart } from "./components/index";
 import { HeartIcon, ButtonTooltip, InputCheckbox, Footers } from "../../components/index";
+import { apiUrl } from "../../utils/variable";
 
 export const Carts = () => {
     // UseAppSelector
@@ -307,7 +308,7 @@ const Products = ({ product, isLoading, checkedCart, faHandleDeleteCart, faHandl
                         >
                             <img
                                 width={150}
-                                src={`${process.env.REACT_APP_API_URL_LOCAL}/${convertObjectToArray(product.urlImage)[0]}`}
+                                src={`${apiUrl}/${convertObjectToArray(product.urlImage)[0]}`}
                                 alt={product.nameProduct}
                             />
                         </Link>

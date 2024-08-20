@@ -10,6 +10,7 @@ import { useDebounce } from "use-debounce";
 import { AlertText } from "../../components/AlertText";
 import { useBodyScrollLock } from "../../hook/useBodyScrollLock";
 import { useGetApiCart } from "../../hook";
+import { apiUrl } from "../../utils/variable";
 
 export const BasketComponent = () => {
     // State
@@ -168,7 +169,7 @@ const Products = ({ product, isLoading }: ProductsProps) => {
             >
                 <img
                     width={60}
-                    src={`${process.env.REACT_APP_API_URL_LOCAL}/${convertObjectToArray(product.urlImage)[0]}`}
+                    src={`${apiUrl}/${convertObjectToArray(product.urlImage)[0]}`}
                     alt={product.nameProduct}
                     className={styles["image-product"]}
                 />

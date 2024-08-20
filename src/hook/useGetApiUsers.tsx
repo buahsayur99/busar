@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useAppDispatch } from "../app/hooks";
 import { LoginUsers, getUsers } from "../app/actions/apiUsersSlice";
+import { apiUrl } from "../utils/variable";
 
 type useGetApiUsersProps = {
     isMessage: string | null;
@@ -11,8 +12,9 @@ export const useGetApiUsers = ({ isMessage, dataLoginUsers }: useGetApiUsersProp
     const dispatch = useAppDispatch();
 
     const getApiUsers = useCallback(() => {
+        console.log(apiUrl)
         // When update success getUsers
-        let link = `${process.env.REACT_APP_API_URL_LOCAL}/get/users/${dataLoginUsers?.uuid}`;
+        let link = `${apiUrl}/get/users/${dataLoginUsers?.uuid}`;
         if (isMessage === "update user success") return dispatch(getUsers({ link }))
     }, [dispatch, isMessage, dataLoginUsers?.uuid]);
 

@@ -2,6 +2,7 @@ import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { io } from "socket.io-client";
 import { DataWishlistProps, updateDataWishlist } from "../app/actions/apiWishlist";
+import { apiUrl } from "../utils/variable";
 
 export const useSocketWishlist = () => {
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
@@ -9,7 +10,7 @@ export const useSocketWishlist = () => {
 
     const handleSocketCart = useCallback(() => {
         if (dataLoginUsers) {
-            const sockets = io(`${process.env.REACT_APP_API_URL_LOCAL}`);
+            const sockets = io(`${apiUrl}`);
 
             sockets.on(`${dataLoginUsers.uuid}-socket-wishlists`, (wishlist: DataWishlistProps[]) => {
                 dispatch(updateDataWishlist(wishlist));

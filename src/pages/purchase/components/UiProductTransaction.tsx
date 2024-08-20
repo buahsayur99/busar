@@ -3,6 +3,7 @@ import styles from "../../../style/index.module.scss";
 import { productProps } from "../../../app/actions/apiProductSlice";
 import { DataPaymentProps } from "../../../app/actions/apiPaymentSlice";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { apiUrl } from "../../../utils/variable";
 
 type UiProductTransactionProps = {
     dataProductTransaction: DataPaymentProps
@@ -31,7 +32,7 @@ export const UiProductTransaction = ({ dataProductTransaction, dataProduct }: Ui
                 <div className={`${styles["wrapper-product"]} ${!active.detailProduct && styles["padding-0"]}`}>
                     <div className={styles["product"]}>
                         <img
-                            src={`${process.env.REACT_APP_API_URL_LOCAL}/${images}`}
+                            src={`${apiUrl}/${images}`}
                             alt={productFilter[0].name}
                             width={100}
                             height={100}

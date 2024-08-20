@@ -1,12 +1,13 @@
 import { useCallback } from "react";
 import { useAppDispatch } from "../app/hooks";
 import { getProduct } from "../app/actions/apiProductSlice";
+import { apiUrl } from "../utils/variable";
 
 export const useGetProduct = () => {
     const dispatch = useAppDispatch();
 
     const handleGetProduct = useCallback(() => {
-        const link = `${process.env.REACT_APP_API_URL_LOCAL}/products`;
+        const link = `${apiUrl}/products`;
         dispatch(getProduct(link))
     }, [dispatch]);
 

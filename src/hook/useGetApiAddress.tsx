@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { getAddress, removeAddress, resetIsMessageAddress, updateChoiceAddress, updateMainAddress } from "../app/actions/apiAddressSlice";
+import { apiUrl } from "../utils/variable";
 
 export const useGetApiAddress = () => {
     const { dataAddress, isMessageAddress } = useAppSelector(state => state.apiAddress);
@@ -13,19 +14,19 @@ export const useGetApiAddress = () => {
             isMessageAddress === "delete address success" ||
             isMessageAddress === "update choice address success") dispatch(resetIsMessageAddress());
 
-        const link = `${process.env.REACT_APP_API_URL_LOCAL}/address/${uuid}`;
+        const link = `${apiUrl}/address/${uuid}`;
         return dispatch(getAddress({ link }));
     }, [dispatch, uuid, isMessageAddress])
 
     const deleteApiAddress = (id: number[]) => {
-        const link = `${process.env.REACT_APP_API_URL_LOCAL}/address/${uuid}`;
+        const link = `${apiUrl}/address/${uuid}`;
         const data = { id: [...id] }
 
         return dispatch(removeAddress({ data, link }))
     }
 
     const updateApiAddressMain = (idAddress: number) => {
-        const link = `${process.env.REACT_APP_API_URL_LOCAL}/update/main/address`;
+        const link = `${apiUrl}/update/main/address`;
         const filterAddress = dataAddress.filter(data => data.main === true);
         const idMainAddress = filterAddress[0].id
 
@@ -39,7 +40,7 @@ export const useGetApiAddress = () => {
     }
 
     const updateApiAddressChoice = (idAddress: number) => {
-        const link = `${process.env.REACT_APP_API_URL_LOCAL}/update/choice/address`;
+        const link = `${apiUrl}/update/choice/address`;
         const filterAddress = dataAddress.filter(data => data.choice === true);
         const idChoiceAddress = filterAddress[0].id
 
