@@ -5,7 +5,6 @@ import { useEffect, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { activeFormTransition, updateValidasi, updateInputValue, resetValidasi } from "../../app/actions/formLoginRegisterSlice";
 import { postToApi, resetIsMessage } from "../../app/actions/apiUsersSlice";
-import { apiUrl } from "../../utils/variable";
 
 export type InputProps = {
     email?: string;
@@ -36,7 +35,7 @@ export const Login: React.FC<LoginProps> = ({ toggleBackgroundWhite }) => {
         }
 
         const data = eventInput
-        const link = `${apiUrl}/login`
+        const link = `${process.env.REACT_APP_API_URL_BACK_END}/login`
         if (inputValueForm.email !== "" && inputValueForm.password !== "") return dispatch(postToApi({ data, link }));
     }
 
