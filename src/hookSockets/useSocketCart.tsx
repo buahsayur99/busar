@@ -28,5 +28,6 @@ export const useSocketCart = () => {
 
     useEffect(() => {
         handleSocketCart();
-    }, [handleSocketCart])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 }

@@ -31,5 +31,5 @@ export const useSocketPayment = () => {
     useEffect(() => {
         handleSocketsGetAllPayment();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [handleSocketsGetAllPayment]);
+    }, []);
 }
