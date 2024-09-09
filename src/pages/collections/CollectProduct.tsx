@@ -23,9 +23,9 @@ export const CollectProduct = () => {
     const navigate = useNavigate();
     // UseAppSelector
     const { dataProductApi } = useAppSelector(state => state.apiProduct);
-    const { dataWishlist, isMessageWishlist } = useAppSelector(state => state.apiWishlist);
+    const { dataWishlist } = useAppSelector(state => state.apiWishlist);
     // Custome Hook
-    const { handleGetApiWishlist, createWishlistApi } = useGetWishlist();
+    const { createWishlistApi } = useGetWishlist();
     const { toggle } = useBodyScrollLock();
     const { handleAddCart } = useGetApiCart();
     const { handleTitle } = usePageTittle();
@@ -53,9 +53,9 @@ export const CollectProduct = () => {
         arialLabelNoFill: "heart",
     }
 
-    const faGetApiWishlist = useCallback(() => {
-        if (isMessageWishlist === "success add wishlist" || isMessageWishlist === "success remove wishlist") return handleGetApiWishlist()
-    }, [isMessageWishlist, handleGetApiWishlist])
+    // const faGetApiWishlist = useCallback(() => {
+    //     if (isMessageWishlist === "success add wishlist" || isMessageWishlist === "success remove wishlist") return handleGetApiWishlist()
+    // }, [isMessageWishlist, handleGetApiWishlist])
 
     const handleFilterProduct = useCallback(() => {
         const productFilter = dataProductApi.filter((data) => {
@@ -65,9 +65,9 @@ export const CollectProduct = () => {
     }, [dataProductApi, nameProduct])
 
     useEffect(() => {
-        faGetApiWishlist();
+        // faGetApiWishlist();
         handleFilterProduct();
-    }, [faGetApiWishlist, handleFilterProduct])
+    }, [handleFilterProduct])
 
     const handleVisibleBigImage = (url: string) => {
         setTargetImage(url);

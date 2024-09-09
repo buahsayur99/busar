@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react"
+import { useCallback } from "react"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { addWishlist, getWishlist, removeWishlist, resetIsMessageWishlist } from "../app/actions/apiWishlist";
 import { activeFormTransition } from "../app/actions/formLoginRegisterSlice";
@@ -7,7 +7,7 @@ import { apiUrl } from "../utils/variable";
 export const useGetWishlist = () => {
     // UseAppSelector
     const { dataLoginUsers } = useAppSelector(state => state.apiUsers);
-    const { dataWishlist, isMessageWishlist } = useAppSelector(state => state.apiWishlist);
+    // const { dataWishlist, isMessageWishlist } = useAppSelector(state => state.apiWishlist);
     const dispatch = useAppDispatch();
 
     const handleGetApiWishlist = useCallback(() => {
@@ -30,10 +30,10 @@ export const useGetWishlist = () => {
         dispatch(addWishlist({ link, data }))
     }
 
-    useEffect(() => {
-        if (dataWishlist.length === 0) return handleGetApiWishlist();
-        if (isMessageWishlist === "success remove wishlist") return handleGetApiWishlist();
-    }, [handleGetApiWishlist, dataWishlist.length, isMessageWishlist]);
+    // useEffect(() => {
+    //     if (dataWishlist.length === 0) return handleGetApiWishlist();
+    //     if (isMessageWishlist === "success remove wishlist") return handleGetApiWishlist();
+    // }, [handleGetApiWishlist, dataWishlist.length, isMessageWishlist]);
 
     return { handleGetApiWishlist, handleRemoveWishlist, createWishlistApi };
 };
