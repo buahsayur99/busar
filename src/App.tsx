@@ -37,10 +37,13 @@ function App() {
   useEffect(() => {
     requestUserApi();
     if (dataProductApi.length === 0) return handleGetProduct();
-    if (dataWishlist.length === 0) return handleGetApiWishlist();
-    if (dataLoginUsers) return handleGetCart();
+    // if (dataWishlist.length === 0) return handleGetApiWishlist();
+    if (dataLoginUsers) {
+      handleGetApiWishlist()
+      handleGetCart();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataProductApi.length, dataLoginUsers, dataWishlist.length])
+  }, [dataProductApi.length, dataLoginUsers])
 
   return (
     <>

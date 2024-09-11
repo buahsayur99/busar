@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { authLogin, resetIsMessage } from "../app/actions/apiUsersSlice";
+import { authLogin, resetIsMessage, updateLoadingAuth } from "../app/actions/apiUsersSlice";
 import { rejectedAuthLogin } from "../utils/responseApi";
 import { apiUrl } from "../utils/variable";
 
@@ -10,12 +10,14 @@ export const useAuthUsers = () => {
     const uuid = localStorage.getItem("uuid");
 
     const requestUserApi = useCallback(() => {
-        if (!dataLoginUsers) {
+        if (!dataLoginUsers && uuid) {
             dispatch(resetIsMessage());
 
             const link = `${apiUrl}/me/${uuid}`;
-            dispatch(authLogin({ link }));
+            return dispatch(authLogin({ link }));
         }
+
+        return dispatch(updateLoadingAuth());
     }, [dispatch, uuid, dataLoginUsers]);
 
     const removeLocalStorage = useCallback((event: string) => {

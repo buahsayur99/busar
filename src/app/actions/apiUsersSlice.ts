@@ -227,6 +227,9 @@ const apiUsersSlice = createSlice({
         },
         resetDataUsersAll: (state) => {
             state.dataUsersAll = []
+        },
+        updateLoadingAuth: (state) => {
+            state.isLoadingAuth = false
         }
     },
     extraReducers: (builder) => {
@@ -366,5 +369,5 @@ const apiUsersSlice = createSlice({
     }
 });
 
-export const { resetIsMessage, resetUuid, resetDataLoginUsers, logoutUsers, resetDataUsersAll } = apiUsersSlice.actions;
+export const { resetIsMessage, resetUuid, resetDataLoginUsers, logoutUsers, resetDataUsersAll, updateLoadingAuth } = apiUsersSlice.actions;
 export default apiUsersSlice.reducer;
